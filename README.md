@@ -1,5 +1,7 @@
 # Angular Boot Camp Curriculum - DRAFT
 
+<img src="https://angularbootcamp.com/images/angular-boot-camp-logo.svg" width="394" height="106" />
+
 Welcome to the Angular Boot Camp Curriculum. This repository
 contains over half of the example code we use in teaching
 [Angular Boot Camp](https://angularbootcamp.com/),
@@ -173,3 +175,5 @@ to use in teaching
 [Angular Boot Camp](https://angularbootcamp.com/)
 
 Copyright 2018 Oasis Digital Solutions Inc.
+
+<img src="https://oasisdigital.com/images/od-logo.svg" width="379" height="143" />
