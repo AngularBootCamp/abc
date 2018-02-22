@@ -1,4 +1,4 @@
-# Angular Boot Camp Curriculum - DRAFT
+# Angular Boot Camp Curriculum Examples
 
 <img src="https://angularbootcamp.com/images/angular-boot-camp-logo.svg" width="394" height="106" />
 
@@ -8,10 +8,10 @@ contains over half of the example code we use in teaching
 available here to use in class, or for the web at large to refer to as
 (hopefully) high quality examples of specific Angular topics.
 
-Initially these examples contain very little explanation; we provide
-the explanation during the Angular Boot Class. In the future we hope
-to add more explanation in line here, but this material is
-fundamentally about supporting our class effort.
+Initially these examples contain very little explanation; we provide the
+explanation during Angular Boot Camp. In the future we hope to add more
+explanation text, but this material is fundamentally about supporting our class
+effort.
 
 ## Topic List
 
@@ -174,6 +174,12 @@ This is maintained by the team at
 to use in teaching
 [Angular Boot Camp](https://angularbootcamp.com/)
 
-Copyright 2018 Oasis Digital Solutions Inc.
+We offer:
+
+* Public Angular training, both in-person and online
+* Private Angular training for your organization, both in-person and online
+* Consulting and software development / assistance
 
 <img src="https://oasisdigital.com/images/od-logo.svg" width="379" height="143" />
+
+Copyright 2018 Oasis Digital Solutions Inc.
