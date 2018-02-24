@@ -162,10 +162,15 @@ Here are all the topics, in roughly the order we'll use in class:
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/template-if-else))
 
 
-(There are additional materials available for advanced topics in
-class, which don't fit well into the format presented here; your
-instructor will direct you to the relevant materials as those topics
-come up in class.)
+(There are additional examples and materials available for advanced
+topics in class, which don't fit well into the format presented here;
+your instructor will direct you to the relevant materials as those
+topics come up in class.)
+
+## Resources
+
+Numerous links and other resources are
+[available in the resource directory](Resources).
 
 ## Who?
 
