@@ -1,4 +1,4 @@
-# Angular Boot Camp Curriculum Examples
+# Angular Boot Camp in-class examples
 
 <img src="https://angularbootcamp.com/images/angular-boot-camp-logo.svg" width="394" height="106" />
 
@@ -13,7 +13,7 @@ explanation during Angular Boot Camp. In the future we hope to add more
 explanation text, but this material is fundamentally about supporting our class
 effort.
 
-## Topic List
+## Topic list
 
 Here are all the topics, in roughly the order we'll use in class:
 
@@ -167,7 +167,10 @@ topics in class, which don't fit well into the format presented here;
 your instructor will direct you to the relevant materials as those
 topics come up in class.)
 
-## Resources
+## FAQs and resources
+
+Frequently asked questions and answers are
+[on our FAQ page](FAQ.md)
 
 Numerous links and other resources are
 [available in the resource directory](Resources).
