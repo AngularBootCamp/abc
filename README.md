@@ -1,22 +1,14 @@
 # Angular Boot Camp in-class examples
 
-<img src="https://angularbootcamp.com/images/angular-boot-camp-logo.svg" width="394" height="106" />
+<img src="https://angularbootcamp.com/images/angular-boot-camp-logo.svg" width="394" height="106">
 
-Welcome to the Angular Boot Camp Curriculum. This repository
-contains over half of the example code we use in teaching
-[Angular Boot Camp](https://angularbootcamp.com/),
-available here to use in class, or for the web at large to refer to as
-(hopefully) high quality examples of specific Angular topics.
+Welcome to the Angular Boot Camp Curriculum. This repository contains over half of the example code we use in teaching [Angular Boot Camp](https://angularbootcamp.com/), available here to use in class, or for the web at large to refer to as (hopefully) high quality examples of specific Angular topics.
 
-Initially these examples contain very little explanation; we provide the
-explanation during Angular Boot Camp. In the future we hope to add more
-explanation text, but this material is fundamentally about supporting our class
-effort.
+Initially these examples contain very little explanation; we provide the explanation during Angular Boot Camp. In the future we hope to add more explanation text, but this material is fundamentally about supporting our class effort.
 
 ## Topic list
 
-Here are all the topics, in roughly the order we'll use in class:
-
+Here are all the topics, in roughly the order we’ll use in class:
 [Step 101, data-binding](https://github.com/AngularBootCamp/data-binding)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/data-binding))
 
@@ -161,33 +153,24 @@ Here are all the topics, in roughly the order we'll use in class:
 [Step 522, template-if-else](https://github.com/AngularBootCamp/template-if-else)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/template-if-else))
 
-
-(There are additional examples and materials available for advanced
-topics in class, which don't fit well into the format presented here;
-your instructor will direct you to the relevant materials as those
-topics come up in class.)
+(There are additional examples and materials available for advanced topics in class, which don’t fit well into the format presented here; your instructor will direct you to the relevant materials as those topics come up in class.)
 
 ## FAQs and resources
 
-Frequently asked questions and answers are
-[on our FAQ page](FAQ.md)
+Frequently asked questions and answers are [on our FAQ page](FAQ.md)
 
-Numerous links and other resources are
-[available in the resource directory](Resources).
+Numerous links and other resources are [available in the resource directory](Resources).
 
 ## Who?
 
-This is maintained by the team at
-[Oasis Digital](https://oasisdigital.com/)
-to use in teaching
-[Angular Boot Camp](https://angularbootcamp.com/)
+This is maintained by the team at [Oasis Digital](https://oasisdigital.com/) to use in teaching [Angular Boot Camp](https://angularbootcamp.com/)
 
 We offer:
 
-* Public Angular training, both in-person and online
-* Private Angular training for your organization, both in-person and online
-* Consulting and software development / assistance
+*   Public Angular training, both in-person and online
+*   Private Angular training for your organization, both in-person and online
+*   Consulting and software development / assistance
 
-<img src="https://oasisdigital.com/images/od-logo.svg" width="379" height="143" />
+<img src="https://oasisdigital.com/images/od-logo.svg" width="379" height="143">
 
 Copyright 2018 Oasis Digital Solutions Inc.
