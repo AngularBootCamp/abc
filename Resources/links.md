@@ -160,3 +160,6 @@ Adventures in Angular (Podcast)
 
 ng-newsletter (weekly Angular email)
 [link](https://www.ng-newsletter.com/)
+
+Upgrading AngularJS - online video service
+[link](https://www.upgradingangularjs.com/)

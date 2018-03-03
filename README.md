@@ -9,6 +9,8 @@ Initially these examples contain very little explanation; we provide the explana
 ## Topic list
 
 Here are all the topics, in roughly the order we’ll use in class:
+
+
 [Step 101, data-binding](https://github.com/AngularBootCamp/data-binding)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/data-binding))
 
