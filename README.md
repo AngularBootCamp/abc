@@ -149,6 +149,12 @@ Here are all the topics, in roughly the order we’ll use in class:
 [Step 518, custom-pipes](https://github.com/AngularBootCamp/custom-pipes)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/custom-pipes))
 
+[Step 519, unit-tests](https://github.com/AngularBootCamp/unit-tests)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/unit-tests))
+
+[Step 520, unit-tests-http-mock](https://github.com/AngularBootCamp/unit-tests-http-mock)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/unit-tests-http-mock))
+
 [Step 521, component-css](https://github.com/AngularBootCamp/component-css)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/component-css))
 
