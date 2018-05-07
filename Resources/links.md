@@ -161,5 +161,5 @@ Adventures in Angular (Podcast)
 ng-newsletter (weekly Angular email)
 [link](https://www.ng-newsletter.com/)
 
-Upgrading AngularJS - online video service
+Upgrading AngularJS - comprehensive online step-by-step course for migrating from AngularJS to Angular
 [link](https://www.upgradingangularjs.com/)
