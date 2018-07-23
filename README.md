@@ -173,34 +173,37 @@ Here are all the topics, in roughly the order we’ll use in class:
 [Step 604, example-content-projection-use-case](https://github.com/AngularBootCamp/example-content-projection-use-case)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/example-content-projection-use-case))
 
-[Step 605, example-non-singleton-service](https://github.com/AngularBootCamp/example-non-singleton-service)
+[Step 605, example-binding-to-svg](https://github.com/AngularBootCamp/example-binding-to-svg)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/example-binding-to-svg))
+
+[Step 606, example-non-singleton-service](https://github.com/AngularBootCamp/example-non-singleton-service)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/example-non-singleton-service))
 
-[Step 606, example-observable-behavior](https://github.com/AngularBootCamp/example-observable-behavior)
+[Step 607, example-observable-behavior](https://github.com/AngularBootCamp/example-observable-behavior)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/example-observable-behavior))
 
-[Step 607, library-firebase-weather](https://github.com/AngularBootCamp/library-firebase-weather)
+[Step 608, library-firebase-weather](https://github.com/AngularBootCamp/library-firebase-weather)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/library-firebase-weather))
 
-[Step 608, library-firebase-data-flow](https://github.com/AngularBootCamp/library-firebase-data-flow)
+[Step 609, library-firebase-data-flow](https://github.com/AngularBootCamp/library-firebase-data-flow)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/library-firebase-data-flow))
 
-[Step 609, legacy-promises](https://github.com/AngularBootCamp/legacy-promises)
+[Step 610, legacy-promises](https://github.com/AngularBootCamp/legacy-promises)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/legacy-promises))
 
-[Step 610, legacy-api-via-http-promises](https://github.com/AngularBootCamp/legacy-api-via-http-promises)
+[Step 611, legacy-api-via-http-promises](https://github.com/AngularBootCamp/legacy-api-via-http-promises)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/legacy-api-via-http-promises))
 
-[Step 611, legacy-ng-model-two-way-binding](https://github.com/AngularBootCamp/legacy-ng-model-two-way-binding)
+[Step 612, legacy-ng-model-two-way-binding](https://github.com/AngularBootCamp/legacy-ng-model-two-way-binding)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/legacy-ng-model-two-way-binding))
 
-[Step 612, legacy-more-ng-model](https://github.com/AngularBootCamp/legacy-more-ng-model)
+[Step 613, legacy-more-ng-model](https://github.com/AngularBootCamp/legacy-more-ng-model)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/legacy-more-ng-model))
 
-[Step 613, legacy-template-forms](https://github.com/AngularBootCamp/legacy-template-forms)
+[Step 614, legacy-template-forms](https://github.com/AngularBootCamp/legacy-template-forms)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/legacy-template-forms))
 
-[Step 614, legacy-observable-composing-and-chaining](https://github.com/AngularBootCamp/legacy-observable-composing-and-chaining)
+[Step 615, legacy-observable-composing-and-chaining](https://github.com/AngularBootCamp/legacy-observable-composing-and-chaining)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/legacy-observable-composing-and-chaining))
 
 (There are additional examples and materials available for advanced topics in class, which don’t fit well into the format presented here; your instructor will direct you to the relevant materials as those topics come up in class.)
