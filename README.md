@@ -92,6 +92,9 @@ Here are all the topics, in roughly the order we’ll use in class:
 [Step 411, filtered-list-via-observable](https://github.com/AngularBootCamp/filtered-list-via-observable)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/filtered-list-via-observable))
 
+[Step 412, route-query-parameters](https://github.com/AngularBootCamp/route-query-parameters)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/route-query-parameters))
+
 [Step 500, ng-container](https://github.com/AngularBootCamp/ng-container)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/ng-container))
 
