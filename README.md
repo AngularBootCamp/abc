@@ -155,13 +155,25 @@ Here are all the topics, in roughly the order we’ll use in class:
 [Step 519, unit-tests](https://github.com/AngularBootCamp/unit-tests)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/unit-tests))
 
-[Step 520, unit-tests-http-mock](https://github.com/AngularBootCamp/unit-tests-http-mock)
+[Step 520, unit-testing-mocks](https://github.com/AngularBootCamp/unit-testing-mocks)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/unit-testing-mocks))
+
+[Step 521, unit-testing-testbed](https://github.com/AngularBootCamp/unit-testing-testbed)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/unit-testing-testbed))
+
+[Step 522, unit-tests-http-mock](https://github.com/AngularBootCamp/unit-tests-http-mock)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/unit-tests-http-mock))
 
-[Step 521, component-css](https://github.com/AngularBootCamp/component-css)
+[Step 523, async-unit-tests](https://github.com/AngularBootCamp/async-unit-tests)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/async-unit-tests))
+
+[Step 524, component-template-testing](https://github.com/AngularBootCamp/component-template-testing)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/component-template-testing))
+
+[Step 525, component-css](https://github.com/AngularBootCamp/component-css)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/component-css))
 
-[Step 522, template-if-else](https://github.com/AngularBootCamp/template-if-else)
+[Step 526, template-if-else](https://github.com/AngularBootCamp/template-if-else)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/template-if-else))
 
 [Step 601, example-load-http-with-retry](https://github.com/AngularBootCamp/example-load-http-with-retry)

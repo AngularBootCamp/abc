@@ -55,6 +55,9 @@ Testing Angular 2 - Julie Ralph
 [link](https://www.youtube.com/watch?v=f493Xf0F2yU)
 [link](https://github.com/juliemr/angularconnect-2016)
 
+Testing Angular Templates
+[link](https://angular.io/guide/testing#component-inside-a-test-host)
+
 Testing for Accessibility in Angular 1 and 2 - Marcy Sutton
 [link](https://www.youtube.com/watch?v=9y2MnXo45cs)
 [link](http://marcysutton.github.io/a11y-testing-with-angular/#/)
