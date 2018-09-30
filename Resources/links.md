@@ -113,9 +113,6 @@ RxJS 5 Thinking Reactively - Ben Lesh
 RxJS Operators by Categories
 [link](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/categories.md)
 
-RxJS Operator "Decision Tree" (bottom of page)
-[link](http://reactivex.io/rxjs/)
-
 RxJS - Which operator do I use?
 [link](https://xgrommx.github.io/rx-book/content/which_operator_do_i_use/index.html)
 
