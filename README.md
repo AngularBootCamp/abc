@@ -221,6 +221,9 @@ Here are all the topics, in roughly the order we’ll use in class:
 [Step 815, legacy-observable-composing-and-chaining](https://github.com/AngularBootCamp/legacy-observable-composing-and-chaining)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/legacy-observable-composing-and-chaining))
 
+[Step 816, legacy-ngrx-effects](https://github.com/AngularBootCamp/legacy-ngrx-effects)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/legacy-ngrx-effects))
+
 (There are additional examples and materials available for advanced topics in class, which don’t fit well into the format presented here; your instructor will direct you to the relevant materials as those topics come up in class.)
 
 ## FAQs and resources
