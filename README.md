@@ -38,11 +38,11 @@ Here are all the topics, in roughly the order we’ll use in class:
 [Step 204, class-and-style-bindings](https://github.com/AngularBootCamp/class-and-style-bindings)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/class-and-style-bindings))
 
-[Step 205, component-inputs](https://github.com/AngularBootCamp/component-inputs)
- (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/component-inputs))
+[Step 205, input-data-bindings](https://github.com/AngularBootCamp/input-data-bindings)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/input-data-bindings))
 
-[Step 206, component-events](https://github.com/AngularBootCamp/component-events)
- (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/component-events))
+[Step 206, output-event-bindings](https://github.com/AngularBootCamp/output-event-bindings)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/output-event-bindings))
 
 [Step 300, dependency-injection-and-http](https://github.com/AngularBootCamp/dependency-injection-and-http)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/dependency-injection-and-http))
