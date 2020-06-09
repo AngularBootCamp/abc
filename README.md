@@ -134,58 +134,64 @@ Here are our published examples, in roughly the order we’ll use in class:
 [Example abc707, component-lifecycle](https://github.com/AngularBootCamp/component-lifecycle)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/component-lifecycle))
 
-[Example abc708, change-detection-strategies](https://github.com/AngularBootCamp/change-detection-strategies)
- (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/change-detection-strategies))
+[Example abc708, change-detection-strategies-why-on-push](https://github.com/AngularBootCamp/change-detection-strategies-why-on-push)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/change-detection-strategies-why-on-push))
 
-[Example abc709, directives](https://github.com/AngularBootCamp/directives)
+[Example abc709, mutability-and-change-detection](https://github.com/AngularBootCamp/mutability-and-change-detection)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/mutability-and-change-detection))
+
+[Example abc710, detect-async-changes-when-using-on-push](https://github.com/AngularBootCamp/detect-async-changes-when-using-on-push)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/detect-async-changes-when-using-on-push))
+
+[Example abc711, directives](https://github.com/AngularBootCamp/directives)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/directives))
 
-[Example abc710, content-projection](https://github.com/AngularBootCamp/content-projection)
+[Example abc712, content-projection](https://github.com/AngularBootCamp/content-projection)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/content-projection))
 
-[Example abc711, multi-slot-projection](https://github.com/AngularBootCamp/multi-slot-projection)
+[Example abc713, multi-slot-projection](https://github.com/AngularBootCamp/multi-slot-projection)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/multi-slot-projection))
 
-[Example abc712, ng-switch](https://github.com/AngularBootCamp/ng-switch)
+[Example abc714, ng-switch](https://github.com/AngularBootCamp/ng-switch)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/ng-switch))
 
-[Example abc713, sanitization](https://github.com/AngularBootCamp/sanitization)
+[Example abc715, sanitization](https://github.com/AngularBootCamp/sanitization)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/sanitization))
 
-[Example abc714, component-inheritance](https://github.com/AngularBootCamp/component-inheritance)
+[Example abc716, component-inheritance](https://github.com/AngularBootCamp/component-inheritance)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/component-inheritance))
 
-[Example abc715, multiproviders](https://github.com/AngularBootCamp/multiproviders)
+[Example abc717, multiproviders](https://github.com/AngularBootCamp/multiproviders)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/multiproviders))
 
-[Example abc716, custom-pipes](https://github.com/AngularBootCamp/custom-pipes)
+[Example abc718, custom-pipes](https://github.com/AngularBootCamp/custom-pipes)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/custom-pipes))
 
-[Example abc717, unit-tests](https://github.com/AngularBootCamp/unit-tests)
+[Example abc719, unit-tests](https://github.com/AngularBootCamp/unit-tests)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/unit-tests))
 
-[Example abc718, unit-testing-mocks](https://github.com/AngularBootCamp/unit-testing-mocks)
+[Example abc720, unit-testing-mocks](https://github.com/AngularBootCamp/unit-testing-mocks)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/unit-testing-mocks))
 
-[Example abc719, unit-testing-testbed](https://github.com/AngularBootCamp/unit-testing-testbed)
+[Example abc721, unit-testing-testbed](https://github.com/AngularBootCamp/unit-testing-testbed)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/unit-testing-testbed))
 
-[Example abc720, unit-tests-http-mock](https://github.com/AngularBootCamp/unit-tests-http-mock)
+[Example abc722, unit-tests-http-mock](https://github.com/AngularBootCamp/unit-tests-http-mock)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/unit-tests-http-mock))
 
-[Example abc721, async-unit-tests](https://github.com/AngularBootCamp/async-unit-tests)
+[Example abc723, async-unit-tests](https://github.com/AngularBootCamp/async-unit-tests)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/async-unit-tests))
 
-[Example abc722, component-template-testing](https://github.com/AngularBootCamp/component-template-testing)
+[Example abc724, component-template-testing](https://github.com/AngularBootCamp/component-template-testing)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/component-template-testing))
 
-[Example abc723, component-css](https://github.com/AngularBootCamp/component-css)
+[Example abc725, component-css](https://github.com/AngularBootCamp/component-css)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/component-css))
 
-[Example abc724, template-if-else](https://github.com/AngularBootCamp/template-if-else)
+[Example abc726, template-if-else](https://github.com/AngularBootCamp/template-if-else)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/template-if-else))
 
-[Example abc726, ngrx-feature-modules](https://github.com/AngularBootCamp/ngrx-feature-modules)
+[Example abc727, ngrx-feature-modules](https://github.com/AngularBootCamp/ngrx-feature-modules)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/ngrx-feature-modules))
 
 [Example abc800, upgrading-from-angular-js](https://github.com/AngularBootCamp/upgrading-from-angular-js)
