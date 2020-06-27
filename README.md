@@ -47,10 +47,13 @@ Here are our published examples, in roughly the order we’ll use in class:
 [Example abc204, class-and-style-bindings](https://github.com/AngularBootCamp/class-and-style-bindings)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/class-and-style-bindings))
 
-[Example abc205, input-data-bindings](https://github.com/AngularBootCamp/input-data-bindings)
+[Example abc205, animations](https://github.com/AngularBootCamp/animations)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/animations))
+
+[Example abc206, input-data-bindings](https://github.com/AngularBootCamp/input-data-bindings)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/input-data-bindings))
 
-[Example abc206, output-event-bindings](https://github.com/AngularBootCamp/output-event-bindings)
+[Example abc207, output-event-bindings](https://github.com/AngularBootCamp/output-event-bindings)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/output-event-bindings))
 
 [Example abc300, dependency-injection-and-http](https://github.com/AngularBootCamp/dependency-injection-and-http)
@@ -113,86 +116,95 @@ Here are our published examples, in roughly the order we’ll use in class:
 [Example abc700, ng-container](https://github.com/AngularBootCamp/ng-container)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/ng-container))
 
-[Example abc701, custom-validators](https://github.com/AngularBootCamp/custom-validators)
+[Example abc701, providers](https://github.com/AngularBootCamp/providers)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/providers))
+
+[Example abc702, complex-animations](https://github.com/AngularBootCamp/complex-animations)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/complex-animations))
+
+[Example abc703, custom-validators](https://github.com/AngularBootCamp/custom-validators)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/custom-validators))
 
-[Example abc702, custom-async-validators](https://github.com/AngularBootCamp/custom-async-validators)
+[Example abc704, custom-async-validators](https://github.com/AngularBootCamp/custom-async-validators)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/custom-async-validators))
 
-[Example abc703, secondary-routes](https://github.com/AngularBootCamp/secondary-routes)
+[Example abc705, secondary-routes](https://github.com/AngularBootCamp/secondary-routes)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/secondary-routes))
 
-[Example abc704, reusing-observable-data](https://github.com/AngularBootCamp/reusing-observable-data)
+[Example abc706, reusing-observable-data](https://github.com/AngularBootCamp/reusing-observable-data)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/reusing-observable-data))
 
-[Example abc705, reactive-control](https://github.com/AngularBootCamp/reactive-control)
+[Example abc707, reactive-control](https://github.com/AngularBootCamp/reactive-control)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/reactive-control))
 
-[Example abc706, observable-error-recovery](https://github.com/AngularBootCamp/observable-error-recovery)
+[Example abc708, observable-error-recovery](https://github.com/AngularBootCamp/observable-error-recovery)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/observable-error-recovery))
 
-[Example abc707, component-lifecycle](https://github.com/AngularBootCamp/component-lifecycle)
+[Example abc709, component-lifecycle](https://github.com/AngularBootCamp/component-lifecycle)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/component-lifecycle))
 
-[Example abc708, change-detection-strategies-why-on-push](https://github.com/AngularBootCamp/change-detection-strategies-why-on-push)
+[Example abc710, change-detection-strategies-why-on-push](https://github.com/AngularBootCamp/change-detection-strategies-why-on-push)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/change-detection-strategies-why-on-push))
 
-[Example abc709, mutability-and-change-detection](https://github.com/AngularBootCamp/mutability-and-change-detection)
+[Example abc711, mutability-and-change-detection](https://github.com/AngularBootCamp/mutability-and-change-detection)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/mutability-and-change-detection))
 
-[Example abc710, detect-async-changes-when-using-on-push](https://github.com/AngularBootCamp/detect-async-changes-when-using-on-push)
+[Example abc712, detect-async-changes-when-using-on-push](https://github.com/AngularBootCamp/detect-async-changes-when-using-on-push)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/detect-async-changes-when-using-on-push))
 
-[Example abc711, directives](https://github.com/AngularBootCamp/directives)
+[Example abc713, directives](https://github.com/AngularBootCamp/directives)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/directives))
 
-[Example abc712, content-projection](https://github.com/AngularBootCamp/content-projection)
+[Example abc714, content-projection](https://github.com/AngularBootCamp/content-projection)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/content-projection))
 
-[Example abc713, multi-slot-projection](https://github.com/AngularBootCamp/multi-slot-projection)
+[Example abc715, multi-slot-projection](https://github.com/AngularBootCamp/multi-slot-projection)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/multi-slot-projection))
 
-[Example abc714, ng-switch](https://github.com/AngularBootCamp/ng-switch)
+[Example abc716, ng-switch](https://github.com/AngularBootCamp/ng-switch)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/ng-switch))
 
-[Example abc715, sanitization](https://github.com/AngularBootCamp/sanitization)
+[Example abc717, sanitization](https://github.com/AngularBootCamp/sanitization)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/sanitization))
 
-[Example abc716, component-inheritance](https://github.com/AngularBootCamp/component-inheritance)
+[Example abc718, component-inheritance](https://github.com/AngularBootCamp/component-inheritance)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/component-inheritance))
 
-[Example abc717, multiproviders](https://github.com/AngularBootCamp/multiproviders)
+[Example abc719, multiproviders](https://github.com/AngularBootCamp/multiproviders)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/multiproviders))
 
-[Example abc718, custom-pipes](https://github.com/AngularBootCamp/custom-pipes)
+[Example abc720, custom-pipes](https://github.com/AngularBootCamp/custom-pipes)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/custom-pipes))
 
-[Example abc719, unit-tests](https://github.com/AngularBootCamp/unit-tests)
+[Example abc721, unit-tests](https://github.com/AngularBootCamp/unit-tests)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/unit-tests))
 
-[Example abc720, unit-testing-mocks](https://github.com/AngularBootCamp/unit-testing-mocks)
+[Example abc722, unit-testing-mocks](https://github.com/AngularBootCamp/unit-testing-mocks)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/unit-testing-mocks))
 
-[Example abc721, unit-testing-testbed](https://github.com/AngularBootCamp/unit-testing-testbed)
+[Example abc723, unit-testing-testbed](https://github.com/AngularBootCamp/unit-testing-testbed)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/unit-testing-testbed))
 
-[Example abc722, unit-tests-http-mock](https://github.com/AngularBootCamp/unit-tests-http-mock)
+[Example abc724, unit-tests-http-mock](https://github.com/AngularBootCamp/unit-tests-http-mock)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/unit-tests-http-mock))
 
-[Example abc723, async-unit-tests](https://github.com/AngularBootCamp/async-unit-tests)
+[Example abc725, async-unit-tests](https://github.com/AngularBootCamp/async-unit-tests)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/async-unit-tests))
 
-[Example abc724, component-template-testing](https://github.com/AngularBootCamp/component-template-testing)
+[Example abc726, component-template-testing](https://github.com/AngularBootCamp/component-template-testing)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/component-template-testing))
 
-[Example abc725, component-css](https://github.com/AngularBootCamp/component-css)
+[Example abc727, component-css](https://github.com/AngularBootCamp/component-css)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/component-css))
 
-[Example abc726, template-if-else](https://github.com/AngularBootCamp/template-if-else)
+[Example abc728, template-if-else](https://github.com/AngularBootCamp/template-if-else)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/template-if-else))
 
-[Example abc727, ngrx-feature-modules](https://github.com/AngularBootCamp/ngrx-feature-modules)
+[Example abc729, ngrx-feature-modules](https://github.com/AngularBootCamp/ngrx-feature-modules)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/ngrx-feature-modules))
+
+[Example abc730, socket-io](https://github.com/AngularBootCamp/socket-io)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/socket-io))
 
 [Example abc800, upgrading-from-angular-js](https://github.com/AngularBootCamp/upgrading-from-angular-js)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/upgrading-from-angular-js))
@@ -244,6 +256,9 @@ Here are our published examples, in roughly the order we’ll use in class:
 
 [Example abc816, legacy-ngrx-effects](https://github.com/AngularBootCamp/legacy-ngrx-effects)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/legacy-ngrx-effects))
+
+[Example abc900, video-stack-tracker](https://github.com/AngularBootCamp/video-stack-tracker)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/video-stack-tracker))
 
 (There are additional examples and materials available for advanced topics in class, which don’t fit well into the format presented here; your instructor will direct you to the relevant materials as those topics come up in class.)
 
