@@ -44,16 +44,19 @@ Here are our published examples, in roughly the order we’ll use in class:
 [Example abc203, built-in-pipes](https://github.com/AngularBootCamp/built-in-pipes)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/built-in-pipes))
 
-[Example abc204, class-and-style-bindings](https://github.com/AngularBootCamp/class-and-style-bindings)
+[Example abc204, pipe-locales](https://github.com/AngularBootCamp/pipe-locales)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/pipe-locales))
+
+[Example abc205, class-and-style-bindings](https://github.com/AngularBootCamp/class-and-style-bindings)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/class-and-style-bindings))
 
-[Example abc205, animations](https://github.com/AngularBootCamp/animations)
+[Example abc206, animations](https://github.com/AngularBootCamp/animations)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/animations))
 
-[Example abc206, input-data-bindings](https://github.com/AngularBootCamp/input-data-bindings)
+[Example abc207, input-data-bindings](https://github.com/AngularBootCamp/input-data-bindings)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/input-data-bindings))
 
-[Example abc207, output-event-bindings](https://github.com/AngularBootCamp/output-event-bindings)
+[Example abc208, output-event-bindings](https://github.com/AngularBootCamp/output-event-bindings)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/output-event-bindings))
 
 [Example abc300, dependency-injection-and-http](https://github.com/AngularBootCamp/dependency-injection-and-http)
@@ -155,55 +158,61 @@ Here are our published examples, in roughly the order we’ll use in class:
 [Example abc713, directives](https://github.com/AngularBootCamp/directives)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/directives))
 
-[Example abc714, content-projection](https://github.com/AngularBootCamp/content-projection)
+[Example abc714, infinite-scroll](https://github.com/AngularBootCamp/infinite-scroll)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/infinite-scroll))
+
+[Example abc715, content-projection](https://github.com/AngularBootCamp/content-projection)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/content-projection))
 
-[Example abc715, multi-slot-projection](https://github.com/AngularBootCamp/multi-slot-projection)
+[Example abc716, multi-slot-projection](https://github.com/AngularBootCamp/multi-slot-projection)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/multi-slot-projection))
 
-[Example abc716, ng-switch](https://github.com/AngularBootCamp/ng-switch)
+[Example abc717, ng-switch](https://github.com/AngularBootCamp/ng-switch)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/ng-switch))
 
-[Example abc717, sanitization](https://github.com/AngularBootCamp/sanitization)
+[Example abc718, sanitization](https://github.com/AngularBootCamp/sanitization)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/sanitization))
 
-[Example abc718, component-inheritance](https://github.com/AngularBootCamp/component-inheritance)
+[Example abc719, component-inheritance](https://github.com/AngularBootCamp/component-inheritance)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/component-inheritance))
 
-[Example abc719, multiproviders](https://github.com/AngularBootCamp/multiproviders)
+[Example abc720, multiproviders](https://github.com/AngularBootCamp/multiproviders)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/multiproviders))
 
-[Example abc720, custom-pipes](https://github.com/AngularBootCamp/custom-pipes)
+[Example abc721, custom-pipes](https://github.com/AngularBootCamp/custom-pipes)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/custom-pipes))
 
-[Example abc721, unit-tests](https://github.com/AngularBootCamp/unit-tests)
+[Example abc722, unit-tests](https://github.com/AngularBootCamp/unit-tests)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/unit-tests))
 
-[Example abc722, unit-testing-mocks](https://github.com/AngularBootCamp/unit-testing-mocks)
+[Example abc723, unit-testing-mocks](https://github.com/AngularBootCamp/unit-testing-mocks)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/unit-testing-mocks))
 
-[Example abc723, unit-testing-testbed](https://github.com/AngularBootCamp/unit-testing-testbed)
+[Example abc724, unit-testing-testbed](https://github.com/AngularBootCamp/unit-testing-testbed)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/unit-testing-testbed))
 
-[Example abc724, unit-tests-http-mock](https://github.com/AngularBootCamp/unit-tests-http-mock)
+[Example abc725, unit-tests-http-mock](https://github.com/AngularBootCamp/unit-tests-http-mock)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/unit-tests-http-mock))
 
-[Example abc725, async-unit-tests](https://github.com/AngularBootCamp/async-unit-tests)
+[Example abc726, async-unit-tests](https://github.com/AngularBootCamp/async-unit-tests)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/async-unit-tests))
 
-[Example abc726, component-template-testing](https://github.com/AngularBootCamp/component-template-testing)
+[Example abc727, component-template-testing](https://github.com/AngularBootCamp/component-template-testing)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/component-template-testing))
 
-[Example abc727, component-css](https://github.com/AngularBootCamp/component-css)
+[Example abc728, component-css](https://github.com/AngularBootCamp/component-css)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/component-css))
 
-[Example abc728, template-if-else](https://github.com/AngularBootCamp/template-if-else)
+[Example abc729, template-if-else](https://github.com/AngularBootCamp/template-if-else)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/template-if-else))
 
-[Example abc729, ngrx-feature-modules](https://github.com/AngularBootCamp/ngrx-feature-modules)
+[Example abc730, ngrx-feature-modules](https://github.com/AngularBootCamp/ngrx-feature-modules)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/ngrx-feature-modules))
 
-[Example abc730, socket-io](https://github.com/AngularBootCamp/socket-io)
+[Example abc731, form-array](https://github.com/AngularBootCamp/form-array)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/form-array))
+
+[Example abc732, socket-io](https://github.com/AngularBootCamp/socket-io)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/socket-io))
 
 [Example abc800, upgrading-from-angular-js](https://github.com/AngularBootCamp/upgrading-from-angular-js)
@@ -257,8 +266,8 @@ Here are our published examples, in roughly the order we’ll use in class:
 [Example abc816, legacy-ngrx-effects](https://github.com/AngularBootCamp/legacy-ngrx-effects)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/legacy-ngrx-effects))
 
-[Example abc900, video-stack-tracker](https://github.com/AngularBootCamp/video-stack-tracker)
- (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/video-stack-tracker))
+[Example abc900, video-stat-tracker](https://github.com/AngularBootCamp/video-stat-tracker)
+ (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/video-stat-tracker))
 
 (There are additional examples and materials available for advanced topics in class, which don’t fit well into the format presented here; your instructor will direct you to the relevant materials as those topics come up in class.)
 
