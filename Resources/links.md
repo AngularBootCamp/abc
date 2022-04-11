@@ -137,6 +137,9 @@ Functional Reactive Programming for Angular 2 Developers
 Cross Site Request Funkery: Securing Your Angular Apps From Evil Doers - Dave Smith
 [link](https://www.youtube.com/watch?v=9inczw6qtpY)
 
+Angular Security Best Practices
+[link](https://medium.com/javascript-in-plain-english/angular-security-best-practices-54fadf8974a1)
+
 What the heck is the event loop anyway? - Philip Roberts
 [link](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
 
@@ -164,5 +167,6 @@ ng-newsletter (weekly Angular email)
 Angular Top 5 (weekly Angular email)
 [link](http://angulartop5.com/)
 
-Upgrading AngularJS - comprehensive online step-by-step course for migrating from AngularJS to Angular
+Upgrading AngularJS - comprehensive online step-by-step course for migrating from
+AngularJS to Angular
 [link](https://www.upgradingangularjs.com/)

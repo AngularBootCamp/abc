@@ -239,12 +239,6 @@ Here are our published examples, in roughly the order we’ll use in class:
 [Example abc807, example-observable-behavior](https://github.com/AngularBootCamp/example-observable-behavior)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/example-observable-behavior))
 
-[Example abc808, library-firebase-weather](https://github.com/AngularBootCamp/library-firebase-weather)
- (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/library-firebase-weather))
-
-[Example abc809, library-firebase-data-flow](https://github.com/AngularBootCamp/library-firebase-data-flow)
- (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/library-firebase-data-flow))
-
 [Example abc810, legacy-promises](https://github.com/AngularBootCamp/legacy-promises)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/legacy-promises))
 
@@ -259,12 +253,6 @@ Here are our published examples, in roughly the order we’ll use in class:
 
 [Example abc814, legacy-template-forms](https://github.com/AngularBootCamp/legacy-template-forms)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/legacy-template-forms))
-
-[Example abc815, legacy-observable-composing-and-chaining](https://github.com/AngularBootCamp/legacy-observable-composing-and-chaining)
- (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/legacy-observable-composing-and-chaining))
-
-[Example abc816, legacy-ngrx-effects](https://github.com/AngularBootCamp/legacy-ngrx-effects)
- (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/legacy-ngrx-effects))
 
 [Example abc900, video-stat-tracker](https://github.com/AngularBootCamp/video-stat-tracker)
  (on [StackBlitz](https://stackblitz.io/github/AngularBootCamp/video-stat-tracker))
@@ -289,4 +277,4 @@ We offer:
 
 <img src="https://oasisdigital.com/images/od-logo.svg" width="379" height="143">
 
-Copyright 2018-2020 Oasis Digital Solutions Inc.
+Copyright 2018-2022 Oasis Digital Solutions Inc.
