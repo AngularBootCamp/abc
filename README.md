@@ -28,9 +28,7 @@ Here are our published examples, in roughly the order we'll use in class:
 
 [Example 103, multiple-components](https://github.com/AngularBootCamp/multiple-components) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/multiple-components>))
 
-[Example 104, modules](https://github.com/AngularBootCamp/modules) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/modules>))
-
-[Example 105, routing-and-lazy-loading](https://github.com/AngularBootCamp/routing-and-lazy-loading) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/routing-and-lazy-loading>))
+[Example 104, routing-and-lazy-loading](https://github.com/AngularBootCamp/routing-and-lazy-loading) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/routing-and-lazy-loading>))
 
 [Example 200, create-new-project](https://github.com/AngularBootCamp/create-new-project) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/create-new-project>))
 
@@ -108,55 +106,53 @@ Here are our published examples, in roughly the order we'll use in class:
 
 [Example 710, observable-error-recovery](https://github.com/AngularBootCamp/observable-error-recovery) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/observable-error-recovery>))
 
-[Example 711, standalone-components](https://github.com/AngularBootCamp/standalone-components) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/standalone-components>))
+[Example 711, component-lifecycle](https://github.com/AngularBootCamp/component-lifecycle) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/component-lifecycle>))
 
-[Example 712, component-lifecycle](https://github.com/AngularBootCamp/component-lifecycle) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/component-lifecycle>))
+[Example 712, change-detection-strategies-why-on-push](https://github.com/AngularBootCamp/change-detection-strategies-why-on-push) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/change-detection-strategies-why-on-push>))
 
-[Example 713, change-detection-strategies-why-on-push](https://github.com/AngularBootCamp/change-detection-strategies-why-on-push) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/change-detection-strategies-why-on-push>))
+[Example 713, mutability-and-change-detection](https://github.com/AngularBootCamp/mutability-and-change-detection) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/mutability-and-change-detection>))
 
-[Example 714, mutability-and-change-detection](https://github.com/AngularBootCamp/mutability-and-change-detection) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/mutability-and-change-detection>))
+[Example 714, detect-async-changes-when-using-on-push](https://github.com/AngularBootCamp/detect-async-changes-when-using-on-push) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/detect-async-changes-when-using-on-push>))
 
-[Example 715, detect-async-changes-when-using-on-push](https://github.com/AngularBootCamp/detect-async-changes-when-using-on-push) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/detect-async-changes-when-using-on-push>))
+[Example 715, directives](https://github.com/AngularBootCamp/directives) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/directives>))
 
-[Example 716, directives](https://github.com/AngularBootCamp/directives) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/directives>))
+[Example 716, infinite-scroll](https://github.com/AngularBootCamp/infinite-scroll) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/infinite-scroll>))
 
-[Example 717, infinite-scroll](https://github.com/AngularBootCamp/infinite-scroll) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/infinite-scroll>))
+[Example 717, content-projection](https://github.com/AngularBootCamp/content-projection) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/content-projection>))
 
-[Example 718, content-projection](https://github.com/AngularBootCamp/content-projection) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/content-projection>))
+[Example 718, multi-slot-projection](https://github.com/AngularBootCamp/multi-slot-projection) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/multi-slot-projection>))
 
-[Example 719, multi-slot-projection](https://github.com/AngularBootCamp/multi-slot-projection) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/multi-slot-projection>))
+[Example 719, ng-switch](https://github.com/AngularBootCamp/ng-switch) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/ng-switch>))
 
-[Example 720, ng-switch](https://github.com/AngularBootCamp/ng-switch) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/ng-switch>))
+[Example 720, sanitization](https://github.com/AngularBootCamp/sanitization) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/sanitization>))
 
-[Example 721, sanitization](https://github.com/AngularBootCamp/sanitization) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/sanitization>))
+[Example 721, component-inheritance](https://github.com/AngularBootCamp/component-inheritance) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/component-inheritance>))
 
-[Example 722, component-inheritance](https://github.com/AngularBootCamp/component-inheritance) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/component-inheritance>))
+[Example 722, multiproviders](https://github.com/AngularBootCamp/multiproviders) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/multiproviders>))
 
-[Example 723, multiproviders](https://github.com/AngularBootCamp/multiproviders) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/multiproviders>))
+[Example 723, custom-pipes](https://github.com/AngularBootCamp/custom-pipes) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/custom-pipes>))
 
-[Example 724, custom-pipes](https://github.com/AngularBootCamp/custom-pipes) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/custom-pipes>))
+[Example 724, unit-tests](https://github.com/AngularBootCamp/unit-tests) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/unit-tests>))
 
-[Example 725, unit-tests](https://github.com/AngularBootCamp/unit-tests) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/unit-tests>))
+[Example 725, unit-testing-mocks](https://github.com/AngularBootCamp/unit-testing-mocks) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/unit-testing-mocks>))
 
-[Example 726, unit-testing-mocks](https://github.com/AngularBootCamp/unit-testing-mocks) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/unit-testing-mocks>))
+[Example 726, unit-testing-testbed](https://github.com/AngularBootCamp/unit-testing-testbed) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/unit-testing-testbed>))
 
-[Example 727, unit-testing-testbed](https://github.com/AngularBootCamp/unit-testing-testbed) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/unit-testing-testbed>))
+[Example 727, unit-tests-http-mock](https://github.com/AngularBootCamp/unit-tests-http-mock) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/unit-tests-http-mock>))
 
-[Example 728, unit-tests-http-mock](https://github.com/AngularBootCamp/unit-tests-http-mock) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/unit-tests-http-mock>))
+[Example 728, async-unit-tests](https://github.com/AngularBootCamp/async-unit-tests) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/async-unit-tests>))
 
-[Example 729, async-unit-tests](https://github.com/AngularBootCamp/async-unit-tests) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/async-unit-tests>))
+[Example 729, component-template-testing](https://github.com/AngularBootCamp/component-template-testing) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/component-template-testing>))
 
-[Example 730, component-template-testing](https://github.com/AngularBootCamp/component-template-testing) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/component-template-testing>))
+[Example 730, component-css](https://github.com/AngularBootCamp/component-css) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/component-css>))
 
-[Example 731, component-css](https://github.com/AngularBootCamp/component-css) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/component-css>))
+[Example 731, template-if-else](https://github.com/AngularBootCamp/template-if-else) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/template-if-else>))
 
-[Example 732, template-if-else](https://github.com/AngularBootCamp/template-if-else) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/template-if-else>))
+[Example 732, ngrx-feature-modules](https://github.com/AngularBootCamp/ngrx-feature-modules) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/ngrx-feature-modules>))
 
-[Example 733, ngrx-feature-modules](https://github.com/AngularBootCamp/ngrx-feature-modules) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/ngrx-feature-modules>))
+[Example 733, form-array](https://github.com/AngularBootCamp/form-array) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/form-array>))
 
-[Example 734, form-array](https://github.com/AngularBootCamp/form-array) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/form-array>))
-
-[Example 735, socket-io](https://github.com/AngularBootCamp/socket-io) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/socket-io>))
+[Example 734, socket-io](https://github.com/AngularBootCamp/socket-io) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/socket-io>))
 
 [Example 800, upgrading-from-angular-js](https://github.com/AngularBootCamp/upgrading-from-angular-js) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/upgrading-from-angular-js>))
 
@@ -183,6 +179,10 @@ Here are our published examples, in roughly the order we'll use in class:
 [Example 811, legacy-more-ng-model](https://github.com/AngularBootCamp/legacy-more-ng-model) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/legacy-more-ng-model>))
 
 [Example 812, legacy-template-forms](https://github.com/AngularBootCamp/legacy-template-forms) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/legacy-template-forms>))
+
+[Example 813, legacy-ng-modules](https://github.com/AngularBootCamp/legacy-ng-modules) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/legacy-ng-modules>))
+
+[Example 814, legacy-ng-modules-routing](https://github.com/AngularBootCamp/legacy-ng-modules-routing) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/legacy-ng-modules-routing>))
 
 [Example 900, video-stat-tracker](https://github.com/AngularBootCamp/video-stat-tracker) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/video-stat-tracker>))
 
