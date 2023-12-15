@@ -154,6 +154,18 @@ Here are our published examples, in roughly the order we'll use in class:
 
 [Example 734, socket-io](https://github.com/AngularBootCamp/socket-io) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/socket-io>))
 
+[Example 735, signals-primitives](https://github.com/AngularBootCamp/signals-primitives) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/signals-primitives>))
+
+[Example 736, signals-rxjs](https://github.com/AngularBootCamp/signals-rxjs) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/signals-rxjs>))
+
+[Example 737, signals-effect](https://github.com/AngularBootCamp/signals-effect) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/signals-effect>))
+
+[Example 738, ngrx-select-signal](https://github.com/AngularBootCamp/ngrx-select-signal) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/ngrx-select-signal>))
+
+[Example 739, control-flow](https://github.com/AngularBootCamp/control-flow) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/control-flow>))
+
+[Example 740, deferrable-views](https://github.com/AngularBootCamp/deferrable-views) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/deferrable-views>))
+
 [Example 800, upgrading-from-angular-js](https://github.com/AngularBootCamp/upgrading-from-angular-js) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/upgrading-from-angular-js>))
 
 [Example 801, example-load-http-with-retry](https://github.com/AngularBootCamp/example-load-http-with-retry) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/example-load-http-with-retry>))
