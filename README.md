@@ -166,6 +166,14 @@ Here are our published examples, in roughly the order we'll use in class:
 
 [Example 740, deferrable-views](https://github.com/AngularBootCamp/deferrable-views) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/deferrable-views>))
 
+[Example 741, input-transforms](https://github.com/AngularBootCamp/input-transforms) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/input-transforms>))
+
+[Example 742, directive-composition](https://github.com/AngularBootCamp/directive-composition) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/directive-composition>))
+
+[Example 743, ngrx-signal-store](https://github.com/AngularBootCamp/ngrx-signal-store) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/ngrx-signal-store>))
+
+[Example 744, routed-component-inputs](https://github.com/AngularBootCamp/routed-component-inputs) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/routed-component-inputs>))
+
 [Example 800, upgrading-from-angular-js](https://github.com/AngularBootCamp/upgrading-from-angular-js) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/upgrading-from-angular-js>))
 
 [Example 801, example-load-http-with-retry](https://github.com/AngularBootCamp/example-load-http-with-retry) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/example-load-http-with-retry>))
