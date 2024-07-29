@@ -198,6 +198,8 @@ Here are our published examples, in roughly the order we'll use in class:
 
 [Example 814, legacy-ng-modules-routing](https://github.com/AngularBootCamp/legacy-ng-modules-routing) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/legacy-ng-modules-routing>))
 
+[Example 815, legacy-if-for-structural-directives](https://github.com/AngularBootCamp/legacy-if-for-structural-directives) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/legacy-if-for-structural-directives>))
+
 [Example 900, video-stat-tracker](https://github.com/AngularBootCamp/video-stat-tracker) (on [StackBlitz](<https://stackblitz.io/github/AngularBootCamp/video-stat-tracker>))
 
 
