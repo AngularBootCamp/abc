@@ -1,0 +1,17 @@
+@let emp = employee();
+
+<article>
+  <header>{{ emp?.firstName }} {{ emp?.lastName }}</header>
+  <p>
+    Email:
+    <strong>{{ emp?.email }}</strong>
+  </p>
+  <p>
+    Hours Worked:
+    <strong>{{ emp?.hoursWorked }}</strong>
+  </p>
+  <p>
+    Hourly Wage:
+    <strong>{{ emp?.hourlyWage }}</strong>
+  </p>
+</article>

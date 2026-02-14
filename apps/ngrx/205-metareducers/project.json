@@ -1,0 +1,129 @@
+{
+  "name": "ngrx-205-metareducers",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/ngrx/205-metareducers/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": {
+          "base": "dist/apps/ngrx/205-metareducers",
+          "browser": ""
+        },
+        "index": "apps/ngrx/205-metareducers/src/index.html",
+        "browser": "apps/ngrx/205-metareducers/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/ngrx/205-metareducers/tsconfig.app.json",
+        "assets": [
+          "apps/ngrx/205-metareducers/src/favicon.ico",
+          "apps/ngrx/205-metareducers/src/assets",
+          {
+            "glob": "**/*",
+            "input": "libs/shared/assets/ngrx",
+            "output": "/assets/"
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/shared/assets/shared",
+            "output": "/assets/"
+          }
+        ],
+        "styles": [
+          "apps/ngrx/205-metareducers/src/styles.scss",
+          "libs/shared/styles/ngrx/shared.scss",
+          "libs/shared/styles/shared/shared.scss"
+        ],
+        "scripts": [],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "libs/shared/styles/ngrx",
+            "libs/shared/styles/shared",
+            "node_modules/@angular/material"
+          ]
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/ngrx/205-metareducers/src/environments/environment.ts",
+              "with": "apps/ngrx/205-metareducers/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@class-materials/tooling:serve-step",
+      "options": {
+        "serveTarget": "ngrx-205-metareducers:ng-serve"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "ngrx-205-metareducers:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/ngrx/205-metareducers/jest.config.ts",
+        "tsConfig": "apps/ngrx/205-metareducers/tsconfig.spec.json"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "ngrx-205-metareducers:build",
+        "port": 4300
+      }
+    },
+    "ng-serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "port": 4300,
+        "proxyConfig": "proxy.conf.json"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "ngrx-205-metareducers:build:production"
+        },
+        "development": {
+          "buildTarget": "ngrx-205-metareducers:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "continuous": true
+    }
+  }
+}

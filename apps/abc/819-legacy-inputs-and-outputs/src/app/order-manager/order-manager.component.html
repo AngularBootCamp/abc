@@ -1,0 +1,10 @@
+<article>
+  <header>Order Management Application</header>
+
+  <app-order-list
+    (selectOrder)="setOrder($event)"
+    [orders]="orderList"
+  />
+
+  <app-order-details [selectedOrderDetails]="selectedOrder" />
+</article>

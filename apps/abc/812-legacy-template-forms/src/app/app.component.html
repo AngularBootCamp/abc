@@ -1,0 +1,46 @@
+<h4>Login Form</h4>
+
+<form #loginForm="ngForm" (ngSubmit)="onLogin()" novalidate>
+  <div>
+    <label for="usernameId">Login</label>
+    <input
+      id="usernameId"
+      name="username"
+      type="text"
+      required
+      [(ngModel)]="credentials.login"
+      #usernameControl="ngModel"
+    />
+    <div>{{ usernameControl.valid }}</div>
+  </div>
+
+  <div>
+    <label for="passwordId">Password</label>
+    <input
+      id="passwordId"
+      name="password"
+      type="password"
+      required
+      minlength="3"
+      #passwordControl="ngModel"
+      [(ngModel)]="credentials.password"
+    />
+    <div>{{ passwordControl.valid }}</div>
+  </div>
+
+  <div>
+    <button type="submit" [disabled]="!loginForm.form.valid">
+      Login
+    </button>
+  </div>
+</form>
+
+<article>
+  <header>Data behind the login form</header>
+
+  <div>Form Object:</div>
+  <pre>{{ loginForm.form.value | json }}</pre>
+
+  <div>Form Validity:</div>
+  <div>{{ loginForm.form.valid }}</div>
+</article>

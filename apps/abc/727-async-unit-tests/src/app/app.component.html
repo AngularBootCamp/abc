@@ -1,0 +1,23 @@
+<a
+  href="https://developers.livechatinc.com/blog/angular-dependency-injection-components/"
+>
+  Great Reference on Testing
+</a>
+-
+<a href="https://angular.dev/guide/testing">Testing Docs</a>
+
+<article>
+  <header>Filtered Employee team</header>
+
+  <label for="nameFilter">Name Filter</label>
+  <input
+    id="nameFilter"
+    type="text"
+    autocomplete="off"
+    [formControl]="nameFilter"
+  />
+
+  @for (e of filteredTeam | async; track e.id) {
+    <pre>{{ e | json }}</pre>
+  }
+</article>

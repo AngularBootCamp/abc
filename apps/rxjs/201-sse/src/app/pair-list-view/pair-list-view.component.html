@@ -1,0 +1,16 @@
+<h1>Symbol pairs</h1>
+<table mat-table [dataSource]="list" class="mat-elevation-z8">
+  <ng-container matColumnDef="pair">
+    <th mat-header-cell *matHeaderCellDef>Pair</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.symbol }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="bid">
+    <th mat-header-cell *matHeaderCellDef>Bid</th>
+    <td mat-cell *matCellDef="let element">{{ element.bid }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: tableColumns"></tr>
+</table>

@@ -1,0 +1,32 @@
+:host {
+  display: grid;
+
+  grid-template-areas:
+    'author author'
+    'list article';
+
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-gap: 10px;
+
+  margin: 10px;
+}
+
+mat-card {
+  grid-area: author;
+
+  mat-card-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 50px;
+  }
+}
+
+app-article-list {
+  grid-area: list;
+  overflow: auto;
+}
+
+app-article {
+  grid-area: article;
+}

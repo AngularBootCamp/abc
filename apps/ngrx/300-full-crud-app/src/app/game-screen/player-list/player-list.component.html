@@ -1,0 +1,15 @@
+<mat-list>
+  @for (player of players; track player.id) {
+    <mat-list-item>
+      {{ player.name }}
+    </mat-list-item>
+  }
+</mat-list>
+<button
+  mat-mini-fab
+  color="accent"
+  style="float: right"
+  (click)="addPlayer()"
+>
+  <mat-icon>add</mat-icon>
+</button>

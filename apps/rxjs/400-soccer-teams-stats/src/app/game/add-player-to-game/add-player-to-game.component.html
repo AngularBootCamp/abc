@@ -1,0 +1,25 @@
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Choose player</mat-label>
+    <select matNativeControl [formControl]="chosenPlayer">
+      @for (player of playerOptions; track player.id) {
+        <option [value]="player.id">
+          {{ player.name }}
+        </option>
+      }
+    </select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    (click)="save()"
+    [disabled]="saving || chosenPlayer.invalid"
+    e2e="submit-game-player"
+  >
+    Add player
+  </button>
+  @if (saving) {
+    <mat-spinner diameter="20"></mat-spinner>
+  }
+</div>

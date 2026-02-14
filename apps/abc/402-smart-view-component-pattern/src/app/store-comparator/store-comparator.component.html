@@ -1,0 +1,20 @@
+<h2>Store Employee Comparator</h2>
+<app-employee-comparison
+  [theFirstEmployee]="easternEmployee"
+  [theSecondEmployee]="westernEmployee"
+/>
+<hr />
+<div class="explorers">
+  <app-employee-explorer
+    title="Eastern Store"
+    [employees]="(easternEmployeeList | async) ?? []"
+    [selectedEmployees]="easternEmployee ? [easternEmployee] : []"
+    (employeeClicked)="setLeftEmployee($event)"
+  />
+  <app-employee-explorer
+    title="Western Store"
+    [employees]="(westernEmployeeList | async) ?? []"
+    [selectedEmployees]="westernEmployee ? [westernEmployee] : []"
+    (employeeClicked)="setRightEmployee($event)"
+  />
+</div>

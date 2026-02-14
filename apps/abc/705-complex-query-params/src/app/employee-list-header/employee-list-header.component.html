@@ -1,0 +1,14 @@
+@let opts = options();
+
+<div class="pointer" (click)="clicked.emit(propertyName())">
+  {{ display() }}
+  @if (opts?.sortBy === propertyName()) {
+    <i class="material-icons">
+      {{
+        opts?.sortDirection === 'asc'
+          ? 'arrow_drop_down'
+          : 'arrow_drop_up'
+      }}
+    </i>
+  }
+</div>

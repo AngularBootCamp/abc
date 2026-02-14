@@ -1,0 +1,10 @@
+<article>
+  <header>Select Employee</header>
+  @for (employee of employees(); track employee.id) {
+    <p>
+      <a (click)="selectedEmployee.emit(employee.id)">
+        {{ employee.firstName }} {{ employee.lastName }}
+      </a>
+    </p>
+  }
+</article>

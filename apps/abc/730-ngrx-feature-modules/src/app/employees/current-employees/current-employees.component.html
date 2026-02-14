@@ -1,0 +1,8 @@
+<article>
+  <header>Current Employees</header>
+  @for (employee of employeeList | async; track employee.id) {
+    <div>
+      <app-employee-display [employee]="employee" />
+    </div>
+  }
+</article>

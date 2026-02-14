@@ -1,0 +1,25 @@
+<div class="form-fields">
+  <label for="subReddit">
+    Search reddit.com/r/
+    <select id="subReddit" [formControl]="subReddit">
+      @for (sr of subReddits; track sr) {
+        <option [value]="sr">
+          {{ sr }}
+        </option>
+      }
+    </select>
+  </label>
+
+  <label for="search">
+    for images containing:
+    <input id="search" type="text" [formControl]="search" />
+  </label>
+</div>
+
+<div>
+  @for (post of results | async; track post) {
+    <div class="box">
+      <img [src]="post.thumbnail" [alt]="post.title" />
+    </div>
+  }
+</div>

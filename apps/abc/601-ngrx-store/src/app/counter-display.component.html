@@ -1,0 +1,10 @@
+<article>
+  <header>{{ label() }}</header>
+  Current total: {{ counter() }}
+  <footer>
+    <button (click)="pick.emit(1)">Pick</button>
+    @if (label() === 'Apples') {
+      <button (click)="pick.emit(3)">Pick 3</button>
+    }
+  </footer>
+</article>

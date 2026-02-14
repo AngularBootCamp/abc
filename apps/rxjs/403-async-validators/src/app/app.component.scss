@@ -1,0 +1,16 @@
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 10px;
+}
+
+.page-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 750px;
+  margin: auto;
+}
+
+mat-card {
+  margin-bottom: 10px;
+}

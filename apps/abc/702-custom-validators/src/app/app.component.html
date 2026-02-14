@@ -1,0 +1,63 @@
+<article>
+  <header>Login Form</header>
+
+  <form [formGroup]="loginFormGroup" (ngSubmit)="onLogin()">
+    <div class="form-fields">
+      <label>
+        <span>Login</span>
+        <input
+          type="text"
+          [formControl]="loginFormGroup.controls.login"
+        />
+        @if (loginFormGroup.controls.login.hasError('required')) {
+          <span>Username is required</span>
+        }
+      </label>
+      <label>
+        <span>Password</span>
+        <input
+          type="password"
+          [formControl]="loginFormGroup.controls.password"
+        />
+        @if (loginFormGroup.controls.password.hasError('required')) {
+          <span>Password is required</span>
+        }
+      </label>
+      <label>
+        <span>Password</span>
+        <input
+          type="password"
+          [formControl]="loginFormGroup.controls.confirmPassword"
+        />
+        @if (loginFormGroup.hasError('mismatched')) {
+          <span>Passwords must match</span>
+        }
+      </label>
+      <label>
+        <span>Please enter 5 here:</span>
+        <input
+          type="text"
+          [formControl]="loginFormGroup.controls.enterFive"
+        />
+        @if (
+          loginFormGroup.controls.enterFive.hasError('verifyFive')
+        ) {
+          <span>You must enter 5</span>
+        }
+      </label>
+    </div>
+    <button [disabled]="!loginFormGroup.valid">Login</button>
+  </form>
+</article>
+
+<article>
+  <header>Form Data</header>
+
+  Form Value Object:
+  <pre>{{ loginFormGroup.value | json }}</pre>
+
+  Form Validity:
+  <div>{{ loginFormGroup.valid }}</div>
+
+  <button (click)="logTheForm()">Log Form Object</button>
+</article>

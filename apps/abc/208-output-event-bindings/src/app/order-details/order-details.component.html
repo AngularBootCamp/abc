@@ -1,0 +1,9 @@
+<div>
+  @if (sod(); as details) {
+    <header>Details</header>
+    <app-order-header [customerName]="details.customer" />
+    <app-order-items [items]="details.items" />
+  } @else {
+    Please select order to view details
+  }
+</div>

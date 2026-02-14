@@ -1,0 +1,25 @@
+<!--
+  The multiple async pipes could also be solved via:
+    - The @let syntax
+    - Further extending the smart-view component pattern
+-->
+<article>
+  <header>
+    Name: {{ (employee | async)?.firstName }}
+    {{ (employee | async)?.lastName }}
+  </header>
+  <p>
+    Email:
+    <strong>{{ (employee | async)?.email }}</strong>
+  </p>
+  <p>
+    Hours Worked:
+    <strong>{{ (employee | async)?.hoursWorked }}</strong>
+  </p>
+  <p>
+    Hourly Wage:
+    <strong>{{ (employee | async)?.hourlyWage }}</strong>
+  </p>
+  <hr />
+  <a routerLink="/employees">Back to list</a>
+</article>

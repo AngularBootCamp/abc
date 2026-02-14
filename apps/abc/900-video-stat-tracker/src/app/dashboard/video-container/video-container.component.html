@@ -1,0 +1,16 @@
+@if (videoUrl(); as url) {
+  <iframe
+    [src]="url"
+    title="Video Container"
+    frameborder="0"
+    allow="
+      fullscreen;
+      accelerometer;
+      autoplay;
+      encrypted-media;
+      gyroscope;
+    "
+    credentialless
+    csp="sandbox allow-scripts allow-same-origin;"
+  ></iframe>
+}

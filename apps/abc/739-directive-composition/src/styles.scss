@@ -1,0 +1,16 @@
+app-root p {
+  padding: 1rem;
+  margin: 0;
+
+  .description {
+    display: inline-block;
+    color: light-dark(black, white);
+    background-color: color-mix(
+      in srgb,
+      light-dark(white, black),
+      transparent
+    );
+    border-radius: 5px;
+    padding: 10px;
+  }
+}

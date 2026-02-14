@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= appTitle %></title>
+    <base href="/" />
+  </head>
+  <body>
+    <nav class="abc-banner">
+      <a href="https://angularbootcamp.com/"></a>
+      <span><%= appTitle %></span>
+      <a
+        target="_blank"
+        href="https://angular.dev/overview"
+      >
+        Docs Link
+      </a>
+    </nav>
+    <div class="container">
+      <app-root>loading...</app-root>
+    </div>
+  </body>
+</html>

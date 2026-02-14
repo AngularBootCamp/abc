@@ -1,0 +1,47 @@
+<div mat-dialog-content>
+  <form [formGroup]="cardForm">
+    <mat-form-field>
+      <mat-label>Card Receiver</mat-label>
+      <mat-select [formControl]="cardForm.controls.player">
+        @for (player of game.players; track player.id) {
+          <mat-option [value]="player.id">
+            {{ player.name }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <mat-select
+        class="card-types"
+        [formControl]="cardForm.controls.type"
+      >
+        @for (type of cardtypes; track type) {
+          <mat-option [value]="type">
+            {{ type }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="number"
+        matInput
+        placeholder="Time"
+        [formControl]="cardForm.controls.minute"
+      />
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    (click)="save()"
+    [disabled]="saving || cardForm.invalid"
+  >
+    Add
+  </button>
+  @if (saving) {
+    <mat-spinner diameter="20"></mat-spinner>
+  }
+</div>

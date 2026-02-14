@@ -1,0 +1,25 @@
+@use 'layout';
+
+.form-fields {
+  @include layout.three-across;
+}
+
+input.invalid {
+  color: var(--abc-on-error-color);
+  background-color: var(--abc-error-color);
+}
+
+.email-input.ng-touched.ng-invalid {
+  animation: ohnoes 0.3s ease infinite alternate;
+}
+
+@keyframes ohnoes {
+  from {
+    box-shadow: none;
+  }
+  to {
+    // Note: For this to animate smoothly, the custom property
+    // has to be defined as a <color> with @property.
+    box-shadow: 0 0 30px 30px var(--abc-error-color);
+  }
+}

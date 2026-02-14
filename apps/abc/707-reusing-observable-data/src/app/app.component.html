@@ -1,0 +1,16 @@
+<article>
+  <header>Company Data</header>
+
+  <pre>{{ company | async | json }}</pre>
+
+  <button (click)="showAgain.set(!showAgain())">
+    Show company again
+  </button>
+
+  @if (showAgain()) {
+    <div>
+      <pre>{{ company | async | json }}</pre>
+      <p>(without reloading from server)</p>
+    </div>
+  }
+</article>

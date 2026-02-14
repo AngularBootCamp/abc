@@ -1,0 +1,27 @@
+<h1>{{ pair }}</h1>
+
+<svg [attr.height]="height" [attr.width]="width">
+  <svg:rect
+    [attr.x]="margin"
+    [attr.y]="margin"
+    [attr.height]="height - 2 * margin"
+    [attr.width]="width - 2 * margin"
+    style="fill: none; stroke: aquamarine"
+  />
+  @for (p of points; track coordinatesOf(p)) {
+    <svg:circle [attr.cx]="p.x" [attr.cy]="p.y" r="4" />
+  }
+  @for (
+    s of segments;
+    track coordinatesOf(s[0]) + ';' + coordinatesOf(s[1])
+  ) {
+    <svg:line
+      [attr.x1]="s[0].x"
+      [attr.y1]="s[0].y"
+      [attr.x2]="s[1].x"
+      [attr.y2]="s[1].y"
+      stroke-width="1"
+      stroke="grey"
+    />
+  }
+</svg>

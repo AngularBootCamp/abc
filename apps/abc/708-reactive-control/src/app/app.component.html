@@ -1,0 +1,13 @@
+<article>
+  <header>Reactive Control</header>
+  <label>
+    Enter name here:
+    <input type="text" [formControl]="name" />
+  </label>
+
+  <p>Value: {{ name.value }}</p>
+  <p>Validity: {{ name.valid }}</p>
+  <button (click)="setValue()">Set Value</button>
+  <button (click)="useValue()">Use Value</button>
+  <p>Output: {{ outputValue() }}</p>
+</article>

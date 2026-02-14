@@ -1,0 +1,16 @@
+mat-drawer-container {
+  height: 100%;
+  min-height: 200px;
+}
+
+mat-drawer-content {
+  padding: 0px 10px 10px 0px;
+}
+
+:host {
+  width: 100%;
+}
+
+mat-nav-list {
+  padding: 0px;
+}

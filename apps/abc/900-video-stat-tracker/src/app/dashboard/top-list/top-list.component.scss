@@ -1,0 +1,35 @@
+:host {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.list {
+  overflow: auto;
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  display: block;
+}
+
+figure {
+  margin: 0;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+figcaption {
+  font-size: 90%;
+}
+
+.title,
+.author {
+  display: inline;
+}
+
+.title::after {
+  content: ' - ';
+}

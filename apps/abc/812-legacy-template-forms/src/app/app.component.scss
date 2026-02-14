@@ -1,0 +1,5 @@
+@use 'layout';
+
+form {
+  @include layout.two-across;
+}

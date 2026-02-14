@@ -1,0 +1,41 @@
+@use 'layout';
+
+app-root {
+  @include layout.two-across;
+}
+
+.time-block {
+  --hour-height: 1rem;
+
+  display: grid;
+  grid-template-columns: repeat(5, 2.5rem);
+  gap: 1rem;
+
+  margin-bottom: 1rem;
+
+  div {
+    font-weight: bold;
+    text-align: center;
+
+    color: var(--abc-on-secondary-color);
+    background-color: var(--abc-secondary-color);
+
+    box-shadow: var(--abc-box-shadow);
+  }
+}
+
+.day-0 {
+  height: calc(8 * var(--hour-height));
+}
+.day-1 {
+  height: calc(7.5 * var(--hour-height));
+}
+.day-2 {
+  height: calc(6 * var(--hour-height));
+}
+.day-3 {
+  height: calc(6.5 * var(--hour-height));
+}
+.day-4 {
+  height: calc(8 * var(--hour-height));
+}

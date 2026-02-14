@@ -1,0 +1,37 @@
+<table role="grid">
+  <thead>
+    <tr>
+      @for (header of headers; track header.propertyName) {
+        <td>
+          <app-employee-list-header
+            [propertyName]="header.propertyName"
+            [display]="header.display"
+            [options]="options()"
+            (clicked)="headerClicked($event)"
+          />
+        </td>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (employee of employees(); track employee.id) {
+      <tr>
+        <td>
+          <a
+            routerLink
+            [queryParams]="{ filter: employee.firstName }"
+          >
+            {{ employee.firstName }}
+          </a>
+        </td>
+        <td>
+          <a routerLink [queryParams]="{ filter: employee.lastName }">
+            {{ employee.lastName }}
+          </a>
+        </td>
+        <td>{{ employee.hoursWorked }}</td>
+        <td>{{ employee.hourlyWage }}</td>
+      </tr>
+    }
+  </tbody>
+</table>

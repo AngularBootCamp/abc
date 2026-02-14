@@ -1,0 +1,24 @@
+<app-collection-panel>
+  <app-collection-panel-header>
+    New Announcements
+  </app-collection-panel-header>
+  <app-collection-panel-content>
+    @for (item of announcements(); track item) {
+      <app-announcement-card>
+        <app-announcement-title>
+          {{ item.title }}
+        </app-announcement-title>
+        <app-announcement-image>
+          <img [src]="item.image" alt="Announcement Image" />
+        </app-announcement-image>
+        <app-announcement-description>
+          {{ item.description }}
+        </app-announcement-description>
+      </app-announcement-card>
+    }
+  </app-collection-panel-content>
+
+  <app-collection-panel-footer>
+    Come Back For New Announcements Everyday!
+  </app-collection-panel-footer>
+</app-collection-panel>

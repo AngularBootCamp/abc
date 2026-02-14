@@ -1,0 +1,18 @@
+<h4>Home</h4>
+<article>
+  <header>Completed</header>
+  <app-todo-list
+    [list]="done()"
+    [icon]="checkbox"
+    (toggleTask)="toggleTask($event, true)"
+  />
+</article>
+
+<article>
+  <header>In-Progress</header>
+  <app-todo-list
+    [list]="todo()"
+    [icon]="outline"
+    (toggleTask)="toggleTask($event, false)"
+  />
+</article>

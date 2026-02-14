@@ -1,0 +1,113 @@
+<h2>Filter Views</h2>
+
+<form [formGroup]="filterFormGroup">
+  <fieldset>
+    <legend>Region</legend>
+
+    <label for="test1">
+      <input
+        name="region"
+        value="North America"
+        type="radio"
+        id="test1"
+        [formControl]="filterFormGroup.controls.region"
+      />
+      North America
+    </label>
+
+    <label for="test3">
+      <input
+        name="region"
+        value="Europe"
+        type="radio"
+        id="test3"
+        [formControl]="filterFormGroup.controls.region"
+      />
+      Europe
+    </label>
+
+    <label for="test4">
+      <input
+        name="region"
+        value="Asia"
+        type="radio"
+        id="test4"
+        [formControl]="filterFormGroup.controls.region"
+      />
+      Asia
+    </label>
+
+    <label for="test2">
+      <input
+        name="region"
+        value="All"
+        type="radio"
+        id="test2"
+        [formControl]="filterFormGroup.controls.region"
+      />
+      All
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <legend>Date Range</legend>
+
+    <label for="dateFrom">
+      From
+      <input
+        id="dateFrom"
+        type="date"
+        [formControl]="filterFormGroup.controls.dateFrom"
+      />
+    </label>
+
+    <label for="dateTo">
+      To
+      <input
+        id="dateTo"
+        type="date"
+        [formControl]="filterFormGroup.controls.dateTo"
+      />
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <legend>Age Groups</legend>
+
+    <label for="age1">
+      <input
+        type="checkbox"
+        id="age1"
+        [formControl]="filterFormGroup.controls.minor"
+      />
+      Under 18
+    </label>
+
+    <label for="age2">
+      <input
+        type="checkbox"
+        id="age2"
+        [formControl]="filterFormGroup.controls.adults"
+      />
+      18 - 40
+    </label>
+
+    <label for="age3">
+      <input
+        type="checkbox"
+        id="age3"
+        [formControl]="filterFormGroup.controls.middleAged"
+      />
+      40 - 60
+    </label>
+
+    <label for="age4">
+      <input
+        type="checkbox"
+        id="age4"
+        [formControl]="filterFormGroup.controls.retired"
+      />
+      Over 60
+    </label>
+  </fieldset>
+</form>

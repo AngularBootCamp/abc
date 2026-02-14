@@ -1,0 +1,50 @@
+<!--
+  Simple elements using a single directive
+-->
+<p appHighlight>
+  <span class="description">
+    Paragraph with a highlight directive
+  </span>
+</p>
+<p appBorder color="var(--abc-category-1-color)">
+  <span class="description">Paragraph with a border directive</span>
+</p>
+
+<!--
+  Using both directives, but would not be able to define the "color"
+  input of each separately
+-->
+<p appBorder appHighlight color="var(--abc-category-2-color)">
+  <span class="description">
+    Paragraph with a highlight and border directive using the same
+    color
+  </span>
+</p>
+
+<!--
+  Using a composed directive that exposes aliases for the inputs
+-->
+<p
+  appHighlightAndBorder
+  border="var(--abc-category-3-color)"
+  highlightColor="var(--abc-category-4-color)"
+>
+  <span class="description">
+    Paragraph with a highlight and border directive using a single
+    composed directive, allowing different colors
+  </span>
+</p>
+
+<!--
+  Composing the directives into a component, with aliased inputs
+-->
+<app-highlight-and-border-inputs
+  border="var(--abc-category-5-color)"
+  highlightColor="var(--abc-category-6-color)"
+/>
+
+<!--
+  Composing the directives into a component, accessing the directives
+  within the component with dependency injection to set the colors
+-->
+<app-highlight-and-border-di />

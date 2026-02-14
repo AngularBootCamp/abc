@@ -1,0 +1,7 @@
+mat-toolbar > * {
+  margin-right: 10px;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}

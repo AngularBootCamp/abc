@@ -1,0 +1,41 @@
+<article>
+  <header>Sales Report: {{ reportDate | date: 'mediumDate' }}</header>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th class="number-column">Units Sold (millions)</th>
+        <th class="number-column">Total</th>
+        <th class="number-column">%</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (record of records; track record) {
+        <tr>
+          <td>{{ record.empName }}</td>
+          <td class="number-column">
+            {{ record.units | number: '1.4-4' }}
+          </td>
+          <td class="number-column">
+            {{ record.totalRevenue | currency: 'USD' : 'symbol' }}
+          </td>
+          <td class="number-column">
+            {{ record.percent / 100 | percent: '1.2-2' }}
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  Report expires:
+  {{ expirationDate | date: 'longDate' | uppercase }}
+</article>
+
+<button (click)="showJSON.set(!showJSON())">
+  {{ showJSON() ? 'Hide' : 'Show' }} data for export
+</button>
+
+@if (showJSON()) {
+  <pre>{{ records | json }}</pre>
+}

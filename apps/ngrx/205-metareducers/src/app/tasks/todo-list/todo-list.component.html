@@ -1,0 +1,11 @@
+<mat-selection-list class="mat-elevation-z2">
+  @for (task of list; track task) {
+    <mat-list-option
+      (click)="setStat(task)"
+      [selected]="selected"
+      togglePosition="before"
+    >
+      {{ task.label }}
+    </mat-list-option>
+  }
+</mat-selection-list>

@@ -1,0 +1,77 @@
+.employee-name.good::after {
+  font-family: 'Material Icons';
+  font-size: larger;
+  content: 'thumb_up';
+}
+
+.employee-name.great::after {
+  font-family: 'Material Icons';
+  font-size: larger;
+  content: 'rocket_launch';
+}
+
+.bar.good {
+  background-color: var(--abc-success-color);
+}
+
+.bar.great {
+  background-color: var(--abc-important-color);
+}
+
+.bar {
+  font-size: 48px;
+  height: 10px;
+  background-color: var(--abc-info-color);
+  border-radius: 2px;
+  box-shadow: var(--abc-box-shadow);
+}
+
+.stripe {
+  background-color: var(--abc-stripe-color);
+}
+
+.region-label {
+  font-weight: normal;
+}
+
+.region-Eastern {
+  color: var(--abc-on-category-1-color);
+  background-color: var(--abc-category-1-color);
+}
+
+.region-Central {
+  color: var(--abc-on-category-2-color);
+  background-color: var(--abc-category-2-color);
+}
+
+.region-Western {
+  color: var(--abc-on-category-3-color);
+  background-color: var(--abc-category-3-color);
+}
+
+.employee-name {
+  font-weight: bold;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+th,
+td {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.employee-column {
+  width: 25%;
+}
+
+.units-column,
+.revenue-column {
+  width: 37.5%;
+}

@@ -1,0 +1,91 @@
+<h4>Hello, my favorite color is {{ favoriteColor }}.</h4>
+
+<div class="form-fields">
+  <article>
+    <header>Input</header>
+    <input placeholder="color" [(ngModel)]="favoriteColor" />
+  </article>
+
+  <article>
+    <header>Select</header>
+    <select [(ngModel)]="favoriteColor">
+      <option value="Blue">Blue ish</option>
+      <option value="Red">Red ish</option>
+    </select>
+  </article>
+
+  <article>
+    <header>Select: with For loop</header>
+    <select [(ngModel)]="favoriteColor">
+      @for (item of colors; track item.code) {
+        <option [value]="item.code">
+          {{ item.display }}
+        </option>
+      }
+    </select>
+  </article>
+
+  <article>
+    <header>Radio</header>
+    <p>
+      <input
+        [(ngModel)]="favoriteColor"
+        name="group1"
+        type="radio"
+        id="1"
+        value="Red"
+      />
+      <label for="1">Red</label>
+    </p>
+    <p>
+      <input
+        [(ngModel)]="favoriteColor"
+        name="group1"
+        type="radio"
+        id="2"
+        value="Yellow"
+      />
+      <label for="2">Yellow</label>
+    </p>
+    <p>
+      <input
+        [(ngModel)]="favoriteColor"
+        name="group1"
+        type="radio"
+        id="3"
+        value="Green"
+      />
+      <label for="3">Green</label>
+    </p>
+    <p>
+      <input
+        [(ngModel)]="favoriteColor"
+        name="group1"
+        type="radio"
+        id="4"
+        value="Blue"
+      />
+      <label for="4">Blue</label>
+    </p>
+  </article>
+
+  <article>
+    <header>Checkbox</header>
+    <p>
+      <input id="9" type="checkbox" [(ngModel)]="show" />
+      <label for="9">Show/Hide</label>
+    </p>
+    @if (show) {
+      <div>Tada!</div>
+    }
+  </article>
+
+  <article>
+    <header>Color Swatch</header>
+    <div
+      class="color-swatch"
+      [style.opacity]="show ? 1 : 0"
+      [style.background-color]="favoriteColor"
+    ></div>
+  </article>
+</div>

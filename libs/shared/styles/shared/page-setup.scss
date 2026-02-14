@@ -1,0 +1,30 @@
+@use 'prebuilt-themes/indigo-pink.css';
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.mat-list-item-active {
+  font-weight: bold;
+}
+
+.mat-dialog-actions button {
+  text-transform: uppercase;
+}
+
+.mat-dialog-actions {
+  direction: rtl;
+}
+
+.mat-option-text {
+  text-transform: capitalize;
+}
+
+img.logo {
+  height: 50px;
+}

@@ -1,0 +1,8 @@
+<header>Choose an order</header>
+<ul class="collection">
+  @for (o of orders; track o.id) {
+    <li>
+      <a (click)="pickOrder(o)">{{ o.id }} : {{ o.customer }}</a>
+    </li>
+  }
+</ul>

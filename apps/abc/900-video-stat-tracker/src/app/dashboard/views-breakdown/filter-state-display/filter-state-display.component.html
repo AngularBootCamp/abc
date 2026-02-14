@@ -1,0 +1,24 @@
+<span class="filter-label">Region</span>
+<span class="chip">{{ filterForm.controls.region.value }}</span>
+
+<span class="filter-label">Date Range</span>
+<span class="chip">
+  {{ filterForm.controls.dateFrom.value | date: 'shortDate' }}
+</span>
+<span class="chip">
+  {{ filterForm.controls.dateTo.value | date: 'shortDate' }}
+</span>
+
+<span class="filter-label">Age Groups</span>
+@if (filterForm.controls.minor.value) {
+  <span class="chip">Minors</span>
+}
+@if (filterForm.controls.adults.value) {
+  <span class="chip">Adults</span>
+}
+@if (filterForm.controls.middleAged.value) {
+  <span class="chip">Middle Aged</span>
+}
+@if (filterForm.controls.retired.value) {
+  <span class="chip">Retired</span>
+}

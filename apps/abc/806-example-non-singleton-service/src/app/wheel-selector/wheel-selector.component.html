@@ -1,0 +1,19 @@
+Wheels:
+
+<table>
+  <tr>
+    <th>Wheel Type</th>
+    <th>Qty</th>
+    <th>Adjust</th>
+  </tr>
+  @for (wt of typesAndQtys | async; track wt.wt) {
+    <tr>
+      <td>{{ wt.wt }}</td>
+      <td>{{ wt.q }}</td>
+      <td class="controls">
+        <button (click)="more($index)">+</button>
+        <button (click)="less($index)">-</button>
+      </td>
+    </tr>
+  }
+</table>

@@ -1,0 +1,219 @@
+<nav>
+  @for (trigger of triggers; track trigger) {
+    <button
+      (click)="currentTab.set(trigger)"
+      [class.active-link]="trigger === currentTab()"
+    >
+      {{ trigger }}
+    </button>
+  }
+</nav>
+
+<article>
+  @switch (currentTab()) {
+    @case ('Idle') {
+      <header>
+        <p>
+          <em>Idle</em>
+          will trigger the deferred block once the browser has reached
+          an idle state. This example shows the placeholder for 2
+          seconds.
+        </p>
+
+        <p>
+          This defer block contains both a standalone component and a
+          traditional module-based component. The display of each is
+          deferred, but lazy-loading happens only for the standalone
+          component.
+        </p>
+      </header>
+      <!-- 'on idle' is the default, so it could be skipped -->
+      @defer (on idle) {
+        <app-idle />
+        <app-non-standalone />
+      } @placeholder (minimum 2s) {
+        <p>This placeholder will go away after 2 seconds</p>
+      }
+    }
+    @case ('Viewport') {
+      <header>
+        <p>
+          <em>Viewport</em>
+          will trigger the deferred block when the specified content
+          enters the viewport. This example shows the placeholder for
+          2 seconds.
+        </p>
+      </header>
+      <ul class="collection list">
+        <li>Scroll down to see the deferred component</li>
+        <li>Scroll down to see the deferred component</li>
+        <li>Keep scrolling</li>
+        <li>Scroll down to see the deferred component</li>
+        <li>Scroll down to see the deferred component</li>
+        <li>Almost there</li>
+        <li>Scroll down to see the deferred component</li>
+        <li>Scroll down to see the deferred component</li>
+        <li>
+          @defer (on viewport) {
+            <app-viewport />
+          } @placeholder (minimum 2s) {
+            <p>This placeholder will go away after 2 seconds</p>
+          }
+        </li>
+      </ul>
+    }
+    @case ('Interaction') {
+      <header>
+        <p>
+          <em>Interaction</em>
+          will trigger the deferred block when the user interacts with
+          the specified element through click or keydown events.
+        </p>
+      </header>
+
+      @defer (on interaction) {
+        <app-interaction />
+      } @placeholder {
+        <p>Click on this text to load</p>
+      }
+
+      <div>
+        Click on this button:
+        <button #interactionTarget>Interaction Target</button>
+      </div>
+      @defer (on interaction(interactionTarget)) {
+        <app-interaction />
+      } @placeholder {
+        <p>
+          Click on the button above this to load (clicking here won't
+          work)
+        </p>
+      } @loading (after 100ms; minimum 2s) {
+        <p>This shows for 2 seconds while loading</p>
+      }
+    }
+    @case ('Hover') {
+      <header>
+        <p>
+          <em>Hover</em>
+          triggers deferred loading when the mouse has hovered over
+          the trigger area.
+        </p>
+      </header>
+
+      @defer (on hover) {
+        <app-hover />
+      } @placeholder {
+        <p>Hover over this text to load</p>
+      }
+
+      <div>
+        Hover over this button to load:
+        <button #hoverTarget>Hover Target</button>
+      </div>
+      @defer (on hover(hoverTarget)) {
+        <app-hover />
+      } @placeholder {
+        <p>
+          'Hover' over the button above this to load (hovering here
+          won't work)
+        </p>
+      }
+    }
+    @case ('Immediate') {
+      <header>
+        <p>
+          <em>Immediate</em>
+          triggers the deferred load immediately, meaning once the
+          client has finished rendering.
+        </p>
+      </header>
+
+      @defer (on immediate) {
+        <app-immediate />
+      } @placeholder {
+        <p>This placeholder will flash very quickly</p>
+      }
+    }
+    @case ('Timer') {
+      <header>
+        <p>
+          <em>Timer</em>
+          triggers the deferred load after a specified duration.
+        </p>
+      </header>
+
+      @defer (on timer(3s)) {
+        <app-timer />
+      } @placeholder {
+        <p>Loading will start on its own in 3 seconds</p>
+      } @loading (minimum 2s) {
+        <p>This shows for 2 seconds while loading</p>
+      }
+    }
+    @case ('When') {
+      <header>
+        <p>
+          <em>When</em>
+          is the hook to enable triggering on another other condition.
+        </p>
+      </header>
+
+      <label>
+        Change this to be above 3
+        <input type="number" min="1" [formControl]="whenCondition" />
+      </label>
+      @defer (when (whenCondition.value > 3)) {
+        <app-when />
+      } @placeholder {
+        <p>Loading will start when the value is above 3</p>
+      } @loading (minimum 2s) {
+        <p>This shows for 2 seconds while loading</p>
+      }
+    }
+    @case ('Multiple') {
+      <header>
+        <p>
+          When there are multiple triggers, they work as OR; loading
+          will happen whenever any of the conditions are met.
+        </p>
+      </header>
+
+      <label>
+        Change this to be above 3
+        <input
+          type="number"
+          min="1"
+          [formControl]="whenConditionMultiple"
+        />
+      </label>
+      @defer (when (whenConditionMultiple.value > 3); on hover) {
+        <app-multiple />
+      } @placeholder {
+        <p>
+          Loading will start when the value is above 3, or if you
+          hover over this text.
+        </p>
+      } @loading (minimum 2s) {
+        <p>This shows for 2 seconds while loading</p>
+      }
+    }
+    @case ('Prefetched') {
+      <header>
+        <p>
+          Prefetching allows you to start loading the component before
+          the display trigger is invoked.
+        </p>
+      </header>
+
+      @defer (on hover; prefetch on idle) {
+        <app-prefetched />
+      } @placeholder {
+        <p>
+          Hover over this text to display (though it was already
+          loaded when the tab was clicked)
+        </p>
+      }
+    }
+  }
+</article>

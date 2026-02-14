@@ -1,0 +1,22 @@
+<h3>Toppings</h3>
+
+<button (click)="addNewTopping()">Add Topping</button>
+
+@if (!toppingControls.length) {
+  <div>No Toppings Chosen...</div>
+}
+
+@for (topping of toppingControls; track topping) {
+  @let toppingNumber = $index + 1;
+  @let toppingID = 'topping' + toppingNumber;
+  <div class="topping">
+    <label [for]="toppingID">Topping #{{ toppingNumber }}:</label>
+    <input
+      [id]="toppingID"
+      type="text"
+      [formControl]="topping"
+      placeholder="Add a topping"
+    />
+    <button (click)="removeTopping($index)">x</button>
+  </div>
+}

@@ -1,0 +1,19 @@
+@mixin add-marker($selector, $marker: $selector) {
+  #{$selector} {
+    position: relative;
+
+    &:after {
+      content: '#{$marker}';
+      position: absolute;
+      top: -1rem;
+      right: -1rem;
+      font-size: 0.85rem;
+      line-height: 1.75rem;
+      padding: 0 1rem;
+      border-radius: 999rem;
+      color: var(--abc-on-important-color);
+      background-color: var(--abc-important-color);
+      box-shadow: var(--abc-box-shadow);
+    }
+  }
+}

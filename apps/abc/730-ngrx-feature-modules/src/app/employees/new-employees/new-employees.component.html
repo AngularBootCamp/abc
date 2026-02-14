@@ -1,0 +1,10 @@
+<article>
+  <header>New Employees</header>
+  @for (employee of newEmpList | async; track $index) {
+    <div>
+      <button (click)="ack(employee)">Acknowledge</button>
+      &nbsp;
+      <app-employee-display [employee]="employee" />
+    </div>
+  }
+</article>

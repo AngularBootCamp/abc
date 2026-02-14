@@ -1,0 +1,40 @@
+<article>
+  <header>Menu</header>
+  <ul>
+    <li><a [routerLink]="['home']">Home</a></li>
+    <li><a [routerLink]="['hello', 'Brian']">Hello Brian</a></li>
+    <li><a [routerLink]="['hello', 'Bill']">Hello Bill</a></li>
+  </ul>
+  <hr />
+  <p>Side options</p>
+  <ul>
+    <li>
+      <a [routerLink]="[{ outlets: { side: 'chat' } }]">Chat</a>
+    </li>
+    <li>
+      <a [routerLink]="[{ outlets: { side: 'task' } }]">Tasks</a>
+    </li>
+    <li>
+      <a
+        [routerLink]="[
+          { outlets: { primary: 'home', side: 'chat' } }
+        ]"
+      >
+        Home+Chat
+      </a>
+    </li>
+  </ul>
+</article>
+
+<article>
+  <header>Main Content</header>
+  <router-outlet />
+</article>
+
+<article>
+  <header>
+    Extra
+    <a [routerLink]="[{ outlets: { side: null } }]">X</a>
+  </header>
+  <router-outlet name="side"></router-outlet>
+</article>

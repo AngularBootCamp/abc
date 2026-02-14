@@ -1,0 +1,44 @@
+<oasis-header title="Testing"></oasis-header>
+
+<div class="page-layout">
+  <section>
+    <a
+      href="https://developers.livechatinc.com/blog/angular-dependency-injection-components/"
+    >
+      <button mat-button color="primary">
+        Great Reference on Testing
+      </button>
+    </a>
+
+    <a href="https://angular.dev/guide/testing">
+      <button mat-button color="accent">Testing Docs</button>
+    </a>
+
+    <p>
+      (If you are viewing this online with StackBlitz or similar tool,
+      the unit tests can only be run locally)
+    </p>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Filtered Employee Team</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Name Filter</mat-label>
+          <input
+            id="nameFilter"
+            type="text"
+            autocomplete="off"
+            matInput
+            [formControl]="nameFilter"
+          />
+        </mat-form-field>
+
+        @for (e of filteredTeam | async; track e.id) {
+          <pre>{{ e | json }}</pre>
+        }
+      </mat-card-content>
+    </mat-card>
+  </section>
+</div>

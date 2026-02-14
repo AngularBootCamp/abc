@@ -1,0 +1,15 @@
+<div class="task-lists">
+  <app-work-task-list
+    [done]="doneWork()"
+    [todo]="todoWork()"
+    (toggleTask)="toggleTask($event.task, $event.complete, 'work')"
+  />
+
+  <app-home-task-list
+    (toggleTask)="toggleTask($event.task, $event.complete, 'home')"
+    [done]="doneHome()"
+    [todo]="todoHome()"
+  />
+</div>
+
+<button (click)="completeAll()">Complete All</button>

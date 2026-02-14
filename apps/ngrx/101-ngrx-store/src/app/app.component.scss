@@ -1,0 +1,9 @@
+.page-layout {
+  display: grid;
+  grid-template-columns: 200px 200px;
+  gap: 10px;
+}
+
+.align-right {
+  justify-self: end;
+}

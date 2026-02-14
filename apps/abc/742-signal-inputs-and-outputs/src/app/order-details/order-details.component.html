@@ -1,0 +1,11 @@
+@let details = sod();
+
+@if (details) {
+  <div>
+    <header>Details</header>
+    <app-order-header [customerName]="details.customer" />
+    <app-order-items [items]="details.items" />
+  </div>
+} @else {
+  <div>Please select order to view details</div>
+}

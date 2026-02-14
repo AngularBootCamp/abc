@@ -1,0 +1,55 @@
+<article>
+  <header>Financial Report</header>
+  <table>
+    <thead>
+      <tr>
+        <th class="employee-column">Name</th>
+        <th class="units-column">Units Sold (millions)</th>
+        <th class="revenue-column">Total</th>
+      </tr>
+    </thead>
+    @for (region of regionInfo(); track region.regionName) {
+      <tbody>
+        <tr>
+          <th class="region-label">{{ region.regionName }}</th>
+        </tr>
+        @for (
+          record of region.saleRecords;
+          track record;
+          let shouldStripe = $even
+        ) {
+          <tr [class.stripe]="shouldStripe">
+            <td
+              class="employee-name"
+              [class.great]="record.rank === 1"
+              [class.good]="record.rank <= 3"
+              [class]="`region-${region.regionName}`"
+            >
+              {{ record.empName }}
+            </td>
+            <td>
+              <div
+                class="bar"
+                [class]="{
+                  good: record.rank <= 3,
+                  great: record.rank === 1
+                }"
+                [style.width.%]="record.units * scaleFactors().units"
+              ></div>
+            </td>
+            <td>
+              <div
+                class="bar"
+                [class.good]="record.rank <= 3"
+                [class.great]="record.rank === 1"
+                [style.width.%]="
+                  record.totalRevenue * scaleFactors().totalRevenue
+                "
+              ></div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    }
+  </table>
+</article>

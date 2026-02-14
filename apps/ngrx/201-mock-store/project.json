@@ -1,0 +1,129 @@
+{
+  "name": "ngrx-201-mock-store",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/ngrx/201-mock-store/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": {
+          "base": "dist/apps/ngrx/201-mock-store",
+          "browser": ""
+        },
+        "index": "apps/ngrx/201-mock-store/src/index.html",
+        "browser": "apps/ngrx/201-mock-store/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/ngrx/201-mock-store/tsconfig.app.json",
+        "assets": [
+          "apps/ngrx/201-mock-store/src/favicon.ico",
+          "apps/ngrx/201-mock-store/src/assets",
+          {
+            "glob": "**/*",
+            "input": "libs/shared/assets/ngrx",
+            "output": "/assets/"
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/shared/assets/shared",
+            "output": "/assets/"
+          }
+        ],
+        "styles": [
+          "apps/ngrx/201-mock-store/src/styles.scss",
+          "libs/shared/styles/ngrx/shared.scss",
+          "libs/shared/styles/shared/shared.scss"
+        ],
+        "scripts": [],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "libs/shared/styles/ngrx",
+            "libs/shared/styles/shared",
+            "node_modules/@angular/material"
+          ]
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/ngrx/201-mock-store/src/environments/environment.ts",
+              "with": "apps/ngrx/201-mock-store/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@class-materials/tooling:serve-step",
+      "options": {
+        "serveTarget": "ngrx-201-mock-store:ng-serve"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "ngrx-201-mock-store:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/ngrx/201-mock-store/jest.config.ts",
+        "tsConfig": "apps/ngrx/201-mock-store/tsconfig.spec.json"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "ngrx-201-mock-store:build",
+        "port": 4300
+      }
+    },
+    "ng-serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "port": 4300,
+        "proxyConfig": "proxy.conf.json"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "ngrx-201-mock-store:build:production"
+        },
+        "development": {
+          "buildTarget": "ngrx-201-mock-store:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "continuous": true
+    }
+  }
+}

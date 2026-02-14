@@ -1,0 +1,38 @@
+<article>
+  <header>Employees</header>
+
+  <div class="controls">
+    <div>
+      <label for="nameFilter">Name Filter</label>
+      <input
+        id="nameFilter"
+        type="text"
+        autocomplete="off"
+        [formControl]="nameFilter"
+      />
+    </div>
+    <div>
+      <label for="sort">Sort By</label>
+      <select id="sort" type="text" [formControl]="sort">
+        @for (
+          sortCriterion of sortCriteria;
+          track sortCriterion.value
+        ) {
+          <option [value]="sortCriterion.value">
+            {{ sortCriterion.display }}
+          </option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <app-employee-list-table-view
+    [list]="(filteredList | async) ?? []"
+    [selectedId]="selectedId | async"
+    (selectId)="selectedId.next($event)"
+  />
+</article>
+
+<app-employee-detail-view
+  [employee]="(selectedEmployee | async) ?? undefined"
+/>

@@ -1,0 +1,28 @@
+<h2>Shots Taken</h2>
+<table mat-table [dataSource]="shots" class="mat-elevation-z2">
+  <ng-container matColumnDef="player">
+    <th mat-header-cell *matHeaderCellDef>Player</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.playerName }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="assist">
+    <th mat-header-cell *matHeaderCellDef>Assist</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.assistName }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="successful">
+    <th mat-header-cell *matHeaderCellDef>Scored</th>
+    <td mat-cell *matCellDef="let element">{{ element.scored }}</td>
+  </ng-container>
+  <ng-container matColumnDef="minute">
+    <th mat-header-cell *matHeaderCellDef>Minute</th>
+    <td mat-cell *matCellDef="let element">{{ element.minute }}</td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<button mat-mini-fab color="accent" (click)="addShot()">
+  <mat-icon>add</mat-icon>
+</button>

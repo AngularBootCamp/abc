@@ -1,0 +1,13 @@
+app-player-list,
+app-shot-list,
+app-card-list,
+.game-title {
+  display: block;
+  margin-bottom: 30px;
+}
+
+.game-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

@@ -1,0 +1,45 @@
+<article>
+  <header>Input Form</header>
+
+  <form [formGroup]="inputFormGroup" (ngSubmit)="onFormSubmit()">
+    <label>
+      <span>Enter Input</span>
+      <input
+        type="text"
+        [formControl]="inputFormGroup.controls.input"
+      />
+      {{ inputFormGroup.controls.input.errors | json }}
+    </label>
+
+    <label>
+      <span>Enter a Western ZIP code</span>
+      <input
+        type="text"
+        [formControl]="inputFormGroup.controls.zip"
+      />
+      {{ inputFormGroup.controls.zip.errors | json }}
+      @if (inputFormGroup.controls.zip.pending) {
+        <span>Pending Spinner Goes Here</span>
+      }
+    </label>
+
+    <div>
+      <button [disabled]="!inputFormGroup.valid">Submit</button>
+    </div>
+  </form>
+</article>
+
+<article>
+  <header>Form Data</header>
+
+  Form Value Object:
+  <pre>{{ inputFormGroup.value | json }}</pre>
+
+  Form Status:
+  <pre>{{ inputFormGroup.status }}</pre>
+
+  Form Validity:
+  <div>{{ inputFormGroup.valid }}</div>
+
+  <button (click)="logTheForm()">Log Form Object</button>
+</article>

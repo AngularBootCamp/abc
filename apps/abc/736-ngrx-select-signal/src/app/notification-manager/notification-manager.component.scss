@@ -1,0 +1,5 @@
+@use 'layout';
+
+.task-lists {
+  @include layout.two-across;
+}

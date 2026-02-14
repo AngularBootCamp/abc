@@ -1,0 +1,36 @@
+<article>
+  @if (userProfile | async; as profile) {
+    <header>Hello {{ profile.username }}</header>
+    <form [formGroup]="profileForm" (ngSubmit)="saveUser(profile)">
+      <label>
+        Name:
+        <input
+          type="text"
+          [formControl]="profileForm.controls.name"
+        />
+      </label>
+      <label>
+        Email:
+        <input
+          type="text"
+          [formControl]="profileForm.controls.email"
+        />
+      </label>
+      <label>
+        Phone:
+        <input
+          type="text"
+          [formControl]="profileForm.controls.phone"
+        />
+      </label>
+      <button
+        type="submit"
+        [disabled]="profileForm.pristine || profileForm.invalid"
+      >
+        Save
+      </button>
+    </form>
+  } @else {
+    loading user profile...
+  }
+</article>

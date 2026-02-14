@@ -1,0 +1,28 @@
+.pizza-form-header {
+  cursor: pointer;
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2em;
+}
+
+app-form-toppings {
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+
+.collapsed {
+  .pizza-form-header {
+    margin-bottom: 0;
+  }
+
+  .pizza-form-container {
+    display: none;
+  }
+}
+
+.material-icons {
+  vertical-align: baseline;
+}

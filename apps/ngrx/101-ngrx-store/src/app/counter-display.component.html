@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-card-title>
+    {{ label }}
+  </mat-card-title>
+  <mat-card-content>Current total: {{ counter }}</mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="pick.emit(1)">Pick</button>
+    @if (label === 'Apples') {
+      <button mat-raised-button (click)="pick.emit(3)">Pick 3</button>
+    }
+  </mat-card-actions>
+</mat-card>

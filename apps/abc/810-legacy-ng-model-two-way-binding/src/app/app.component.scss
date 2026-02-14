@@ -1,0 +1,5 @@
+@use 'layout';
+
+.controls {
+  @include layout.two-across;
+}

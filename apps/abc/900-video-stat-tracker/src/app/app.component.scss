@@ -1,0 +1,28 @@
+:host {
+  display: grid;
+  gap: 0;
+  grid-template:
+    ' nav     ' auto
+    ' content ' 1fr
+    / 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+
+nav {
+  grid-area: nav;
+  padding: 0.5rem;
+  margin-bottom: 0;
+
+  h1 {
+    margin-bottom: 0;
+  }
+}
+
+.content {
+  grid-area: content;
+
+  // This is necessary to allow the nested child grid to
+  // properly occupy the content area.
+  overflow: auto;
+}

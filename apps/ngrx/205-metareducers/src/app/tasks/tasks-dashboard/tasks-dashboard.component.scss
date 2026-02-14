@@ -1,0 +1,4 @@
+@use 'libs/shared/styles/shared/app-layout.scss';
+mat-sidenav-container {
+  height: calc(100vh - 65px);
+}

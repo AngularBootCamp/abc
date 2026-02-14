@@ -1,0 +1,11 @@
+<article>
+  <header>Starships</header>
+
+  <p>Can take a while to load, see console...</p>
+
+  <ul>
+    @for (s of starships | async; track s.name) {
+      <li>{{ s.name }} (in {{ s.filmName }})</li>
+    }
+  </ul>
+</article>

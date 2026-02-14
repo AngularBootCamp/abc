@@ -1,0 +1,11 @@
+@use 'layout';
+
+app-user-dashboard,
+app-employee-browser {
+  @include layout.two-across;
+}
+
+.todo-list {
+  overflow-y: scroll;
+  height: 5rem;
+}

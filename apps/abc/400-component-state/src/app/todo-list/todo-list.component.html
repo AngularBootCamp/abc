@@ -1,0 +1,8 @@
+<ul class="collection">
+  @for (task of list(); track task) {
+    <li (click)="toggle(task)">
+      <i class="material-icons">{{ icon() }}</i>
+      {{ task.label }}
+    </li>
+  }
+</ul>

@@ -1,0 +1,8 @@
+.mat-card-header {
+  align-items: baseline;
+
+  ::ng-deep oasis-display-or-edit .value-display {
+    font-size: 20px;
+    font-weight: 500;
+  }
+}

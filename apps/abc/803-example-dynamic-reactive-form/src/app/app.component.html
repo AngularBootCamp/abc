@@ -1,0 +1,81 @@
+<article>
+  <header>Contact Details</header>
+
+  <form [formGroup]="dynamicFormGroup" (ngSubmit)="onSubmit()">
+    <!-- Show each field defined in the schema. -->
+    @for (fieldinfo of schema(); track fieldinfo.fieldName) {
+      <div>
+        <label [for]="fieldinfo.fieldName">
+          {{ fieldinfo.fieldLabel }}
+          <!-- Add a marker for mandatory fields. -->
+          @if (fieldinfo.mandatory) {
+            <span class="mandatory-marker">*</span>
+          }
+        </label>
+        <!-- Generate the appropriate type of input control. -->
+        <input
+          [type]="fieldinfo.fieldType"
+          [name]="fieldinfo.fieldName"
+          [id]="fieldinfo.fieldName"
+          [formControlName]="fieldinfo.fieldName"
+        />
+        <!--
+          If the user has touched the control and it's invalid,
+          show the necessary error message.
+          -->
+        @if (
+          controls[fieldinfo.fieldName].touched &&
+          controls[fieldinfo.fieldName].invalid
+        ) {
+          <div class="error-message">
+            @if (controls[fieldinfo.fieldName].hasError('required')) {
+              <span>{{ fieldinfo.fieldLabel }} is required.</span>
+            }
+            @if (
+              controls[fieldinfo.fieldName].hasError('minlength')
+            ) {
+              <span>
+                {{ fieldinfo.fieldLabel }} must be at least
+                {{
+                  controls[fieldinfo.fieldName].errors?.['minlength']
+                    .requiredLength
+                }}
+                characters long.
+              </span>
+            }
+            @if (
+              controls[fieldinfo.fieldName].hasError('maxlength')
+            ) {
+              <span>
+                {{ fieldinfo.fieldLabel }} cannot be more than
+                {{
+                  controls[fieldinfo.fieldName].errors?.['maxlength']
+                    .requiredLength
+                }}
+                characters long.
+              </span>
+            }
+            @if (controls[fieldinfo.fieldName].hasError('pattern')) {
+              <span>{{ fieldinfo.fieldLabel }} is incorrect.</span>
+            }
+            <!-- end error messages -->
+          </div>
+        }
+      </div>
+    }
+
+    <button [disabled]="!dynamicFormGroup.valid">Submit</button>
+  </form>
+</article>
+
+<article>
+  <header>Form Data</header>
+
+  Form Value Object:
+  <pre>{{ dynamicFormGroup.value | json }}</pre>
+
+  Form Validity:
+  <div>{{ dynamicFormGroup.valid }}</div>
+
+  <button (click)="logTheForm()">Log Form Object</button>
+</article>

@@ -1,0 +1,28 @@
+<table mat-table [dataSource]="list" class="mat-elevation-z8">
+  <ng-container matColumnDef="firstName">
+    <th mat-header-cell *matHeaderCellDef>First Name</th>
+    <td mat-cell *matCellDef="let element">
+      <a>{{ element.firstName }}</a>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="lastName">
+    <th mat-header-cell *matHeaderCellDef>Last Name</th>
+    <td mat-cell *matCellDef="let element">
+      <a>{{ element.lastName }}</a>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="hourlyWage">
+    <th mat-header-cell *matHeaderCellDef>Hourly Wage</th>
+    <td mat-cell *matCellDef="let element">
+      <a>{{ element.hourlyWage }}</a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: tableColumns"
+    (click)="selectId.emit(row.id)"
+    [style.background-color]="row.id === selectedId ? 'yellow' : ''"
+  ></tr>
+</table>

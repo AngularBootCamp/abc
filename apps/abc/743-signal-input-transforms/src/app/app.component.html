@@ -1,0 +1,30 @@
+<h1>Using the built-in transforms</h1>
+<app-built-in-transforms
+  explanation="With brackets"
+  [booleanValue]="false"
+  [numberValue]="5"
+/>
+
+<app-built-in-transforms
+  explanation="Without brackets"
+  booleanValue="false"
+  numberValue="5"
+/>
+
+<app-built-in-transforms
+  explanation="With typos (no type safety)"
+  booleanValue="falsy"
+  numberValue="five"
+/>
+
+<app-built-in-transforms
+  explanation="Using name only"
+  booleanValue
+  numberValue
+/>
+
+<h1>Using custom transforms</h1>
+<app-custom-transforms
+  lowerString="Converted To Lower Case"
+  upperStringInline="Converted to Upper Case"
+/>

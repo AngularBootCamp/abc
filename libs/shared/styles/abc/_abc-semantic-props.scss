@@ -1,0 +1,73 @@
+// Semantic properties (mostly colors)
+//
+// Color property names are loosely based on the conventions used by
+// Material Design and Angular Material:
+//
+//   Material Design 3 - Color Roles
+//   https://m3.material.io/styles/color/roles
+//
+//   Angular Material - System Variables
+//   https://material.angular.dev/guide/system-variables
+//
+
+@use 'create-custom-color-properties' as *;
+
+// prettier-ignore
+@include create-custom-color-properties(
+  (
+    // Semantic colors with specific color values
+
+    --abc-surface-color:      light-dark(white,   black),
+    --abc-on-surface-color:   light-dark(black,   white),
+
+    --abc-stripe-color:       light-dark(#c2c7d0, #373c44),
+    --abc-on-stripe-color:    light-dark(black,   white),
+
+    // Semantic colors based on adaptive colors
+
+    --abc-primary-color:      var(--abc-adaptive-blue),
+    --abc-on-primary-color:   var(--abc-on-adaptive-blue),
+
+    --abc-secondary-color:    var(--abc-adaptive-green),
+    --abc-on-secondary-color: var(--abc-on-adaptive-green),
+
+    --abc-highlight-color:    var(--abc-adaptive-yellow),
+    --abc-on-highlight-color: var(--abc-on-adaptive-yellow),
+
+    --abc-important-color:    var(--abc-adaptive-red),
+    --abc-on-important-color: var(--abc-on-adaptive-red),
+
+    --abc-success-color:      var(--abc-adaptive-green),
+    --abc-on-success-color:   var(--abc-on-adaptive-green),
+
+    --abc-failure-color:      var(--abc-adaptive-red),
+    --abc-on-failure-color:   var(--abc-on-adaptive-red),
+
+    --abc-warning-color:      var(--abc-adaptive-yellow),
+    --abc-on-warning-color:   var(--abc-on-adaptive-yellow),
+
+    --abc-error-color:        var(--abc-adaptive-red),
+    --abc-on-error-color:     var(--abc-on-adaptive-red),
+
+    // Semantic colors based on other semantic colors
+    
+    --abc-info-color:         var(--abc-primary-color),
+    --abc-on-info-color:      var(--abc-on-primary-color),
+
+    --abc-border-color:       var(--abc-stripe-color),
+    --abc-on-border-color:    var(--abc-on-stripe-color),
+  )
+);
+
+@property --abc-font-family {
+  syntax: '*';
+  inherits: true;
+  initial-value: sans-serif;
+}
+
+@property --abc-box-shadow {
+  syntax: '*';
+  inherits: true;
+  initial-value: 2px 2px 3px
+    light-dark(rgba(129, 145, 181, 0.6), rgba(7, 9, 12, 0.6));
+}

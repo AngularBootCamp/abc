@@ -1,0 +1,24 @@
+<article>
+  <header>Anakin Component</header>
+  <button (click)="showData = !showData">
+    Show/Hide Anakin Data
+  </button>
+  @if (showData) {
+    <div>
+      <h5>Anakin Data</h5>
+      <pre> {{ name | async }} </pre>
+      <h5>Anakin Time</h5>
+      <pre> {{ time | async }} </pre>
+    </div>
+  }
+</article>
+
+<article>
+  <header>Another Binding</header>
+  <button (click)="showExtraTime = !showExtraTime">
+    Show/Hide Time Data
+  </button>
+  @if (showExtraTime) {
+    <pre> {{ time | async }} </pre>
+  }
+</article>

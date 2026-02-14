@@ -1,0 +1,12 @@
+<article>
+  <header>Employees</header>
+  @if (loading()) {
+    <p>Loading...</p>
+  } @else {
+    <ul>
+      @for (e of employees(); track e.id) {
+        <li>{{ e.firstName }} {{ e.lastName }}</li>
+      }
+    </ul>
+  }
+</article>

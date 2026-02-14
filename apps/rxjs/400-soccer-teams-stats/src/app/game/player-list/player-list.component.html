@@ -1,0 +1,16 @@
+<h2>Players</h2>
+<mat-list class="mat-elevation-z2">
+  @for (player of players; track player.id) {
+    <mat-list-item e2e="game-player">
+      {{ player.name }}
+    </mat-list-item>
+  }
+</mat-list>
+<button
+  mat-mini-fab
+  color="accent"
+  (click)="addPlayer()"
+  e2e="add-player"
+>
+  <mat-icon>add</mat-icon>
+</button>

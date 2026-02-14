@@ -1,0 +1,36 @@
+<oasis-header title="NgRx Counter Example"></oasis-header>
+
+<div class="page-layout">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Fruit Picker</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Total Fruit: {{ total | async }}</p>
+
+      <section>
+        <app-counter-display
+          label="Berries"
+          [counter]="(berry | async) ?? 0"
+          (pick)="pickBerry()"
+        />
+
+        <app-counter-display
+          label="Apples"
+          [counter]="(apple | async) ?? 0"
+          (pick)="pickApple($event)"
+        />
+      </section>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="empty()"
+        class="btn"
+      >
+        Empty Cart
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

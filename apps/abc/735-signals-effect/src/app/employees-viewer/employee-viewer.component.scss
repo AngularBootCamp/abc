@@ -1,0 +1,5 @@
+@use 'layout';
+
+:host {
+  @include layout.two-across;
+}

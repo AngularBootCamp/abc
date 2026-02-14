@@ -1,0 +1,84 @@
+<oasis-header title="Testing"></oasis-header>
+
+<div class="page-layout">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Input Form</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="inputFormGroup" (ngSubmit)="onFormSubmit()">
+        <div>
+          <mat-form-field>
+            <mat-label>Enter Required Input</mat-label>
+            <input
+              matInput
+              type="text"
+              [formControl]="inputFormGroup.controls.requiredInput"
+            />
+          </mat-form-field>
+          <div>
+            {{ inputFormGroup.controls.requiredInput.errors | json }}
+          </div>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <mat-label>Enter Input</mat-label>
+            <input
+              matInput
+              type="text"
+              [formControl]="inputFormGroup.controls.input"
+            />
+          </mat-form-field>
+          <div>{{ inputFormGroup.controls.input.errors | json }}</div>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <mat-label>Enter a Western ZIP code</mat-label>
+            <input
+              matInput
+              type="text"
+              [formControl]="inputFormGroup.controls.zip"
+            />
+          </mat-form-field>
+          <div>
+            <span data-e2e="zip-error-message">
+              {{ inputFormGroup.controls.zip.errors | json }}
+            </span>
+            @if (inputFormGroup.controls.zip.pending) {
+              <span>Pending Spinner Goes Here</span>
+            }
+          </div>
+        </div>
+
+        <div>
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="!inputFormGroup.valid"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Form Data</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      Form Value Object:
+      <pre>{{ inputFormGroup.value | json }}</pre>
+
+      Form Validity:
+      <div>{{ inputFormGroup.valid }}</div>
+
+      <button mat-raised-button color="accent" (click)="logTheForm()">
+        Log Form Object
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>

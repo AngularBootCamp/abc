@@ -1,0 +1,26 @@
+<oasis-header
+  title="@ngrx/store Introduction"
+  [documents]="[
+    { label: 'NgRx Docs', url: 'https://ngrx.io/guide/store' }
+  ]"
+></oasis-header>
+
+<div class="page-layout">
+  <app-counter-display
+    label="Berries"
+    [counter]="(berry | async) ?? 0"
+    (pick)="pickBerry()"
+  />
+
+  <app-counter-display
+    label="Apples"
+    [counter]="(apple | async) ?? 0"
+    (pick)="pickApple($event)"
+  />
+  <h2>Total Fruit: {{ total | async }}</h2>
+  <div class="align-right">
+    <button mat-button color="warn" (click)="empty()" class="btn">
+      Empty Cart
+    </button>
+  </div>
+</div>

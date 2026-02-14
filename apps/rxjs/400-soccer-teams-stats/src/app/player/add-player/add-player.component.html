@@ -1,0 +1,23 @@
+<div mat-dialog-content>
+  <mat-form-field>
+    <input
+      [formControl]="playerInput"
+      matInput
+      placeholder="Enter player name"
+      e2e="player-name-control"
+    />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    (click)="save()"
+    [disabled]="saving || playerInput.invalid"
+    e2e="submit-new-player"
+  >
+    add
+  </button>
+  @if (saving) {
+    <mat-spinner diameter="20"></mat-spinner>
+  }
+</div>

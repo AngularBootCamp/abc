@@ -1,0 +1,10 @@
+<h3>Starships</h3>
+
+<ul>
+  @for (s of starships; track s.name) {
+    <li>{{ s.name }} (in {{ s.filmName }})</li>
+  }
+</ul>
+
+<p>Raw data:</p>
+<pre>{{ starships | json }}</pre>

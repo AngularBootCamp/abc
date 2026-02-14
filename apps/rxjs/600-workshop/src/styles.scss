@@ -1,0 +1,58 @@
+@use 'libs/shared/styles/shared/page-setup.scss';
+@use 'libs/shared/styles/shared/app-layout.scss';
+
+$mat-yellow: #ffeb3b;
+$accent: #ff4081;
+$warn: #ff5252;
+
+.mat-list-item-active {
+  font-weight: bold;
+  color: mat-color($accent, darker) !important;
+}
+
+.yellow-card {
+  color: mat-color(mat-palette($mat-yellow), default);
+}
+
+.red-card {
+  color: mat-color($warn, default);
+}
+
+[mat-dialog-actions] button,
+.card-types,
+.mat-option-text {
+  text-transform: uppercase;
+}
+
+[mat-dialog-actions] {
+  direction: rtl;
+}
+
+app-player-name-editor
+  .mat-form-field-appearance-legacy
+  .mat-form-field-infix {
+  padding: 0;
+  border-top: 0px;
+}
+
+app-player-name-editor
+  .mat-form-field-appearance-legacy
+  .mat-form-field-wrapper {
+  display: inline;
+}
+
+// override due to sidenav
+.page-layout {
+  padding: 0px;
+  width: 100%;
+}
+
+.mat-mini-fab {
+  float: right;
+  top: -20px;
+  right: 5px;
+}
+
+table {
+  width: 100%;
+}

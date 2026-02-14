@@ -1,0 +1,60 @@
+<h1>Pizza Creator</h1>
+
+<div>
+  <button (click)="addNewPizza()">Add New Pizza</button>
+  <button (click)="logForm()">Log Form</button>
+</div>
+
+@if (!pizzasFormArray.controls.length) {
+  <div>Add a Pizza to Continue!</div>
+}
+
+@for (form of pizzasFormArray.controls; track form) {
+  <article [class.collapsed]="activePizza !== $index">
+    <h2
+      class="pizza-form-header"
+      (click)="setActivePizzaForm($index)"
+    >
+      <i class="material-icons">
+        {{ activePizza === $index ? 'expand_more' : 'chevron_right' }}
+      </i>
+      Pizza #{{ $index + 1 }}
+    </h2>
+    <div class="pizza-form-container">
+      <button (click)="removePizza($index)">Remove Pizza</button>
+      <form [formGroup]="form">
+        <app-form-select
+          label="Size"
+          [control]="form.controls.size"
+          [options]="sizes"
+        />
+        <app-form-select
+          label="Crust"
+          [control]="form.controls.crust"
+          [options]="crusts"
+        />
+        <app-form-select
+          label="Sauce Type"
+          [control]="form.controls.sauceType"
+          [options]="sauceTypes"
+        />
+        <app-form-select
+          label="Sauce Amount"
+          [control]="form.controls.sauceAmount"
+          [options]="sauceAmounts"
+        />
+        <app-form-select
+          label="Cheese Type"
+          [control]="form.controls.cheeseType"
+          [options]="cheeseTypes"
+        />
+        <app-form-select
+          label="Cheese Amount"
+          [control]="form.controls.cheeseAmount"
+          [options]="cheeseAmounts"
+        />
+        <app-form-toppings [toppings]="form.controls.toppings" />
+      </form>
+    </div>
+  </article>
+}

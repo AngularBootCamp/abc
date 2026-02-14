@@ -1,0 +1,52 @@
+<div mat-dialog-content>
+  <form [formGroup]="shotForm">
+    <mat-form-field>
+      <mat-label>Shot Taker</mat-label>
+      <mat-select [formControl]="shotForm.controls.player">
+        @for (player of this.game.players; track player.id) {
+          <mat-option [value]="player.id">
+            {{ player.name }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Assist</mat-label>
+      <mat-select [formControl]="shotForm.controls.assist">
+        @for (player of this.game.players; track player.id) {
+          <mat-option [value]="player.id">
+            {{ player.name }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="number"
+        matInput
+        placeholder="Time"
+        [formControl]="shotForm.controls.minute"
+      />
+    </mat-form-field>
+    <mat-checkbox [formControl]="shotForm.controls.scored">
+      Scored
+    </mat-checkbox>
+    @if (
+      shotForm.touched && shotForm.getError('cantAssistYourself')
+    ) {
+      <span>A player can not assist themselves</span>
+    }
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    (click)="save()"
+    [disabled]="saving || shotForm.invalid"
+  >
+    Add
+  </button>
+  @if (saving) {
+    <mat-spinner diameter="20"></mat-spinner>
+  }
+</div>

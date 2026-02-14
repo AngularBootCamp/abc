@@ -1,0 +1,5 @@
+@use 'layout';
+
+.employees {
+  @include layout.three-across;
+}

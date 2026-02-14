@@ -1,0 +1,19 @@
+<div class="list-container">
+  <mat-nav-list class="mat-elevation-z2">
+    @for (player of players | async; track player.id) {
+      <a
+        [routerLink]="player.id"
+        routerLinkActive="mat-list-item-active"
+        mat-list-item
+      >
+        {{ player.name }}
+      </a>
+    }
+  </mat-nav-list>
+  <button mat-mini-fab (click)="addPlayer()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<div>
+  <router-outlet />
+</div>

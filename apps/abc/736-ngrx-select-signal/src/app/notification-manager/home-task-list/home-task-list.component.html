@@ -1,0 +1,19 @@
+<h4>Home</h4>
+
+<article>
+  <header>Completed</header>
+  <app-todo-list
+    [list]="done()"
+    [icon]="checkbox"
+    (setTaskStatus)="homeTask($event, true)"
+  />
+</article>
+
+<article>
+  <header>In-Progress</header>
+  <app-todo-list
+    [list]="todo()"
+    [icon]="outline"
+    (setTaskStatus)="homeTask($event, false)"
+  />
+</article>

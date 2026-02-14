@@ -1,0 +1,29 @@
+import { AsyncPipe } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import { Task } from '../../types';
+import { taskPageActions } from '../tasks.actions';
+import { selectDone } from '../tasks.selectors';
+import { TodoListComponent } from '../todo-list/todo-list.component';
+
+@Component({
+  selector: 'app-done-tasks',
+  template: `
+    <app-todo-list
+      [list]="(done | async) ?? []"
+      selected
+      (setTaskStatus)="task($event)"
+    />
+  `,
+  imports: [TodoListComponent, AsyncPipe]
+})
+export class DoneTasksComponent {
+  private store = inject(Store);
+
+  done = this.store.select(selectDone);
+
+  task(task: Task) {
+    this.store.dispatch(taskPageActions.taskReset({ task }));
+  }
+}

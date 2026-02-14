@@ -1,0 +1,17 @@
+<oasis-header title="Async Pipe"></oasis-header>
+<div class="page-layout">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Top 5 employees</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        @for (e of employeeData | async; track e.id) {
+          <mat-list-item>
+            {{ e.firstName }} {{ e.lastName }}
+          </mat-list-item>
+        }
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>

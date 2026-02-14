@@ -1,0 +1,31 @@
+<svg
+  [attr.width]="width"
+  [attr.height]="height"
+  style="border: 1px solid black"
+>
+  <line
+    x1="0"
+    [attr.y1]="height / 2"
+    [attr.x2]="width"
+    [attr.y2]="height / 2"
+    style="stroke: black; stroke-width: 1"
+  ></line>
+  @for (point of points; track $index) {
+    <circle
+      [attr.cx]="$index * intervalSpacing"
+      [attr.cy]="point + height / 2"
+      stroke="black"
+      r="2"
+      fill="black"
+    ></circle>
+  }
+  @for (line of lines; track line) {
+    <line
+      [attr.x1]="$index * intervalSpacing"
+      [attr.y1]="line.start + height / 2"
+      [attr.x2]="($index + 1) * intervalSpacing"
+      [attr.y2]="line.end + height / 2"
+      style="stroke: black; stroke-width: 1"
+    ></line>
+  }
+</svg>

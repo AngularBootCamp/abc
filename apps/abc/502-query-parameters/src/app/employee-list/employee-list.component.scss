@@ -1,0 +1,13 @@
+a {
+  display: grid;
+  padding: 0.5em;
+  grid-template-columns: 2fr 2fr 1fr;
+}
+
+a:hover {
+  outline: 2px solid var(--primary);
+}
+
+.hours-worked {
+  text-align: right;
+}

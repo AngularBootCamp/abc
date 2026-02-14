@@ -1,0 +1,16 @@
+<app-employee-list
+  [employees]="(employees | async) ?? []"
+  (selectedEmployee)="selectedEmployeeId.next($event)"
+/>
+
+<div class="status">
+  Loading status:
+  <strong>{{ status | async }}</strong>
+</div>
+
+<app-employee-display
+  [style.visibility]="
+    (showEmployeeDetails | async) ? 'visible' : 'hidden'
+  "
+  [employee]="(selectedEmployee | async) ?? undefined"
+/>

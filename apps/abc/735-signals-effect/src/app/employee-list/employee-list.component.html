@@ -1,0 +1,15 @@
+<ul class="collection">
+  @for (employee of list(); track employee.id) {
+    <li [class.highlighted]="employee.id === selectedId()">
+      <a
+        routerLink
+        [queryParams]="{ employeeId: employee.id }"
+        queryParamsHandling="merge"
+      >
+        <span>{{ employee.firstName }}</span>
+        <span>{{ employee.lastName }}</span>
+        <span class="hours-worked">{{ employee.hoursWorked }}</span>
+      </a>
+    </li>
+  }
+</ul>

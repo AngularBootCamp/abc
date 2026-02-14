@@ -1,0 +1,14 @@
+<p>Current User: {{ userName | async }}</p>
+
+<nav>
+  <ul>
+    <li routerLinkActive="active-link">
+      <a routerLink="/employees">Employees</a>
+    </li>
+    <li routerLinkActive="active-link">
+      <a routerLink="/profile">User Profile</a>
+    </li>
+  </ul>
+</nav>
+
+<router-outlet />

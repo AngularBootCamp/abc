@@ -1,0 +1,8 @@
+<h5>{{ title() }}</h5>
+@for (emp of employees(); track emp.id) {
+  <app-employee-display
+    [employee]="emp"
+    [class.selected]="employeeIsSelected(emp)"
+    (click)="employeeClicked.emit(emp)"
+  />
+}

@@ -1,0 +1,31 @@
+<!-- eslint-disable @angular-eslint/template/prefer-control-flow --
+     This example demonstrates the deprecated control flow syntax
+-->
+<article>
+  <button (click)="increment()">Add One</button>
+  {{ n }}
+</article>
+
+<article>
+  <header>ngSwitch: on values</header>
+  <div [ngSwitch]="n > 5">
+    <span *ngSwitchCase="false">Seen a little</span>
+    <span *ngSwitchCase="true">Seen a lot</span>
+  </div>
+</article>
+
+<article>
+  <header>ngSwitch: on predicates</header>
+  <div [ngSwitch]="n">
+    <div *ngSwitchCase="0">Seen zero</div>
+    <div *ngSwitchCase="1">Seen once</div>
+    <div *ngSwitchCase="results()">2...4</div>
+    <div *ngSwitchDefault>Seen {{ n }} times</div>
+  </div>
+
+  <div [ngSwitch]="food">
+    <span *ngSwitchCase="'apple'">Shiny Apple</span>
+    <span *ngSwitchCase="'banana'">Yellow Banana</span>
+    <span *ngSwitchDefault>other</span>
+  </div>
+</article>

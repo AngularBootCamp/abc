@@ -1,0 +1,25 @@
+<table>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Hours Worked</th>
+      <th>Hourly Wage</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (employee of employees | async; track employee.id) {
+      <tr>
+        <td>{{ employee.firstName }}</td>
+        <td>{{ employee.lastName }}</td>
+        <td>{{ employee.hoursWorked }}</td>
+        <td>{{ employee.hourlyWage }}</td>
+      </tr>
+    }
+    <tr (appWhenVisible)="loadMore()">
+      @if ((doneLoading | async) === false) {
+        <td colspan="4">Loading...</td>
+      }
+    </tr>
+  </tbody>
+</table>

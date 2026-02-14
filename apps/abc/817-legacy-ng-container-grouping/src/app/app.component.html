@@ -1,0 +1,109 @@
+<!-- eslint-disable @angular-eslint/template/prefer-control-flow --
+     This example demonstrates the deprecated control flow syntax
+-->
+<article>
+  <header>Glossary of Useful Terms</header>
+
+  <dl>
+    <ng-container *ngFor="let term of terms">
+      <dt>{{ term.term }}</dt>
+      <dd>{{ term.definition }}</dd>
+    </ng-container>
+  </dl>
+</article>
+
+<article>
+  <header>Important Programming Languages</header>
+
+  <button (click)="showDetails = !showDetails">
+    {{ showDetails ? 'Hide' : 'Show' }} Details
+  </button>
+
+  <table>
+    <ng-container *ngFor="let langInfo of programmingLanguages">
+      <tr>
+        <td colspan="2">
+          <strong>{{ langInfo.language }}</strong>
+        </td>
+      </tr>
+
+      <ng-container *ngIf="showDetails">
+        <tr>
+          <td>Designer:</td>
+          <td>{{ langInfo.designer }}</td>
+        </tr>
+
+        <tr>
+          <td>Released:</td>
+          <td>{{ langInfo.released }}</td>
+        </tr>
+
+        <tr>
+          <td>More info:</td>
+          <td>
+            <a href="{{ langInfo.link }}" target="_blank">
+              {{ langInfo.link }}
+            </a>
+          </td>
+        </tr>
+      </ng-container>
+    </ng-container>
+  </table>
+</article>
+
+<article>
+  <header>Purple Prose</header>
+
+  <label>
+    Descriptiveness:
+    <input
+      type="range"
+      min="0"
+      max="10"
+      step="1"
+      [formControl]="descriptorsControl"
+    />
+  </label>
+
+  <!-- Compare the DOM for the span and ng-container versions. -->
+
+  <label>Using span:</label>
+
+  <p>
+    It was a
+
+    <!-- prettier-ignore -->
+    <span
+      *ngFor="
+        let adjective of adjectives;
+        let isFirst = first;
+        let isLast = last
+      "
+    >
+      <span *ngIf="!isFirst && isLast"> and</span>
+      {{ adjective
+      }}<span *ngIf="adjectives.length >= 3 && !isLast">,</span>
+    </span>
+    night.
+  </p>
+
+  <label>Using ng-container:</label>
+
+  <p>
+    It was a
+
+    <!-- prettier-ignore -->
+    <ng-container
+      *ngFor="
+        let adjective of adjectives;
+        let isFirst = first;
+        let isLast = last
+      "
+    >
+      <ng-container *ngIf="!isFirst && isLast"> and</ng-container>
+      {{ adjective
+      }}<ng-container *ngIf="adjectives.length >= 3 && !isLast">,</ng-container>
+    </ng-container>
+    night.
+  </p>
+</article>

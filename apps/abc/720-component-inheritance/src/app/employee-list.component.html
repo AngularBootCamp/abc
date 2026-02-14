@@ -1,0 +1,10 @@
+<h2>{{ heading }}</h2>
+
+<ul class="collection">
+  @for (e of employees(); track e.id) {
+    <li>
+      <button (click)="selectEmployee(e)">Select</button>
+      {{ e.firstName }} {{ e.lastName }}
+    </li>
+  }
+</ul>

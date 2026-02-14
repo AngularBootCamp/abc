@@ -1,0 +1,15 @@
+@use 'layout';
+
+.form-fields {
+  @include layout.two-across;
+}
+
+.box {
+  float: left;
+  width: 140px;
+  height: 140px;
+  margin: 5px;
+}
+.box img {
+  width: 100%;
+}

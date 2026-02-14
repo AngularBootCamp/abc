@@ -1,0 +1,39 @@
+<section>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Employees</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <section>
+        <mat-form-field>
+          <mat-label>Name Filter</mat-label>
+          <input
+            id="nameFilter"
+            type="text"
+            autocomplete="off"
+            matInput
+            [formControl]="nameFilter"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Sort By</mat-label>
+          <mat-select id="sort" [formControl]="sort">
+            <mat-option value="lastName">Last Name</mat-option>
+            <mat-option value="hourlyWage">Hourly Wage</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </section>
+
+      <app-employee-list-table-view
+        [list]="(filteredList | async) ?? []"
+        [selectedId]="(selectedId | async) ?? undefined"
+        (selectId)="selectedId.next($event)"
+      />
+    </mat-card-content>
+  </mat-card>
+
+  <app-employee-detail-view
+    [employee]="(selectedEmployee | async) ?? undefined"
+  />
+</section>

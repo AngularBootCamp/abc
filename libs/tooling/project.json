@@ -1,0 +1,52 @@
+{
+  "name": "tooling",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/tooling/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/tooling",
+        "main": "libs/tooling/src/index.ts",
+        "tsConfig": "libs/tooling/tsconfig.lib.json",
+        "assets": [
+          "libs/tooling/*.md",
+          {
+            "input": "./libs/tooling/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/tooling/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/tooling",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./libs/tooling",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/tooling/jest.config.ts"
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<oasis-header title="NgRx Soccer Team Stats"></oasis-header>
+
+<mat-sidenav-container>
+  <mat-sidenav opened mode="side">
+    <mat-nav-list>
+      <a
+        mat-list-item
+        routerLink="/players"
+        routerLinkActive="mat-list-item-active"
+      >
+        Players
+      </a>
+      <a
+        mat-list-item
+        routerLink="/games"
+        routerLinkActive="mat-list-item-active"
+      >
+        Games
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="page-layout">
+      <router-outlet />
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

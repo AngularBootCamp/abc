@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "tooling",
+  "version": "0.0.1",
+  "generators": {
+    "curriculum-step": {
+      "factory": "./src/generators/curriculum-step/generator",
+      "schema": "./src/generators/curriculum-step/schema.json",
+      "description": "curriculum step generator"
+    },
+    "renumber-step": {
+      "factory": "./src/generators/renumber-step/generator",
+      "schema": "./src/generators/renumber-step/schema.json",
+      "description": "renumber-step generator"
+    },
+    "delete-step": {
+      "factory": "./src/generators/delete-step/generator",
+      "schema": "./src/generators/delete-step/schema.json",
+      "description": "delete-step generator"
+    }
+  }
+}

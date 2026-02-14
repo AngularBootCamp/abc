@@ -1,0 +1,13 @@
+<vst-top-list
+  [topList]="(videoList | async) ?? []"
+  [selectedVideo]="(selectedVideo | async) ?? undefined"
+  (videoChanged)="videoChanged($event)"
+></vst-top-list>
+
+<vst-video-container
+  [currentVideo]="(selectedVideo | async) ?? undefined"
+></vst-video-container>
+
+<vst-views-breakdown></vst-views-breakdown>
+
+<vst-views-filter></vst-views-filter>

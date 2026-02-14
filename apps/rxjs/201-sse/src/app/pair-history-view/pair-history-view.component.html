@@ -1,0 +1,21 @@
+<app-pair-history-chart
+  width="300"
+  height="180"
+  [quotes]="latestQuotes"
+  [pair]="pair"
+/>
+<table mat-table [dataSource]="latestQuotes" class="mat-elevation-z8">
+  <ng-container matColumnDef="time">
+    <th mat-header-cell *matHeaderCellDef>Time</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.timestamp | date: 'mediumTime' }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="bid">
+    <th mat-header-cell *matHeaderCellDef>Bid</th>
+    <td mat-cell *matCellDef="let element">{{ element.bid }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: tableColumns"></tr>
+</table>

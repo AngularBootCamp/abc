@@ -1,0 +1,14 @@
+<article>
+  <header>Top 5 employees</header>
+
+  <!-- The "loading display" functionality is now done entirely in the template -->
+  @if (employees$ | async; as employees) {
+    <ul>
+      @for (e of employees; track e.id) {
+        <li>{{ e.firstName }} {{ e.lastName }}</li>
+      }
+    </ul>
+  } @else {
+    <p>Loading...</p>
+  }
+</article>

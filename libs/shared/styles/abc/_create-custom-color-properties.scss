@@ -1,0 +1,35 @@
+@use 'sass:string';
+
+/// Define a list of CSS custom properties (AKA CSS variables) containing
+/// <color> values.
+///
+/// @param {list} $color-properties - List of CSS var name/value pairs
+///
+/// @access private
+///
+@mixin create-custom-color-properties($color-properties) {
+  @each $property-name, $property-value in $color-properties {
+    // Define the CSS property with `@property`, so it can be used
+    // smoothly in keyframe animations. Note that properties are defined
+    // with a placeholder `initial-value`; they're assigned their proper
+    // value in a separate loop below.
+    //
+    // (The string.slice() is a workaround to avoid a spurious
+    // "identifier expected" complaint in the property definition.)
+    @property --#{string.slice($property-name, 3)} {
+      syntax: '<color>';
+      inherits: true;
+      initial-value: transparent;
+    }
+  }
+
+  // Set the values separately from the definitions, so properties can
+  // be set to the value of another property with
+  // `var(--some-other-property)` (and so that all the assignments can
+  // happen inside a single :root block).
+  :root {
+    @each $property-name, $property-value in $color-properties {
+      #{$property-name}: #{$property-value};
+    }
+  }
+}

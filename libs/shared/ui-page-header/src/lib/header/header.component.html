@@ -1,0 +1,29 @@
+<mat-toolbar color="primary" class="mat-elevation-z2">
+  <ng-container>
+    <mat-toolbar-row>
+      <a href="https://oasisdigital.com">
+        <img
+          class="logo"
+          src="assets/od-logo-white.svg"
+          alt="Oasis Digital Logo"
+        />
+      </a>
+      <h1>
+        {{ title() }}
+      </h1>
+      <div class="toolbar-spacer"></div>
+      @for (document of documents(); track document) {
+        <div>
+          <a
+            class="document-button"
+            mat-flat-button
+            href="{{ document.url }}"
+          >
+            {{ document.label }}
+          </a>
+        </div>
+      }
+    </mat-toolbar-row>
+  </ng-container>
+  <ng-content></ng-content>
+</mat-toolbar>

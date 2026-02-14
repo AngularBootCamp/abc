@@ -1,0 +1,5 @@
+@use 'layout';
+
+.explorers {
+  @include layout.two-across;
+}

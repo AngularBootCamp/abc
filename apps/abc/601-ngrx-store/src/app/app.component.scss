@@ -1,0 +1,5 @@
+@use 'layout';
+
+.counters {
+  @include layout.two-across;
+}

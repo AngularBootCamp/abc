@@ -1,0 +1,35 @@
+<h2>Top 10 Preview</h2>
+
+<div class="list">
+  @for (video of topList(); track video.id) {
+    <a
+      (click)="selectVideo(video)"
+      [class.highlighted]="video.id === selectedVideo()?.id"
+    >
+      <figure>
+        <img
+          src="http://img.youtube.com/vi/{{ video.id }}/0.jpg"
+          alt="Top 10 Video"
+        />
+        <figcaption>
+          <span class="title">{{ video.title }}</span>
+          <span class="author">{{ video.author }}</span>
+        </figcaption>
+      </figure>
+    </a>
+  }
+</div>
+
+<!--
+  If we wanted to link to the URL directly from
+  the component we could use the following router
+  directives. However, that would break the smart/view
+  abstraction. By maintaining this abstraction it allows
+  for a change in how selected video is maintained without
+  the need to update this component.
+  -->
+
+<!--
+  [routerLink]=""
+  [queryParams]="{ videoId: video.id }"
+  -->

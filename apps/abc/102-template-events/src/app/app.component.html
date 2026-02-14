@@ -1,0 +1,26 @@
+<article>
+  <header>Time Clock</header>
+  <p>Hello, {{ name }}</p>
+  <p>
+    <strong>{{ message }}</strong>
+  </p>
+  <p>Managers, don't forget to hold shift while clocking in!</p>
+  <footer>
+    <button (click)="clockIn($event)">Clock In</button>
+    <button (click)="clockOut()">Clock Out</button>
+  </footer>
+</article>
+
+<article>
+  <header>Upcoming Schedule</header>
+  <div class="time-block" (mouseleave)="clearSchedule()">
+    <div class="day-0" (mouseover)="showSchedule('M')">M</div>
+    <div class="day-1" (mouseover)="showSchedule('T')">T</div>
+    <div class="day-2" (mouseover)="showSchedule('W')">W</div>
+    <div class="day-3" (mouseover)="showSchedule('R')">R</div>
+    <div class="day-4" (mouseover)="showSchedule('F')">F</div>
+  </div>
+  <div>
+    {{ currentSchedule }}
+  </div>
+</article>

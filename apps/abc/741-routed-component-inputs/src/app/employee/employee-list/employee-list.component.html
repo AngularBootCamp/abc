@@ -1,0 +1,10 @@
+<article>
+  <header>Select Employee</header>
+  @for (employee of list | async; track employee.id) {
+    <p>
+      <a [routerLink]="[employee.id]">
+        {{ employee.firstName }} {{ employee.lastName }}
+      </a>
+    </p>
+  }
+</article>

@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-title>Chat History</mat-card-title>
+  <mat-card-content #chatBox [scrollTop]="chatBox.scrollHeight">
+    <mat-list>
+      @for (m of allMessages | async; track m) {
+        <mat-list-item>
+          {{ m.name + ': ' + m.contents }}
+        </mat-list-item>
+      }
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+<mat-form-field>
+  <mat-label>Name</mat-label>
+  <input matInput placeholder="Name" [formControl]="name" />
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Message</mat-label>
+  <input matInput placeholder="Message" [formControl]="message" />
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="sendChat()">
+  Send
+</button>

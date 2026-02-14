@@ -1,0 +1,19 @@
+<article>
+  @if (employee | async; as emp) {
+    <header>Name: {{ emp.firstName }} {{ emp.lastName }}</header>
+    <p>
+      Email:
+      <strong>{{ emp.email }}</strong>
+    </p>
+    <p>
+      Hours Worked:
+      <strong>{{ emp.hoursWorked }}</strong>
+    </p>
+    <p>
+      Hourly Wage:
+      <strong>{{ emp.hourlyWage }}</strong>
+    </p>
+    <hr />
+    <a routerLink="/employees">Back to list</a>
+  }
+</article>

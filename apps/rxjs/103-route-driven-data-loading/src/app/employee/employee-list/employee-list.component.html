@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-card-title>Select Employee</mat-card-title>
+  <mat-card-content>
+    <mat-nav-list>
+      @for (employee of list | async; track employee.id) {
+        <a mat-list-item [routerLink]="[employee.id]">
+          {{ employee.firstName }} {{ employee.lastName }}
+        </a>
+      }
+    </mat-nav-list>
+  </mat-card-content>
+</mat-card>

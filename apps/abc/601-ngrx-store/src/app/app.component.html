@@ -1,0 +1,17 @@
+<h5>Counter Example</h5>
+<button (click)="empty()">Empty Cart</button>
+<p>Total Fruit: {{ total | async }}</p>
+
+<div class="counters">
+  <app-counter-display
+    label="Berries"
+    [counter]="(berry | async) ?? 0"
+    (pick)="pickBerry()"
+  />
+
+  <app-counter-display
+    label="Apples"
+    [counter]="(apple | async) ?? 0"
+    (pick)="pickApple($event)"
+  />
+</div>

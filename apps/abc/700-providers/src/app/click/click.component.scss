@@ -1,0 +1,15 @@
+button {
+  display: block;
+  margin: auto;
+  background-color: var(--abc-surface-color);
+}
+
+img {
+  width: 500px;
+  height: auto;
+  -webkit-user-drag: none;
+}
+
+p {
+  text-align: center;
+}

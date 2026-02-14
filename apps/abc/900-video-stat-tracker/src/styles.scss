@@ -1,0 +1,41 @@
+// Give the major components basic card styling, without requiring
+// an <article> element in each component.
+
+vst-video-container,
+vst-top-list,
+vst-views-breakdown,
+vst-views-filter {
+  padding: 1rem;
+  border: 1px solid var(--abc-border-color);
+  box-shadow: var(--abc-box-shadow);
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+}
+
+vst-bar-chart {
+  --line-color: var(--abc-border-color);
+  --bar-border-color: var(--abc-border-color);
+  --bar-fill-color: var(--abc-category-1-color);
+  --bar-label-color: var(--abc-on-category-1-color);
+}
+
+vst-top-list {
+  .title,
+  .author {
+    color: var(--abc-on-surface-color);
+  }
+}
+
+.chip {
+  display: inline-block;
+  color: var(--abc-on-secondary-color);
+  background-color: var(--abc-secondary-color);
+  font-size: 0.8rem;
+  border-radius: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-right: 0.5em;
+  white-space: nowrap;
+}

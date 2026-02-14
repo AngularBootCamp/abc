@@ -1,0 +1,19 @@
+@if (article$ | async; as article) {
+  <mat-card>
+    <mat-card-header>
+      <oasis-display-or-edit
+        [control]="title"
+        useDelete
+        (updated)="setTitle(article)"
+        (deleteClicked)="delete(article)"
+      ></oasis-display-or-edit>
+    </mat-card-header>
+    <mat-card-content>
+      <oasis-display-or-edit
+        [control]="body"
+        (updated)="setBody(article)"
+        useTextArea
+      ></oasis-display-or-edit>
+    </mat-card-content>
+  </mat-card>
+}

@@ -1,0 +1,50 @@
+@let constellations = constellations$ | async;
+@let selectedConstellation = selectedConstellation$ | async;
+@let colorScheme = colorScheme$ | async;
+
+<div class="list">
+  @for (c of constellations; track c.iauAbbreviation) {
+    <a
+      [queryParams]="{ id: c.iauAbbreviation }"
+      routerLink="."
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{
+        paths: 'subset',
+        queryParams: 'subset',
+        matrixParams: 'ignored',
+        fragment: 'ignored'
+      }"
+    >
+      {{ c.name }}
+    </a>
+  } @empty {
+    <p>Loading...</p>
+  }
+</div>
+
+<div class="details">
+  @if (selectedConstellation; as c) {
+    <a [href]="c.link" target="_blank">
+      <div class="name">{{ c.name }}</div>
+    </a>
+    <div class="abbreviation">{{ c.iauAbbreviation }}</div>
+    <div class="meaning">{{ c.meaning }}</div>
+  } @else {
+    <div class="instructions">
+      Select a constellation to see details
+    </div>
+  }
+</div>
+
+<div class="preview" (click)="imageZoomed = !imageZoomed">
+  @if (selectedConstellation; as c) {
+    <img
+      [class.zoomed]="imageZoomed"
+      [class.inverted]="colorScheme === 'dark'"
+      [style.display]="imageLoaded ? 'block' : 'none'"
+      [src]="c.imageLink"
+      [alt]="'Diagram of the constellation ' + c.name"
+      (load)="imageLoaded = true"
+    />
+  }
+</div>

@@ -1,0 +1,14 @@
+<article>
+  <header>Sanitized HTML (by Angular)</header>
+  <span [innerHtml]="stringWithHtml()"></span>
+</article>
+
+<article>
+  <header>Sanitized HTML (by browser)</header>
+  <span [innerText]="stringWithHtml()"></span>
+</article>
+
+<article>
+  <header>bypassSecurityTrustHtml</header>
+  <span [innerHtml]="htmlProperty()"></span>
+</article>

@@ -1,0 +1,183 @@
+// Angular Boot Camp global theme
+//
+// Note: This is currently based on Pico CSS, but that's just an
+// implementation detail. Individual steps and applications should not
+// depend on Pico features or use Pico-specific properties.
+
+@use 'sass:string';
+
+// Import and configure Pico CSS
+
+// Include a random string in the Pico CSS variable prefix, to
+// discourage using the Pico variables outside this theme file.
+$-pico-prefix: '--pico-' + string.unique-id();
+
+// prettier-ignore
+@use '@picocss/pico/scss/pico' with (
+
+  $css-var-prefix: $-pico-prefix + '-',
+
+  // Disable responsive typography, for more predictable zooming
+  // and resizing.
+  $enable-responsive-typography: false,
+
+  // This is only necessary for the container div in each ABC step's
+  // index.html file.
+  $enable-classes: true,
+
+  // Disable several of Pico's features, to avoid depending on them
+  // (even accidentally) in the class materials.
+  $modules:
+    (
+      'components/dropdown': false,
+      'components/group': false,
+      'components/modal': false,
+      'components/loading': false,
+      'components/tooltip': false,
+      'forms/checkbox-radio-switch': false,
+      'layout/grid': false,
+      'layout/overflow-auto': false
+    )
+);
+
+// Override some of the ABC semantic properties with values from Pico,
+// for a more consistent appearance. (Note that `--abc-stripe-color` and
+// `--abc-box-shadow` are *not* overridden with the Pico values, as the
+// Pico values can be difficult to see.)
+
+// prettier-ignore
+:root {
+  --abc-surface-color:      var(#{$-pico-prefix}-background-color);
+  --abc-primary-color:      var(#{$-pico-prefix}-primary-background);
+  --abc-secondary-color:    var(#{$-pico-prefix}-secondary-background);
+  --abc-highlight-color:    var(#{$-pico-prefix}-mark-background-color);
+  
+  --abc-on-surface-color:   var(#{$-pico-prefix}-color);
+  --abc-on-primary-color:   var(#{$-pico-prefix}-primary-inverse);
+  --abc-on-secondary-color: var(#{$-pico-prefix}-secondary-inverse);
+  --abc-on-highlight-color: var(#{$-pico-prefix}-mark-color);
+
+  --abc-font-family:        var(#{$-pico-prefix}-font-family);
+}
+
+// Pico-specific overrides and customizations
+
+// Remove underlines from links.
+a {
+  text-decoration: none;
+}
+
+// Make article headers easier to see.
+article header {
+  font-weight: bold;
+  font-size: 120%;
+}
+
+// Put some space between adjacent buttons.
+button + button {
+  margin-inline-start: var(
+    #{$-pico-prefix}-nav-element-spacing-horizontal
+  );
+}
+
+// Keep labels on the same line if they immediately follow radio buttons
+// or checkboxes.
+:where(input[type='radio'], input[type='checkbox']) + label {
+  display: inline;
+  margin-inline-start: var(
+    #{$-pico-prefix}-nav-element-spacing-horizontal
+  );
+}
+
+// Make nav bars more obvious.
+nav {
+  background-color: var(--abc-primary-color);
+
+  border-color: var(--abc-primary-color);
+  border-style: solid;
+  border-width: var(#{$-pico-prefix}-border-width);
+  border-radius: var(#{$-pico-prefix}-border-radius);
+
+  box-shadow: var(--abc-box-shadow);
+
+  margin-block-end: var(#{$-pico-prefix}-spacing);
+
+  // Be consistent with text color and background, even for links.
+  * {
+    color: var(--abc-on-primary-color);
+    background-color: transparent;
+  }
+
+  ul {
+    padding-inline: var(
+      #{$-pico-prefix}-nav-element-spacing-horizontal
+    );
+  }
+
+  // Make secondary navs shorter (that is, less tall) than regular
+  // nav bars.
+  &.secondary-nav {
+    li {
+      padding-block: calc(
+        var(#{$-pico-prefix}-nav-element-spacing-vertical) / 2
+      );
+    }
+  }
+}
+
+// Give preformatted text a little breathing room.
+pre {
+  padding: var(#{$-pico-prefix}-spacing);
+}
+
+// Remove Pico's table cell background color, so row-striping examples
+// will work.
+td {
+  background-color: transparent;
+}
+
+// Make "collection" lists look more like form elements,
+// and remove list item markers.
+ul.collection {
+  color: var(#{$-pico-prefix}-form-element-color);
+  background-color: var(
+    #{$-pico-prefix}-form-element-background-color
+  );
+
+  border-width: var(#{$-pico-prefix}-border-width);
+  border-style: solid;
+  border-color: var(#{$-pico-prefix}-form-element-border-color);
+  border-radius: var(#{$-pico-prefix}-border-radius);
+
+  padding: 0;
+
+  & > li {
+    list-style-type: none;
+    margin-inline: var(
+      #{$-pico-prefix}-form-element-spacing-horizontal
+    );
+    margin-block: var(#{$-pico-prefix}-form-element-spacing-vertical);
+  }
+}
+
+.active-link {
+  border: none;
+  border-radius: var(#{$-pico-prefix}-border-radius);
+  background-color: var(#{$-pico-prefix}-contrast-background);
+
+  &,
+  * {
+    color: var(#{$-pico-prefix}-contrast-inverse);
+  }
+}
+
+// Give Material icons a better vertical alignment. The default is
+// basically always wrong for how we use them.
+.material-icons {
+  vertical-align: bottom;
+}
+
+.highlighted {
+  color: var(--abc-on-highlight-color);
+  background-color: var(--abc-highlight-color);
+}

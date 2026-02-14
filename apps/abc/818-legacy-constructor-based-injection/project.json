@@ -1,0 +1,126 @@
+{
+  "name": "abc-818-legacy-constructor-based-injection",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/abc/818-legacy-constructor-based-injection/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": {
+          "base": "dist/apps/abc/818-legacy-constructor-based-injection",
+          "browser": ""
+        },
+        "index": "apps/abc/818-legacy-constructor-based-injection/src/index.html",
+        "browser": "apps/abc/818-legacy-constructor-based-injection/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/abc/818-legacy-constructor-based-injection/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/abc/818-legacy-constructor-based-injection/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/shared/assets/abc",
+            "output": "/assets/"
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/shared/assets/shared",
+            "output": "/assets/"
+          }
+        ],
+        "styles": [
+          "libs/shared/styles/shared/shared.scss",
+          "libs/shared/styles/abc/shared.scss",
+          "apps/abc/818-legacy-constructor-based-injection/src/styles.scss"
+        ],
+        "scripts": [],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "libs/shared/styles/abc",
+            "libs/shared/styles/shared",
+            "node_modules/@angular/material"
+          ]
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@class-materials/tooling:serve-step",
+      "options": {
+        "serveTarget": "abc-818-legacy-constructor-based-injection:ng-serve"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "abc-818-legacy-constructor-based-injection:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/abc/818-legacy-constructor-based-injection/jest.config.ts",
+        "tsConfig": "apps/abc/818-legacy-constructor-based-injection/tsconfig.spec.json"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "abc-818-legacy-constructor-based-injection:build",
+        "port": 4300,
+        "staticFilePath": "dist/apps/abc/818-legacy-constructor-based-injection/browser",
+        "spa": true
+      }
+    },
+    "ng-serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "port": 4300,
+        "proxyConfig": "proxy.conf.json"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "abc-818-legacy-constructor-based-injection:build:production"
+        },
+        "development": {
+          "buildTarget": "abc-818-legacy-constructor-based-injection:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "continuous": true
+    }
+  }
+}

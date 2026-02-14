@@ -1,0 +1,25 @@
+<span class="grid">
+  <span class="player-list">
+    <mat-card>
+      <mat-card-content>
+        <mat-nav-list>
+          @for (player of players | async; track player.id) {
+            <a
+              mat-list-item
+              [routerLink]="player.id"
+              routerLinkActive="mat-list-item-active"
+            >
+              {{ player.name }}
+            </a>
+          }
+        </mat-nav-list>
+        <button mat-mini-fab (click)="addPlayer()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </span>
+  <mat-card class="player-detail">
+    <router-outlet />
+  </mat-card>
+</span>

@@ -1,0 +1,21 @@
+<svg width="100%" height="600px" #svgEle>
+  @for (rel of relationshipNodesForRendering(); track rel) {
+    <line
+      [attr.x1]="rel.source.x"
+      [attr.x2]="rel.target.x"
+      stroke="var(--abc-on-surface-color)"
+      [attr.y1]="rel.source.y"
+      [attr.y2]="rel.target.y"
+    ></line>
+  }
+
+  @for (personNode of peopleNodes(); track personNode.index) {
+    <circle
+      [attr.transform]="
+        'translate(' + personNode.x + ', ' + personNode.y + ')'
+      "
+      r="5"
+      [style.fill]="personNode.color"
+    ></circle>
+  }
+</svg>

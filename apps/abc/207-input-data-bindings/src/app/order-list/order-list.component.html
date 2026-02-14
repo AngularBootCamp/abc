@@ -1,0 +1,8 @@
+<header>
+  Choose one of the {{ count() }} orders using buttons above
+</header>
+<ul class="collection">
+  @for (o of orders(); track o.id) {
+    <li>{{ o.id }} : {{ o.customer }}</li>
+  }
+</ul>

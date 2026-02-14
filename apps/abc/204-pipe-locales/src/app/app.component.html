@@ -1,0 +1,36 @@
+<article>
+  <header>Upcoming Classes</header>
+  <table>
+    <thead>
+      <tr>
+        <th>Location</th>
+        <th class="date-column">Date</th>
+        <th class="number-column">Price</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (session of sessions; track session) {
+        <tr>
+          <td>{{ session.location }}</td>
+          <td class="date-column">
+            {{
+              session.date
+                | date: 'mediumDate' : undefined : session.locale
+            }}
+          </td>
+          <td class="number-column">
+            {{
+              session.price.amount
+                | currency
+                  : session.price.currency
+                  : 'symbol'
+                  : undefined
+                  : session.locale
+            }}
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</article>

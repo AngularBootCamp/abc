@@ -1,0 +1,19 @@
+<div class="list-container">
+  <mat-nav-list class="mat-elevation-z2">
+    @for (game of games | async; track game.id) {
+      <a
+        [routerLink]="game.id"
+        routerLinkActive="mat-list-item-active"
+        mat-list-item
+      >
+        {{ game.name }}
+      </a>
+    }
+  </mat-nav-list>
+  <button mat-mini-fab (click)="addGame()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<div>
+  <router-outlet />
+</div>

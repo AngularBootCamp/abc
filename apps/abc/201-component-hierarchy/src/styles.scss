@@ -1,0 +1,28 @@
+@use 'add-marker-mixin' as *;
+
+app-email-container,
+app-folder-list,
+app-message-display,
+app-message-header,
+app-message-body {
+  border: 1px solid var(--abc-border-color);
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+app-email-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+app-message-display {
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+}
+
+@include add-marker('app-email-container', 'EmailContainerComponent');
+@include add-marker('app-folder-list', 'FolderListComponent');
+@include add-marker('app-message-display', 'MessageDisplayComponent');
+@include add-marker('app-message-header', 'MessageHeaderComponent');
+@include add-marker('app-message-body', 'MessageBodyComponent');

@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "executors": {
+    "serve-step": {
+      "implementation": "./src/executors/serve-step/executor",
+      "schema": "./src/executors/serve-step/schema.json",
+      "description": "serve-step executor"
+    }
+  }
+}

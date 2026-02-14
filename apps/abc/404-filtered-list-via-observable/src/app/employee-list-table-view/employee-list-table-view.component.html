@@ -1,0 +1,18 @@
+<table>
+  @for (employee of list(); track employee.id) {
+    <tr
+      (click)="selectId.emit(employee.id)"
+      [class.highlighted]="employee.id === selectedId()"
+    >
+      <td>
+        <a>{{ employee.firstName }}</a>
+      </td>
+      <td>
+        <a>{{ employee.lastName }}</a>
+      </td>
+      <td>
+        <a>{{ employee.hoursWorked }}</a>
+      </td>
+    </tr>
+  }
+</table>

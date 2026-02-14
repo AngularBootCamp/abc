@@ -1,0 +1,12 @@
+table {
+  user-select: none;
+}
+
+a {
+  cursor: pointer;
+}
+
+.highlighted {
+  color: var(--abc-on-highlight-color);
+  background-color: var(--abc-highlight-color);
+}

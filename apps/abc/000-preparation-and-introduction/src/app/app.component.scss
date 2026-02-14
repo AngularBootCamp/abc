@@ -1,0 +1,72 @@
+:host {
+  container-type: inline-size;
+  display: block;
+  min-width: 30rem;
+  margin-block-end: 3rem;
+  padding: 2rem;
+
+  a {
+    color: currentcolor;
+    font-weight: bold;
+  }
+
+  strong {
+    color: var(--abc-adaptive-red);
+    font-weight: bold;
+  }
+
+  .banner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+    margin-block-end: 2rem;
+    font-size: 1.5rem;
+    white-space: nowrap;
+
+    img {
+      // Keep the SVGs from shrinking to 0x0.
+      width: 100%;
+    }
+
+    p {
+      margin: 1rem;
+    }
+  }
+
+  .offerings {
+    // Use columns instead of a grid, so columns automatically stay
+    // balanced without having to artificially divide the markup into
+    // separate grid items.
+    column-count: 2;
+    column-gap: 2rem;
+
+    p {
+      margin-block-start: 0;
+    }
+  }
+
+  .call-to-action {
+    display: grid;
+    place-items: center;
+    font-size: 2rem;
+    margin-block-start: 2rem;
+
+    // Keep text centered even if it wraps.
+    text-align: center;
+  }
+
+  // Switch to a single-column view for narrow viewports.
+  @container (width < 30rem) {
+    .banner {
+      grid-template-columns: 1fr;
+
+      p {
+        margin-top: 0;
+      }
+    }
+
+    .offerings {
+      column-count: 1;
+    }
+  }
+}

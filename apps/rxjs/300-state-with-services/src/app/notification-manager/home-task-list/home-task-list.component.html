@@ -1,0 +1,27 @@
+<h2>Home</h2>
+
+<mat-selection-list class="mat-elevation-z2">
+  <h3 matSubheader>Completed</h3>
+  @for (task of done | async; track task) {
+    <mat-list-option
+      (click)="homeTask(task, true)"
+      selected="true"
+      checkboxPosition="before"
+    >
+      {{ task.label }}
+    </mat-list-option>
+  }
+</mat-selection-list>
+
+<mat-selection-list class="mat-elevation-z2">
+  <h3 matSubheader>In-Progress</h3>
+  @for (task of todo | async; track task) {
+    <mat-list-option
+      (click)="homeTask(task, false)"
+      selected="false"
+      checkboxPosition="before"
+    >
+      {{ task.label }}
+    </mat-list-option>
+  }
+</mat-selection-list>

@@ -1,0 +1,9 @@
+<h2>Fleet Ordering Application</h2>
+
+<button (click)="addOne()">Add another car</button>
+
+<div class="car-orders">
+  @for (c of cars(); track c.id) {
+    <app-car-order />
+  }
+</div>

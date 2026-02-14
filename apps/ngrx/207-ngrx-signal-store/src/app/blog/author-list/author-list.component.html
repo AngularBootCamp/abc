@@ -1,0 +1,10 @@
+<h1>Select a Author</h1>
+@if (authors$ | async; as authors) {
+  <mat-nav-list>
+    @for (author of authors; track author.id) {
+      <a mat-list-item [routerLink]="[author.id]">
+        {{ author.name }}
+      </a>
+    }
+  </mat-nav-list>
+}

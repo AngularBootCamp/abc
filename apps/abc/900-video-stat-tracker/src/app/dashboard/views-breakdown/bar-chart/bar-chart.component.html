@@ -1,0 +1,61 @@
+@if (graphData(); as gd) {
+  <svg
+    [attr.viewBox]="'0 0 ' + (gd.width + 50) + ' ' + (gd.height + 50)"
+  >
+    <line
+      x1="50"
+      x2="50"
+      y1="1"
+      [attr.y2]="gd.height"
+      stroke-width="1"
+      stroke="var(--line-color)"
+    ></line>
+    <line
+      x1="50"
+      x2="499"
+      [attr.y1]="gd.height"
+      [attr.y2]="gd.height"
+      stroke-width="1"
+      stroke="var(--line-color)"
+    ></line>
+    <text x="1" y="100">Views</text>
+    <text x="240" [attr.y]="gd.height + 25">Age</text>
+    @for (rect of gd.rectList; track positionAndSizeOf(rect)) {
+      <text
+        [attr.x]="(rect.x ?? 0) + (rect.width ?? 0) / 2 + 43"
+        [attr.y]="gd.height + 14"
+      >
+        {{ rect.value }}
+      </text>
+    }
+    @for (rect of gd.rectList; track positionAndSizeOf(rect)) {
+      <line
+        stroke-width="1"
+        stroke="var(--line-color)"
+        [attr.x1]="(rect.x ?? 0) + (rect.width ?? 0) / 2 + 50"
+        [attr.x2]="(rect.x ?? 0) + (rect.width ?? 0) / 2 + 50"
+        y1="0"
+        [attr.y2]="gd.height + 7"
+      ></line>
+    }
+    @for (rect of gd.rectList; track positionAndSizeOf(rect)) {
+      <rect
+        [attr.x]="(rect.x ?? 0) + 50"
+        [attr.y]="rect.y"
+        [attr.width]="rect.width"
+        [attr.height]="rect.height"
+        stroke="var(--bar-border-color)"
+        fill="var(--bar-fill-color)"
+      ></rect>
+    }
+    @for (rect of gd.rectList; track positionAndSizeOf(rect)) {
+      <text
+        stroke="var(--bar-label-color)"
+        [attr.x]="(rect.x ?? 0) + (rect.width ?? 0) / 2 + 43"
+        [attr.y]="(rect.y ?? 0) + 15"
+      >
+        {{ rect.count }}
+      </text>
+    }
+  </svg>
+}

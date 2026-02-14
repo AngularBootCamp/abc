@@ -1,0 +1,10 @@
+:host {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+}
+
+form {
+  overflow: auto;
+  padding-right: 1rem;
+}

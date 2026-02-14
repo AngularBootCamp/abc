@@ -1,0 +1,15 @@
+<div>
+  <label for="state">State:</label>
+
+  <select
+    id="state"
+    [formControl]="selectedState"
+    (blur)="onTouched && onTouched()"
+  >
+    @for (state of usStates; track state.Code) {
+      <option [ngValue]="state">
+        {{ state.State }}
+      </option>
+    }
+  </select>
+</div>

@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Articles on {{ title() }}</mat-card-title>
+    <button mat-icon-button (click)="createArticle()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-action-list role="list">
+      @for (article of articles(); track article.id) {
+        <mat-list-item
+          role="listitem"
+          (click)="selectArticle(article.id)"
+          [class.mat-list-item-active]="
+            article.id === (selectedArticleId | async)
+          "
+        >
+          {{ article.title }}
+        </mat-list-item>
+      }
+    </mat-action-list>
+  </mat-card-content>
+</mat-card>

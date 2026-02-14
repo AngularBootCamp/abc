@@ -1,0 +1,43 @@
+<div mat-dialog-content>
+  <mat-form-field>
+    <input
+      [formControl]="nameInput"
+      matInput
+      placeholder="Enter name"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      [formControl]="locationInput"
+      matInput
+      placeholder="Enter location"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      [formControl]="dateInput"
+      matInput
+      placeholder="Enter game date"
+      [matDatepicker]="picker"
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="picker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    (click)="save()"
+    [disabled]="
+      saving || (dateInput.invalid && locationInput.invalid)
+    "
+  >
+    Add
+  </button>
+  @if (saving) {
+    <mat-spinner diameter="20"></mat-spinner>
+  }
+</div>

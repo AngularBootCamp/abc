@@ -1,0 +1,6 @@
+<mat-card>
+  <mat-card-title>Temperature Over Time</mat-card-title>
+  <mat-card-content>
+    <app-line-graph [graphData]="(graphData | async) ?? []" />
+  </mat-card-content>
+</mat-card>

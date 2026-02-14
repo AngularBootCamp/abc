@@ -1,0 +1,22 @@
+/* What happens if the spans inside paragraphs are styled? */
+
+p > span {
+  color: black;
+  background-color: yellow;
+  font-weight: bold;
+  padding: 5px;
+  border: 2px solid gold;
+  border-radius: 5px;
+}
+
+dt {
+  font-style: italic;
+}
+
+dd {
+  margin-bottom: 10px;
+}
+
+table {
+  margin-top: 10px;
+}

@@ -1,0 +1,5 @@
+@use 'layout';
+
+app-root {
+  @include layout.three-across;
+}

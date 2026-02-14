@@ -1,0 +1,59 @@
+<article>
+  <header>checkmark Pipe</header>
+
+  <p>True: {{ true | checkmark }}</p>
+  <p>False: {{ false | checkmark }}</p>
+  <p>Truthy: {{ value12345() | checkmark }}</p>
+  <p>Falsy: {{ valueEmptyString() | checkmark }}</p>
+  <p>Truthy: {{ valueHi() | checkmark }}</p>
+</article>
+
+<article>
+  <header>sentenceCase Pipe &amp; chaining</header>
+
+  <p>{{ 'do it' }}</p>
+  <p>{{ 'do it' | sentenceCase }}</p>
+  <p>{{ 'do it' | sentenceCase | lowercase }}</p>
+  <p>{{ 'do it' | sentenceCase | lowercase | uppercase }}</p>
+  <p>{{ myDate() | date | defaultToString | uppercase }}</p>
+</article>
+
+<article>
+  <header>containsX Pipe</header>
+
+  <p>Full list:</p>
+  <ul>
+    @for (item of items(); track $index) {
+      <li>
+        {{ item }}
+      </li>
+    }
+  </ul>
+
+  <p>Filtered list:</p>
+  <ul>
+    @for (item of items() | containsX: 'abc'; track $index) {
+      <li>
+        {{ item }}
+      </li>
+    }
+  </ul>
+</article>
+
+<article>
+  <header>fieldRange Pipe</header>
+
+  <p>Full list:</p>
+  <ul>
+    @for (c of cars(); track c) {
+      <li>{{ c.year }} {{ c.color }} {{ c.brand }}</li>
+    }
+  </ul>
+
+  <p>Filtered list:</p>
+  <ul>
+    @for (c of cars() | fieldRange: 'year' : 2009 : 2013; track c) {
+      <li>{{ c.year }} {{ c.color }} {{ c.brand }}</li>
+    }
+  </ul>
+</article>

@@ -1,0 +1,9 @@
+.car-orders {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.invalid {
+  border: 2px solid var(--abc-error-color);
+}

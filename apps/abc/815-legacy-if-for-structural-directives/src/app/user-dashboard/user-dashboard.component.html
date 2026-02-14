@@ -1,0 +1,60 @@
+<!-- eslint-disable @angular-eslint/template/prefer-control-flow --
+     This example demonstrates the deprecated control flow syntax
+-->
+<article>
+  <header>Profile</header>
+
+  <div *ngIf="showProfile">
+    Phone number: 555-123-1345
+    <br />
+    <!-- Note that '@' is a special character now,
+         so we need to escape it -->
+    Email address: test&commat;abccompany.com
+    <br />
+    Address: 1 Main Street, St. Louis, MO 63105
+    <br />
+  </div>
+
+  <footer>
+    <button (click)="showProfile = !showProfile">
+      {{ showProfile ? 'Hide' : 'Show' }} Profile
+    </button>
+  </footer>
+</article>
+
+<article>
+  <header>Todo List</header>
+
+  <ul class="collection todo-list">
+    <li *ngFor="let todo of todos">
+      {{ todo }}
+    </li>
+  </ul>
+
+  <footer>
+    <button (click)="addTodo()">Add Todo</button>
+  </footer>
+</article>
+
+<article>
+  <header>Upcoming Meetings</header>
+
+  <ul class="collection">
+    <li *ngFor="let meeting of nextMeetings; index as i">
+      {{ i + 1 }}: {{ meeting.description }}
+    </li>
+  </ul>
+</article>
+
+<article>
+  <header>Who is in meetings</header>
+
+  <ul>
+    <li *ngFor="let meeting of nextMeetings">
+      {{ meeting.description }}:
+      <span *ngFor="let person of meeting.participants">
+        {{ person }}
+      </span>
+    </li>
+  </ul>
+</article>

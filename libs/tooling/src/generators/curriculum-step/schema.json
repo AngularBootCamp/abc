@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "CurriculumStep",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use for the step (not including class in name)?"
+    },
+    "class": {
+      "type": "string",
+      "description": "The class to generate the step for"
+    },
+    "includeWorkshop": {
+      "type": "boolean",
+      "description": "Whether or not to generate a workshop.md file for the step"
+    }
+  },
+  "required": ["name", "class"]
+}

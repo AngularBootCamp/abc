@@ -1,0 +1,17 @@
+<article>
+  @if (employee(); as e) {
+    <header>Name: {{ e.firstName }} {{ e.lastName }}</header>
+    <p>
+      Email:
+      <strong>{{ e.email }}</strong>
+    </p>
+    <p>
+      Hours Worked:
+      <strong>{{ e.hoursWorked }}</strong>
+    </p>
+    <p>
+      Hourly Wage:
+      <strong>{{ e.hourlyWage }}</strong>
+    </p>
+  }
+</article>

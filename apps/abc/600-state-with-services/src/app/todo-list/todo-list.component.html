@@ -1,0 +1,10 @@
+<ul class="collection">
+  @for (task of list(); track task) {
+    <li (click)="setStatus(task)">
+      <i class="material-icons">
+        {{ icon() }}
+      </i>
+      {{ task.label }}
+    </li>
+  }
+</ul>

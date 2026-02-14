@@ -1,0 +1,12 @@
+<article>
+  <header>Employees</header>
+
+  <app-employee-filter />
+
+  <app-employee-list
+    [list]="filteredList()"
+    [selectedId]="selectedEmployee()?.id"
+  />
+</article>
+
+<app-employee-detail-view [employee]="selectedEmployee()" />

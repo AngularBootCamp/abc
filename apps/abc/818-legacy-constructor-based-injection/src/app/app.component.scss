@@ -1,0 +1,11 @@
+:host {
+  display: grid;
+
+  // prettier-ignore
+  grid-template-rows:
+    auto            // navbar
+    minmax(0, 1fr)  // viewer
+  ;
+
+  height: 100%;
+}

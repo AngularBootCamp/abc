@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-title>
+    Name:
+    {{ (employee | async)?.firstName }}
+    {{ (employee | async)?.lastName }}
+  </mat-card-title>
+  <mat-card-content>
+    <p>
+      Email:
+      <strong>{{ (employee | async)?.email }}</strong>
+    </p>
+    <p>
+      Hours:
+      <strong>{{ (employee | async)?.hoursWorked }}</strong>
+    </p>
+    <p>
+      Hourly Rate:
+      <strong>{{ (employee | async)?.hourlyWage }}</strong>
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-button routerLink="/employees">Back to list</a>
+  </mat-card-actions>
+</mat-card>

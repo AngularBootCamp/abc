@@ -1,0 +1,59 @@
+@use 'sass:map';
+
+// Breakpoints for media and container queries. (These are the same
+// breakpoints used by Bootstrap, Pico, and many other CSS frameworks.)
+$-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+// Given a map of breakpoint/column pairs define the number of grid
+// columns to use based on each breakpoint. See the two-across,
+// three-across, and four-across mixins for examples of how to call it.
+//
+@mixin -grid-columns-by-container-breakpoint($column-breakpoints) {
+  display: grid;
+  gap: 1rem;
+
+  // Default to a single column for the narrowest widths.
+  grid-template-columns: 1fr;
+
+  // Define the number of columns to use at each breakpoint,
+  // based on the map provided by the caller.
+  @each $breakpoint, $columns in $column-breakpoints {
+    @media only screen and (min-width: $breakpoint) {
+      grid-template-columns: repeat($columns, 1fr);
+    }
+  }
+}
+
+// Define convenience mixins to replace the old .two-across,
+// .three-across, and .four-across classes.
+
+@mixin two-across() {
+  @include -grid-columns-by-container-breakpoint(
+    (
+      map.get($-breakpoints, 'sm'): 2
+    )
+  );
+}
+
+@mixin three-across() {
+  @include -grid-columns-by-container-breakpoint(
+    (
+      map.get($-breakpoints, 'sm'): 3
+    )
+  );
+}
+
+@mixin four-across() {
+  @include -grid-columns-by-container-breakpoint(
+    (
+      map.get($-breakpoints, 'sm'): 2,
+      map.get($-breakpoints, 'md'): 4
+    )
+  );
+}

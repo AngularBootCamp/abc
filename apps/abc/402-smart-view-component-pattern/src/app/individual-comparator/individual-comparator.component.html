@@ -1,0 +1,11 @@
+<h2>Individual Employee Comparator</h2>
+<app-employee-comparison
+  [theFirstEmployee]="comparedEmployees[0]"
+  [theSecondEmployee]="comparedEmployees[1]"
+  (reverse)="reverseComparison()"
+/>
+<app-employee-explorer
+  [employees]="(employeeList | async) ?? []"
+  [selectedEmployees]="comparedEmployees"
+  (employeeClicked)="updateComparison($event)"
+/>

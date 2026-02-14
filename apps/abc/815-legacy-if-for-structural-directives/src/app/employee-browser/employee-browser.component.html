@@ -1,0 +1,22 @@
+<!-- eslint-disable @angular-eslint/template/prefer-control-flow --
+     This example demonstrates the deprecated control flow syntax
+-->
+<article>
+  <header>Employees</header>
+
+  <button (click)="showInactiveRoles = !showInactiveRoles">
+    {{ showInactiveRoles ? 'Hide' : 'Show' }} Inactive Roles
+  </button>
+
+  <ul class="collection">
+    <!-- Tip: ngFor requires let and not const. -->
+    <li *ngFor="let employee of employeeList">
+      <strong>{{ employee.name }}</strong>
+      <div *ngFor="let role of employee.roles; index as i">
+        <span *ngIf="showInactiveRoles || i === 0">
+          {{ role }}
+        </span>
+      </div>
+    </li>
+  </ul>
+</article>

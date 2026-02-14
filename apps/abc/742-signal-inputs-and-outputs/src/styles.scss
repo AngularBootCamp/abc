@@ -1,0 +1,50 @@
+@use 'add-marker-mixin' as *;
+
+app-order-list,
+app-order-details,
+app-order-header,
+app-order-items {
+  display: block;
+  border: 1px solid var(--abc-border-color);
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin: 1rem;
+  margin-bottom: 1.5rem;
+
+  header {
+    margin-bottom: 1rem;
+  }
+}
+
+app-order-manager article {
+  display: grid;
+  gap: 1rem;
+  /* prettier-ignore */
+  grid:
+    ' header      header        '
+    ' order-list  order-details '
+    / 1fr         1fr
+  ;
+
+  header {
+    grid-area: header;
+  }
+
+  app-order-list {
+    grid-area: order-list;
+
+    a {
+      cursor: pointer;
+    }
+  }
+
+  app-order-details {
+    grid-area: order-details;
+  }
+}
+
+@include add-marker('app-order-manager');
+@include add-marker('app-order-items');
+@include add-marker('app-order-list');
+@include add-marker('app-order-details');
+@include add-marker('app-order-header');

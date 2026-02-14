@@ -1,0 +1,33 @@
+// Named colors that will work in both light and dark color schemes,
+// along with the appropriate colors to use "on" them. Use these
+// instead of specifying a CSS color name like `red` or `yellow`, or
+// hard-coding a specific hex/rgb/etc. value.
+//
+// Note: For now, color values are copied from Pico CSS, and use the
+// same value for light and dark schemes. Both of those things are
+// likely to change.
+
+@use 'create-custom-color-properties' as *;
+
+// prettier-ignore
+@include create-custom-color-properties(
+  (
+    --abc-adaptive-red:       #c52f21, // Pico $red-550
+    --abc-adaptive-orange:    #d24317, // Pico $orange-500
+    --abc-adaptive-yellow:    #f2df0d, // Pico $yellow-100
+    --abc-adaptive-green:     #398712, // Pico $green-500
+    --abc-adaptive-blue:      #2060df, // Pico $blue-550
+    --abc-adaptive-indigo:    #524ed2, // Pico $indigo-600
+    --abc-adaptive-violet:    #7540bf, // Pico $violet-600
+    --abc-adaptive-grey:      #646b79, // Pico $zinc-550
+   
+    --abc-on-adaptive-red:    white,
+    --abc-on-adaptive-orange: white,
+    --abc-on-adaptive-yellow: black,
+    --abc-on-adaptive-green:  white,
+    --abc-on-adaptive-blue:   white,
+    --abc-on-adaptive-indigo: white,
+    --abc-on-adaptive-violet: white,
+    --abc-on-adaptive-grey:   white
+  )
+);

@@ -1,0 +1,6 @@
+@use 'libs/shared/styles/shared/page-setup.scss';
+
+.mat-list-item-active {
+  font-weight: bold;
+  background-color: lightgrey;
+}

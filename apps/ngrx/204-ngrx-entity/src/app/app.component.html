@@ -1,0 +1,18 @@
+<oasis-header
+  title="@ngrx/entity"
+  [documents]="[
+    { label: 'NgRx Docs', url: 'https://ngrx.io/guide/store' }
+  ]"
+>
+  <mat-toolbar-row>
+    <a mat-button routerLink="/">Authors List</a>
+
+    <oasis-display-or-edit
+      [control]="title"
+      (updated)="setTitle()"
+      actionsPosition="after"
+    ></oasis-display-or-edit>
+  </mat-toolbar-row>
+</oasis-header>
+
+<router-outlet />

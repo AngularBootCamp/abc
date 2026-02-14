@@ -1,0 +1,8 @@
+<ul class="collection">
+  @for (task of list(); track $index) {
+    <li (click)="setStat(task)">
+      <i class="material-icons">{{ icon() }}</i>
+      {{ task.label }}
+    </li>
+  }
+</ul>

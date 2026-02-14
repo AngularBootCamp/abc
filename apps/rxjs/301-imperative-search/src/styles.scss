@@ -1,0 +1,38 @@
+/* CSS grid classes
+
+.two-across,
+.three-across,
+.four-across,
+.narrow-wide {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1.5rem;
+}
+
+.fit-component-marker {
+  grid-template-rows: 5px 1fr;
+}
+
+@media only screen and (min-width: 601px) {
+  .two-across {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .three-across {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .four-across {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .narrow-wide {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+@media only screen and (min-width: 993px) {
+  .four-across {
+    grid-template-columns: repeat(4, 1fr);
+  }
+} */
+
+@use 'libs/shared/styles/shared/page-setup.scss';
+@use 'libs/shared/styles/shared/app-layout.scss';

@@ -1,0 +1,137 @@
+<article>
+  <header>Employee Details</header>
+  <form [formGroup]="details" (ngSubmit)="saveEmployeeDetails()">
+    <div class="form-fields">
+      <div>
+        <label for="firstName">First Name</label>
+        <input
+          id="firstName"
+          type="text"
+          [formControl]="details.controls.firstName"
+        />
+        @if (
+          details.controls.firstName.hasError('required') &&
+          details.controls.firstName.touched
+        ) {
+          <div>Please enter first name</div>
+        }
+      </div>
+      <div>
+        <label for="lastName">Last Name</label>
+        <input
+          id="lastName"
+          type="text"
+          [formControl]="details.controls.lastName"
+        />
+        @if (
+          details.controls.lastName.hasError('required') &&
+          details.controls.lastName.touched
+        ) {
+          <div>Please enter last name</div>
+        }
+      </div>
+      <div>
+        <label for="middleInitial">Middle Initial</label>
+        <input
+          id="middleInitial"
+          type="text"
+          [formControl]="details.controls.middleInitial"
+        />
+        @if (
+          details.controls.middleInitial.hasError('maxlength') &&
+          details.controls.middleInitial.touched
+        ) {
+          <div>Only 1 character please</div>
+        }
+      </div>
+      <div>
+        <label for="position">Position:</label>
+        <input
+          id="position"
+          type="text"
+          [formControl]="details.controls.position"
+        />
+        @if (
+          details.controls.position.hasError('minlength') &&
+          details.controls.position.touched
+        ) {
+          <div>Position is too short</div>
+        }
+      </div>
+      <div>
+        <label for="department">Department:</label>
+        <select
+          id="department"
+          [formControl]="details.controls.department"
+        >
+          @for (dep of departments; track dep) {
+            <option [value]="dep">
+              {{ dep }}
+            </option>
+          }
+        </select>
+      </div>
+      <div>
+        <label for="immediateSupervisor">Supervisor:</label>
+        <input
+          id="immediateSupervisor"
+          type="text"
+          [formControl]="details.controls.immediateSupervisor"
+        />
+      </div>
+      <div>
+        <label for="phone">Phone:</label>
+        <input
+          id="phone"
+          type="tel"
+          [formControl]="details.controls.phoneNumber"
+          [class.invalid]="details.controls.phoneNumber.invalid"
+        />
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input
+          class="email-input"
+          id="email"
+          type="email"
+          [formControl]="details.controls.email"
+        />
+      </div>
+      <div>
+        <p>
+          <input
+            name="status"
+            [formControl]="details.controls.status"
+            value="Active"
+            type="radio"
+            id="status1"
+          />
+          <label for="status1">Active</label>
+        </p>
+        <p>
+          <input
+            name="status"
+            [formControl]="details.controls.status"
+            value="Inactive"
+            type="radio"
+            id="status2"
+          />
+          <label for="status2">Inactive</label>
+        </p>
+      </div>
+    </div>
+    <button [disabled]="!details.valid">Save</button>
+  </form>
+</article>
+
+<article>
+  <header>Form Data</header>
+
+  Form Value Object:
+  <pre>{{ details.value | json }}</pre>
+
+  Form Validity:
+  <div>{{ details.valid }}</div>
+
+  <button (click)="logTheForm()">Log Form Object</button>
+</article>

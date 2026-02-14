@@ -1,0 +1,24 @@
+:host {
+  display: grid;
+  // prettier-ignore
+  grid-template:
+    ' header      header ' min-content
+    ' filters     chart  ' 1fr
+    / min-content 1fr
+  ;
+  gap: 0.5rem;
+  overflow: hidden;
+  height: 100%;
+}
+
+h2 {
+  grid-area: header;
+}
+
+vst-views-filter {
+  grid-area: filters;
+}
+
+vst-bar-chart {
+  grid-area: chart;
+}

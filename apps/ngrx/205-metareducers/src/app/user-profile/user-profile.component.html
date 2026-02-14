@@ -1,0 +1,48 @@
+<div class="page-layout">
+  <mat-card>
+    @if (userProfile | async; as profile) {
+      <mat-card-title>Hello {{ profile.username }}</mat-card-title>
+      <mat-card-content>
+        <form
+          [formGroup]="profileForm"
+          (ngSubmit)="saveUser(profile)"
+        >
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input
+              matInput
+              type="text"
+              [formControl]="profileForm.controls.name"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              type="text"
+              [formControl]="profileForm.controls.email"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Phone</mat-label>
+            <input
+              matInput
+              type="text"
+              [formControl]="profileForm.controls.phone"
+            />
+          </mat-form-field>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="profileForm.pristine || profileForm.invalid"
+          >
+            Save
+          </button>
+        </form>
+      </mat-card-content>
+    } @else {
+      loading user profile...
+    }
+  </mat-card>
+</div>

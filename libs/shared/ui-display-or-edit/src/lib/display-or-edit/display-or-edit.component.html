@@ -1,0 +1,44 @@
+@if (editing && control()) {
+  <mat-form-field>
+    @if (!useTextArea()) {
+      <input
+        matInput
+        [formControl]="control()"
+        oasisFocusInput
+        (blur)="finishEdit()"
+        (keyup.enter)="finishEdit()"
+      />
+    }
+    @if (useTextArea()) {
+      <textarea
+        matInput
+        [formControl]="control()"
+        oasisFocusInput
+        (blur)="finishEdit()"
+        rows="10"
+      ></textarea>
+    }
+  </mat-form-field>
+}
+@if (!editing) {
+  <div class="display-container">
+    @if (actionsPosition() === 'after') {
+      <span class="value-display">
+        {{ control().value }}
+      </span>
+    }
+    @if (useDelete()) {
+      <button mat-icon-button (click)="deleteClicked.emit()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    }
+    <button mat-icon-button (click)="editing = true">
+      <mat-icon>edit</mat-icon>
+    </button>
+    @if (actionsPosition() === 'before') {
+      <span class="value-display">
+        {{ control().value }}
+      </span>
+    }
+  </div>
+}

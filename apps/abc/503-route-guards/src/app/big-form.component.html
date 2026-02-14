@@ -1,0 +1,22 @@
+<article>
+  <header>Big Form</header>
+
+  <form [formGroup]="bigFormGroup" (ngSubmit)="saveChanges()">
+    Important info:
+    <input
+      type="text"
+      [formControl]="bigFormGroup.controls.importantInfo"
+    />
+
+    <button (click)="saveChanges()" [disabled]="!bigFormGroup.dirty">
+      Save Changes
+    </button>
+
+    <button
+      (click)="discardChanges()"
+      [disabled]="!bigFormGroup.dirty"
+    >
+      Discard Changes
+    </button>
+  </form>
+</article>

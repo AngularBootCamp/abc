@@ -1,0 +1,9 @@
+<div>
+  @if (details(); as customerDetails) {
+    <header>Details</header>
+    <app-order-header [customerName]="customerDetails.customer" />
+    <app-order-items [items]="customerDetails.items" />
+  } @else {
+    Please select an order to view details
+  }
+</div>

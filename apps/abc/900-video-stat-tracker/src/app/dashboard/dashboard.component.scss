@@ -1,0 +1,32 @@
+:host {
+  display: grid;
+  padding: 1rem;
+  gap: 1rem;
+  // prettier-ignore
+  grid-template:
+    ' list                video       filter ' minmax(0, 1fr)
+    ' list                breakdown   filter ' 1fr
+    / minmax(12rem, 1fr)  2fr         minmax(12rem, 1fr)
+  ;
+
+  // This is necessary so that this nested child grid will
+  // properly take up the available space in the parent grid,
+  // but not cause it to expand.
+  height: 100%;
+}
+
+vst-top-list {
+  grid-area: list;
+}
+
+vst-video-container {
+  grid-area: video;
+}
+
+vst-views-breakdown {
+  grid-area: breakdown;
+}
+
+vst-views-filter {
+  grid-area: filter;
+}

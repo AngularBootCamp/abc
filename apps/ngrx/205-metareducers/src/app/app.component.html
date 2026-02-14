@@ -1,0 +1,49 @@
+<oasis-header
+  title="@ngrx/store Metareducers"
+  [documents]="[
+    {
+      label: 'Metareducer Docs',
+      url: 'https://ngrx.io/guide/store/metareducers'
+    }
+  ]"
+>
+  <mat-toolbar-row>
+    <a
+      mat-flat-button
+      routerLinkActive="mat-accent"
+      routerLink="/tasks"
+    >
+      Tasks
+    </a>
+    <a
+      mat-flat-button
+      routerLinkActive="mat-accent"
+      routerLink="/profile"
+    >
+      <span>User Profile</span>
+    </a>
+    <button mat-icon-button color="warn" (click)="clear()">
+      <mat-icon>clear</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      [disabled]="!!!(undoItem | async)"
+      (click)="undo()"
+    >
+      <mat-icon>undo</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      [disabled]="!!!(redoItem | async)"
+      (click)="redo()"
+    >
+      <mat-icon>redo</mat-icon>
+    </button>
+    <div class="toolbar-spacer"></div>
+    <span>{{ userName | async }}</span>
+  </mat-toolbar-row>
+</oasis-header>
+
+<div class="page-layout">
+  <router-outlet />
+</div>
