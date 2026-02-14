@@ -16,7 +16,7 @@
         },
         "index": "apps/abc/705-complex-query-params/src/index.html",
         "browser": "apps/abc/705-complex-query-params/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [],
         "tsConfig": "apps/abc/705-complex-query-params/tsconfig.app.json",
         "assets": [
           "apps/abc/705-complex-query-params/src/favicon.ico",

@@ -35,16 +35,24 @@ interface Car {
   ]
 })
 export class AppComponent {
-  myDate = signal(new Date());
-  items = signal(['abc', '123', 'xyzabcdef', 'abc123', '8756']);
-  cars = signal<Car[]>([
+  protected readonly value12345 = signal(12345);
+  protected readonly valueEmptyString = signal('');
+  protected readonly valueHi = signal('Hi!');
+  protected readonly myDate = signal(new Date());
+
+  protected readonly cars = signal<Car[]>([
     { brand: 'Toyota', year: 2014, color: 'Red' },
     { brand: 'Toyota', year: 2011, color: 'Green' },
     { brand: 'Ford', year: 2005, color: 'Black' },
     { brand: 'Ford', year: 2009, color: 'White' },
     { brand: 'Ford', year: 2013, color: 'Yellow' }
   ]);
-  value12345 = signal(12345);
-  valueEmptyString = signal('');
-  valueHi = signal('Hi!');
+
+  protected readonly items = signal([
+    'abc',
+    '123',
+    'xyzabcdef',
+    'abc123',
+    '8756'
+  ]);
 }

@@ -16,7 +16,7 @@
         },
         "index": "apps/abc/740-ngrx-signal-store/src/index.html",
         "browser": "apps/abc/740-ngrx-signal-store/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [],
         "tsConfig": "apps/abc/740-ngrx-signal-store/tsconfig.app.json",
         "assets": [
           "apps/abc/740-ngrx-signal-store/src/favicon.ico",

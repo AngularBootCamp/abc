@@ -9,5 +9,5 @@ import { SocketService } from './socket.service';
   imports: [AsyncPipe]
 })
 export class AppComponent {
-  visitCount = inject(SocketService).message;
+  protected readonly visitCount = inject(SocketService).message;
 }

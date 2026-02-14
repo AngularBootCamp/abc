@@ -13,5 +13,6 @@ import { DashboardService } from '../dashboard.service';
   imports: [ReactiveFormsModule]
 })
 export class ViewsFilterComponent {
-  filterFormGroup = inject(DashboardService).filterForm;
+  protected readonly filterFormGroup =
+    inject(DashboardService).filterForm;
 }

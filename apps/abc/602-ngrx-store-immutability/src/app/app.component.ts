@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { NotificationManagerComponent } from './notification-manager/notification-manager.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [NotificationManagerComponent]
+  imports: [NotificationManagerComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {}

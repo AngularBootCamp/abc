@@ -16,7 +16,7 @@
         },
         "index": "apps/abc/706-custom-form-controls/src/index.html",
         "browser": "apps/abc/706-custom-form-controls/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [],
         "tsConfig": "apps/abc/706-custom-form-controls/tsconfig.app.json",
         "assets": [
           "apps/abc/706-custom-form-controls/src/favicon.ico",

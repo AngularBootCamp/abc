@@ -7,11 +7,11 @@ import { Directive, OnDestroy, input, signal } from '@angular/core';
   }
 })
 export class BounceDirective implements OnDestroy {
-  transform = signal('');
+  protected readonly transform = signal('');
 
   // Note that this input is not required, because the default is
   // enough
-  readonly speed = input(25);
+  public readonly speed = input(25);
 
   private n = 0;
 

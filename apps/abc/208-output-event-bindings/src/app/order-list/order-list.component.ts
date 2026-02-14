@@ -13,13 +13,13 @@ import { Order } from '../api-types';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrderListComponent {
-  readonly orders = input.required<Order[]>();
+  public readonly orders = input.required<Order[]>();
 
-  readonly selectOrder = output<Order>();
+  public readonly selectOrder = output<Order>();
 
   // -------- external API above, internal implementation below
 
-  pickOrder(order: Order) {
+  protected pickOrder(order: Order) {
     this.selectOrder.emit(order);
   }
 }

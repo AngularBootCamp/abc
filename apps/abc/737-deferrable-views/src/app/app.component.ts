@@ -30,7 +30,7 @@ import { WhenComponent } from './when/when.component';
   ]
 })
 export class AppComponent {
-  readonly triggers = [
+  protected readonly triggers = signal([
     'Idle',
     'Viewport',
     'Interaction',
@@ -40,10 +40,15 @@ export class AppComponent {
     'When',
     'Multiple',
     'Prefetched'
-  ] as const;
+  ] as const);
 
-  currentTab = signal<(typeof this.triggers)[number]>('Idle');
+  protected readonly currentTab =
+    signal<ReturnType<typeof this.triggers>[number]>('Idle');
 
-  whenCondition = new FormControl(1, { nonNullable: true });
-  whenConditionMultiple = new FormControl(1, { nonNullable: true });
+  protected readonly whenCondition = new FormControl(1, {
+    nonNullable: true
+  });
+  protected readonly whenConditionMultiple = new FormControl(1, {
+    nonNullable: true
+  });
 }

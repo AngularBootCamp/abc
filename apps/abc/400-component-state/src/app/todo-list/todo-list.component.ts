@@ -13,12 +13,12 @@ import { Task } from '../types';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoListComponent {
-  readonly list = input.required<Task[]>();
-  readonly icon = input.required<string>();
+  public readonly list = input.required<Task[]>();
+  public readonly icon = input.required<string>();
 
-  readonly toggleTask = output<Task>();
+  public readonly toggleTask = output<Task>();
 
-  toggle(task: Task) {
+  protected toggle(task: Task) {
     this.toggleTask.emit(task);
   }
 }

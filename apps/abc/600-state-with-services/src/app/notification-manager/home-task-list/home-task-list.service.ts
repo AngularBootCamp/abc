@@ -3,26 +3,26 @@ import { BehaviorSubject } from 'rxjs';
 
 import { Task } from '../../types';
 
-// See work-task-list.service.ts for
-// a rundown of what these services do.
+// See work-task-list.service.ts for details on what these services do.
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeTaskListService {
   private _done = [
-    { label: 'cook dinner' },
-    { label: 'go grocery shopping' },
-    { label: 'sweep the floors' },
-    { label: 'do the laundry' }
+    { label: 'Cook dinner' },
+    { label: 'Go grocery shopping' },
+    { label: 'Sweep the floors' },
+    { label: 'Do the laundry' }
   ];
-  done = new BehaviorSubject(this._done);
 
   private _todo = [
-    { label: 'fix the leaky faucet' },
-    { label: 'mow the lawn' }
+    { label: 'Fix the leaky faucet' },
+    { label: 'Mow the lawn' }
   ];
-  todo = new BehaviorSubject(this._todo);
+
+  public readonly done = new BehaviorSubject(this._done);
+  public readonly todo = new BehaviorSubject(this._todo);
 
   setTaskStatus(task: Task, complete: boolean) {
     this._todo = this._todo.filter(curTask => curTask !== task);

@@ -20,10 +20,11 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeFilterComponent implements OnDestroy {
-  private router = inject(Router);
+  private readonly router = inject(Router);
 
-  employeeFilter: FormControl<string | null>;
-  subscription: Subscription;
+  private readonly subscription: Subscription;
+
+  protected readonly employeeFilter: FormControl<string | null>;
 
   constructor() {
     const route = inject(ActivatedRoute);

@@ -10,7 +10,7 @@
     </thead>
 
     <tbody>
-      @for (session of sessions; track session) {
+      @for (session of sessions(); track session) {
         <tr>
           <td>{{ session.location }}</td>
           <td class="date-column">

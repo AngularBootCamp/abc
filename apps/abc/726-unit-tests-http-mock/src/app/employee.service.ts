@@ -11,7 +11,7 @@ const apiUrl = environment.apiUrl;
   providedIn: 'root'
 })
 export class EmployeeService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   getList(): Observable<string[]> {
     return this.http.get<Employee[]>(apiUrl + '/employees').pipe(

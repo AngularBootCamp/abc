@@ -21,12 +21,12 @@ import { ViewsFilterComponent } from './views-filter/views-filter.component';
   ]
 })
 export default class DashboardComponent {
-  private ds = inject(DashboardService);
+  private readonly ds = inject(DashboardService);
 
-  videoList = this.ds.videoList;
-  selectedVideo = this.ds.currentVideo;
+  protected readonly videoList = this.ds.videoList;
+  protected readonly selectedVideo = this.ds.currentVideo;
 
-  videoChanged(video: Video) {
+  protected videoChanged(video: Video) {
     this.ds.updateVideo(video);
   }
 }

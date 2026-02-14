@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  signal
+} from '@angular/core';
 
 import { EmployeeComponent } from './employee.component';
 
 @Component({
   selector: 'app-employee-list',
-  templateUrl: './employee-list.component.html'
+  templateUrl: './employee-list.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeListComponent extends EmployeeComponent {
-  override heading = 'Employee List';
+  override heading = signal('Employee List');
 }

@@ -1,7 +1,4 @@
-import {
-  ApplicationConfig,
-  provideZoneChangeDetection
-} from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
@@ -15,7 +12,6 @@ import { WorkTasksEffects } from './work-tasks.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
     provideStore(reducers, {
       runtimeChecks: {
         strictStateSerializability: true,

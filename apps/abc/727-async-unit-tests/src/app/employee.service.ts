@@ -14,7 +14,7 @@ const apiUrl = 'https://api.angularbootcamp.com';
   providedIn: 'root'
 })
 export class EmployeeService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   getDelayedList(): Observable<string[]> {
     return this.http.get<Employee[]>(apiUrl + '/employees').pipe(

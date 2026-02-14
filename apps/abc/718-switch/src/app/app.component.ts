@@ -5,14 +5,14 @@ import { Component, signal } from '@angular/core';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  n = signal(0);
-  food = signal('apple');
+  protected readonly n = signal(0);
+  protected readonly food = signal('apple');
 
-  increment() {
+  protected increment() {
     this.n.update(n => n + 1);
   }
 
-  results() {
+  protected results() {
     if (this.n() > 1 && this.n() < 5) {
       return this.n();
     }

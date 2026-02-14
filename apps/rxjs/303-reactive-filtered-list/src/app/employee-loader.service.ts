@@ -20,7 +20,7 @@ const apiJitter = 100;
   providedIn: 'root'
 })
 export class EmployeeLoaderService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   getList(searchText: string): Observable<Employee[]> {
     const params = { q: searchText, _limit: '20' };

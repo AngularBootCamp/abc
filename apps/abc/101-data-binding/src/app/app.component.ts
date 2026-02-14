@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  signal
+} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,18 +10,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  employee = 'John Doe';
-  // Implicit public, equivalent to
-  // public employee: string;
-  // (public is the default in TypeScript.)
-
-  // If the value is known at initialization, it is ok to do so here.
-  // Later we will see the constructor used to set these properties.
-  daysWorked = 81;
-  company = { name: 'Acme, Inc.' };
-
-  employeeOfTheWeek = {
+  protected readonly employee = signal('John Doe');
+  protected readonly daysWorked = signal(81);
+  protected readonly company = signal({ name: 'Acme, Inc.' });
+  protected readonly employeeOfTheWeek = signal({
     name: 'Jane Smith',
     picture: 'assets/avatar.png'
-  };
+  });
 }

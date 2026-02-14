@@ -2,8 +2,6 @@ import { JsonPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import {
-  FormControl,
-  FormGroup,
   NonNullableFormBuilder,
   Validators,
   ReactiveFormsModule
@@ -22,34 +20,29 @@ import {
   imports: [ReactiveFormsModule, JsonPipe]
 })
 export class AppComponent {
-  inputFormGroup: FormGroup<{
-    input: FormControl<string>;
-    zip: FormControl<string>;
-  }>;
-
-  constructor() {
-    const http = inject(HttpClient);
-    const fb = inject(NonNullableFormBuilder);
-
-    this.inputFormGroup = fb.group({
-      input: ['', Validators.nullValidator, simpleAsyncValidator],
-      zip: [
-        '',
-        [
-          Validators.minLength(5),
-          Validators.maxLength(5),
-          Validators.required
-        ],
-        [slowAsyncValidator, westernZipValidatorFactory(http)]
+  protected readonly inputFormGroup = inject(
+    NonNullableFormBuilder
+  ).group({
+    input: ['', Validators.nullValidator, simpleAsyncValidator],
+    zip: [
+      '',
+      [
+        Validators.minLength(5),
+        Validators.maxLength(5),
+        Validators.required
+      ],
+      [
+        slowAsyncValidator,
+        westernZipValidatorFactory(inject(HttpClient))
       ]
-    });
-  }
+    ]
+  });
 
-  onFormSubmit(): void {
+  protected onFormSubmit(): void {
     console.log('submitted', this.inputFormGroup.value);
   }
 
-  logTheForm(): void {
+  protected logTheForm(): void {
     console.log('form', this.inputFormGroup);
   }
 }

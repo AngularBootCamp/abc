@@ -1,6 +1,16 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  signal
+} from '@angular/core';
 
-import { scheduleMap } from './app.constants';
+const schedule: Record<string, string> = {
+  M: '9:00 - 5:00',
+  T: '9:00 - 4:30',
+  W: '9:00 - 3:00',
+  R: '9:00 - 3:30',
+  F: '9:00 - 5:00'
+};
 
 @Component({
   selector: 'app-root',
@@ -8,27 +18,27 @@ import { scheduleMap } from './app.constants';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  name = 'John Doe';
-  message = 'Please Clock In';
-  currentSchedule = 'Hover to see selected work times';
+  protected readonly name = signal('John Doe');
+  protected readonly message = signal('Please Clock In');
+  protected readonly currentSchedule = signal(
+    'Hover to see selected work times'
+  );
 
-  clockIn(event: MouseEvent) {
-    if (event.shiftKey) {
-      this.message = 'Clocked in as manager!';
-    } else {
-      this.message = 'Clocked in as employee';
-    }
+  protected clockIn(ev: PointerEvent) {
+    this.message.set(
+      'Clocked in as ' + (ev.shiftKey ? 'manager' : 'employee')
+    );
   }
 
-  clockOut() {
-    this.message = 'Have a nice day!';
+  protected clockOut() {
+    this.message.set('Have a nice day!');
   }
 
-  showSchedule(day: string) {
-    this.currentSchedule = scheduleMap[day];
+  protected showSchedule(day: string) {
+    this.currentSchedule.set(schedule[day]);
   }
 
-  clearSchedule() {
-    this.currentSchedule = 'Hover to see selected work times';
+  protected clearSchedule() {
+    this.currentSchedule.set('Hover to see selected work times');
   }
 }

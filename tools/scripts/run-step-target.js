@@ -1,12 +1,15 @@
 const { execSync } = require('child_process');
 
-const target = process.argv[2];
-let name = process.argv[3];
+const target = process.argv[2] ?? 'serve';
+let name = process.argv[3] ?? 'abc-000';
 const rest = [...process.argv.slice(4)];
 const startsWithDigit = /^\d/;
 
 if (!target || !name) {
-  console.error('Must supply target and project name.');
+  console.error(
+    'Please specify both a target (serve, test, etc.)' +
+      ' and a full or partial step name.'
+  );
   process.exit(1);
 }
 
@@ -44,7 +47,11 @@ if (matchingProjects.length === 1) {
     ...rest
   ].join(' ');
 
-  execSync(cmd, { stdio: 'inherit' });
+  try {
+    execSync(cmd, { stdio: 'inherit' });
+  } catch (e) {
+    console.error(e);
+  }
 } else if (matchingProjects.length > 1) {
   console.log(
     `Too many projects match "${name}". Please be more specific!`
@@ -75,9 +82,10 @@ function validTarget(target) {
 // name (which might be a full project name) and support the specified
 // target. The list is sorted in alphabetical order.
 //
-// Note: It would probably be better to use the @nx/devkit API to gather
-// this information instead of executing a command each time, but this
-// works well enough for now.
+// Note: It would probably be better to use the @nx/devkit API
+// <https://nx.dev/docs/reference/devkit> to gather this information
+// instead of executing a command each time, but this works well enough
+// for now.
 //
 function getAllMatchingProjectNames(partialProjectName, target) {
   const cmd = `

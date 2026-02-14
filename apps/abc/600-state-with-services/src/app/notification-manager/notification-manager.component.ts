@@ -17,10 +17,10 @@ import { WorkTaskListService } from './work-task-list/work-task-list.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotificationManagerComponent {
-  private workTaskListService = inject(WorkTaskListService);
-  private homeTaskListService = inject(HomeTaskListService);
+  private readonly workTaskListService = inject(WorkTaskListService);
+  private readonly homeTaskListService = inject(HomeTaskListService);
 
-  completeAll() {
+  protected completeAll() {
     this.homeTaskListService.completeAll();
     this.workTaskListService.completeAll();
   }

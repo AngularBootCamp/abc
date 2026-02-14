@@ -7,7 +7,7 @@ interface LocationDetails {
 }
 
 // Many TypeScript developers recommend always using undefined rather
-// than null; however, the Angular documentation specifically states
+// than null, but the Angular documentation specifically states
 // that an async validator should return an observable of either
 // ValidationErrors or null.
 
@@ -21,9 +21,9 @@ export function slowAsyncValidator(): Observable<ValidationErrors | null> {
   return of(null).pipe(delay(1000));
 }
 
-const url = 'https://api.zippopotam.us/us/';
-
 export function westernZipValidatorFactory(http: HttpClient) {
+  const url = 'https://api.zippopotam.us/us/';
+
   return (
     control: AbstractControl
   ): Observable<ValidationErrors | null> =>

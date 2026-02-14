@@ -9,5 +9,7 @@ import { StarshipApiService } from './starship-api.service';
   imports: [AsyncPipe]
 })
 export class AppComponent {
-  starships = inject(StarshipApiService).starships();
+  protected readonly starships = inject(
+    StarshipApiService
+  ).starships();
 }

@@ -1,19 +1,25 @@
-import { Component, input, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output
+} from '@angular/core';
 
 import { Order } from '../api-types';
 
 @Component({
   selector: 'app-order-list',
-  templateUrl: './order-list.component.html'
+  templateUrl: './order-list.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrderListComponent {
-  readonly orders = input.required<Order[]>();
+  public readonly orders = input.required<Order[]>();
 
-  readonly selectOrder = output<Order>();
+  public readonly selectOrder = output<Order>();
 
   // -------- external API above, internal implementation below
 
-  pickOrder(order: Order) {
+  protected pickOrder(order: Order) {
     this.selectOrder.emit(order);
   }
 }

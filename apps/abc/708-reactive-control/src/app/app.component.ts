@@ -11,14 +11,14 @@ import {
   imports: [ReactiveFormsModule]
 })
 export class AppComponent {
-  name = new FormControl('', Validators.required);
-  outputValue = signal('');
+  protected readonly name = new FormControl('', Validators.required);
+  protected readonly outputValue = signal('');
 
-  setValue() {
+  protected setValue() {
     this.name.setValue('Set from code');
   }
 
-  useValue() {
+  protected useValue() {
     this.outputValue.set('testing 123 - ' + this.name.value);
   }
 }

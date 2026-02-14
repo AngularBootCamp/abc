@@ -14,22 +14,19 @@ import { Task } from '../../types';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeTaskListComponent {
-  done = signal<Task[]>([
+  protected readonly done = signal<Task[]>([
     { label: 'cook dinner' },
     { label: 'go grocery shopping' },
     { label: 'sweep the floors' },
     { label: 'do the laundry' }
   ]);
 
-  todo = signal<Task[]>([
+  protected readonly todo = signal<Task[]>([
     { label: 'fix the leaky faucet' },
     { label: 'mow the lawn' }
   ]);
 
-  checkbox = 'check_box';
-  outline = 'check_box_outline_blank';
-
-  toggleTask(task: Task, complete: boolean) {
+  protected toggleTask(task: Task, complete: boolean) {
     if (complete) {
       this.done.update(arr =>
         arr.filter(curTask => curTask !== task)

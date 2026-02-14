@@ -2,27 +2,25 @@
   <header>Profile</header>
 
   @if (showProfile()) {
-    <div>
-      Phone number: 555-123-1345
-      <br />
-      <!-- Note that '@' is a special character now,
-      so we need to escape it -->
-      Email address: test&commat;abccompany.com
-      <br />
-      Address: 1 Main Street, St. Louis, MO 63105
-      <br />
-    </div>
+    <div>Phone: (800) 555-1234</div>
+    <div>Address: 123 Main Street</div>
+
+    <!--
+      "@" is a special character in Angular templates, so use an HTML
+      entity like &commat; or &#64; to display the literal symbol.
+    -->
+    <div>Email: somebody&commat;example.com</div>
   }
 
   <footer>
-    <button class="btn" (click)="showProfile.set(!showProfile())">
+    <button (click)="showProfile.set(!showProfile())">
       {{ showHideProfileMessage() }}
     </button>
   </footer>
 </article>
 
 <article>
-  <header>Todo List</header>
+  <header>To-Do List</header>
 
   <ul class="collection todo-list">
     @for (todo of todos(); track todo) {
@@ -41,17 +39,19 @@
   <header>Upcoming Meetings</header>
 
   <ul class="collection">
-    @for (meeting of nextMeetings; track meeting) {
-      <li>{{ $index + 1 }}: {{ meeting.description }}</li>
+    @for (meeting of nextMeetings(); track meeting) {
+      <li>
+        {{ $index + 1 }} of {{ $count }}: {{ meeting.description }}
+      </li>
     }
   </ul>
 </article>
 
 <article>
-  <header>Who is in meetings</header>
+  <header>Meeting Attendees</header>
 
   <ul>
-    @for (meeting of nextMeetings; track meeting) {
+    @for (meeting of nextMeetings(); track meeting) {
       <li>
         {{ meeting.description }}:
         @for (person of meeting.participants; track $index) {

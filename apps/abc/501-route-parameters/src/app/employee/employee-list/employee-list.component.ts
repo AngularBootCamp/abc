@@ -16,7 +16,7 @@ import { Employee, EmployeeLoader } from '../employee-loader.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class EmployeeListComponent {
-  list: Observable<Employee[]>;
+  protected readonly list: Observable<Employee[]>;
 
   constructor() {
     const loader = inject(EmployeeLoader);

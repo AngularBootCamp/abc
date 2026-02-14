@@ -16,9 +16,9 @@ interface Car {
   imports: [CarOrderComponent]
 })
 export class AppComponent {
-  cars = signal<Car[]>([]);
+  protected readonly cars = signal<Car[]>([]);
 
-  addOne() {
+  protected addOne() {
     this.cars.update(arr => [...arr, { id: arr.length + 1 }]);
   }
 }

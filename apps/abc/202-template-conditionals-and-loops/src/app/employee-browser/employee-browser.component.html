@@ -1,24 +1,23 @@
 <article>
   <header>Employees</header>
 
-  <button (click)="showInactiveRoles.set(!showInactiveRoles())">
-    {{ showInactiveRoles() ? 'Hide' : 'Show' }} Inactive Roles
-  </button>
+  <p>
+    <button (click)="showInactiveRoles.set(!showInactiveRoles())">
+      {{ showInactiveRoles() ? 'Hide' : 'Show' }} Inactive Roles
+    </button>
+  </p>
 
-  <ul class="collection">
-    @for (employee of employeeList; track employee) {
-      <li>
-        <strong>{{ employee.name }}</strong>
-        @for (role of employee.roles; track $index) {
-          <div>
-            @if (showInactiveRoles() || $index === 0) {
-              <span>
-                {{ role }}
-              </span>
-            }
-          </div>
-        }
-      </li>
-    }
-  </ul>
+  @for (employee of employeeList(); track employee) {
+    <p>
+      <strong>{{ employee.name }}</strong>
+
+      @for (role of employee.roles; track $index) {
+        <div>
+          @if ($index === 0 || showInactiveRoles()) {
+            <small>{{ role }}</small>
+          }
+        </div>
+      }
+    </p>
+  }
 </article>

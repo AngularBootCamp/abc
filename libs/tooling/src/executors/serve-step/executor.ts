@@ -8,10 +8,6 @@ const executorOptionOverrides: Record<string, string | number> = {};
 // a devcontainer so that they're visible outside the container.
 if (process.env['DEVCONTAINER']) {
   executorOptionOverrides['host'] = '0.0.0.0';
-  console.log(
-    'Running in devcontainer with executor option overrides',
-    executorOptionOverrides
-  );
 }
 
 // Run just the specified project:target, without the API server.

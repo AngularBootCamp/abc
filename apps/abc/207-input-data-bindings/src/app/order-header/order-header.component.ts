@@ -10,7 +10,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrderHeaderComponent {
-  readonly customer = input.required<string>({
+  public readonly customer = input.required<string>({
     // eslint-disable-next-line @angular-eslint/no-input-rename
     alias: 'customerName'
   });

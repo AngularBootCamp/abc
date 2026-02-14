@@ -22,7 +22,7 @@ const check = (p: Player | undefined): p is Player => !!p;
 @Injectable()
 export class NgrxPlayerService extends PlayerService {
   private store = inject(Store);
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   players = this.store.select(selectAllPlayers);
   player(playerId: string): Observable<Player> {

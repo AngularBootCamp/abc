@@ -1,65 +1,66 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, effect, inject, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  signal
+} from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { of, switchMap } from 'rxjs';
 
 import { ColorSchemeObserver } from '@class-materials/shared/util-color-scheme-observer';
 
 import { LoggerService } from '../logger.service';
-import { Constellation } from '../types';
 
 import { ConstellationLoader } from './constellation-loader.service';
-
-function observeColorscheme() {
-  return inject(ColorSchemeObserver).observe();
-}
 
 @Component({
   selector: 'app-constellation-viewer-using-inject',
   imports: [AsyncPipe, RouterLink, RouterLinkActive],
   styleUrl: '../constellation-viewer-shared-template.component.scss',
   templateUrl:
-    '../constellation-viewer-shared-template.component.html'
+    '../constellation-viewer-shared-template.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class ConstellationViewerComponent {
-  readonly id = input<string | undefined>();
+  public readonly id = input<string | undefined>();
 
+  private readonly constellationLoader = inject(ConstellationLoader);
   private readonly logger = inject<LoggerService>(LoggerService, {
     optional: true
   });
 
-  private readonly constellationLoader = inject(ConstellationLoader);
+  protected readonly imageZoomed = signal(false);
+  protected readonly imageLoaded = signal(false);
 
-  readonly constellations$ =
+  protected readonly colorScheme$ = inject(
+    ColorSchemeObserver
+  ).observe();
+
+  protected readonly constellations$ =
     this.constellationLoader.getConstellations();
 
-  readonly colorScheme$ = observeColorscheme();
+  protected readonly selectedConstellation$ = toObservable(
+    this.id
+  ).pipe(
+    switchMap(iauAbbreviation => {
+      this.imageLoaded.set(false);
+      this.imageZoomed.set(false);
 
-  selectedConstellation$: Observable<Constellation | null> = of(null);
-  imageZoomed = false;
-  imageLoaded = false;
-
-  constructor() {
-    // When the constellation ID changes, load the corresponding
-    // constellation.
-    effect(() => {
-      const iauAbbreviation = this.id();
       if (iauAbbreviation) {
-        this.selectConstellation(iauAbbreviation);
+        this.logger?.log(
+          `Loading constellation with IAU abbreviation "${iauAbbreviation}"`
+        );
+
+        return this.constellationLoader.getConstellation(
+          iauAbbreviation
+        );
+      } else {
+        this.logger?.log('Clearing constellation');
+        return of(null);
       }
-    });
-  }
-
-  selectConstellation(iauAbbreviation: string) {
-    this.logger?.log(
-      `Loading constellation with IAU abbreviation "${iauAbbreviation}"`
-    );
-
-    this.imageLoaded = false;
-    this.imageZoomed = false;
-
-    this.selectedConstellation$ = iauAbbreviation
-      ? this.constellationLoader.getConstellation(iauAbbreviation)
-      : of(null);
-  }
+    })
+  );
 }

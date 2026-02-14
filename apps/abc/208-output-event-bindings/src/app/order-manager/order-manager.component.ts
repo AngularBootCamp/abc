@@ -15,10 +15,12 @@ import { OrderListComponent } from '../order-list/order-list.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrderManagerComponent {
-  orderList = signal(fakeApiOrders);
-  selectedOrder = signal<Order | undefined>(undefined);
+  protected readonly orderList = signal(fakeApiOrders);
+  protected readonly selectedOrder = signal<Order | undefined>(
+    undefined
+  );
 
-  setOrder(order: Order) {
+  protected setOrder(order: Order) {
     this.selectedOrder.set(order);
   }
 }

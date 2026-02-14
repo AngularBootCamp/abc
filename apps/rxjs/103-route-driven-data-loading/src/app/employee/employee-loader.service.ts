@@ -19,7 +19,7 @@ const apiUrl = 'https://api.angularbootcamp.com';
 
 @Injectable({ providedIn: 'root' })
 export class EmployeeLoaderService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   getList(): Observable<Employee[]> {
     return this.http

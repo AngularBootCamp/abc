@@ -2,7 +2,7 @@
   <label for="subReddit">
     Search reddit.com/r/
     <select id="subReddit" [formControl]="subReddit">
-      @for (sr of subReddits; track sr) {
+      @for (sr of subReddits(); track sr) {
         <option [value]="sr">
           {{ sr }}
         </option>

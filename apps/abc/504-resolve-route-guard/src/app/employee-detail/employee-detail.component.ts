@@ -14,8 +14,8 @@ import { map } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeDetailComponent {
-  employee = inject(ActivatedRoute).data.pipe(
-    // String here has to match the string in the resolve config of your route.
+  protected readonly employee = inject(ActivatedRoute).data.pipe(
+    // String here has to match the string in the resolve config of the route.
     map(routeData => routeData['employee'])
   );
 }

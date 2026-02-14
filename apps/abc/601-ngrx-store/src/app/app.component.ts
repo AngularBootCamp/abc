@@ -1,5 +1,9 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs';
 
@@ -10,32 +14,39 @@ import { AppState, emptyCart, pickApples, pickBerry } from './state';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [CounterDisplayComponent, AsyncPipe]
+  imports: [CounterDisplayComponent, AsyncPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
   // We will learn a better way (that doesn't violate linting) in the
   // next step.
   // eslint-disable-next-line @ngrx/no-typed-global-store
-  private store = inject<Store<AppState>>(Store);
+  private readonly store = inject<Store<AppState>>(Store);
 
   // eslint-disable-next-line @ngrx/prefer-selector-in-select
-  berry = this.store.select(myAppState => myAppState.berryCounter);
+  protected readonly berry = this.store.select(
+    myAppState => myAppState.berryCounter
+  );
 
   // eslint-disable-next-line @ngrx/prefer-selector-in-select
-  apple = this.store.select(state => state.appleCounter);
+  protected readonly apple = this.store.select(
+    state => state.appleCounter
+  );
 
   // Internally, store.select uses RxJS that looks like this:
-  total = this.store.pipe(map(s => s.berryCounter + s.appleCounter));
+  protected readonly total = this.store.pipe(
+    map(s => s.berryCounter + s.appleCounter)
+  );
 
-  pickBerry() {
+  protected pickBerry() {
     this.store.dispatch(pickBerry());
   }
 
-  pickApple(count: number) {
+  protected pickApple(count: number) {
     this.store.dispatch(pickApples({ count }));
   }
 
-  empty() {
+  protected empty() {
     this.store.dispatch(emptyCart());
   }
 }

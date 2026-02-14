@@ -1,4 +1,10 @@
-import { Component, computed, input, inject } from '@angular/core';
+import {
+  Component,
+  computed,
+  input,
+  inject,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 import { Video } from '../dashboard.types';
@@ -8,14 +14,15 @@ const URLPREFIX = 'https://www.youtube-nocookie.com/embed/';
 @Component({
   selector: 'vst-video-container',
   templateUrl: './video-container.component.html',
-  styleUrl: './video-container.component.scss'
+  styleUrl: './video-container.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VideoContainerComponent {
-  private domSanitizer = inject(DomSanitizer);
+  public readonly currentVideo = input.required<Video | undefined>();
 
-  readonly currentVideo = input.required<Video | undefined>();
+  private readonly domSanitizer = inject(DomSanitizer);
 
-  readonly videoUrl = computed<SafeUrl | undefined>(() => {
+  protected readonly videoUrl = computed<SafeUrl | undefined>(() => {
     // iframe src attributes are a potential source of attack. Tell
     // Angular we have vetted the URL as safe to use.
     //

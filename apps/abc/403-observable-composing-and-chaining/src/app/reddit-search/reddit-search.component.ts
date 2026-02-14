@@ -2,7 +2,8 @@ import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  inject
+  inject,
+  signal
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import {
@@ -28,17 +29,24 @@ import { ImageMetadata } from './types';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RedditSearchComponent {
-  subReddits = [
+  protected readonly subReddits = signal([
     'aww',
     'wholesomememes',
     'mildlyinteresting',
     'awesome'
-  ];
-  subReddit = new FormControl(this.subReddits[0], {
+  ]);
+
+  protected readonly subReddit = new FormControl(
+    this.subReddits()[0],
+    {
+      nonNullable: true
+    }
+  );
+  protected readonly search = new FormControl('', {
     nonNullable: true
   });
-  search = new FormControl('', { nonNullable: true });
-  results: Observable<ImageMetadata[]>;
+
+  protected readonly results: Observable<ImageMetadata[]>;
 
   constructor() {
     const ris = inject(RedditImageSearchService);

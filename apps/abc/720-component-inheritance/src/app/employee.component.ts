@@ -1,18 +1,25 @@
-import { Component, output, input } from '@angular/core';
+import {
+  Component,
+  output,
+  input,
+  signal,
+  ChangeDetectionStrategy
+} from '@angular/core';
 
 import { Employee } from './interfaces';
 
 @Component({
   selector: 'app-employee-base',
-  template: ''
+  template: '',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeComponent {
-  readonly employees = input.required<Employee[]>();
-  readonly selectEmp = output<Employee>();
+  public readonly employees = input.required<Employee[]>();
+  public readonly selectEmp = output<Employee>();
 
-  heading = 'Employees';
+  protected heading = signal('Employees');
 
-  selectEmployee(employee: Employee) {
+  protected selectEmployee(employee: Employee) {
     this.selectEmp.emit(employee);
   }
 }

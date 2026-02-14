@@ -22,15 +22,15 @@ import { ClickService } from '../click.service';
   imports: [AsyncPipe]
 })
 export class ClickComponent {
-  readonly colorScheme = toSignal(
+  private readonly service = inject(ClickService);
+
+  protected readonly colorScheme = toSignal(
     inject(ColorSchemeObserver).observe()
   );
 
-  private readonly service = inject(ClickService);
+  protected readonly totalClicks = this.service.clickCount;
 
-  readonly totalClicks = this.service.clickCount;
-
-  increment() {
+  protected increment() {
     this.service.increment().catch(err => console.log(err));
   }
 }

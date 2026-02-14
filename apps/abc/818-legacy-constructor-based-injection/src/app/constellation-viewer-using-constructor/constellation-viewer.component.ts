@@ -1,14 +1,20 @@
 /* eslint-disable @angular-eslint/prefer-inject */
 
 import { AsyncPipe } from '@angular/common';
-import { Component, Optional, effect, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Optional,
+  input,
+  signal
+} from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { of, switchMap } from 'rxjs';
 
 import { ColorSchemeObserver } from '@class-materials/shared/util-color-scheme-observer';
 
 import { LoggerService } from '../logger.service';
-import { Constellation } from '../types';
 
 import { ConstellationLoader } from './constellation-loader.service';
 
@@ -17,16 +23,39 @@ import { ConstellationLoader } from './constellation-loader.service';
   imports: [AsyncPipe, RouterLink, RouterLinkActive],
   styleUrl: '../constellation-viewer-shared-template.component.scss',
   templateUrl:
-    '../constellation-viewer-shared-template.component.html'
+    '../constellation-viewer-shared-template.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class ConstellationViewerComponent {
-  readonly id = input<string | undefined>();
+  public readonly id = input<string | undefined>();
 
-  readonly constellations$;
-  selectedConstellation$: Observable<Constellation | null> = of(null);
-  readonly colorScheme$;
-  imageZoomed = false;
-  imageLoaded = false;
+  protected readonly imageZoomed = signal(false);
+  protected readonly imageLoaded = signal(false);
+
+  protected readonly colorScheme$;
+  protected readonly constellations$;
+
+  protected readonly selectedConstellation$ = toObservable(
+    this.id
+  ).pipe(
+    switchMap(iauAbbreviation => {
+      this.imageLoaded.set(false);
+      this.imageZoomed.set(false);
+
+      if (iauAbbreviation) {
+        this.logger?.log(
+          `Loading constellation with IAU abbreviation "${iauAbbreviation}"`
+        );
+
+        return this.constellationLoader.getConstellation(
+          iauAbbreviation
+        );
+      } else {
+        this.logger?.log('Clearing constellation');
+        return of(null);
+      }
+    })
+  );
 
   constructor(
     private readonly constellationLoader: ConstellationLoader,
@@ -37,27 +66,5 @@ export default class ConstellationViewerComponent {
 
     this.constellations$ =
       this.constellationLoader.getConstellations();
-
-    // When the constellation ID changes, load the corresponding
-    // constellation.
-    effect(() => {
-      const iauAbbreviation = this.id();
-      if (iauAbbreviation) {
-        this.selectConstellation(iauAbbreviation);
-      }
-    });
-  }
-
-  selectConstellation(iauAbbreviation: string) {
-    this.logger?.log(
-      `Loading constellation with IAU abbreviation "${iauAbbreviation}"`
-    );
-
-    this.imageLoaded = false;
-    this.imageZoomed = false;
-
-    this.selectedConstellation$ = iauAbbreviation
-      ? this.constellationLoader.getConstellation(iauAbbreviation)
-      : of(null);
   }
 }

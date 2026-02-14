@@ -33,7 +33,7 @@ import {
 @Injectable({ providedIn: 'root' })
 export class GameService {
   private store = inject(Store);
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   readonly games = this.store.select(selectGamesState);
 

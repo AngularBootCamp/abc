@@ -36,15 +36,15 @@
   }
 </div>
 
-<div class="preview" (click)="imageZoomed = !imageZoomed">
+<div class="preview" (click)="imageZoomed.set(!imageZoomed())">
   @if (selectedConstellation; as c) {
     <img
-      [class.zoomed]="imageZoomed"
+      [class.zoomed]="imageZoomed()"
       [class.inverted]="colorScheme === 'dark'"
-      [style.display]="imageLoaded ? 'block' : 'none'"
+      [style.display]="imageLoaded() ? 'block' : 'none'"
       [src]="c.imageLink"
       [alt]="'Diagram of the constellation ' + c.name"
-      (load)="imageLoaded = true"
+      (load)="imageLoaded.set(true)"
     />
   }
 </div>

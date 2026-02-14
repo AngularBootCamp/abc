@@ -7,9 +7,9 @@ import { Directive, model } from '@angular/core';
   }
 })
 export class BorderDirective {
-  readonly color = model('var(--abc-border-color)');
+  public readonly color = model('var(--abc-border-color)');
 
-  getBorderColor() {
+  protected getBorderColor() {
     return `5px solid ${this.color()}`;
   }
 }

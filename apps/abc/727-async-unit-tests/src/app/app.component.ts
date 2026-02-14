@@ -12,8 +12,10 @@ import { EmployeeService } from './employee.service';
   imports: [ReactiveFormsModule, AsyncPipe, JsonPipe]
 })
 export class AppComponent {
-  nameFilter = new FormControl('', { nonNullable: true });
-  filteredTeam: Observable<Employee[]>;
+  readonly nameFilter = new FormControl('', {
+    nonNullable: true
+  });
+  readonly filteredTeam: Observable<Employee[]>;
 
   constructor() {
     const sw = inject(EmployeeService);

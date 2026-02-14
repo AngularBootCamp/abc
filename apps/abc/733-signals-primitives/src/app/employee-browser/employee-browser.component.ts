@@ -25,7 +25,6 @@ const employees = [
   templateUrl: './employee-browser.component.html'
 })
 export default class EmployeeBrowserComponent {
-  employeeList = employees;
-  // Note: the inferred type is WritableSignal<boolean>
-  showInactiveRoles = signal(true);
+  protected readonly employeeList = signal(employees);
+  protected readonly showInactiveRoles = signal(true);
 }

@@ -12,11 +12,12 @@ import { adjectives, proglangs, terms } from './data';
   imports: [NgFor, NgIf, ReactiveFormsModule]
 })
 export class AppComponent {
-  descriptorsControl: FormControl = new FormControl();
-  showDetails = false;
-  terms = terms;
-  adjectives: string[] = [];
-  programmingLanguages = proglangs;
+  protected readonly descriptorsControl: FormControl =
+    new FormControl();
+  protected showDetails = false;
+  protected terms = terms;
+  protected adjectives: string[] = [];
+  protected programmingLanguages = proglangs;
 
   constructor() {
     this.descriptorsControl.valueChanges

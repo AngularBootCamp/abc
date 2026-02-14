@@ -5,6 +5,14 @@
   "projectType": "library",
   "tags": [],
   "targets": {
+    "serve-all": {
+      "executor": "@class-materials/tooling:serve-all",
+      "options": {
+        "prefix": "abc",
+        "port": 8080,
+        "concurrent": 5
+      }
+    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],

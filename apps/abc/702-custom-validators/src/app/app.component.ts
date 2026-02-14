@@ -1,8 +1,6 @@
 import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
-  FormControl,
-  FormGroup,
   NonNullableFormBuilder,
   Validators,
   ReactiveFormsModule
@@ -20,12 +18,9 @@ import {
   imports: [ReactiveFormsModule, JsonPipe]
 })
 export class AppComponent {
-  loginFormGroup: FormGroup<{
-    login: FormControl<string>;
-    password: FormControl<string>;
-    enterFive: FormControl<string>;
-    confirmPassword: FormControl<string>;
-  }> = inject(NonNullableFormBuilder).group(
+  protected readonly loginFormGroup = inject(
+    NonNullableFormBuilder
+  ).group(
     {
       login: ['user', Validators.required],
       password: [
@@ -41,11 +36,11 @@ export class AppComponent {
     }
   );
 
-  onLogin(): void {
+  protected onLogin(): void {
     console.log('Form Submitted', this.loginFormGroup.value);
   }
 
-  logTheForm(): void {
+  protected logTheForm(): void {
     console.log('form: ', this.loginFormGroup);
   }
 }

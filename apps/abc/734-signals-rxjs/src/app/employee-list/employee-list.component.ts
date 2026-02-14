@@ -3,7 +3,8 @@ import {
   computed,
   signal,
   Signal,
-  inject
+  inject,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -22,26 +23,35 @@ import { EmployeeLoaderService } from '../employee-loader.service';
     EmployeeListTableViewComponent,
     EmployeeDetailComponent,
     ReactiveFormsModule
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeListComponent {
   // We make sure that the sort options will always have a value
   // that is the name of a property on Employee
-  sortCriteria: { display: string; value: keyof Employee }[] = [
+  protected readonly sortCriteria: {
+    display: string;
+    value: keyof Employee;
+  }[] = [
     { display: 'Last Name', value: 'lastName' },
     { display: 'Hours Worked', value: 'hoursWorked' }
   ];
-  nameFilter = new FormControl('', { nonNullable: true });
+  protected readonly nameFilter = new FormControl('', {
+    nonNullable: true
+  });
   // We tell TypeScript that the value of this will always be a
   // property of Employee, which works because of the types of
   // sortCriteria
-  sort = new FormControl<keyof Employee>(this.sortCriteria[0].value, {
-    nonNullable: true
-  });
+  protected readonly sort = new FormControl<keyof Employee>(
+    this.sortCriteria[0].value,
+    {
+      nonNullable: true
+    }
+  );
 
-  filteredList: Signal<Employee[]>;
-  selectedId = signal<number | null>(null);
-  selectedEmployee: Signal<Employee | undefined>;
+  protected readonly filteredList: Signal<Employee[]>;
+  protected readonly selectedId = signal<number | null>(null);
+  protected readonly selectedEmployee: Signal<Employee | undefined>;
 
   constructor() {
     const loader = inject(EmployeeLoaderService);
@@ -61,9 +71,9 @@ export class EmployeeListComponent {
     });
 
     // List reacts to filter and sort changes
-    this.filteredList = computed(() =>
-      rawList().sort(propertyComparator(sortKey()))
-    );
+    this.filteredList = computed(() => [
+      ...rawList().sort(propertyComparator(sortKey()))
+    ]);
 
     // Detail reacts to selected employee changes
     this.selectedEmployee = toSignal(

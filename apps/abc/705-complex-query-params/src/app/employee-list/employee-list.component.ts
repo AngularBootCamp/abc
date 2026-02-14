@@ -1,4 +1,10 @@
-import { Component, inject, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  signal
+} from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
 import { EmployeeListHeaderComponent } from '../employee-list-header/employee-list-header.component';
@@ -7,15 +13,18 @@ import { Employee, TableOptions } from '../employees.service';
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
-  imports: [EmployeeListHeaderComponent, RouterLink]
+  imports: [EmployeeListHeaderComponent, RouterLink],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeListComponent {
-  private router = inject(Router);
+  public readonly employees = input.required<Employee[]>();
+  public readonly options = input.required<
+    TableOptions | undefined
+  >();
 
-  readonly employees = input.required<Employee[]>();
-  readonly options = input.required<TableOptions | undefined>();
+  private readonly router = inject(Router);
 
-  headers = [
+  protected readonly headers = signal([
     {
       propertyName: 'firstName',
       display: 'First Name'
@@ -32,9 +41,9 @@ export class EmployeeListComponent {
       propertyName: 'hourlyWage',
       display: 'Hourly Wage'
     }
-  ];
+  ]);
 
-  headerClicked(sortBy: string) {
+  protected headerClicked(sortBy: string) {
     const options = this.options();
     if (options?.sortBy === sortBy) {
       this.changeDirection(options);

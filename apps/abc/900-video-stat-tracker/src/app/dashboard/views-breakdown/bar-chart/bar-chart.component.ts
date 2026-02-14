@@ -8,9 +8,9 @@ import { GraphData, Rect } from '../graph-helper';
   styleUrl: './bar-chart.component.scss'
 })
 export class BarChartComponent {
-  readonly graphData = input.required<GraphData | undefined>();
+  public readonly graphData = input.required<GraphData | undefined>();
 
-  positionAndSizeOf(rect: Rect) {
+  protected positionAndSizeOf(rect: Rect) {
     return [rect.x, rect.y, rect.width, rect.height].join(';');
   }
 }

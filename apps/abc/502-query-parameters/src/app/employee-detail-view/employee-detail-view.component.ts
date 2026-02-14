@@ -12,5 +12,5 @@ import { Employee } from '../employee';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeDetailComponent {
-  readonly employee = input.required<Employee | undefined>();
+  public readonly employee = input.required<Employee | undefined>();
 }

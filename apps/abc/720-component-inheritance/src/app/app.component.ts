@@ -61,14 +61,14 @@ const employees: Employee[] = [
   imports: [EmployeeListComponent, EmployeeGridComponent]
 })
 export class AppComponent {
-  showList = signal(true);
-  myEmployees = signal(employees);
+  protected readonly showList = signal(true);
+  protected readonly myEmployees = signal(employees);
 
-  toggleView() {
+  protected toggleView() {
     this.showList.update(s => !s);
   }
 
-  logEmployee(employee: Employee) {
+  protected logEmployee(employee: Employee) {
     console.log(employee);
   }
 }

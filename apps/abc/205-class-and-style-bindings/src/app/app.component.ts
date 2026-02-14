@@ -14,12 +14,12 @@ import { regionRecords } from './records';
 })
 export class AppComponent {
   // Pretend we're loading data from an external source.
-  protected regionInfo = signal(regionRecords);
+  protected readonly regionInfo = signal(regionRecords);
 
   // Whenever the region data changes, recalculate the scale factors
   // based on the maximum values for units and total revenue, in order
   // to keep the bars on the chart a reasonable width.
-  protected scaleFactors = computed(() => {
+  protected readonly scaleFactors = computed(() => {
     let maxUnits = 0;
     let maxTotalRevenue = 0;
 

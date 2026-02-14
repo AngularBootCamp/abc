@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   FormArray,
   FormControl,
@@ -31,27 +31,57 @@ type PizzaFormGroup = FormGroup<{
   ]
 })
 export class AppComponent {
-  private fb = inject(NonNullableFormBuilder);
+  private readonly fb = inject(NonNullableFormBuilder);
 
-  pizzasFormArray = this.fb.array<PizzaFormGroup>([]);
-  activePizza = 0;
+  protected pizzasFormArray = this.fb.array<PizzaFormGroup>([]);
+  protected activePizza = 0;
 
-  sizes = ['Extra Small', 'Small', 'Medium', 'Large', 'Extra Large'];
-  crusts = ['Original', 'Thin', 'Cheese Filled', 'Gluten-Free'];
-  sauceTypes = ['None', 'Original', 'White Sauce', 'BBQ', 'Ranch'];
-  sauceAmounts = ['Normal', 'Light', 'Extra'];
-  cheeseTypes = ['None', 'Original', '3-Cheese Blend', 'Parmesan'];
-  cheeseAmounts = ['Normal', 'Light', 'Extra'];
+  protected readonly sizes = signal([
+    'Extra Small',
+    'Small',
+    'Medium',
+    'Large',
+    'Extra Large'
+  ]);
+  protected readonly crusts = signal([
+    'Original',
+    'Thin',
+    'Cheese Filled',
+    'Gluten-Free'
+  ]);
+  protected readonly sauceTypes = signal([
+    'None',
+    'Original',
+    'White Sauce',
+    'BBQ',
+    'Ranch'
+  ]);
+  protected readonly sauceAmounts = signal([
+    'Normal',
+    'Light',
+    'Extra'
+  ]);
+  protected readonly cheeseTypes = signal([
+    'None',
+    'Original',
+    '3-Cheese Blend',
+    'Parmesan'
+  ]);
+  protected readonly cheeseAmounts = signal([
+    'Normal',
+    'Light',
+    'Extra'
+  ]);
 
   constructor() {
     this.addNewPizza();
   }
 
-  logForm() {
+  protected logForm() {
     console.log(this.pizzasFormArray.value);
   }
 
-  addNewPizza() {
+  protected addNewPizza() {
     this.pizzasFormArray.push(
       this.fb.group({
         size: this.fb.control(''),
@@ -66,12 +96,12 @@ export class AppComponent {
     this.activePizza = this.pizzasFormArray.length - 1;
   }
 
-  removePizza(index: number) {
+  protected removePizza(index: number) {
     this.pizzasFormArray.removeAt(index);
     this.activePizza = -1;
   }
 
-  setActivePizzaForm(index: number) {
+  protected setActivePizzaForm(index: number) {
     if (this.activePizza === index) {
       this.activePizza = -1;
     } else {

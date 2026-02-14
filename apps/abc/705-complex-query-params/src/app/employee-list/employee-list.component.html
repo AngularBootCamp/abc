@@ -1,7 +1,7 @@
 <table role="grid">
   <thead>
     <tr>
-      @for (header of headers; track header.propertyName) {
+      @for (header of headers(); track header.propertyName) {
         <td>
           <app-employee-list-header
             [propertyName]="header.propertyName"

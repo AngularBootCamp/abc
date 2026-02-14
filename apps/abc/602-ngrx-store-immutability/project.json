@@ -16,7 +16,7 @@
         },
         "index": "apps/abc/602-ngrx-store-immutability/src/index.html",
         "browser": "apps/abc/602-ngrx-store-immutability/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [],
         "tsConfig": "apps/abc/602-ngrx-store-immutability/tsconfig.app.json",
         "assets": [
           "apps/abc/602-ngrx-store-immutability/src/favicon.ico",

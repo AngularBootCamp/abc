@@ -1,5 +1,9 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject
+} from '@angular/core';
 import {
   RouterLinkActive,
   RouterLink,
@@ -12,8 +16,9 @@ import { selectUserName } from './user-profile/user-profile.selectors';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [RouterLinkActive, RouterLink, RouterOutlet, AsyncPipe]
+  imports: [RouterLinkActive, RouterLink, RouterOutlet, AsyncPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  userName = inject(Store).select(selectUserName);
+  protected readonly userName = inject(Store).select(selectUserName);
 }

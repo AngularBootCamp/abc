@@ -5,5 +5,5 @@ import { Socket } from 'ngx-socket-io';
   providedIn: 'root'
 })
 export class SocketService {
-  message = inject(Socket).fromEvent('visitCount');
+  public readonly message = inject(Socket).fromEvent('visitCount');
 }

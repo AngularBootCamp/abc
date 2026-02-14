@@ -55,6 +55,9 @@ https://angular.dev/style-guide
 Angular AI  
 https://angular.dev/ai
 
+Angular Development with AI  
+https://angular.dev/ai/develop-with-ai
+
 Angular Update Guide  
 https://angular.dev/update-guide
 
@@ -69,6 +72,9 @@ https://material.angular.dev
 
 Angular Component Development Kit (CDK)  
 https://material.angular.dev/cdk
+
+Angular Aria  
+https://angular.dev/guide/aria
 
 Angular ESLint  
 https://github.com/angular-eslint/angular-eslint
@@ -107,8 +113,14 @@ https://eslint.org
 Prettier  
 https://prettier.io
 
+Stylelint  
+https://stylelint.io
+
 Nx  
 https://nx.dev
+
+Chrome DevTools  
+https://developer.chrome.com/docs/devtools/
 
 ---
 
@@ -138,6 +150,7 @@ https://www.typescriptlang.org
 TypeScript Videos from Matt Pocock  
 https://www.youtube.com/@mattpocockuk
 
+---
 
 RxJS - Reactive Extensions Library for JavaScript  
 https://rxjs.dev
@@ -151,6 +164,7 @@ https://rxmarbles.com
 NgRx - Reactive State for Angular  
 https://ngrx.io
 
+---
 
 ng-news  
 https://www.youtube.com/@ng-news

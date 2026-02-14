@@ -15,5 +15,5 @@ import { EmployeeLoaderService } from '../employee-loader.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeListComponent {
-  list = inject(EmployeeLoaderService).getList();
+  protected readonly list = inject(EmployeeLoaderService).getList();
 }

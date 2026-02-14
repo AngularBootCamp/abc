@@ -24,11 +24,13 @@ import {
   ]
 })
 export class AppComponent {
-  selectedEmployee: Observable<Employee | undefined>;
-  status: Observable<string>;
-  selectedEmployeeId = new Subject<number>();
-  employees: Observable<Employee[]>;
-  showEmployeeDetails: Observable<boolean>;
+  protected readonly selectedEmployee: Observable<
+    Employee | undefined
+  >;
+  protected readonly status: Observable<string>;
+  protected readonly selectedEmployeeId = new Subject<number>();
+  protected readonly employees: Observable<Employee[]>;
+  protected readonly showEmployeeDetails: Observable<boolean>;
 
   constructor() {
     const employeeLoader = inject(EmployeeLoader);

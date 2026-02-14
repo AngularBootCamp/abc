@@ -25,11 +25,11 @@ const todoList = [
   imports: [NgIf, NgFor]
 })
 export default class UserDashboardComponent {
-  showProfile = true;
-  nextMeetings = meetings;
-  todos = todoList;
+  protected showProfile = true;
+  protected nextMeetings = meetings;
+  protected todos = todoList;
 
-  addTodo() {
+  protected addTodo() {
     this.todos.push(`Task ${this.todos.length + 1}`);
   }
 }

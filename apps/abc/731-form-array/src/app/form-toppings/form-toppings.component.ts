@@ -1,4 +1,9 @@
-import { Component, inject, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input
+} from '@angular/core';
 import {
   FormArray,
   FormControl,
@@ -10,23 +15,24 @@ import {
   selector: 'app-form-toppings',
   templateUrl: './form-toppings.component.html',
   styleUrl: './form-toppings.component.scss',
-  imports: [ReactiveFormsModule]
+  imports: [ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormToppingsComponent {
-  private fb = inject(NonNullableFormBuilder);
+  private readonly fb = inject(NonNullableFormBuilder);
 
-  readonly toppings =
+  public readonly toppings =
     input.required<FormArray<FormControl<string>>>();
 
-  get toppingControls() {
+  protected get toppingControls() {
     return (this.toppings().controls ?? []) as FormControl[];
   }
 
-  addNewTopping() {
+  protected addNewTopping() {
     this.toppings().push(this.fb.control(''));
   }
 
-  removeTopping(toppingIndex: number) {
+  protected removeTopping(toppingIndex: number) {
     this.toppings().removeAt(toppingIndex);
   }
 }

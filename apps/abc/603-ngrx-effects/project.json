@@ -16,7 +16,7 @@
         },
         "index": "apps/abc/603-ngrx-effects/src/index.html",
         "browser": "apps/abc/603-ngrx-effects/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [],
         "tsConfig": "apps/abc/603-ngrx-effects/tsconfig.app.json",
         "assets": [
           "apps/abc/603-ngrx-effects/src/favicon.ico",

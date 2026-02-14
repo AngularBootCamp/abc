@@ -18,5 +18,6 @@ import { EmployeesService } from './employees.service';
   imports: [AsyncPipe]
 })
 export class AppComponent {
-  employees = inject(EmployeesService).pollEmployees();
+  protected readonly employees =
+    inject(EmployeesService).pollEmployees();
 }

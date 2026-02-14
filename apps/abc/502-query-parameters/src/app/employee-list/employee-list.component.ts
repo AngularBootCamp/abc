@@ -15,6 +15,6 @@ import { Employee } from '../employee';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeListComponent {
-  readonly list = input.required<Employee[]>();
-  readonly selectedId = input.required<number | undefined>();
+  public readonly list = input.required<Employee[]>();
+  public readonly selectedId = input.required<number | undefined>();
 }

@@ -13,12 +13,12 @@ interface IColor {
   imports: [FormsModule]
 })
 export class AppComponent {
-  version = 'Beta';
-  person = '';
-  favoriteColor = 'Blue';
-  show = false;
+  protected version = 'Beta';
+  protected person = '';
+  protected favoriteColor = 'Blue';
+  protected show = false;
 
-  colors: IColor[] = [
+  protected colors: IColor[] = [
     {
       code: 'Blue',
       display: 'Blue ish'

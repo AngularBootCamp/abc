@@ -11,14 +11,14 @@ import { Component } from '@angular/core';
   imports: [NgSwitch, NgSwitchCase, NgSwitchDefault]
 })
 export class AppComponent {
-  n = 0;
-  food = 'apple';
+  protected n = 0;
+  protected food = 'apple';
 
-  increment() {
+  protected increment() {
     this.n++;
   }
 
-  results() {
+  protected results() {
     if (this.n > 1 && this.n < 5) {
       return this.n;
     }

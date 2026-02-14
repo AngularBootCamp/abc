@@ -17,10 +17,10 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnDestroy {
-  employees = signal<Employee[]>([]);
-  loading = signal(true);
+  protected readonly employees = signal<Employee[]>([]);
+  protected readonly loading = signal(true);
 
-  subscription = inject(EmployeeLoaderService)
+  private readonly subscription = inject(EmployeeLoaderService)
     .loadEmployees()
     .subscribe(employees => {
       this.loading.set(false);
@@ -28,8 +28,7 @@ export class AppComponent implements OnDestroy {
     });
 
   // Since this component doesn't know the "source" of the observable,
-  // it is a good practice to perform "clean-up" on it via the OnDestroy
-  // hook.
+  // it's good practice to perform clean-up via the OnDestroy hook.
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

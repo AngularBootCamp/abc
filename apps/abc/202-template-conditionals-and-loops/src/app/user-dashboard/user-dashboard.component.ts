@@ -29,24 +29,18 @@ const todoList = [
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class UserDashboardComponent {
-  showProfile = signal(true);
-  nextMeetings = meetings;
-  todos = signal(todoList);
-  showHideProfileMessage = computed(
-    () => `${this.showProfile() ? 'Hide' : 'Show'} Profile`
+  protected readonly showProfile = signal(true);
+  protected readonly nextMeetings = signal(meetings);
+  protected readonly todos = signal(todoList);
+
+  protected readonly showHideProfileMessage = computed(
+    () => (this.showProfile() ? 'Hide' : 'Show') + ' Profile'
   );
 
-  addTodo() {
-    // set is the basic
-    this.todos.set([
-      { label: `Task ${this.todos().length + 1}` },
-      ...this.todos()
+  protected addTodo() {
+    this.todos.update(list => [
+      { label: `Task ${list.length + 1}` },
+      ...list
     ]);
-
-    // update is somewhat more advanced
-    // this.todos.update(value => [
-    //   { label: `Task ${value.length + 1}` },
-    //   ...value
-    // ]);
   }
 }

@@ -16,7 +16,11 @@ import { Employee } from '../employee-loader.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeComparisonComponent {
-  readonly theFirstEmployee = input.required<Employee | undefined>();
-  readonly theSecondEmployee = input.required<Employee | undefined>();
-  readonly reverse = output<void>();
+  public readonly theFirstEmployee = input.required<
+    Employee | undefined
+  >();
+  public readonly theSecondEmployee = input.required<
+    Employee | undefined
+  >();
+  public readonly reverse = output<void>();
 }

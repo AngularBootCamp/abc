@@ -7,9 +7,9 @@ import { Directive, model } from '@angular/core';
   }
 })
 export class HighlightDirective {
-  readonly color = model('var(--abc-highlight-color)');
+  public readonly color = model('var(--abc-highlight-color)');
 
-  getBackgroundColor() {
+  protected getBackgroundColor() {
     return this.color();
   }
 }

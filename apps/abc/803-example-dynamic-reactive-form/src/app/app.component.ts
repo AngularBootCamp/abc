@@ -13,20 +13,20 @@ import { SchemaFormUtils } from './schema-form-utils';
 })
 export class AppComponent {
   // This could be loaded from an external source.
-  schema = signal(exampleSchema);
+  protected readonly schema = signal(exampleSchema);
 
-  dynamicFormGroup = inject(FormBuilder).group(
+  protected readonly dynamicFormGroup = inject(FormBuilder).group(
     SchemaFormUtils.createControlsConfigFromSchema(this.schema())
   );
 
   // Make it easier to get to the form controls from the template.
-  controls = this.dynamicFormGroup.controls;
+  protected readonly controls = this.dynamicFormGroup.controls;
 
-  onSubmit(): void {
+  protected onSubmit(): void {
     console.log('Form Submitted', this.dynamicFormGroup.value);
   }
 
-  logTheForm(): void {
+  protected logTheForm(): void {
     console.log('form: ', this.dynamicFormGroup);
   }
 }

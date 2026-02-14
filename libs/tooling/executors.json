@@ -5,6 +5,11 @@
       "implementation": "./src/executors/serve-step/executor",
       "schema": "./src/executors/serve-step/schema.json",
       "description": "serve-step executor"
+    },
+    "serve-all": {
+      "implementation": "./src/executors/serve-all/serve-all",
+      "schema": "./src/executors/serve-all/schema.json",
+      "description": "serve-all executor"
     }
   }
 }

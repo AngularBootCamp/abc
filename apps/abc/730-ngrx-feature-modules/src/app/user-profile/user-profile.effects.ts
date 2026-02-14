@@ -13,10 +13,10 @@ import { UserProfileService } from './user-profile.service';
 
 @Injectable()
 export class UserProfileEffects implements OnInitEffects {
-  private actions$ = inject(Actions);
-  private userProfileSvc = inject(UserProfileService);
+  private readonly actions$ = inject(Actions);
+  private readonly userProfileSvc = inject(UserProfileService);
 
-  loadUserProfile$ = createEffect(() =>
+  readonly loadUserProfile$ = createEffect(() =>
     this.actions$.pipe(
       ofType(userProfileActions.loadUserProfile),
       switchMap(() =>
@@ -32,7 +32,7 @@ export class UserProfileEffects implements OnInitEffects {
     )
   );
 
-  saveUserProfile$ = createEffect(() =>
+  readonly saveUserProfile$ = createEffect(() =>
     this.actions$.pipe(
       ofType(userProfileActions.saveUserProfile),
       mergeMap(action =>

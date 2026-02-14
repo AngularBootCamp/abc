@@ -16,7 +16,7 @@
         },
         "index": "apps/abc/818-legacy-constructor-based-injection/src/index.html",
         "browser": "apps/abc/818-legacy-constructor-based-injection/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [],
         "tsConfig": "apps/abc/818-legacy-constructor-based-injection/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [

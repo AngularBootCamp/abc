@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "version": 2,
+  "title": "ServeAll executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "prefix": {
+      "type": "string",
+      "description": "Curriculum prefix (abc, rxjs, etc.)"
+    },
+    "port": {
+      "type": "number",
+      "description": "Development web server port number"
+    },
+    "concurrent": {
+      "type": "number",
+      "description": "Max number of concurrent builders"
+    }
+  },
+  "required": []
+}

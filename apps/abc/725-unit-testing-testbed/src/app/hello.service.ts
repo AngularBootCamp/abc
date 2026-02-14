@@ -6,7 +6,7 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class HelloService {
-  private userService = inject(UserService);
+  private readonly userService = inject(UserService);
 
   calculateHello(greeting: string): string {
     const user = this.userService.currentUser();

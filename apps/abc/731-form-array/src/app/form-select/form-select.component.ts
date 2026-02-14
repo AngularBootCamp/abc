@@ -1,13 +1,18 @@
-import { Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input
+} from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-form-select',
   templateUrl: './form-select.component.html',
-  imports: [ReactiveFormsModule]
+  imports: [ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormSelectComponent {
-  readonly control = input.required<FormControl<any>>();
-  readonly label = input.required<string>();
-  readonly options = input.required<string[]>();
+  public readonly control = input.required<FormControl<any>>();
+  public readonly label = input.required<string>();
+  public readonly options = input.required<string[]>();
 }

@@ -24,8 +24,8 @@ interface Employee {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  employees = signal<Employee[]>([]);
-  loading = signal(true);
+  protected readonly employees = signal<Employee[]>([]);
+  protected readonly loading = signal(true);
 
   constructor() {
     const http = inject(HttpClient);

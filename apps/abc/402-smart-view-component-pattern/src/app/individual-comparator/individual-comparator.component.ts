@@ -20,21 +20,21 @@ import { Employee, EmployeeLoader } from '../employee-loader.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class IndividualComparatorComponent {
-  private el = inject(EmployeeLoader);
+  private readonly el = inject(EmployeeLoader);
 
-  employeeList = this.el.getAllEmployees().pipe(
+  protected readonly employeeList = this.el.getAllEmployees().pipe(
     tap(list => {
       this.comparedEmployees = [list[0], list[1]];
     })
   );
 
-  comparedEmployees: Employee[] = [];
+  protected comparedEmployees: Employee[] = [];
 
-  updateComparison(emp: Employee) {
+  protected updateComparison(emp: Employee) {
     this.comparedEmployees = [this.comparedEmployees[0], emp];
   }
 
-  reverseComparison() {
+  protected reverseComparison() {
     this.comparedEmployees = [
       this.comparedEmployees[1],
       this.comparedEmployees[0]

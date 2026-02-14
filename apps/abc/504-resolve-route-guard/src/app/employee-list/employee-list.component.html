@@ -2,7 +2,7 @@
   <header>Select Employee</header>
   @for (employee of list | async; track employee.id) {
     <p>
-      <a [routerLink]="['/employee', employee.id]">
+      <a [routerLink]="['/employees', employee.id]">
         {{ employee.firstName }} {{ employee.lastName }}
       </a>
     </p>

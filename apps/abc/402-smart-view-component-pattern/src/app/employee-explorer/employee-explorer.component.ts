@@ -19,10 +19,10 @@ import { Employee } from '../employee-loader.service';
 export class EmployeeExplorerComponent {
   // Note that this one isn't required -- the default value is used in
   // one place.
-  readonly title = input('Employees');
-  readonly employees = input.required<Employee[]>();
-  readonly selectedEmployees = input.required<Employee[]>();
-  readonly employeeClicked = output<Employee>();
+  public readonly title = input('Employees');
+  public readonly employees = input.required<Employee[]>();
+  public readonly selectedEmployees = input.required<Employee[]>();
+  public readonly employeeClicked = output<Employee>();
 
   // Implementing a new feature in this view component improves
   // everywhere that it is used. In this case, all three lists of
@@ -30,7 +30,7 @@ export class EmployeeExplorerComponent {
   // update the employee-explorer.component.html as well to see it in
   // action filter = new FormControl('');
 
-  employeeIsSelected(emp: Employee) {
+  protected employeeIsSelected(emp: Employee) {
     return this.selectedEmployees().find(e => e.id === emp.id);
   }
 

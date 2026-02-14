@@ -13,10 +13,10 @@ import { employeesActions } from './employees.actions';
 
 @Injectable()
 export class EmployeesEffects implements OnInitEffects {
-  private actions$ = inject(Actions);
-  private loader = inject(EmployeeLoader);
+  private readonly actions$ = inject(Actions);
+  private readonly loader = inject(EmployeeLoader);
 
-  loadEmployees$ = createEffect(() =>
+  readonly loadEmployees$ = createEffect(() =>
     this.actions$.pipe(
       ofType(employeesActions.loadEmployees),
       switchMap(() =>

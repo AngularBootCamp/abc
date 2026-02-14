@@ -15,5 +15,5 @@ import { OrderItemsComponent } from '../order-items/order-items.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrderDetailsComponent {
-  readonly details = input.required<Order | undefined>();
+  public readonly details = input.required<Order | undefined>();
 }

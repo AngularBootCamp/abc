@@ -1,5 +1,5 @@
 <nav>
-  @for (trigger of triggers; track trigger) {
+  @for (trigger of triggers(); track trigger) {
     <button
       (click)="currentTab.set(trigger)"
       [class.active-link]="trigger === currentTab()"

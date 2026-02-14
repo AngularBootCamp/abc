@@ -21,7 +21,7 @@ import { Player } from '../app.types';
   providedIn: 'root'
 })
 export class PlayerService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   readonly selectedPlayerId = new BehaviorSubject<string | undefined>(
     undefined

@@ -18,7 +18,7 @@ export interface Employee {
   providedIn: 'root'
 })
 export class EmployeeLoaderService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   loadEmployees(): Observable<Employee[]> {
     return this.http

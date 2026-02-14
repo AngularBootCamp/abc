@@ -1,18 +1,24 @@
-import { Component, output, input } from '@angular/core';
+import {
+  Component,
+  output,
+  input,
+  ChangeDetectionStrategy
+} from '@angular/core';
 
 import { Task } from '../types';
 
 @Component({
   selector: 'app-todo-list',
-  templateUrl: './todo-list.component.html'
+  templateUrl: './todo-list.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoListComponent {
-  readonly list = input.required<Task[]>();
-  readonly icon = input.required<string>();
+  public readonly list = input.required<Task[]>();
+  public readonly icon = input.required<string>();
 
-  readonly setTaskStatus = output<Task>();
+  public readonly setTaskStatus = output<Task>();
 
-  setStat(task: Task) {
+  protected setStat(task: Task) {
     this.setTaskStatus.emit(task);
   }
 }

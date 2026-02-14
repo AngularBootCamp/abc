@@ -1,4 +1,9 @@
-import { Component, computed, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  signal
+} from '@angular/core';
 
 const meetings = [
   {
@@ -20,17 +25,18 @@ const todoList = [
 
 @Component({
   selector: 'app-user-dashboard',
-  templateUrl: './user-dashboard.component.html'
+  templateUrl: './user-dashboard.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class UserDashboardComponent {
-  showProfile = signal(true);
-  nextMeetings = meetings;
-  todos = signal(todoList);
-  showHideProfileMessage = computed(
+  protected readonly showProfile = signal(true);
+  protected readonly nextMeetings = meetings;
+  protected readonly todos = signal(todoList);
+  protected readonly showHideProfileMessage = computed(
     () => `${this.showProfile() ? 'Hide' : 'Show'} Profile`
   );
 
-  addTodo() {
+  protected addTodo() {
     // set is the basic
     this.todos.set([
       { label: `Task ${this.todos().length + 1}` },

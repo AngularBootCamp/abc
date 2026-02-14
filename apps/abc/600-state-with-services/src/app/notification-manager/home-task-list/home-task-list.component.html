@@ -3,8 +3,8 @@
 <article>
   <header>Complete</header>
   <app-todo-list
+    icon="check_box"
     [list]="(done | async) ?? []"
-    [icon]="checkbox"
     (setTaskStatus)="setStatus($event, true)"
   />
 </article>
@@ -12,8 +12,8 @@
 <article>
   <header>In-Progress</header>
   <app-todo-list
+    icon="check_box_outline_blank"
     [list]="(todo | async) ?? []"
-    [icon]="outline"
     (setTaskStatus)="setStatus($event, false)"
   />
 </article>

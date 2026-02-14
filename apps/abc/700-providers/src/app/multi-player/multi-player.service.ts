@@ -6,7 +6,7 @@ import { ClickService } from '../click.service';
 
 @Injectable()
 export class MultiPlayerService implements ClickService {
-  private socket = inject(Socket);
+  private readonly socket = inject(Socket);
 
   readonly clickCount = this.socket
     .fromEvent<number, 'count'>('count')

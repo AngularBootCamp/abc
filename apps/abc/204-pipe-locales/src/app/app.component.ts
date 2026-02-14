@@ -1,11 +1,11 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  signal
+} from '@angular/core';
 
 import { upcomingSessions } from './sessions';
-
-/**
- * DecimalPipe, CurrencyPipe, PercentPipe, and DatePipe are all localized.
- */
 
 @Component({
   selector: 'app-root',
@@ -14,5 +14,5 @@ import { upcomingSessions } from './sessions';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  sessions = upcomingSessions;
+  protected readonly sessions = signal(upcomingSessions);
 }

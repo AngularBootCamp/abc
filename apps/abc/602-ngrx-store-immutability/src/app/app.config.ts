@@ -1,14 +1,10 @@
-import {
-  ApplicationConfig,
-  provideZoneChangeDetection
-} from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
 import { provideStore } from '@ngrx/store';
 
 import { reducers } from './reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
     provideStore(reducers, {
       runtimeChecks: {
         strictStateSerializability: true,

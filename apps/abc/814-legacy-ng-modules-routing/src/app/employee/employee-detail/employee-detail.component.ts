@@ -10,7 +10,7 @@ import { Employee, EmployeeLoader } from '../employee-loader.service';
   standalone: false
 })
 export class EmployeeDetailComponent {
-  employee: Observable<Employee>;
+  protected readonly employee: Observable<Employee>;
 
   constructor() {
     const route = inject(ActivatedRoute);

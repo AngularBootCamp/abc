@@ -16,9 +16,9 @@ import { Subscription, interval, map } from 'rxjs';
   }
 })
 export class BlinkDirective implements OnDestroy, OnInit {
-  viz = signal('visible');
+  protected viz = signal('visible');
 
-  readonly speed = input(500, { transform: numberAttribute });
+  public readonly speed = input(500, { transform: numberAttribute });
 
   private intervalSubscription: Subscription | undefined;
 

@@ -8,5 +8,5 @@ import { FormsModule } from '@angular/forms';
   imports: [FormsModule]
 })
 export class AppComponent {
-  name = 'John';
+  protected name = 'John';
 }

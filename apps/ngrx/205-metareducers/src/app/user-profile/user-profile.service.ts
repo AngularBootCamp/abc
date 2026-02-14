@@ -12,7 +12,7 @@ const apiUrl = 'https://api.angularbootcamp.com';
 
 @Injectable({ providedIn: 'root' })
 export class UserProfileService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   loadUserProfile(): Observable<UserProfile> {
     const username = 'lgraham'; // This would be retrieved from auth system

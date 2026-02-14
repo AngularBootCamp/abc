@@ -35,7 +35,7 @@ import { PlayerService } from './player.service';
   providedIn: 'root'
 })
 export class PlayerStatsService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
   private playerService = inject(PlayerService);
   private gameService = inject(GameService);
 

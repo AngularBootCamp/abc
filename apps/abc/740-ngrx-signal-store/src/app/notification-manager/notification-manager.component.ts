@@ -1,4 +1,8 @@
-import { Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject
+} from '@angular/core';
 
 import { HomeTaskStore } from '../home-tasks.state';
 import { ModalService } from '../modal.service';
@@ -11,14 +15,15 @@ import { WorkTaskListComponent } from './work-task-list/work-task-list.component
   selector: 'app-notification-manager',
   templateUrl: './notification-manager.component.html',
   styleUrl: './notification-manager.component.scss',
-  imports: [WorkTaskListComponent, HomeTaskListComponent]
+  imports: [WorkTaskListComponent, HomeTaskListComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotificationManagerComponent {
   private readonly homeTaskStore = inject(HomeTaskStore);
   private readonly workTaskStore = inject(WorkTaskStore);
   private readonly modalSvc = inject(ModalService);
 
-  completeAll() {
+  protected completeAll() {
     if (this.modalSvc.confirm('Are you sure?')) {
       this.homeTaskStore.completeAll();
       this.workTaskStore.completeAll();

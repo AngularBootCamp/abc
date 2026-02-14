@@ -7,7 +7,7 @@ const url = '/api/articles';
 
 @Injectable({ providedIn: 'root' })
 export class ArticleLoaderService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   load() {
     return this.http.get<Article[]>(url);

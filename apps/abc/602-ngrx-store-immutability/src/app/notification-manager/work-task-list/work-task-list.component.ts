@@ -1,5 +1,9 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { TodoListComponent } from '../../todo-list/todo-list.component';
@@ -16,22 +20,20 @@ import {
 @Component({
   selector: 'app-work-task-list',
   templateUrl: './work-task-list.component.html',
-  imports: [TodoListComponent, AsyncPipe]
+  imports: [TodoListComponent, AsyncPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WorkTaskListComponent {
-  private store = inject(Store);
+  private readonly store = inject(Store);
 
-  done = this.store.select(selectDoneWork);
-  todo = this.store.select(selectTodoWork);
+  protected readonly done = this.store.select(selectDoneWork);
+  protected readonly todo = this.store.select(selectTodoWork);
 
-  checkbox = 'check_box';
-  outline = 'check_box_outline_blank';
-
-  taskCompleted(task: Task) {
+  protected taskCompleted(task: Task) {
     this.store.dispatch(workTaskActions.taskCompleted({ task }));
   }
 
-  taskReset(task: Task) {
+  protected taskReset(task: Task) {
     this.store.dispatch(workTaskActions.taskReset({ task }));
   }
 }

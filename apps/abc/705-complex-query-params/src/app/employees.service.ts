@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, map, shareReplay, switchMap } from 'rxjs';
+import { map, Observable, shareReplay, switchMap } from 'rxjs';
 
 // Local API server
 // const apiUrl = '/api';
@@ -32,14 +32,11 @@ function convertToAscOrDesc(dir: unknown) {
   providedIn: 'root'
 })
 export class EmployeeService {
-  employees: Observable<Employee[]>;
-  tableOptions: Observable<TableOptions>;
+  private readonly http = inject(HttpClient);
+  private readonly route = inject(ActivatedRoute);
 
-  constructor() {
-    const route = inject(ActivatedRoute);
-    const http = inject(HttpClient);
-
-    this.tableOptions = route.queryParamMap.pipe(
+  readonly tableOptions: Observable<TableOptions> =
+    this.route.queryParamMap.pipe(
       map(params => ({
         sortBy: params.get('sortBy') || '',
         sortDirection: convertToAscOrDesc(
@@ -49,23 +46,21 @@ export class EmployeeService {
       }))
     );
 
-    this.employees = this.tableOptions.pipe(
-      switchMap(options => {
-        const params: { _sort: string; _order: string; q?: string } =
-          {
-            _sort: options.sortBy,
-            _order: options.sortDirection
-          };
+  readonly employees = this.tableOptions.pipe(
+    switchMap(options => {
+      const params: { _sort: string; _order: string; q?: string } = {
+        _sort: options.sortBy,
+        _order: options.sortDirection
+      };
 
-        if (options.filter) {
-          params['q'] = options.filter;
-        }
+      if (options.filter) {
+        params['q'] = options.filter;
+      }
 
-        return http.get<Employee[]>(apiUrl + '/employees', {
-          params
-        });
-      }),
-      shareReplay(1)
-    );
-  }
+      return this.http.get<Employee[]>(apiUrl + '/employees', {
+        params
+      });
+    }),
+    shareReplay(1)
+  );
 }

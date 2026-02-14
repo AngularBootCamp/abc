@@ -16,11 +16,13 @@ import {
   `
 })
 export class BuiltInTransformsComponent {
-  readonly explanation = input.required<string>();
+  public readonly explanation = input.required<string>();
 
-  readonly booleanValue = input(false, {
+  public readonly booleanValue = input(false, {
     transform: booleanAttribute
   });
 
-  readonly numberValue = input(0, { transform: numberAttribute });
+  public readonly numberValue = input(0, {
+    transform: numberAttribute
+  });
 }

@@ -26,8 +26,10 @@ import { EmployeeLoaderService } from '../employee-loader.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class EmployeeViewerComponent {
-  filteredList: Observable<Employee[]>;
-  selectedEmployee: Observable<Employee | undefined>;
+  protected readonly filteredList: Observable<Employee[]>;
+  protected readonly selectedEmployee: Observable<
+    Employee | undefined
+  >;
 
   constructor() {
     const employeeLoader = inject(EmployeeLoaderService);

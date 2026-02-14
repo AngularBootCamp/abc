@@ -1,4 +1,8 @@
-import { Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { HomeTaskState } from '../home-task.state';
@@ -12,35 +16,36 @@ import { WorkTaskListComponent } from './work-task-list/work-task-list.component
   selector: 'app-notification-manager',
   templateUrl: './notification-manager.component.html',
   styleUrl: './notification-manager.component.scss',
-  imports: [WorkTaskListComponent, HomeTaskListComponent]
+  imports: [WorkTaskListComponent, HomeTaskListComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotificationManagerComponent {
-  private store = inject(Store);
+  private readonly store = inject(Store);
 
   constructor() {
     const workTasks: WorkTaskState = {
       done: [
-        { label: 'file paperwork' },
-        { label: 'send emails' },
-        { label: 'work on project A' },
-        { label: 'submit report to manager' }
+        { label: 'File paperwork' },
+        { label: 'Send emails' },
+        { label: 'Work on project A' },
+        { label: 'Submit report to manager' }
       ],
       todo: [
-        { label: 'work on project B' },
-        { label: 'update task list' }
+        { label: 'Work on project B' },
+        { label: 'Update task list' }
       ]
     };
 
     const homeTasks: HomeTaskState = {
       done: [
-        { label: 'cook dinner' },
-        { label: 'go grocery shopping' },
-        { label: 'sweep the floors' },
-        { label: 'do the laundry' }
+        { label: 'Cook dinner' },
+        { label: 'Go grocery shopping' },
+        { label: 'Sweep the floors' },
+        { label: 'Do the laundry' }
       ],
       todo: [
-        { label: 'fix the leaky faucet' },
-        { label: 'mow the lawn' }
+        { label: 'Fix the leaky faucet' },
+        { label: 'Mow the lawn' }
       ]
     };
 
@@ -49,7 +54,7 @@ export class NotificationManagerComponent {
     );
   }
 
-  completeAll() {
+  protected completeAll() {
     this.store.dispatch(globalActions.completeAll());
   }
 }

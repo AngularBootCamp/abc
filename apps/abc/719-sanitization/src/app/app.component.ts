@@ -8,7 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class AppComponent {
   private readonly sanitizer = inject(DomSanitizer);
 
-  stringWithHtml = signal(`
+  protected readonly stringWithHtml = signal(`
     <button onClick="window.alert('hello from old-school HTML/JS');">
       Press Me
     </button>
@@ -16,7 +16,7 @@ export class AppComponent {
   `);
 
   // TODO: Make sure the HTML is actually safe. :)
-  htmlProperty = computed(() =>
+  protected readonly htmlProperty = computed(() =>
     this.sanitizer.bypassSecurityTrustHtml(this.stringWithHtml())
   );
 }

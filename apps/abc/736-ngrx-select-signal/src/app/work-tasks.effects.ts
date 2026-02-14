@@ -17,10 +17,10 @@ function toTask(task: WorkTask) {
 
 @Injectable()
 export class WorkTasksEffects implements OnInitEffects {
-  private actions$ = inject(Actions);
-  private loader = inject(WorkTaskLoader);
+  private readonly actions$ = inject(Actions);
+  private readonly loader = inject(WorkTaskLoader);
 
-  loadWorkTasks$ = createEffect(() =>
+  readonly loadWorkTasks$ = createEffect(() =>
     this.actions$.pipe(
       ofType(workTaskActions.loadWorkTasks),
       switchMap(() =>
@@ -41,7 +41,7 @@ export class WorkTasksEffects implements OnInitEffects {
     )
   );
 
-  handleError = createEffect(
+  readonly handleError = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(workTaskActions.loadWorkTasksFailure),

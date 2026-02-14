@@ -31,7 +31,7 @@ import { PlayerService } from './player.service';
 
 @Injectable()
 export class PureObservablePlayerService extends PlayerService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   private loadList = new Subject<void>();
   readonly players = this.loadList.pipe(

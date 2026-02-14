@@ -1,5 +1,9 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import {
@@ -16,22 +20,20 @@ import { Task } from '../../types';
 @Component({
   selector: 'app-home-task-list',
   templateUrl: './home-task-list.component.html',
-  imports: [TodoListComponent, AsyncPipe]
+  imports: [TodoListComponent, AsyncPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeTaskListComponent {
-  private store = inject(Store);
+  private readonly store = inject(Store);
 
-  done = this.store.select(selectDoneHome);
-  todo = this.store.select(selectTodoHome);
+  protected readonly done = this.store.select(selectDoneHome);
+  protected readonly todo = this.store.select(selectTodoHome);
 
-  checkbox = 'check_box';
-  outline = 'check_box_outline_blank';
-
-  taskCompleted(task: Task) {
+  protected taskCompleted(task: Task) {
     this.store.dispatch(homeTaskActions.taskCompleted({ task }));
   }
 
-  taskReset(task: Task) {
+  protected taskReset(task: Task) {
     this.store.dispatch(homeTaskActions.taskReset({ task }));
   }
 }

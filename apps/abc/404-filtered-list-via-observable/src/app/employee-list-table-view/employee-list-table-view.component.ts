@@ -14,7 +14,7 @@ import { Employee } from '../employee';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeListTableViewComponent {
-  readonly list = input.required<Employee[]>();
-  readonly selectedId = input.required<number | null>();
-  readonly selectId = output<number>();
+  public readonly list = input.required<Employee[]>();
+  public readonly selectedId = input.required<number | null>();
+  public readonly selectId = output<number>();
 }

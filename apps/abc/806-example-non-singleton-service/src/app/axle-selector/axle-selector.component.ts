@@ -10,17 +10,17 @@ import { CarStateService } from '../car-state.service';
   imports: [AsyncPipe]
 })
 export class AxleSelectorComponent {
-  private carStateService = inject(CarStateService);
+  private readonly carStateService = inject(CarStateService);
 
-  n = this.carStateService.state.pipe(
+  protected readonly n = this.carStateService.state.pipe(
     map(carState => carState.nAxles)
   );
 
-  more() {
+  protected more() {
     this.carStateService.changeAxles(1);
   }
 
-  less() {
+  protected less() {
     this.carStateService.changeAxles(-1);
   }
 }

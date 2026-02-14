@@ -19,9 +19,10 @@ const apiUrl = 'https://api.angularbootcamp.com';
 
 @Injectable()
 export class SinglePlayerService implements ClickService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
-  private refresh = new Subject<void>();
+  private readonly refresh = new Subject<void>();
+
   readonly clickCount = this.refresh.pipe(
     startWith(undefined),
     switchMap(() =>

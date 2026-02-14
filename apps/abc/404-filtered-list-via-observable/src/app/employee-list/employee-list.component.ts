@@ -2,7 +2,8 @@ import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  inject
+  inject,
+  signal
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import {
@@ -33,23 +34,35 @@ import { EmployeeLoaderService } from '../employee-loader.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeListComponent {
-  // We make sure that the sort options will always have a value
-  // that is the name of a property on Employee
-  sortCriteria: { display: string; value: keyof Employee }[] = [
+  // The sort options will always have a value that is the name of a
+  // property on Employee.
+  protected readonly sortCriteria = signal<
+    {
+      display: string;
+      value: keyof Employee;
+    }[]
+  >([
     { display: 'Last Name', value: 'lastName' },
     { display: 'Hours Worked', value: 'hoursWorked' }
-  ];
-  nameFilter = new FormControl('', { nonNullable: true });
-  // We tell TypeScript that the value of this will always be a
-  // property of Employee, which works because of the types of
-  // sortCriteria
-  sort = new FormControl<keyof Employee>(this.sortCriteria[0].value, {
+  ]);
+
+  // Tell TypeScript that the value of this will always be a
+  // property of Employee, which works because of the type of
+  // sortCriteria.
+  protected readonly sort = new FormControl<keyof Employee>(
+    this.sortCriteria()[0].value,
+    {
+      nonNullable: true
+    }
+  );
+
+  protected readonly nameFilter = new FormControl('', {
     nonNullable: true
   });
 
-  filteredList: Observable<Employee[]>;
-  selectedId = new Subject<number>();
-  selectedEmployee: Observable<Employee>;
+  protected readonly filteredList: Observable<Employee[]>;
+  protected readonly selectedId = new Subject<number>();
+  protected readonly selectedEmployee: Observable<Employee>;
 
   constructor() {
     const loader = inject(EmployeeLoaderService);
@@ -63,7 +76,7 @@ export class EmployeeListComponent {
       startWith(this.sort.value)
     );
 
-    // List reacts to filter and sort changes
+    // List reacts to filter and sort changes.
     this.filteredList = combineLatest([
       nameFilter.pipe(
         debounceTime(250),
@@ -72,13 +85,13 @@ export class EmployeeListComponent {
       sort
     ]).pipe(
       // list.sort() mutates the array, so our linter makes sure
-      // we are sorting a copy of the original list, to be safe
+      // we are sorting a copy of the original list, to be safe.
       map(([list, sortKey]) =>
         [...list].sort(propertyComparator(sortKey))
       )
     );
 
-    // Detail reacts to selected employee changes
+    // Detail reacts to selected employee changes.
     this.selectedEmployee = this.selectedId.pipe(
       switchMap(id => loader.getDetails(id))
     );

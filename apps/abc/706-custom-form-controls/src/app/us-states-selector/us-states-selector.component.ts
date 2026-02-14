@@ -1,4 +1,8 @@
-import { Component, OnDestroy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy
+} from '@angular/core';
 import {
   ControlValueAccessor,
   FormControl,
@@ -18,36 +22,37 @@ import { usStates, UsStates } from './us-states';
       multi: true
     }
   ],
-  imports: [ReactiveFormsModule]
+  imports: [ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsStatesSelectorComponent
   implements ControlValueAccessor, OnDestroy
 {
-  usStates: UsStates[] = usStates;
-  selectedState = new FormControl();
-  onChange: any;
-  onTouched: any;
+  protected usStates: UsStates[] = usStates;
+  protected readonly selectedState = new FormControl();
+  protected onChange: any;
+  protected onTouched: any;
 
   // When data in the inner form control changes, update the outside form control.
-  sub = this.selectedState.valueChanges.subscribe(
+  private readonly sub = this.selectedState.valueChanges.subscribe(
     v => this.onChange && this.onChange(v)
   );
 
   // When data changes from the outside, update the inner form control.
-  writeValue(obj: any): void {
+  public writeValue(obj: any): void {
     this.selectedState.setValue(obj);
   }
 
-  registerOnChange(fn: any): void {
+  public registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  public registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 
   // When the outside disabled state is set, disable/enable the inner form control
-  setDisabledState(isDisabled: boolean) {
+  public setDisabledState(isDisabled: boolean) {
     if (isDisabled) {
       this.selectedState.disable();
     } else {

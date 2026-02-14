@@ -24,7 +24,7 @@ function logWithTimestamp(messageList: unknown[]) {
   providedIn: 'root'
 })
 export class CompanyLoader {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   loadOneCompany() {
     return this.http.get<Company[]>(apiUrl + '/companies').pipe(

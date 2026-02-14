@@ -1,24 +1,24 @@
 <article>
-  <header>Sales Report: {{ reportDate | date: 'mediumDate' }}</header>
+  <header>Sales as of {{ reportDate() | date }}</header>
   <table>
     <thead>
       <tr>
         <th>Name</th>
-        <th class="number-column">Units Sold (millions)</th>
-        <th class="number-column">Total</th>
+        <th class="number-column">Units (millions)</th>
+        <th class="number-column">Total Revenue</th>
         <th class="number-column">%</th>
       </tr>
     </thead>
 
     <tbody>
-      @for (record of records; track record) {
+      @for (record of sales(); track record) {
         <tr>
-          <td>{{ record.empName }}</td>
+          <td>{{ record.name }}</td>
           <td class="number-column">
             {{ record.units | number: '1.4-4' }}
           </td>
           <td class="number-column">
-            {{ record.totalRevenue | currency: 'USD' : 'symbol' }}
+            {{ record.revenue | currency: 'USD' : 'symbol' }}
           </td>
           <td class="number-column">
             {{ record.percent / 100 | percent: '1.2-2' }}
@@ -28,8 +28,10 @@
     </tbody>
   </table>
 
-  Report expires:
-  {{ expirationDate | date: 'longDate' | uppercase }}
+  <footer>
+    Report expires
+    {{ expirationDate() | date: 'longDate' | uppercase }}
+  </footer>
 </article>
 
 <button (click)="showJSON.set(!showJSON())">
@@ -37,5 +39,5 @@
 </button>
 
 @if (showJSON()) {
-  <pre>{{ records | json }}</pre>
+  <pre>{{ sales() | json }}</pre>
 }

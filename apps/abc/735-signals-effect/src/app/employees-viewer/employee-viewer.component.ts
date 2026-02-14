@@ -1,4 +1,9 @@
-import { Component, Signal, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Signal,
+  inject
+} from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { map, of, switchMap } from 'rxjs';
@@ -17,11 +22,12 @@ import { EmployeeLoaderService } from '../employee-loader.service';
     EmployeeFilterComponent,
     EmployeeListComponent,
     EmployeeDetailComponent
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class EmployeeViewerComponent {
-  filteredList: Signal<Employee[]>;
-  selectedEmployee: Signal<Employee | undefined>;
+  protected readonly filteredList: Signal<Employee[]>;
+  protected readonly selectedEmployee: Signal<Employee | undefined>;
 
   constructor() {
     const employeeLoader = inject(EmployeeLoaderService);

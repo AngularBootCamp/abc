@@ -1,5 +1,9 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 
@@ -8,10 +12,11 @@ import { map } from 'rxjs';
     <h2>Hello {{ name | async }}!</h2>
     <p>I am a sample component.</p>
   `,
-  imports: [AsyncPipe]
+  imports: [AsyncPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NameComponent {
-  name = inject(ActivatedRoute).paramMap.pipe(
+  protected readonly name = inject(ActivatedRoute).paramMap.pipe(
     map(params => params.get('name') as string)
   );
 }

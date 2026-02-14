@@ -8,7 +8,7 @@ import { ScoreComponent } from './score/score.component';
   imports: [ScoreComponent]
 })
 export class AppComponent {
-  onNotify(notification: string) {
+  protected onNotify(notification: string) {
     window.alert(notification);
   }
 }

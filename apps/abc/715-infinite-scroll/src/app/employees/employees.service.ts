@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
 
 export interface Employee {
   id: number;
@@ -22,9 +21,7 @@ const pageSize = 10;
   providedIn: 'root'
 })
 export class EmployeeService {
-  private http = inject(HttpClient);
-
-  employees: Observable<Employee[]> | undefined;
+  private readonly http = inject(HttpClient);
 
   loadEmployees(pageIndex: number) {
     const params = {

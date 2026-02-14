@@ -20,14 +20,11 @@ import { Task, TaskToggle } from '../../types';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WorkTaskListComponent {
-  readonly done = input.required<Task[]>();
-  readonly todo = input.required<Task[]>();
-  readonly toggleTask = output<TaskToggle>();
+  public readonly done = input.required<Task[]>();
+  public readonly todo = input.required<Task[]>();
+  public readonly toggleTask = output<TaskToggle>();
 
-  checkbox = 'check_box';
-  outline = 'check_box_outline_blank';
-
-  toggle(outputTask: Task, outputComplete: boolean) {
+  protected toggle(outputTask: Task, outputComplete: boolean) {
     this.toggleTask.emit({
       task: outputTask,
       complete: outputComplete

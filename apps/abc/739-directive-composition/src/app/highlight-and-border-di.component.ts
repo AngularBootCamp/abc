@@ -1,4 +1,8 @@
-import { Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject
+} from '@angular/core';
 
 import { BorderDirective } from './border.directive';
 import { HighlightDirective } from './highlight.directive';
@@ -13,11 +17,12 @@ import { HighlightDirective } from './highlight.directive';
       </span>
     </p>
   `,
-  hostDirectives: [HighlightDirective, BorderDirective]
+  hostDirectives: [HighlightDirective, BorderDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HighlightAndBorderDiComponent {
-  highlight = inject(HighlightDirective);
-  border = inject(BorderDirective);
+  private readonly highlight = inject(HighlightDirective);
+  private readonly border = inject(BorderDirective);
 
   constructor() {
     this.highlight.color.set('var(--abc-category-7-color)');

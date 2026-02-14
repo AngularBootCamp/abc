@@ -6,7 +6,7 @@
   </button>
 
   <ul class="collection">
-    @for (employee of employeeList; track employee) {
+    @for (employee of employeeList(); track employee) {
       <li>
         <strong>{{ employee.name }}</strong>
         @for (role of employee.roles; track $index) {

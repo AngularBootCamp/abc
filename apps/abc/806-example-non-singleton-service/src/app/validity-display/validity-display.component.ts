@@ -10,8 +10,8 @@ import { CarStateService } from '../car-state.service';
   imports: [AsyncPipe]
 })
 export class ValidityDisplayComponent {
-  ok: Observable<boolean>;
-  message: Observable<string>;
+  protected readonly ok: Observable<boolean>;
+  protected readonly message: Observable<string>;
 
   constructor() {
     const carStateService = inject(CarStateService);

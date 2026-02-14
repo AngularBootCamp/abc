@@ -18,7 +18,7 @@ export class OrderListComponent {
 
   // -------- external API above, internal implementation below
 
-  pickOrder(order: Order) {
+  protected pickOrder(order: Order) {
     this.selectOrder.emit(order);
   }
 }

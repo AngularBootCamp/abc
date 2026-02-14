@@ -47,5 +47,7 @@ function sampleAnnouncements() {
   ]
 })
 export class AppComponent {
-  announcements = signal<Announcement[]>(sampleAnnouncements());
+  protected readonly announcements = signal<Announcement[]>(
+    sampleAnnouncements()
+  );
 }

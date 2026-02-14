@@ -11,11 +11,11 @@ import { Video } from '../dashboard.types';
   styleUrl: './top-list.component.scss'
 })
 export class TopListComponent {
-  readonly topList = input.required<Video[]>();
-  readonly selectedVideo = input.required<Video | undefined>();
-  readonly videoChanged = output<Video>();
+  public readonly topList = input.required<Video[]>();
+  public readonly selectedVideo = input.required<Video | undefined>();
+  public readonly videoChanged = output<Video>();
 
-  selectVideo(video: Video) {
+  protected selectVideo(video: Video) {
     this.videoChanged.emit(video);
   }
 }

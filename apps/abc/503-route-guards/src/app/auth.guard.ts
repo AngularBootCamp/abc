@@ -13,6 +13,7 @@ export function AuthGuard(
 ) {
   const authService = inject(AuthService);
   const router = inject(Router);
+
   console.log('Checking user access to route...', route);
 
   if (authService.currentUserHasAccessTo(route)) {

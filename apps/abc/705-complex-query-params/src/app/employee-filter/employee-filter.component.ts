@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   OnDestroy,
   effect,
@@ -12,16 +13,17 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 @Component({
   selector: 'app-employee-filter',
   templateUrl: './employee-filter.component.html',
-  imports: [ReactiveFormsModule]
+  imports: [ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeFilterComponent implements OnDestroy {
-  readonly filterTerm = input.required<string | undefined>();
+  public readonly filterTerm = input.required<string | undefined>();
 
-  private router = inject(Router);
+  private readonly router = inject(Router);
 
-  filter = new FormControl();
+  protected readonly filter = new FormControl();
 
-  private controlSub = this.filter.valueChanges
+  private readonly controlSub = this.filter.valueChanges
     .pipe(debounceTime(300), distinctUntilChanged())
     .subscribe(searchTerm => {
       // If filter is an empty string, replace with undefined.

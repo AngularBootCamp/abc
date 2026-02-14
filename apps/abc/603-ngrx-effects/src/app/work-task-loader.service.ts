@@ -21,7 +21,7 @@ const apiUrl = 'https://api.angularbootcamp.com';
   providedIn: 'root'
 })
 export class WorkTaskLoader {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   getList(): Observable<WorkTask[]> {
     return this.http.get<WorkTask[]>(apiUrl + '/worktasks');

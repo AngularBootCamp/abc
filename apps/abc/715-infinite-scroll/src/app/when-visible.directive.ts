@@ -11,9 +11,9 @@ import {
   selector: '[appWhenVisible]'
 })
 export class WhenVisibleDirective implements OnInit, OnDestroy {
-  private element = inject(ElementRef);
+  private readonly element = inject(ElementRef);
 
-  readonly appWhenVisible = output<void>();
+  public readonly appWhenVisible = output<void>();
 
   private observer: IntersectionObserver | undefined;
 

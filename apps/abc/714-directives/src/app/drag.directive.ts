@@ -16,15 +16,16 @@ import { Directive, signal } from '@angular/core';
   }
 })
 export class DragDirective {
-  x = signal(0);
-  y = signal(0);
+  protected readonly x = signal(0);
+  protected readonly y = signal(0);
 
   private startX = 0;
   private startY = 0;
-  private mm = this.mousemove.bind(this);
-  private mu = this.mouseup.bind(this);
 
-  mousedown(event: MouseEvent) {
+  private readonly mm = this.mousemove.bind(this);
+  private readonly mu = this.mouseup.bind(this);
+
+  protected mousedown(event: MouseEvent) {
     event.preventDefault();
     this.startX = event.pageX - this.x();
     this.startY = event.pageY - this.y();
@@ -33,12 +34,12 @@ export class DragDirective {
     document.addEventListener('mouseup', this.mu);
   }
 
-  mousemove(event: MouseEvent) {
+  protected mousemove(event: MouseEvent) {
     this.x.set(event.pageX - this.startX);
     this.y.set(event.pageY - this.startY);
   }
 
-  mouseup() {
+  protected mouseup() {
     document.removeEventListener('mousemove', this.mm);
     document.removeEventListener('mouseup', this.mu);
   }

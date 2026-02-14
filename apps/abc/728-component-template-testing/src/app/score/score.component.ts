@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   input,
   numberAttribute,
@@ -18,15 +19,16 @@ import {
     <p>
       <button (click)="onNotify()">Notify</button>
     </p>
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ScoreComponent {
-  readonly value = input.required<number, unknown>({
+  public readonly value = input.required<number, unknown>({
     transform: numberAttribute
   });
-  readonly notify = output<string>();
+  public readonly notify = output<string>();
 
-  onNotify() {
+  protected onNotify() {
     this.notify.emit('Your score was ' + this.value());
   }
 }

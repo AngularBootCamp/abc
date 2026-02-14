@@ -14,22 +14,19 @@ import { Task } from '../../types';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WorkTaskListComponent {
-  done = signal<Task[]>([
+  protected readonly done = signal<Task[]>([
     { label: 'file paperwork' },
     { label: 'send emails' },
     { label: 'work on project A' },
     { label: 'submit report to manager' }
   ]);
 
-  todo = signal<Task[]>([
+  protected readonly todo = signal<Task[]>([
     { label: 'work on project B' },
     { label: 'update task list' }
   ]);
 
-  checkbox = 'check_box';
-  outline = 'check_box_outline_blank';
-
-  toggleTask(task: Task, complete: boolean) {
+  protected toggleTask(task: Task, complete: boolean) {
     if (complete) {
       this.done.update(arr =>
         arr.filter(curTask => curTask !== task)

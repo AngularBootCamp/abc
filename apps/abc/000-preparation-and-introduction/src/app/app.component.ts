@@ -14,7 +14,7 @@ import { ColorSchemeObserver } from '@class-materials/shared/util-color-scheme-o
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  readonly colorScheme = toSignal(
+  protected readonly colorScheme = toSignal(
     inject(ColorSchemeObserver).observe()
   );
 }

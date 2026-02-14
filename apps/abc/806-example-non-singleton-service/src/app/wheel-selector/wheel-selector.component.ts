@@ -11,11 +11,11 @@ import { CarStateService, wheelTypes } from '../car-state.service';
   imports: [AsyncPipe]
 })
 export class WheelSelectorComponent {
-  private carStateService = inject(CarStateService);
+  private readonly carStateService = inject(CarStateService);
 
   // If you need to combine synchronous and asynchronous data
   // in the template, do it in TypeScript.
-  typesAndQtys = this.carStateService.state.pipe(
+  protected readonly typesAndQtys = this.carStateService.state.pipe(
     map(carState =>
       carState.wheelQtys.map((q, index) => ({
         wt: wheelTypes[index],
@@ -24,11 +24,11 @@ export class WheelSelectorComponent {
     )
   );
 
-  more(i: number) {
+  protected more(i: number) {
     this.carStateService.changeWheelQty(i, 1);
   }
 
-  less(i: number) {
+  protected less(i: number) {
     this.carStateService.changeWheelQty(i, -1);
   }
 }

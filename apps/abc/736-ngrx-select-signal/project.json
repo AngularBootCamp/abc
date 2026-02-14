@@ -16,7 +16,7 @@
         },
         "index": "apps/abc/736-ngrx-select-signal/src/index.html",
         "browser": "apps/abc/736-ngrx-select-signal/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [],
         "tsConfig": "apps/abc/736-ngrx-select-signal/tsconfig.app.json",
         "assets": [
           "apps/abc/736-ngrx-select-signal/src/favicon.ico",

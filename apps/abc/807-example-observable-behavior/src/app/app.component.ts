@@ -15,10 +15,10 @@ interface Person {
   imports: [AsyncPipe]
 })
 export class AppComponent {
-  showData = true;
-  showExtraTime = true;
+  protected showData = true;
+  protected showExtraTime = true;
 
-  name = inject(HttpClient)
+  protected readonly name = inject(HttpClient)
     .get<Person>('https://swapi.dev/api/people/11/', {
       headers: jsonRequestHeaders
     })
@@ -28,16 +28,18 @@ export class AppComponent {
     );
 
   // Example of making an Observable:
-  time = new Observable<number>((observer: Observer<number>) => {
-    console.log('Subscribing to time');
-    const handle = window.setInterval(() => {
-      console.log('emitting time');
-      observer.next(new Date().getTime() % 10000);
-    }, 100);
-    // stop interval on unsubscribe
-    return () => {
-      console.log('Unsubscribing to time');
-      clearInterval(handle);
-    };
-  }).pipe(share()); // Try it without share().
+  protected readonly time = new Observable<number>(
+    (observer: Observer<number>) => {
+      console.log('Subscribing to time');
+      const handle = window.setInterval(() => {
+        console.log('emitting time');
+        observer.next(new Date().getTime() % 10000);
+      }, 100);
+      // stop interval on unsubscribe
+      return () => {
+        console.log('Unsubscribing to time');
+        clearInterval(handle);
+      };
+    }
+  ).pipe(share()); // Try it without share().
 }

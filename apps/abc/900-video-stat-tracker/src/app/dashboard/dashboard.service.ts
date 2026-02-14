@@ -28,10 +28,10 @@ const apiUrl = 'https://api.angularbootcamp.com';
   providedIn: 'root'
 })
 export class DashboardService {
-  private http = inject(HttpClient);
-  private router = inject(Router);
+  private readonly http = inject(HttpClient);
+  private readonly router = inject(Router);
 
-  filterForm: FormGroup<{
+  public readonly filterForm: FormGroup<{
     region: FormControl<string>;
     dateTo: FormControl<string>;
     dateFrom: FormControl<string>;
@@ -40,50 +40,48 @@ export class DashboardService {
     middleAged: FormControl<boolean>;
     retired: FormControl<boolean>;
   }>;
-  currentVideo: Observable<Video | undefined>;
-  videoList: Observable<Video[]>;
+  public readonly currentVideo: Observable<Video | undefined>;
+  public readonly videoList: Observable<Video[]>;
 
-  private selectedVideoId: Observable<string | undefined>;
+  private readonly selectedVideoId: Observable<string | undefined>;
 
   constructor() {
     const formBuilder = inject(NonNullableFormBuilder);
     const activeRoute = inject(ActivatedRoute);
 
     this.selectedVideoId = activeRoute.queryParamMap.pipe(
-      // query params are optional, so make sure we explicitly handle
-      // that fact
+      // Query params are optional, so make sure we explicitly handle that.
       map(paramMap => paramMap.get('videoId') || undefined)
     );
 
     this.videoList = this.http.get<Video[]>(apiUrl + '/videos').pipe(
-      // Consider the selected video once the list arrives
-      // If we don't have one yet, we need to set the first video
-      // as the selected video.
-      // withLatestFrom will only trigger as the list changes
+      // Consider the selected video once the list arrives. If we don't
+      // have one yet, we need to set the first video as the selected
+      // video. `withLatestFrom` will only trigger as the list changes.
       withLatestFrom(this.selectedVideoId, (list, id) => ({
         list,
         id
       })),
-      // use a tap to make it explicit that we are triggering
-      // a side effect
+      // Use a tap to make it explicit that we are triggering
+      // a side effect.
       tap(({ list, id }) => {
         if (!id) {
-          // no selected video id, so initialize it with the first
-          // video in the list
+          // There's no selected video id, so initialize it with the first
+          // video in the list.
           const navigationExtras = {
             queryParams: { videoId: list[0].id }
           };
-          // "[]" means don't actually navigate, we are just looking
-          // to update the query parameters
+          // "[]" means don't actually navigate; we're just updating the
+          // query parameters.
           void this.router.navigate([], navigationExtras);
         }
       }),
-      // We are done with tasks involving the selected id
-      // so pair back to just the list
+      // We are done with tasks involving the selected id so pare back
+      // to just the list.
       map(({ list }) => list),
-      // If any future subscribers arrive, make sure
-      // that we are giving them the previous results
-      // rather than repeating the process described above
+      // If any future subscribers arrive, make sure that we are giving
+      // them the previous results rather than repeating the process
+      // described above.
       shareReplay(1)
     );
 

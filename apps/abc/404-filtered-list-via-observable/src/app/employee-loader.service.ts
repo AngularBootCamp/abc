@@ -16,11 +16,15 @@ const apiLatency = 100;
 // Set to 3000 to see that out-of-order replies don't cause any problem:
 const apiJitter = 100;
 
+function randomDelay() {
+  return Math.round(apiLatency + Math.random() * apiJitter);
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeLoaderService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   getList(searchText: string): Observable<Employee[]> {
     const params = { q: searchText, _limit: '20' };
@@ -37,8 +41,4 @@ export class EmployeeLoaderService {
       .get<Employee>(`${apiUrl}/employees/${employeeId}`)
       .pipe(delay(randomDelay()));
   }
-}
-
-function randomDelay() {
-  return Math.round(apiLatency + Math.random() * apiJitter);
 }

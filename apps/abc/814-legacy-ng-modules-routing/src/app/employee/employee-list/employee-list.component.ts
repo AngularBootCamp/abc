@@ -8,5 +8,5 @@ import { EmployeeLoader } from '../employee-loader.service';
   standalone: false
 })
 export class EmployeeListComponent {
-  list = inject(EmployeeLoader).getList();
+  protected readonly list = inject(EmployeeLoader).getList();
 }

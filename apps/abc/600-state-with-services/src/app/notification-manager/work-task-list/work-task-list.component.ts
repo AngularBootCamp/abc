@@ -21,19 +21,16 @@ import { WorkTaskListService } from './work-task-list.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WorkTaskListComponent {
-  private workTaskListService = inject(WorkTaskListService);
+  private readonly workTaskListService = inject(WorkTaskListService);
 
-  done = toSignal(this.workTaskListService.done, {
+  protected readonly done = toSignal(this.workTaskListService.done, {
     initialValue: []
   });
-  todo = toSignal(this.workTaskListService.todo, {
+  protected readonly todo = toSignal(this.workTaskListService.todo, {
     initialValue: []
   });
 
-  checkbox = 'check_box';
-  outline = 'check_box_outline_blank';
-
-  setStatus(task: Task, complete: boolean) {
+  protected setStatus(task: Task, complete: boolean) {
     this.workTaskListService.setTaskStatus(task, complete);
   }
 }

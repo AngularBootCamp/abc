@@ -14,5 +14,7 @@ import { EmployeeLoaderService } from './employee-loader.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  employees$ = inject(EmployeeLoaderService).loadEmployees();
+  protected readonly employees$ = inject(
+    EmployeeLoaderService
+  ).loadEmployees();
 }

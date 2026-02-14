@@ -10,10 +10,10 @@ import { OrderListComponent } from '../order-list/order-list.component';
   imports: [OrderListComponent, OrderDetailsComponent]
 })
 export class OrderManagerComponent {
-  orderList = fakeApiOrders;
-  selectedOrder: Order | undefined;
+  protected orderList = fakeApiOrders;
+  protected selectedOrder: Order | undefined;
 
-  setOrder(order: Order) {
+  protected setOrder(order: Order) {
     this.selectedOrder = order;
   }
 }

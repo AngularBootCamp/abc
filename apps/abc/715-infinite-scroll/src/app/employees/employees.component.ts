@@ -1,5 +1,9 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject
+} from '@angular/core';
 import {
   Observable,
   Subject,
@@ -18,14 +22,15 @@ import { Employee, EmployeeService } from './employees.service';
   selector: 'app-employees',
   templateUrl: './employees.component.html',
   styleUrl: './employees.component.scss',
-  imports: [WhenVisibleDirective, AsyncPipe]
+  imports: [WhenVisibleDirective, AsyncPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeesComponent {
-  private employeeService = inject(EmployeeService);
+  private readonly employeeService = inject(EmployeeService);
 
-  doneLoading: Observable<boolean>;
-  private fetchEmployees = new Subject<void>();
-  employees: Observable<Employee[]>;
+  protected readonly doneLoading: Observable<boolean>;
+  private readonly fetchEmployees = new Subject<void>();
+  protected readonly employees: Observable<Employee[]>;
 
   constructor() {
     const pagedResults = this.fetchEmployees.pipe(
@@ -50,7 +55,7 @@ export class EmployeesComponent {
     );
   }
 
-  loadMore() {
+  protected loadMore() {
     console.log('Loading...');
     this.fetchEmployees.next();
   }

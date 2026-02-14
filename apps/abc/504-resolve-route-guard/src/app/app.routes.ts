@@ -8,7 +8,7 @@ export const appRoutes: Routes = [
   { path: '', redirectTo: 'employees', pathMatch: 'full' },
   { path: 'employees', component: EmployeeListComponent },
   {
-    path: 'employee/:employeeId',
+    path: 'employees/:employeeId',
     component: EmployeeDetailComponent,
     resolve: { employee: EmployeeResolver }
   }

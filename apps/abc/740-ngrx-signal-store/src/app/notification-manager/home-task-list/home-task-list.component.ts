@@ -1,4 +1,8 @@
-import { Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject
+} from '@angular/core';
 
 import { HomeTaskStore } from '../../home-tasks.state';
 import { TodoListComponent } from '../../todo-list/todo-list.component';
@@ -7,17 +11,16 @@ import { Task } from '../../types';
 @Component({
   selector: 'app-home-task-list',
   templateUrl: './home-task-list.component.html',
-  imports: [TodoListComponent]
+  imports: [TodoListComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeTaskListComponent {
   private readonly store = inject(HomeTaskStore);
-  done = this.store.doneHome;
-  todo = this.store.todoHome;
 
-  checkbox = 'check_box';
-  outline = 'check_box_outline_blank';
+  protected readonly done = this.store.doneHome;
+  protected readonly todo = this.store.todoHome;
 
-  homeTask(task: Task, complete: boolean) {
+  protected homeTask(task: Task, complete: boolean) {
     this.store.setHomeState(task, complete);
   }
 }

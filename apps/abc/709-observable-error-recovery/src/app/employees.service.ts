@@ -23,7 +23,7 @@ export interface Employee {
   providedIn: 'root'
 })
 export class EmployeesService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   // Where should the catchError be placed to recover gracefully?
 

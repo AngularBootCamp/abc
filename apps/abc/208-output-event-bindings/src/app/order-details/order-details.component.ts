@@ -15,7 +15,7 @@ import { OrderItemsComponent } from '../order-items/order-items.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrderDetailsComponent {
-  readonly sod = input.required<Order | undefined>({
+  public readonly sod = input.required<Order | undefined>({
     // eslint-disable-next-line @angular-eslint/no-input-rename
     alias: 'selectedOrderDetails'
   });

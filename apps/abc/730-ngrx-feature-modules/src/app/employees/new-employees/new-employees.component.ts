@@ -1,5 +1,9 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { EmployeeDisplayComponent } from '../employee-display/employee-display.component';
@@ -10,16 +14,17 @@ import * as EmployeesSelectors from '../employees.selectors';
 @Component({
   selector: 'app-new-employees',
   templateUrl: './new-employees.component.html',
-  imports: [EmployeeDisplayComponent, AsyncPipe]
+  imports: [EmployeeDisplayComponent, AsyncPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class NewEmployeesComponent {
-  private store = inject(Store);
+  private readonly store = inject(Store);
 
-  newEmpList = this.store.select(
+  protected readonly newEmpList = this.store.select(
     EmployeesSelectors.selectNewEmployees
   );
 
-  ack(employee: Employee) {
+  protected ack(employee: Employee) {
     this.store.dispatch(employeesActions.ackEmployee({ employee }));
   }
 }

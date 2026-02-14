@@ -17,15 +17,12 @@ import { HomeTaskListService } from './home-task-list.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeTaskListComponent {
-  private homeTaskListService = inject(HomeTaskListService);
+  private readonly homeTaskListService = inject(HomeTaskListService);
 
-  done = this.homeTaskListService.done;
-  todo = this.homeTaskListService.todo;
+  protected readonly done = this.homeTaskListService.done;
+  protected readonly todo = this.homeTaskListService.todo;
 
-  checkbox = 'check_box';
-  outline = 'check_box_outline_blank';
-
-  setStatus(task: Task, complete: boolean) {
+  protected setStatus(task: Task, complete: boolean) {
     this.homeTaskListService.setTaskStatus(task, complete);
   }
 }

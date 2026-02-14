@@ -6,10 +6,10 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class CarState {
-  nAxles = 0;
-  wheelQtys: number[] = [];
-  ok = true;
-  message = '';
+  public nAxles = 0;
+  public wheelQtys: number[] = [];
+  public ok = true;
+  public message = '';
 }
 
 function calculateValidity(state: CarState) {

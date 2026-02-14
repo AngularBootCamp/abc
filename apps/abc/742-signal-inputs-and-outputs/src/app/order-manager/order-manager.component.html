@@ -3,8 +3,8 @@
 
   <app-order-list
     (selectOrder)="setOrder($event)"
-    [orders]="orderList"
+    [orders]="orderList()"
   />
 
-  <app-order-details [selectedOrderDetails]="selectedOrder" />
+  <app-order-details [selectedOrderDetails]="selectedOrder()" />
 </article>

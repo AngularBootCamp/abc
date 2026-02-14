@@ -1,4 +1,8 @@
-import { Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { Employee } from '../employee';
@@ -7,9 +11,10 @@ import { Employee } from '../employee';
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss',
-  imports: [RouterLink]
+  imports: [RouterLink],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeListComponent {
-  readonly list = input<Employee[]>([]);
-  readonly selectedId = input<number>();
+  public readonly list = input<Employee[]>([]);
+  public readonly selectedId = input<number>();
 }

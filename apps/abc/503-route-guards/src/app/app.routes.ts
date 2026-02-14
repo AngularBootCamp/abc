@@ -4,7 +4,7 @@ import { AdminComponent } from './admin.component';
 import { AuthGuard } from './auth.guard';
 import { BigFormComponent } from './big-form.component';
 import { ForbiddenComponent } from './forbidden.component';
-import { FormDeactivateGuard } from './form-deactive.guard';
+import { FormDeactivateGuard } from './form-deactivate.guard';
 import { HomeComponent } from './home.component';
 import { NameComponent } from './name.component';
 

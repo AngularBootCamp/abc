@@ -16,7 +16,7 @@ import { Employee, EmployeeLoader } from '../employee-loader.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class EmployeeDetailComponent {
-  employee: Observable<Employee>;
+  protected readonly employee: Observable<Employee>;
 
   constructor() {
     const route = inject(ActivatedRoute);

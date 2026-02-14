@@ -16,7 +16,7 @@ export interface Film {
 
 @Injectable({ providedIn: 'root' })
 export class StarshipApiService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   starships(): Observable<FilmMeta[]> {
     const url = 'https://swapi.dev/api/starships/';

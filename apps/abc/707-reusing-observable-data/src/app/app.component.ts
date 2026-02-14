@@ -10,9 +10,9 @@ import { CompanyLoader } from './company-loader.service';
   imports: [AsyncPipe, JsonPipe]
 })
 export class AppComponent {
-  company = inject(CompanyLoader)
+  protected readonly company = inject(CompanyLoader)
     .loadOneCompany()
     .pipe(shareReplay(1));
 
-  showAgain = signal(false);
+  protected readonly showAgain = signal(false);
 }

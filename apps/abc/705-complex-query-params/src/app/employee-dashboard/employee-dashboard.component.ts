@@ -1,28 +1,27 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject
+} from '@angular/core';
 
 import { EmployeeFilterComponent } from '../employee-filter/employee-filter.component';
 import { EmployeeListComponent } from '../employee-list/employee-list.component';
-import {
-  Employee,
-  EmployeeService,
-  TableOptions
-} from '../employees.service';
+import { EmployeeService } from '../employees.service';
 
 @Component({
   selector: 'app-employee-dashboard',
   templateUrl: './employee-dashboard.component.html',
-  imports: [EmployeeFilterComponent, EmployeeListComponent, AsyncPipe]
+  imports: [
+    EmployeeFilterComponent,
+    EmployeeListComponent,
+    AsyncPipe
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeDashboardComponent {
-  tableOptions: Observable<TableOptions>;
-  employees: Observable<Employee[]>;
+  private readonly employeeService = inject(EmployeeService);
 
-  constructor() {
-    const employeeService = inject(EmployeeService);
-
-    this.tableOptions = employeeService.tableOptions;
-    this.employees = employeeService.employees;
-  }
+  protected readonly tableOptions = this.employeeService.tableOptions;
+  protected readonly employees = this.employeeService.employees;
 }

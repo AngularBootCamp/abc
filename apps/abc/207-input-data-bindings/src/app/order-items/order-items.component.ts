@@ -12,5 +12,5 @@ import { Item } from '../api-types';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrderItemsComponent {
-  readonly items = input.required<Item[]>();
+  public readonly items = input.required<Item[]>();
 }

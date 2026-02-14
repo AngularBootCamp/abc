@@ -26,32 +26,32 @@
         <app-form-select
           label="Size"
           [control]="form.controls.size"
-          [options]="sizes"
+          [options]="sizes()"
         />
         <app-form-select
           label="Crust"
           [control]="form.controls.crust"
-          [options]="crusts"
+          [options]="crusts()"
         />
         <app-form-select
           label="Sauce Type"
           [control]="form.controls.sauceType"
-          [options]="sauceTypes"
+          [options]="sauceTypes()"
         />
         <app-form-select
           label="Sauce Amount"
           [control]="form.controls.sauceAmount"
-          [options]="sauceAmounts"
+          [options]="sauceAmounts()"
         />
         <app-form-select
           label="Cheese Type"
           [control]="form.controls.cheeseType"
-          [options]="cheeseTypes"
+          [options]="cheeseTypes()"
         />
         <app-form-select
           label="Cheese Amount"
           [control]="form.controls.cheeseAmount"
-          [options]="cheeseAmounts"
+          [options]="cheeseAmounts()"
         />
         <app-form-toppings [toppings]="form.controls.toppings" />
       </form>

@@ -27,6 +27,6 @@ const employees = [
   imports: [NgFor, NgIf]
 })
 export default class EmployeeBrowserComponent {
-  employeeList = employees;
-  showInactiveRoles = true;
+  protected employeeList = employees;
+  protected showInactiveRoles = true;
 }

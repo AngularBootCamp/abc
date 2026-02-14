@@ -9,10 +9,10 @@ import { FormsModule } from '@angular/forms';
   imports: [FormsModule, JsonPipe]
 })
 export class AppComponent {
-  credentials = { login: '', password: '' };
+  protected readonly credentials = { login: '', password: '' };
 
   // Event handler for form submit
-  onLogin(): void {
+  protected onLogin(): void {
     console.log('Form Submitted', this.credentials);
   }
 }

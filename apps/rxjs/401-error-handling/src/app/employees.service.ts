@@ -18,7 +18,7 @@ export interface Employee {
   providedIn: 'root'
 })
 export class EmployeesService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   getEmployees(url = '/employees') {
     return this.http.get<Employee[]>(apiUrl + url).pipe(

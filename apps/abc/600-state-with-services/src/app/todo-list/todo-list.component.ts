@@ -13,11 +13,11 @@ import { Task } from '../types';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToDoListComponent {
-  readonly list = input.required<Task[]>();
-  readonly icon = input.required<string>();
-  readonly setTaskStatus = output<Task>();
+  public readonly list = input.required<Task[]>();
+  public readonly icon = input.required<string>();
+  public readonly setTaskStatus = output<Task>();
 
-  setStatus(task: Task) {
+  protected setStatus(task: Task) {
     this.setTaskStatus.emit(task);
   }
 }

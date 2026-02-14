@@ -11,10 +11,11 @@ import { Employee, EmployeeLoader } from '../employee-loader.service';
   imports: [RouterLink, AsyncPipe]
 })
 export default class EmployeeDetailComponent {
-  private readonly loader = inject(EmployeeLoader);
-  employee$: Observable<Employee> | undefined;
+  public readonly employeeId = input.required<string>();
 
-  readonly employeeId = input.required<string>();
+  private readonly loader = inject(EmployeeLoader);
+
+  protected employee$: Observable<Employee> | undefined;
 
   constructor() {
     effect(() => {

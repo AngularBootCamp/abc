@@ -7,7 +7,7 @@ import { HelloService } from './hello.service';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  private hello = inject(HelloService);
+  private readonly hello = inject(HelloService);
 
   greeting = '';
 

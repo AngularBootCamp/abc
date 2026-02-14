@@ -8,7 +8,7 @@ import { ImageMetadata, RedditResponse } from './types';
   providedIn: 'root'
 })
 export class RedditImageSearchService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   search(
     subReddit: string,

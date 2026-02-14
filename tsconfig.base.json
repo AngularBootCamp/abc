@@ -24,6 +24,9 @@
       "@class-materials/shared/e2e/helpers": [
         "libs/shared/e2e/src/lib/helpers"
       ],
+      "@class-materials/shared/e2e/commands": [
+        "libs/shared/e2e/src/lib/commands"
+      ],
       "@class-materials/shared/ui-display-or-edit": [
         "libs/shared/ui-display-or-edit/src/index.ts"
       ],

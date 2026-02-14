@@ -20,7 +20,7 @@ import { apiActions, initActions } from './actions';
 
 @Injectable()
 export class SoccerTeamEffects implements OnInitEffects {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
   private actions = inject(Actions);
 
   translateGetAll = createEffect(() =>

@@ -2,8 +2,8 @@
 <article>
   <header>Completed</header>
   <app-todo-list
+    icon="check_box"
     [list]="done()"
-    [icon]="checkbox"
     (toggleTask)="toggleTask($event, true)"
   />
 </article>
@@ -11,8 +11,8 @@
 <article>
   <header>In-Progress</header>
   <app-todo-list
+    icon="check_box_outline_blank"
     [list]="todo()"
-    [icon]="outline"
     (toggleTask)="toggleTask($event, false)"
   />
 </article>

@@ -24,7 +24,7 @@ import { Card, Game, ShotOnGoal } from '../app.types';
   providedIn: 'root'
 })
 export class GameService {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   readonly gameId = new BehaviorSubject<string | undefined>(
     undefined

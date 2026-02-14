@@ -1,11 +1,17 @@
-import { Component, output, input } from '@angular/core';
+import {
+  Component,
+  output,
+  input,
+  ChangeDetectionStrategy
+} from '@angular/core';
 
 @Component({
   selector: 'app-counter-display',
-  templateUrl: './counter-display.component.html'
+  templateUrl: './counter-display.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CounterDisplayComponent {
-  readonly label = input.required<string>();
-  readonly counter = input.required<number>();
-  readonly pick = output<number>();
+  public readonly label = input.required<string>();
+  public readonly counter = input.required<number>();
+  public readonly pick = output<number>();
 }
