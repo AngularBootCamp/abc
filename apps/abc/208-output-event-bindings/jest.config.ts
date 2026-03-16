@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'abc-208-output-event-bindings',
   preset: '../../../jest.preset.js',
@@ -10,14 +9,14 @@ export default {
       'jest-preset-angular',
       {
         tsconfig: '<rootDir>/tsconfig.spec.json',
-        stringifyContentPathRegex: '\\.(html|svg)$'
-      }
-    ]
+        stringifyContentPathRegex: '\\.(html|svg)$',
+      },
+    ],
   },
   transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',
-    'jest-preset-angular/build/serializers/html-comment'
-  ]
+    'jest-preset-angular/build/serializers/html-comment',
+  ],
 };

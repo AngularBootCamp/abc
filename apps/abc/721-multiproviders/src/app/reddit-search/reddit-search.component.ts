@@ -1,11 +1,13 @@
-import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  signal
+  signal,
 } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+
 import {
   Observable,
   combineLatest,
@@ -16,7 +18,7 @@ import {
   retry,
   startWith,
   switchMap,
-  tap
+  tap,
 } from 'rxjs';
 
 import { LogService } from '../loggers/log.service';
@@ -29,7 +31,7 @@ import { ImageMetadata } from './types';
   templateUrl: './reddit-search.component.html',
   styleUrl: './reddit-search.component.scss',
   imports: [ReactiveFormsModule, AsyncPipe],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RedditSearchComponent {
   private readonly logger = inject(LogService);
@@ -38,18 +40,15 @@ export class RedditSearchComponent {
     'aww',
     'wholesomememes',
     'mildlyinteresting',
-    'awesome'
+    'awesome',
   ]);
 
-  protected readonly subReddit = new FormControl(
-    this.subReddits()[0],
-    {
-      nonNullable: true
-    }
-  );
+  protected readonly subReddit = new FormControl(this.subReddits()[0], {
+    nonNullable: true,
+  });
 
   protected readonly search = new FormControl('', {
-    nonNullable: true
+    nonNullable: true,
   });
 
   protected readonly results: Observable<ImageMetadata[]>;
@@ -58,7 +57,7 @@ export class RedditSearchComponent {
     const ris = inject(RedditImageSearchService);
 
     const validSubReddit = this.subReddit.valueChanges.pipe(
-      startWith<string>(this.subReddit.value)
+      startWith<string>(this.subReddit.value),
     );
 
     const validSearch = this.search.valueChanges.pipe(
@@ -66,7 +65,7 @@ export class RedditSearchComponent {
       map(search => search.trim()),
       debounceTime(200),
       distinctUntilChanged(),
-      filter(search => search !== '')
+      filter(search => search !== ''),
     );
 
     this.results = combineLatest([validSubReddit, validSearch]).pipe(
@@ -78,9 +77,9 @@ export class RedditSearchComponent {
           // tap(search => this.logger.log('Search for: ' + search)),
           retry(3),
           // Clear previous entries while waiting
-          startWith([])
-        )
-      )
+          startWith([]),
+        ),
+      ),
     );
   }
 }

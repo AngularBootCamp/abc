@@ -1,5 +1,5 @@
 import { articleApiActions } from './article.actions';
-import { initialState, articleFeature } from './article.reducer';
+import { articleFeature, initialState } from './article.reducer';
 import { mockArticles } from './mock.articles';
 
 describe('Article Reducer', () => {
@@ -18,14 +18,14 @@ describe('Article Reducer', () => {
       const articles = mockArticles;
       const result = articleFeature.reducer(
         initialState,
-        articleApiActions.loadArticlesSuccess({ articles })
+        articleApiActions.loadArticlesSuccess({ articles }),
       );
 
       expect(result.ids).toEqual([1, 2, 3]);
       expect(result.entities).toEqual({
         1: mockArticles[0],
         2: mockArticles[1],
-        3: mockArticles[2]
+        3: mockArticles[2],
       });
     });
   });
@@ -36,16 +36,16 @@ describe('Article Reducer', () => {
         authorId: 3,
         id: 4,
         title: 'titleNew',
-        body: 'bodyNew'
+        body: 'bodyNew',
       };
 
       const result = [
         articleApiActions.loadArticlesSuccess({
-          articles: mockArticles
+          articles: mockArticles,
         }),
         articleApiActions.createArticleSuccess({
-          article: newArticle
-        })
+          article: newArticle,
+        }),
       ].reduce(articleFeature.reducer, initialState);
 
       expect(result.ids).toEqual([1, 2, 3, 4]);
@@ -53,7 +53,7 @@ describe('Article Reducer', () => {
         1: mockArticles[0],
         2: mockArticles[1],
         3: mockArticles[2],
-        4: newArticle
+        4: newArticle,
       });
     });
   });
@@ -62,17 +62,17 @@ describe('Article Reducer', () => {
     it('should delete an article', () => {
       const result = [
         articleApiActions.loadArticlesSuccess({
-          articles: mockArticles
+          articles: mockArticles,
         }),
         articleApiActions.deleteArticleSuccess({
-          articleId: 2
-        })
+          articleId: 2,
+        }),
       ].reduce(articleFeature.reducer, initialState);
 
       expect(result.ids).toEqual([1, 3]);
       expect(result.entities).toEqual({
         1: mockArticles[0],
-        3: mockArticles[2]
+        3: mockArticles[2],
       });
     });
   });
@@ -81,15 +81,15 @@ describe('Article Reducer', () => {
     it('should update an article', () => {
       const newArticle = {
         ...mockArticles[2],
-        title: 'changedTitle'
+        title: 'changedTitle',
       };
       const result = [
         articleApiActions.loadArticlesSuccess({
-          articles: mockArticles
+          articles: mockArticles,
         }),
         articleApiActions.updateArticleSuccess({
-          article: newArticle
-        })
+          article: newArticle,
+        }),
       ].reduce(articleFeature.reducer, initialState);
 
       expect(result.ids).toEqual([1, 2, 3]);
@@ -100,8 +100,8 @@ describe('Article Reducer', () => {
           authorId: 2,
           id: 3,
           title: 'changedTitle',
-          body: 'body3'
-        }
+          body: 'body3',
+        },
       });
     });
   });

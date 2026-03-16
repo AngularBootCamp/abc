@@ -1,12 +1,14 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
+import { ArticleListComponent } from '../article-list/article-list.component';
 import { ArticleComponent } from '../article/article.component';
 import { ArticleStore } from '../article/article.store';
-import { ArticleListComponent } from '../article-list/article-list.component';
 
 import { AuthorService } from './author.service';
 
@@ -20,8 +22,8 @@ import { AuthorService } from './author.service';
     MatInputModule,
     ArticleListComponent,
     ArticleComponent,
-    AsyncPipe
-  ]
+    AsyncPipe,
+  ],
 })
 export class AuthorComponent {
   author$ = inject(AuthorService).currentAuthor;

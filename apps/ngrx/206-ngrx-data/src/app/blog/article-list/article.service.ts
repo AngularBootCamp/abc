@@ -1,6 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import { Store } from '@ngrx/store';
+
 import { combineLatest, map } from 'rxjs';
+
+import { Store } from '@ngrx/store';
 
 import { selectCurrentArticleId } from '../../router.selectors';
 import { ArticleDataService } from '../article/article-data.service';
@@ -16,27 +18,25 @@ export class ArticleService {
   // One downside of Data - we lose the selector memoization
   currentArticle = combineLatest([
     this.articleDataService.entityMap$,
-    this.currentArticleId
+    this.currentArticleId,
   ]).pipe(
     map(([articles, articleId]) =>
-      articleId ? (articles[articleId] ?? null) : undefined
-    )
+      articleId ? (articles[articleId] ?? null) : undefined,
+    ),
   );
 
   getArticlesByAuthor(authorId: number) {
     return this.articles.pipe(
       map(articles =>
-        articles.filter(
-          article => article.authorId === Number(authorId)
-        )
-      )
+        articles.filter(article => article.authorId === Number(authorId)),
+      ),
     );
   }
 
   createArticle(article: Omit<Article, 'id'>) {
     // it's ok to exclude the id with a pessimistic save
     this.articleDataService.add(article as Article, {
-      isOptimistic: false
+      isOptimistic: false,
     });
   }
 

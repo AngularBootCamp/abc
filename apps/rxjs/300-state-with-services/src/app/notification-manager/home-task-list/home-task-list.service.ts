@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { BehaviorSubject } from 'rxjs';
 
 import { Task } from '../../types';
@@ -7,20 +8,20 @@ import { Task } from '../../types';
 // a rundown of what these services do.
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HomeTaskListService {
   private _done = [
     { label: 'cook dinner' },
     { label: 'go grocery shopping' },
     { label: 'sweep the floors' },
-    { label: 'do the laundry' }
+    { label: 'do the laundry' },
   ];
   done = new BehaviorSubject(this._done);
 
   private _todo = [
     { label: 'fix the leaky faucet' },
-    { label: 'mow the lawn' }
+    { label: 'mow the lawn' },
   ];
   todo = new BehaviorSubject(this._todo);
 

@@ -9,6 +9,6 @@ import { PairListComponent } from './pair-list/pair-list.component';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [HeaderComponent, PairHistoryComponent, PairListComponent]
+  imports: [HeaderComponent, PairHistoryComponent, PairListComponent],
 })
 export class AppComponent {}

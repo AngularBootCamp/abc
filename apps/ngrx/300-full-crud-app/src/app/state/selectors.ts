@@ -6,13 +6,12 @@ import {
   cardsFeature,
   gamesFeature,
   playersFeature,
-  shotsFeature
+  shotsFeature,
 } from './reducers';
 import { playerAdapter } from './state';
 
 // get the selectors
-export const { selectAll, selectEntities } =
-  playerAdapter.getSelectors();
+export const { selectAll, selectEntities } = playerAdapter.getSelectors();
 
 export const { selectGamesState } = gamesFeature;
 export const { selectCardsState } = cardsFeature;
@@ -21,12 +20,12 @@ export const { selectShotsState } = shotsFeature;
 
 export const selectAllPlayers = createSelector(
   selectPlayersState,
-  selectAll
+  selectAll,
 );
 
 const selectPlayersEntities = createSelector(
   selectPlayersState,
-  selectEntities
+  selectEntities,
 );
 
 export const selectPlayer = (id: string) =>
@@ -34,7 +33,7 @@ export const selectPlayer = (id: string) =>
 
 export const selectGamesForPlayer = (id: string) =>
   createSelector(selectGamesState, games =>
-    games.filter(g => g.players.includes(id))
+    games.filter(g => g.players.includes(id)),
   );
 
 export const selectShotsForPlayer = (id: string) =>
@@ -52,9 +51,9 @@ export const selectShotsForPlayer = (id: string) =>
           return {
             ...shot,
             playerName,
-            assistName
+            assistName,
           };
-        })
+        }),
   );
 
 export const selectAssistsForPlayer = (playerId: string) =>
@@ -72,14 +71,14 @@ export const selectAssistsForPlayer = (playerId: string) =>
           return {
             ...shot,
             playerName,
-            assistName
+            assistName,
           };
-        })
+        }),
   );
 
 export const selectCardsForPlayer = (playerId: string) =>
   createSelector(selectCardsState, cards =>
-    cards.filter(c => c.player === playerId)
+    cards.filter(c => c.player === playerId),
   );
 
 export const selectPlayerWithDetails = (playerId: string) =>
@@ -93,7 +92,7 @@ export const selectPlayerWithDetails = (playerId: string) =>
       if (!player) {
         player = {
           name: '',
-          id: ''
+          id: '',
         };
       }
       return {
@@ -101,19 +100,17 @@ export const selectPlayerWithDetails = (playerId: string) =>
         games,
         shotsOnGoal,
         cards,
-        assists
+        assists,
       };
-    }
+    },
   );
 
 export const selectGame = (id: string) =>
-  createSelector(selectGamesState, games =>
-    games.find(g => g.id === id)
-  );
+  createSelector(selectGamesState, games => games.find(g => g.id === id));
 
 export const selectShotsForGame = (id: string) =>
   createSelector(selectShotsState, shots =>
-    shots.filter(s => s.game === id)
+    shots.filter(s => s.game === id),
   );
 
 export const selectGameWithPlayerNames = (id: string) =>
@@ -128,19 +125,19 @@ export const selectGameWithPlayerNames = (id: string) =>
           ...game,
           playerDetails: game.players
             .map(player => players[player])
-            .filter(check)
+            .filter(check),
         };
       } else {
         return {
-          playerDetails: []
+          playerDetails: [],
         };
       }
-    }
+    },
   );
 
 export const selectCardsForGame = (id: string) =>
   createSelector(selectCardsState, cards =>
-    cards.filter(c => c.game === id)
+    cards.filter(c => c.game === id),
   );
 
 export const selectGameWithDetails = (id: string) =>
@@ -151,26 +148,24 @@ export const selectGameWithDetails = (id: string) =>
     (game, shots, cards) => {
       if (!game) {
         game = {
-          playerDetails: []
+          playerDetails: [],
         };
       }
       const shotsWithNames = shots.map(s => ({
         ...s,
-        playerName: game.playerDetails.find(p => p.id === s.player)
-          ?.name,
+        playerName: game.playerDetails.find(p => p.id === s.player)?.name,
         assistName: s.assist
           ? game.playerDetails.find(p => p.id === s.assist)?.name
-          : 'None'
+          : 'None',
       }));
       const cardsWithNames = cards.map(c => ({
         ...c,
-        playerName: game.playerDetails.find(p => p.id === c.player)
-          ?.name
+        playerName: game.playerDetails.find(p => p.id === c.player)?.name,
       }));
       return {
         ...game,
         shots: shotsWithNames,
-        cards: cardsWithNames
+        cards: cardsWithNames,
       } as GameWithEvents;
-    }
+    },
   );

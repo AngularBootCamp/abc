@@ -1,16 +1,13 @@
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+
 import {
-  UpperCasePipe,
-  JsonPipe,
-  DecimalPipe,
-  PercentPipe,
   CurrencyPipe,
-  DatePipe
+  DatePipe,
+  DecimalPipe,
+  JsonPipe,
+  PercentPipe,
+  UpperCasePipe,
 } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  signal
-} from '@angular/core';
 
 // prettier-ignore
 const salesData = [
@@ -33,15 +30,13 @@ const salesData = [
     DecimalPipe,
     PercentPipe,
     CurrencyPipe,
-    DatePipe
+    DatePipe,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   protected readonly reportDate = signal(new Date('Dec 25, 2058'));
-  protected readonly expirationDate = signal(
-    new Date('Jan 01, 2059')
-  );
+  protected readonly expirationDate = signal(new Date('Jan 01, 2059'));
   protected readonly sales = signal(salesData);
   protected readonly showJSON = signal(false);
 }

@@ -1,11 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import {
   NonNullableFormBuilder,
-  ReactiveFormsModule
+  ReactiveFormsModule,
 } from '@angular/forms';
 
 import { FormDeactivateCheck } from './form-deactivate.guard';
@@ -14,13 +11,11 @@ import { FormDeactivateCheck } from './form-deactivate.guard';
   selector: 'app-big-form',
   templateUrl: './big-form.component.html',
   imports: [ReactiveFormsModule],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BigFormComponent implements FormDeactivateCheck {
-  protected readonly bigFormGroup = inject(
-    NonNullableFormBuilder
-  ).group({
-    importantInfo: ['This is important information!']
+  protected readonly bigFormGroup = inject(NonNullableFormBuilder).group({
+    importantInfo: ['This is important information!'],
   });
 
   protected savedFormValue = this.bigFormGroup.value;

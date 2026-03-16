@@ -6,7 +6,7 @@ import { taskApiActions, taskPageActions } from './tasks.actions';
 
 const defaultTaskState: TaskState = {
   todo: [],
-  done: []
+  done: [],
 };
 
 export interface TaskState {
@@ -19,19 +19,19 @@ export const tasksFeature = createFeature({
   reducer: createReducer(
     defaultTaskState,
     on(taskPageActions.taskCompleted, (state, action) =>
-      setTaskStatus(state, action.task, true)
+      setTaskStatus(state, action.task, true),
     ),
     on(taskPageActions.taskReset, (state, action) =>
-      setTaskStatus(state, action.task, false)
+      setTaskStatus(state, action.task, false),
     ),
-    on(taskApiActions.tasksReceived, (_state, action) => action.tasks)
-  )
+    on(taskApiActions.tasksReceived, (_state, action) => action.tasks),
+  ),
 });
 
 function setTaskStatus(
   currentState: TaskState,
   task: Task,
-  markDone: boolean
+  markDone: boolean,
 ): TaskState {
   const done = currentState.done.filter(x => x !== task);
   const todo = currentState.todo.filter(x => x !== task);

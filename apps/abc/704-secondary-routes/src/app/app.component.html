@@ -15,11 +15,7 @@
       <a [routerLink]="[{ outlets: { side: 'task' } }]">Tasks</a>
     </li>
     <li>
-      <a
-        [routerLink]="[
-          { outlets: { primary: 'home', side: 'chat' } }
-        ]"
-      >
+      <a [routerLink]="[{ outlets: { primary: 'home', side: 'chat' } }]">
         Home+Chat
       </a>
     </li>
@@ -36,5 +32,5 @@
     Extra
     <a [routerLink]="[{ outlets: { side: null } }]">X</a>
   </header>
-  <router-outlet name="side"></router-outlet>
+  <router-outlet name="side" />
 </article>

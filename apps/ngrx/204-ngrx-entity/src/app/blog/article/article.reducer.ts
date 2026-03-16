@@ -1,7 +1,7 @@
 import {
   EntityAdapter,
   EntityState,
-  createEntityAdapter
+  createEntityAdapter,
 } from '@ngrx/entity';
 import { createFeature, createReducer, on } from '@ngrx/store';
 
@@ -25,18 +25,18 @@ export const articleFeature = createFeature({
     initialState,
 
     on(articleApiActions.loadArticlesSuccess, (state, action) =>
-      adapter.setAll(action.articles, state)
+      adapter.setAll(action.articles, state),
     ),
     on(articleApiActions.createArticleSuccess, (state, action) =>
-      adapter.addOne(action.article, state)
+      adapter.addOne(action.article, state),
     ),
     on(articleApiActions.deleteArticleSuccess, (state, action) =>
-      adapter.removeOne(action.articleId, state)
+      adapter.removeOne(action.articleId, state),
     ),
     // Note: if we weren't sending this to the server, we could
     // use the Update<Article> type, which is smaller
     on(articleApiActions.updateArticleSuccess, (state, { article }) =>
-      adapter.updateOne({ id: article.id, changes: article }, state)
-    )
-  )
+      adapter.updateOne({ id: article.id, changes: article }, state),
+    ),
+  ),
 });

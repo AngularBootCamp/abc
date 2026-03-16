@@ -9,6 +9,6 @@ export const employeesActions = createActionGroup({
     'Ack Employee': props<{ employee: Employee }>(),
     'Load Employees': emptyProps(),
     'Load Employees Success': props<{ employees: EmployeeLists }>(),
-    'Load Employees Failure': props<{ error: unknown }>()
-  }
+    'Load Employees Failure': props<{ error: unknown }>(),
+  },
 });

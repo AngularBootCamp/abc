@@ -8,7 +8,7 @@ const options = {
   hostname: 'localhost',
   port: 8085,
   path: '/soccer/reset',
-  method: 'POST'
+  method: 'POST',
 };
 
 const req = https.request(options, res => {

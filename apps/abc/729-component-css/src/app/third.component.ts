@@ -1,12 +1,15 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 
 @Component({
   selector: 'app-third',
-  template: `
-    <div class="outline-box">Third Component</div>
-  `,
+  template: `<div class="outline-box">Third Component</div>`,
   styleUrl: './third.component.scss',
-  encapsulation: ViewEncapsulation.Emulated // this is the default
-  // encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.Emulated, // this is the default
+  // encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThirdComponent {}

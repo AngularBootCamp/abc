@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router';
+
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
 
 import {
   selectedGameIdRouteParamName,
-  selectedPlayerIdRouteParamName
+  selectedPlayerIdRouteParamName,
 } from './feature.constants';
 import { GameComponent } from './game-screen/game/game.component';
 import { GamesComponent } from './game-screen/games/games.component';
@@ -17,7 +18,7 @@ import {
   cardsFeature,
   gamesFeature,
   playersFeature,
-  shotsFeature
+  shotsFeature,
 } from './state/reducers';
 import { SoccerTeamEffects } from './state/soccer-team.effects';
 
@@ -32,8 +33,8 @@ const soccerTeamStatsRoutes: Routes = [
       provideEffects(SoccerTeamEffects),
       {
         provide: PlayerService,
-        useClass: NgrxPlayerService
-      }
+        useClass: NgrxPlayerService,
+      },
     ],
     component: SoccerTeamStatsComponent,
     children: [
@@ -43,9 +44,9 @@ const soccerTeamStatsRoutes: Routes = [
         children: [
           {
             path: `:${selectedPlayerIdRouteParamName}`,
-            component: PlayerComponent
-          }
-        ]
+            component: PlayerComponent,
+          },
+        ],
       },
       {
         path: 'games',
@@ -53,13 +54,13 @@ const soccerTeamStatsRoutes: Routes = [
         children: [
           {
             path: `:${selectedGameIdRouteParamName}`,
-            component: GameComponent
-          }
-        ]
+            component: GameComponent,
+          },
+        ],
       },
-      { path: '', redirectTo: 'players', pathMatch: 'prefix' }
-    ]
-  }
+      { path: '', redirectTo: 'players', pathMatch: 'prefix' },
+    ],
+  },
 ];
 
 export default soccerTeamStatsRoutes;

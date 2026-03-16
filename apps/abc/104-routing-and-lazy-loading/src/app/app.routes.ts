@@ -4,11 +4,10 @@ export const appRoutes: Routes = [
   { path: '', redirectTo: 'hr', pathMatch: 'full' },
   {
     path: 'hr',
-    loadComponent: () =>
-      import('./hr-files/hr-files-search.component')
+    loadComponent: () => import('./hr-files/hr-files-search.component'),
   },
   {
     path: 'payroll',
-    loadComponent: () => import('./payroll/payroll-search.component')
-  }
+    loadComponent: () => import('./payroll/payroll-search.component'),
+  },
 ];

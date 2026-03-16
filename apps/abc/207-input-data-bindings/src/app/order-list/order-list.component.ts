@@ -1,8 +1,8 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  numberAttribute,
   input,
-  ChangeDetectionStrategy
+  numberAttribute,
 } from '@angular/core';
 
 import { Order } from '../api-types';
@@ -10,7 +10,7 @@ import { Order } from '../api-types';
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderListComponent {
   // Defaults to property name = variable name, but can be
@@ -20,6 +20,6 @@ export class OrderListComponent {
   // This could be derived from orders, but we want to show the
   // transform.
   public readonly count = input.required<number, unknown>({
-    transform: numberAttribute
+    transform: numberAttribute,
   });
 }

@@ -1,12 +1,15 @@
 import { TestBed } from '@angular/core/testing';
+
 import {
   ActivatedRoute,
   Params,
-  convertToParamMap
+  convertToParamMap,
 } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
+
 import { firstValueFrom, of } from 'rxjs';
+
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { articleListPageActions } from '../article/article.actions';
 import { mockArticles } from '../article/mock.articles';
@@ -21,10 +24,10 @@ describe('ArticleListComponent', () => {
 
   beforeEach(() => {
     params = {
-      authorId: '2'
+      authorId: '2',
     };
     queryParams = {
-      articleId: '2'
+      articleId: '2',
     };
 
     TestBed.configureTestingModule({
@@ -33,22 +36,22 @@ describe('ArticleListComponent', () => {
         provideMockStore({
           initialState: {
             article: {
-              articles: mockArticles
+              articles: mockArticles,
             },
             config: {
-              title: 'Blog Title'
-            }
-          }
+              title: 'Blog Title',
+            },
+          },
         }),
         {
           provide: ActivatedRoute,
           useValue: {
             paramMap: of(convertToParamMap(params)),
-            queryParamMap: of(convertToParamMap(queryParams))
-          }
-        }
+            queryParamMap: of(convertToParamMap(queryParams)),
+          },
+        },
       ],
-      imports: [RouterTestingModule]
+      imports: [RouterTestingModule],
     });
 
     component = TestBed.inject(ArticleListComponent);
@@ -58,7 +61,7 @@ describe('ArticleListComponent', () => {
   describe('getArticlesByAuthor', () => {
     it('should return the articles', async () => {
       const result = await firstValueFrom(
-        component.getArticlesByAuthor(1)
+        component.getArticlesByAuthor(1),
       );
 
       expect(result).toEqual([mockArticles[0], mockArticles[1]]);
@@ -103,26 +106,22 @@ describe('ArticleListComponent', () => {
     });
 
     it('should get the selectedArticleId when it exists', async () => {
-      const result = await firstValueFrom(
-        component.selectedArticleId
-      );
+      const result = await firstValueFrom(component.selectedArticleId);
 
       expect(result).toEqual(2);
       expect(store.dispatch).toHaveBeenCalledWith(
-        articleListPageActions.chooseArticle({ articleId: 2 })
+        articleListPageActions.chooseArticle({ articleId: 2 }),
       );
     });
 
     it('should handle a missing articleId', async () => {
       queryParams['articleId'] = undefined;
 
-      const result = await firstValueFrom(
-        component.selectedArticleId
-      );
+      const result = await firstValueFrom(component.selectedArticleId);
 
       expect(result).toBeUndefined();
       expect(store.dispatch).toHaveBeenCalledWith(
-        articleListPageActions.chooseArticle({ articleId: undefined })
+        articleListPageActions.chooseArticle({ articleId: undefined }),
       );
     });
   });

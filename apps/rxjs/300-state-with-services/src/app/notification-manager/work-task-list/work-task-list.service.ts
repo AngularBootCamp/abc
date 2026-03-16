@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 // Behavior Subject is a subclass of Observable
 // it is an Observable that allows the creator
 // to "push" new values into it
@@ -9,7 +10,7 @@ import { Task } from '../../types';
 @Injectable({
   // This service should be created
   // by the root application injector.
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WorkTaskListService {
   // Application State for completed and not completed work tasks
@@ -22,14 +23,14 @@ export class WorkTaskListService {
     { label: 'file paperwork' },
     { label: 'send emails' },
     { label: 'work on project A' },
-    { label: 'submit report to manager' }
+    { label: 'submit report to manager' },
   ];
 
   done = new BehaviorSubject(this._done);
 
   private _todo = [
     { label: 'work on project B' },
-    { label: 'update task list' }
+    { label: 'update task list' },
   ];
 
   todo = new BehaviorSubject(this._todo);

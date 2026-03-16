@@ -1,6 +1,10 @@
 <article>
   <header>Employee Details</header>
-  <form [formGroup]="details" (ngSubmit)="saveEmployeeDetails()">
+  <form
+    [formGroup]="details"
+    (ngSubmit)="saveEmployeeDetails()"
+    autocomplete="off"
+  >
     <div class="form-fields">
       <div>
         <label for="firstName">First Name</label>

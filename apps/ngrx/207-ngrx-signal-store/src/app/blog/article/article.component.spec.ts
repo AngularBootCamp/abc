@@ -1,8 +1,14 @@
-import { signal, WritableSignal } from '@angular/core';
-import { fakeAsync, tick } from '@angular/core/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { WritableSignal, signal } from '@angular/core';
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
+
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+
 import { Spy, createSpyFromClass } from 'jest-auto-spies';
 
 import { AuthorService } from '../author/author.service';
@@ -22,7 +28,7 @@ describe('ArticleComponent', () => {
 
   beforeEach(() => {
     authorSvc = createSpyFromClass(AuthorService, {
-      observablePropsToSpyOn: ['currentAuthorId']
+      observablePropsToSpyOn: ['currentAuthorId'],
     });
     authorSvc.currentAuthorId.nextWith(1);
 
@@ -34,9 +40,9 @@ describe('ArticleComponent', () => {
       providers: [
         ArticleComponent,
         { provide: AuthorService, useValue: authorSvc },
-        { provide: ArticleStore, useValue: articleStore }
+        { provide: ArticleStore, useValue: articleStore },
       ],
-      imports: [RouterTestingModule]
+      imports: [RouterTestingModule],
     });
 
     fixture = TestBed.createComponent(ArticleComponent);

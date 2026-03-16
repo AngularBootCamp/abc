@@ -20,40 +20,39 @@ export const adjectives = [
   'windy',
   'ghostly',
   'chilly',
-  'scary'
+  'scary',
 ];
 
 export const terms: Term[] = [
   {
     term: 'anatidaephobia',
     definition:
-      'The fear that, somewhere, somehow, ' +
-      'a duck is watching you.'
+      'The fear that, somewhere, somehow, ' + 'a duck is watching you.',
   },
   {
     term: 'aquadextrous',
     definition:
       'Possessing the ability to turn the bathtub ' +
-      'faucet on and off with your toes.'
+      'faucet on and off with your toes.',
   },
   {
     term: 'malamanteau',
     definition:
       'A neologism for a portmanteau created by incorrectly ' +
-      'combining a malapropism with a neologism.'
+      'combining a malapropism with a neologism.',
   },
   {
     term: 'refenestrate',
     definition:
       'To throw a recently-defenestrated object back ' +
-      'through the window it was ejected from.'
+      'through the window it was ejected from.',
   },
   {
     term: 'thagomizer',
     definition:
       'The distinctive arrangement of four to ten ' +
-      'spikes on the tails of stegosaurid dinosaurs.'
-  }
+      'spikes on the tails of stegosaurid dinosaurs.',
+  },
 ];
 
 export const proglangs: ProgrammingLanguage[] = [
@@ -61,30 +60,30 @@ export const proglangs: ProgrammingLanguage[] = [
     language: 'Befunge',
     designer: 'Chris Pressey',
     released: '1993',
-    link: 'https://en.wikipedia.org/wiki/Befunge'
+    link: 'https://en.wikipedia.org/wiki/Befunge',
   },
   {
     language: 'INTERCAL',
     designer: 'Donald R. Woods and James M. Lyon',
     released: '1972',
-    link: 'https://en.wikipedia.org/wiki/INTERCAL'
+    link: 'https://en.wikipedia.org/wiki/INTERCAL',
   },
   {
     language: 'LOLCODE',
     designer: 'Adam Lindsay',
     released: '2007',
-    link: 'https://en.wikipedia.org/wiki/LOLCODE'
+    link: 'https://en.wikipedia.org/wiki/LOLCODE',
   },
   {
     language: 'Malbolge',
     designer: 'Ben Olmstead',
     released: '1998',
-    link: 'https://en.wikipedia.org/wiki/Malbolge'
+    link: 'https://en.wikipedia.org/wiki/Malbolge',
   },
   {
     language: 'Unlambda',
     designer: 'David Madore',
     released: '1999',
-    link: 'https://en.wikipedia.org/wiki/Unlambda'
-  }
+    link: 'https://en.wikipedia.org/wiki/Unlambda',
+  },
 ];

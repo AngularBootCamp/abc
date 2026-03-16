@@ -11,5 +11,5 @@ export const appRoutes: Routes = [
   { path: 'hello/:name', component: NameComponent },
 
   { path: 'chat', component: ChatComponent, outlet: 'side' },
-  { path: 'task', component: TaskComponent, outlet: 'side' }
+  { path: 'task', component: TaskComponent, outlet: 'side' },
 ];

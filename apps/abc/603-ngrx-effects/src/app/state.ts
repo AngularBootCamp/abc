@@ -7,8 +7,8 @@ export const generalActions = createActionGroup({
   source: 'General',
   events: {
     'Complete All': emptyProps(),
-    'Complete All Success': emptyProps()
-  }
+    'Complete All Success': emptyProps(),
+  },
 });
 
 export interface AppState {

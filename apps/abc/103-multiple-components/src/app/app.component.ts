@@ -10,6 +10,6 @@ import { PayrollSearchComponent } from './payroll/payroll-search.component';
     <app-hr-files-search />
   `,
   imports: [PayrollSearchComponent, HrFilesSearchComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}

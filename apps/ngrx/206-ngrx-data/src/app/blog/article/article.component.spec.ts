@@ -1,11 +1,14 @@
 import { TestBed } from '@angular/core/testing';
+
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Spy, createSpyFromClass } from 'jest-auto-spies';
+
 import { Subject, firstValueFrom } from 'rxjs';
 
-import { mockArticles } from '../article/mock.articles';
+import { Spy, createSpyFromClass } from 'jest-auto-spies';
+
 import { ArticleService } from '../article-list/article.service';
+import { mockArticles } from '../article/mock.articles';
 import { AuthorService } from '../author/author.service';
 import { Article } from '../types';
 
@@ -20,12 +23,12 @@ describe('ArticleComponent', () => {
 
   beforeEach(() => {
     authorSvc = createSpyFromClass(AuthorService, {
-      observablePropsToSpyOn: ['currentAuthorId']
+      observablePropsToSpyOn: ['currentAuthorId'],
     });
     authorSvc.currentAuthorId.nextWith(1);
 
     articleSvc = createSpyFromClass(ArticleService, {
-      observablePropsToSpyOn: ['currentArticle']
+      observablePropsToSpyOn: ['currentArticle'],
     });
     currentArticle = articleSvc.currentArticle.returnSubject();
 
@@ -33,9 +36,9 @@ describe('ArticleComponent', () => {
       providers: [
         ArticleComponent,
         { provide: AuthorService, useValue: authorSvc },
-        { provide: ArticleService, useValue: articleSvc }
+        { provide: ArticleService, useValue: articleSvc },
       ],
-      imports: [RouterTestingModule]
+      imports: [RouterTestingModule],
     });
 
     component = TestBed.inject(ArticleComponent);

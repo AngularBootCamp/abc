@@ -1,21 +1,23 @@
 import { inject } from '@angular/core';
+
 import { Routes } from '@angular/router';
-import { provideState, Store } from '@ngrx/store';
+
+import { Store, provideState } from '@ngrx/store';
 
 import { authorIdRouteParam } from '../routing-parameters';
 
+import { ArticleLoaderService } from './article-list/article-loader.service';
 import { articleActions } from './article/article.actions';
 import * as fromArticle from './article/article.reducer';
-import { ArticleLoaderService } from './article-list/article-loader.service';
-import { AuthorComponent } from './author/author.component';
 import { AuthorListComponent } from './author-list/author-list.component';
+import { AuthorComponent } from './author/author.component';
 // import { ArticleEffects } from './article/article.effects';
 
 const blogRoutes: Routes = [
   {
     path: '',
     providers: [
-      provideState(fromArticle.articleFeature)
+      provideState(fromArticle.articleFeature),
       // provideEffects(ArticleEffects)
     ],
     resolve: {
@@ -29,23 +31,23 @@ const blogRoutes: Routes = [
         articleLoaderService.load().subscribe(articles =>
           store.dispatch(
             articleActions.loadArticlesSuccess({
-              articles
-            })
-          )
+              articles,
+            }),
+          ),
         );
-      }
+      },
     },
     children: [
       {
         path: '',
-        component: AuthorListComponent
+        component: AuthorListComponent,
       },
       {
         path: `:${authorIdRouteParam}`,
-        component: AuthorComponent
-      }
-    ]
-  }
+        component: AuthorComponent,
+      },
+    ],
+  },
 ];
 
 export default blogRoutes;

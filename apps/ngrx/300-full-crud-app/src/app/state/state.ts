@@ -15,5 +15,5 @@ export const initialState: SoccerTeamState = {
   games: [],
   players: playerAdapter.getInitialState(),
   shots: [],
-  cards: []
+  cards: [],
 };

@@ -1,6 +1,8 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { map, Observable, scan } from 'rxjs';
+
+import { AsyncPipe } from '@angular/common';
+
+import { Observable, map, scan } from 'rxjs';
 
 import { FxDataService } from '../fx-data.service';
 import { FxQuote } from '../fx-quote';
@@ -9,7 +11,7 @@ import { PairListViewComponent } from '../pair-list-view/pair-list-view.componen
 @Component({
   selector: 'app-pair-list',
   templateUrl: './pair-list.component.html',
-  imports: [PairListViewComponent, AsyncPipe]
+  imports: [PairListViewComponent, AsyncPipe],
 })
 export class PairListComponent {
   latestQuoteForEachSymbol: Observable<FxQuote[]>;
@@ -21,9 +23,9 @@ export class PairListComponent {
       scan(
         (acc: Map<string, FxQuote>, curr: FxQuote) =>
           acc.set(curr.symbol, curr),
-        new Map<string, FxQuote>()
+        new Map<string, FxQuote>(),
       ),
-      map(acc => Array.from(acc.values()))
+      map(acc => Array.from(acc.values())),
     );
   }
 }

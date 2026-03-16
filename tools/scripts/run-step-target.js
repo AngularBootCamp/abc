@@ -8,7 +8,7 @@ const startsWithDigit = /^\d/;
 if (!target || !name) {
   console.error(
     'Please specify both a target (serve, test, etc.)' +
-      ' and a full or partial step name.'
+      ' and a full or partial step name.',
   );
   process.exit(1);
 }
@@ -44,7 +44,7 @@ if (matchingProjects.length === 1) {
     target,
     '--outputStyle=dynamic-legacy',
     fullProjectName,
-    ...rest
+    ...rest,
   ].join(' ');
 
   try {
@@ -54,7 +54,7 @@ if (matchingProjects.length === 1) {
   }
 } else if (matchingProjects.length > 1) {
   console.log(
-    `Too many projects match "${name}". Please be more specific!`
+    `Too many projects match "${name}". Please be more specific!`,
   );
   console.table(matchingProjects);
   process.exit(1);

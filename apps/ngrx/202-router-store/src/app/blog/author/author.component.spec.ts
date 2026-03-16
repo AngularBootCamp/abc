@@ -1,12 +1,15 @@
 import { TestBed } from '@angular/core/testing';
+
 import {
   ActivatedRoute,
   Params,
-  convertToParamMap
+  convertToParamMap,
 } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { provideMockStore } from '@ngrx/store/testing';
+
 import { firstValueFrom, of } from 'rxjs';
+
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { mockArticles } from '../article/mock.articles';
 
@@ -19,7 +22,7 @@ describe('AuthorComponent', () => {
 
   beforeEach(() => {
     params = {
-      authorId: '2'
+      authorId: '2',
     };
 
     TestBed.configureTestingModule({
@@ -28,21 +31,21 @@ describe('AuthorComponent', () => {
         provideMockStore({
           initialState: {
             article: {
-              articles: mockArticles
+              articles: mockArticles,
             },
             author: {
-              authors: mockAuthors
-            }
-          }
+              authors: mockAuthors,
+            },
+          },
         }),
         {
           provide: ActivatedRoute,
           useValue: {
-            paramMap: of(convertToParamMap(params))
-          }
-        }
+            paramMap: of(convertToParamMap(params)),
+          },
+        },
       ],
-      imports: [RouterTestingModule]
+      imports: [RouterTestingModule],
     });
 
     component = TestBed.inject(AuthorComponent);

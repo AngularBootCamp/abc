@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { delay, Observable } from 'rxjs';
+
+import { HttpClient } from '@angular/common/http';
+
+import { Observable, delay } from 'rxjs';
 
 import { Employee } from './employee';
 
@@ -17,7 +19,7 @@ const apiLatency = 100;
 const apiJitter = 100;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeeLoaderService {
   private readonly http = inject(HttpClient);

@@ -5,11 +5,11 @@ export const appRoutes: Routes = [
   {
     path: 'dashboard',
     loadComponent: () =>
-      import('./user-dashboard/user-dashboard.component')
+      import('./user-dashboard/user-dashboard.component'),
   },
   {
     path: 'employees',
     loadComponent: () =>
-      import('./employee-browser/employee-browser.component')
-  }
+      import('./employee-browser/employee-browser.component'),
+  },
 ];

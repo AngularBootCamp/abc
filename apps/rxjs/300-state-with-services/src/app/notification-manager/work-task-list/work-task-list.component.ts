@@ -1,5 +1,7 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
+
 import { MatListModule } from '@angular/material/list';
 
 import { Task } from '../../types';
@@ -13,7 +15,7 @@ import { WorkTaskListService } from './work-task-list.service';
   selector: 'app-work-task-list',
   templateUrl: './work-task-list.component.html',
   styleUrl: '../notification-manager.component.scss',
-  imports: [MatListModule, AsyncPipe]
+  imports: [MatListModule, AsyncPipe],
 })
 export class WorkTaskListComponent {
   private workTaskListService = inject(WorkTaskListService);

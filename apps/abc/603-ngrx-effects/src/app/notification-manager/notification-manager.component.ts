@@ -1,8 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import { Store } from '@ngrx/store';
 
 import { generalActions } from '../state';
@@ -15,7 +12,7 @@ import { WorkTaskListComponent } from './work-task-list/work-task-list.component
   templateUrl: './notification-manager.component.html',
   styleUrl: './notification-manager.component.scss',
   imports: [WorkTaskListComponent, HomeTaskListComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotificationManagerComponent {
   private readonly store = inject(Store);

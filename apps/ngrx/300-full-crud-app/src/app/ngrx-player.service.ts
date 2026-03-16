@@ -1,7 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+/* eslint-disable @angular-eslint/use-injectable-provided-in
+-- Included in app config `providers` array
+*/
 import { Injectable, inject } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
+
+import { Observable, filter, firstValueFrom } from 'rxjs';
+
 import { Store } from '@ngrx/store';
-import { filter, firstValueFrom, Observable } from 'rxjs';
 
 import { Player, PlayerWithStats } from './api-types';
 import { playerEndpointLocation } from './api-urls';
@@ -14,7 +20,7 @@ import {
   selectGamesForPlayer,
   selectPlayer,
   selectPlayerWithDetails,
-  selectShotsForPlayer
+  selectShotsForPlayer,
 } from './state/selectors';
 
 const check = (p: Player | undefined): p is Player => !!p;
@@ -26,25 +32,23 @@ export class NgrxPlayerService extends PlayerService {
 
   players = this.store.select(selectAllPlayers);
   player(playerId: string): Observable<Player> {
-    return this.store
-      .select(selectPlayer(playerId))
-      .pipe(filter(check));
+    return this.store.select(selectPlayer(playerId)).pipe(filter(check));
   }
 
   async addPlayer(name: string): Promise<void> {
     await firstValueFrom(
-      this.http.post<Player>(playerEndpointLocation, { name })
+      this.http.post<Player>(playerEndpointLocation, { name }),
     ).then(player =>
-      this.store.dispatch(playerPageActions.addPlayer({ player }))
+      this.store.dispatch(playerPageActions.addPlayer({ player })),
     );
   }
   async changePlayerName(id: string, name: string): Promise<void> {
     await firstValueFrom(
-      this.http.put(`${playerEndpointLocation}/${id}`, { id, name })
+      this.http.put(`${playerEndpointLocation}/${id}`, { id, name }),
     ).then(() =>
       this.store.dispatch(
-        playerPageActions.updatePlayerName({ id, newName: name })
-      )
+        playerPageActions.updatePlayerName({ id, newName: name }),
+      ),
     );
   }
   playerGames(playerId: string) {
@@ -64,9 +68,9 @@ export class NgrxPlayerService extends PlayerService {
   }
   async deletePlayer(id: string): Promise<void> {
     await firstValueFrom(
-      this.http.delete<void>(`${playerEndpointLocation}/${id}`)
+      this.http.delete<void>(`${playerEndpointLocation}/${id}`),
     ).then(() =>
-      this.store.dispatch(playerPageActions.deletePlayer({ id }))
+      this.store.dispatch(playerPageActions.deletePlayer({ id })),
     );
   }
 }

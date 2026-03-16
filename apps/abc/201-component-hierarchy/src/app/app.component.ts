@@ -1,14 +1,15 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+
 import {
-  RouterLinkActive,
   RouterLink,
-  RouterOutlet
+  RouterLinkActive,
+  RouterOutlet,
 } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   imports: [RouterLinkActive, RouterLink, RouterOutlet],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}

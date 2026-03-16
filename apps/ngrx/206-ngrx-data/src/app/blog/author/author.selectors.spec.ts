@@ -15,19 +15,17 @@ describe('Author Selectors', () => {
 
     it('should handle a matched id', () => {
       expect(selectCurrentAuthor.projector(entities, 2)).toBe(
-        mockAuthors[1]
+        mockAuthors[1],
       );
     });
 
     it('should handle an unmatched id', () => {
-      expect(
-        selectCurrentAuthor.projector(entities, 999)
-      ).toBeUndefined();
+      expect(selectCurrentAuthor.projector(entities, 999)).toBeUndefined();
     });
 
     it('should handle an undefined', () => {
       expect(
-        selectCurrentAuthor.projector(entities, undefined)
+        selectCurrentAuthor.projector(entities, undefined),
       ).toBeUndefined();
     });
   });

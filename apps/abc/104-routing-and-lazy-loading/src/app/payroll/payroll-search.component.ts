@@ -12,6 +12,6 @@ import { SearchBoxComponent } from '../search/search-box.component';
     </article>
   `,
   imports: [SearchBoxComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class PayrollSearchComponent {}

@@ -12,10 +12,10 @@ const playerRoutes: Routes = [
     children: [
       {
         path: `:${selectedPlayerIdRouteParamName}`,
-        component: PlayerDetailComponent
-      }
-    ]
-  }
+        component: PlayerDetailComponent,
+      },
+    ],
+  },
 ];
 
 export default playerRoutes;

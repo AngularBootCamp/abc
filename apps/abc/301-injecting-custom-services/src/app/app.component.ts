@@ -3,18 +3,18 @@ import {
   Component,
   OnDestroy,
   inject,
-  signal
+  signal,
 } from '@angular/core';
 
 import {
   Employee,
-  EmployeeLoaderService
+  EmployeeLoaderService,
 } from './employee-loader.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnDestroy {
   protected readonly employees = signal<Employee[]>([]);

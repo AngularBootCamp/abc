@@ -5,16 +5,9 @@
   <button (click)="logForm()">Log Form</button>
 </div>
 
-@if (!pizzasFormArray.controls.length) {
-  <div>Add a Pizza to Continue!</div>
-}
-
 @for (form of pizzasFormArray.controls; track form) {
   <article [class.collapsed]="activePizza !== $index">
-    <h2
-      class="pizza-form-header"
-      (click)="setActivePizzaForm($index)"
-    >
+    <h2 class="pizza-form-header" (click)="setActivePizzaForm($index)">
       <i class="material-icons">
         {{ activePizza === $index ? 'expand_more' : 'chevron_right' }}
       </i>
@@ -57,4 +50,6 @@
       </form>
     </div>
   </article>
+} @empty {
+  <div>Add a Pizza to Continue!</div>
 }

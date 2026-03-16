@@ -1,4 +1,8 @@
-import { ApplicationConfig } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+} from '@angular/core';
+
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
@@ -12,17 +16,18 @@ import { WorkTasksEffects } from './work-tasks.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideBrowserGlobalErrorListeners(),
     provideStore(reducers, {
       runtimeChecks: {
         strictStateSerializability: true,
-        strictActionSerializability: true
-      }
+        strictActionSerializability: true,
+      },
     }),
     provideEffects([AppEffects, HomeTasksEffects, WorkTasksEffects]),
     provideStoreDevtools({
       maxAge: 50,
       logOnly: environment.production,
-      trace: true
-    })
-  ]
+      trace: true,
+    }),
+  ],
 };

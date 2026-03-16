@@ -1,10 +1,13 @@
 import { TestBed } from '@angular/core/testing';
+
 import { RouterTestingModule } from '@angular/router/testing';
+
+import { firstValueFrom, of } from 'rxjs';
+
 import { subscribeSpyTo } from '@hirez_io/observer-spy';
 import { MemoizedSelector } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { Spy, createSpyFromClass } from 'jest-auto-spies';
-import { firstValueFrom, of } from 'rxjs';
 
 import { ConfigService } from '../../config.service';
 import { AppState } from '../../reducers';
@@ -25,7 +28,7 @@ describe('ArticleListComponent', () => {
 
   beforeEach(() => {
     configSvc = createSpyFromClass(ConfigService, {
-      observablePropsToSpyOn: ['title']
+      observablePropsToSpyOn: ['title'],
     });
     configSvc.title.nextWith('Blog Title');
 
@@ -36,29 +39,29 @@ describe('ArticleListComponent', () => {
         ArticleListComponent,
         provideMockStore({}),
         { provide: ConfigService, useValue: configSvc },
-        { provide: ArticleService, useValue: articleSvc }
+        { provide: ArticleService, useValue: articleSvc },
       ],
-      imports: [RouterTestingModule]
+      imports: [RouterTestingModule],
     });
 
     component = TestBed.inject(ArticleListComponent);
     const mockStore = TestBed.inject(MockStore);
     selectMockCurrentAuthorId = mockStore.overrideSelector(
       selectCurrentAuthorId,
-      2
+      2,
     );
   });
 
   describe('getArticlesByAuthor', () => {
     beforeEach(() => {
       articleSvc.getArticlesByAuthor.mockReturnValue(
-        of([mockArticles[0], mockArticles[1]])
+        of([mockArticles[0], mockArticles[1]]),
       );
     });
 
     it('should return the articles', async () => {
       const result = await firstValueFrom(
-        component.getArticlesByAuthor(1)
+        component.getArticlesByAuthor(1),
       );
 
       expect(result).toEqual([mockArticles[0], mockArticles[1]]);
@@ -95,7 +98,7 @@ describe('ArticleListComponent', () => {
     it('should get the articles', async () => {
       selectMockCurrentAuthorId.setResult(2);
       articleSvc.getArticlesByAuthor.mockReturnValue(
-        of([mockArticles[2]])
+        of([mockArticles[2]]),
       );
 
       const result = await firstValueFrom(component.articles);

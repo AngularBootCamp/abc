@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 import { CarOrderComponent } from './car-order/car-order.component';
 
@@ -12,8 +12,9 @@ interface Car {
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  // ,providers: [CarStateService]
-  imports: [CarOrderComponent]
+  imports: [CarOrderComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  // providers: [CarStateService],
 })
 export class AppComponent {
   protected readonly cars = signal<Car[]>([]);

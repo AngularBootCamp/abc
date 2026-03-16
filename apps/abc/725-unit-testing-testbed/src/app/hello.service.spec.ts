@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+
 import { Spy, createSpyFromClass } from 'jest-auto-spies';
 
 import { HelloService } from './hello.service';
@@ -16,9 +17,9 @@ describe('HelloUserService', () => {
       providers: [
         {
           provide: UserService,
-          useValue: userService
-        }
-      ]
+          useValue: userService,
+        },
+      ],
     });
 
     // Always retrieve services from TestBed
@@ -30,13 +31,13 @@ describe('HelloUserService', () => {
     const user = {
       id: '1',
       firstName: 'Rachel',
-      lastName: 'Hardin'
+      lastName: 'Hardin',
     };
     userService.currentUser.mockReturnValue(user);
 
     // execute test method and assert result
     expect(helloUserService.calculateHello('Hello')).toBe(
-      'Hello, Rachel Hardin!'
+      'Hello, Rachel Hardin!',
     );
 
     // verify mocks

@@ -6,8 +6,9 @@ import {
   computed,
   effect,
   inject,
-  viewChild
+  viewChild,
 } from '@angular/core';
+
 import * as d3 from 'd3';
 
 import { GraphService, Person, Relationship } from './graph.service';
@@ -15,15 +16,14 @@ import { GraphService, Person, Relationship } from './graph.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   private readonly cdRef = inject(ChangeDetectorRef);
 
   private readonly graphService = inject(GraphService);
 
-  private readonly svgElement =
-    viewChild.required<ElementRef>('svgEle');
+  private readonly svgElement = viewChild.required<ElementRef>('svgEle');
 
   protected readonly peopleNodes = this.graphService.people;
 
@@ -32,7 +32,7 @@ export class AppComponent {
       this.graphService.relationships() as {
         source: Person;
         target: Person;
-      }[]
+      }[],
   );
 
   private simulationEffectRef = effect(() => {
@@ -54,8 +54,8 @@ export class AppComponent {
         d3.forceCenter(
           // parentNode needed for Firefox
           (svgEl.clientWidth || svgEl.parentNode.clientWidth) / 2,
-          (svgEl.clientHeight || svgEl.parentNode.clientHeight) / 2
-        )
+          (svgEl.clientHeight || svgEl.parentNode.clientHeight) / 2,
+        ),
       )
       // Really low values for alpha min and decay result in a
       // long-running force graph, good for ambient motion during
@@ -74,7 +74,7 @@ export class AppComponent {
           // Associate links with nodes via display name.
           .id(node => (node as Person).displayName)
           .distance(0)
-          .strength(0.5)
+          .strength(0.5),
       );
 
     // The simulation only needs to be initialized once.

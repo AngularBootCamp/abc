@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-first',
@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
         border: 3px solid var(--abc-category-1-color);
       }
     </style>
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FirstComponent {}

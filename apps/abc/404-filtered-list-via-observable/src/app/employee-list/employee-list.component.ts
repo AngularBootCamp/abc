@@ -1,11 +1,13 @@
-import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  signal
+  signal,
 } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+
 import {
   Observable,
   Subject,
@@ -13,7 +15,7 @@ import {
   debounceTime,
   map,
   startWith,
-  switchMap
+  switchMap,
 } from 'rxjs';
 
 import { Employee } from '../employee';
@@ -29,9 +31,9 @@ import { EmployeeLoaderService } from '../employee-loader.service';
     AsyncPipe,
     EmployeeListTableViewComponent,
     EmployeeDetailComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeListComponent {
   // The sort options will always have a value that is the name of a
@@ -43,7 +45,7 @@ export class EmployeeListComponent {
     }[]
   >([
     { display: 'Last Name', value: 'lastName' },
-    { display: 'Hours Worked', value: 'hoursWorked' }
+    { display: 'Hours Worked', value: 'hoursWorked' },
   ]);
 
   // Tell TypeScript that the value of this will always be a
@@ -52,12 +54,12 @@ export class EmployeeListComponent {
   protected readonly sort = new FormControl<keyof Employee>(
     this.sortCriteria()[0].value,
     {
-      nonNullable: true
-    }
+      nonNullable: true,
+    },
   );
 
   protected readonly nameFilter = new FormControl('', {
-    nonNullable: true
+    nonNullable: true,
   });
 
   protected readonly filteredList: Observable<Employee[]>;
@@ -69,31 +71,29 @@ export class EmployeeListComponent {
 
     // .valueChanges is missing the initial value; add it:
     const nameFilter = this.nameFilter.valueChanges.pipe(
-      startWith(this.nameFilter.value)
+      startWith(this.nameFilter.value),
     );
 
-    const sort = this.sort.valueChanges.pipe(
-      startWith(this.sort.value)
-    );
+    const sort = this.sort.valueChanges.pipe(startWith(this.sort.value));
 
     // List reacts to filter and sort changes.
     this.filteredList = combineLatest([
       nameFilter.pipe(
         debounceTime(250),
-        switchMap(x => loader.getList(x))
+        switchMap(x => loader.getList(x)),
       ),
-      sort
+      sort,
     ]).pipe(
       // list.sort() mutates the array, so our linter makes sure
       // we are sorting a copy of the original list, to be safe.
       map(([list, sortKey]) =>
-        [...list].sort(propertyComparator(sortKey))
-      )
+        [...list].sort(propertyComparator(sortKey)),
+      ),
     );
 
     // Detail reacts to selected employee changes.
     this.selectedEmployee = this.selectedId.pipe(
-      switchMap(id => loader.getDetails(id))
+      switchMap(id => loader.getDetails(id)),
     );
   }
 }

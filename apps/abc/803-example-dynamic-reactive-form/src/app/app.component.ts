@@ -1,5 +1,11 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
+
 import { JsonPipe } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { exampleSchema } from './example-schema';
@@ -9,14 +15,15 @@ import { SchemaFormUtils } from './schema-form-utils';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [ReactiveFormsModule, JsonPipe]
+  imports: [ReactiveFormsModule, JsonPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   // This could be loaded from an external source.
   protected readonly schema = signal(exampleSchema);
 
   protected readonly dynamicFormGroup = inject(FormBuilder).group(
-    SchemaFormUtils.createControlsConfigFromSchema(this.schema())
+    SchemaFormUtils.createControlsConfigFromSchema(this.schema()),
   );
 
   // Make it easier to get to the form controls from the template.

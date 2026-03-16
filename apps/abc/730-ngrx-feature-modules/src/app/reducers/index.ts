@@ -9,7 +9,7 @@ export interface AppState {
 
 export const reducers: ActionReducerMap<AppState> = {
   [fromUserProfile.userProfileFeatureKey]:
-    fromUserProfile.userProfileFeature.reducer
+    fromUserProfile.userProfileFeature.reducer,
 };
 
 export const metaReducers: MetaReducer<AppState>[] =

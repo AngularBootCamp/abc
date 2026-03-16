@@ -1,14 +1,16 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
+import {
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import {
-  RouterLinkActive,
-  RouterLink,
-  RouterOutlet
-} from '@angular/router';
 
 import { AddGameComponent } from '../add-game/add-game.component';
 import { GameService } from '../game.service';
@@ -25,8 +27,8 @@ import { GameService } from '../game.service';
     MatListModule,
     RouterLinkActive,
     RouterLink,
-    RouterOutlet
-  ]
+    RouterOutlet,
+  ],
 })
 export class GamesComponent {
   private gs = inject(GameService);

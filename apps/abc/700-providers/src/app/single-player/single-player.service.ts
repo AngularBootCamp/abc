@@ -1,12 +1,17 @@
-import { HttpClient } from '@angular/common/http';
+/* eslint-disable @angular-eslint/use-injectable-provided-in
+-- Services can be provided in different injectors to illustrate hierchical DI
+*/
 import { Injectable, inject } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
+
 import {
   Subject,
   firstValueFrom,
   map,
   shareReplay,
   startWith,
-  switchMap
+  switchMap,
 } from 'rxjs';
 
 import { ClickService } from '../click.service';
@@ -23,20 +28,18 @@ export class SinglePlayerService implements ClickService {
 
   private readonly refresh = new Subject<void>();
 
-  readonly clickCount = this.refresh.pipe(
+  public readonly clickCount = this.refresh.pipe(
     startWith(undefined),
-    switchMap(() =>
-      this.http.get<{ count: number }>(apiUrl + '/count')
-    ),
+    switchMap(() => this.http.get<{ count: number }>(apiUrl + '/count')),
     map(response => response.count),
-    shareReplay({ refCount: true, bufferSize: 1 })
+    shareReplay({ refCount: true, bufferSize: 1 }),
   );
 
   constructor() {
     console.log('Single Player Service Activated');
   }
 
-  async increment() {
+  public async increment() {
     await firstValueFrom(this.http.post(apiUrl + '/increment', ''));
     this.refresh.next();
   }

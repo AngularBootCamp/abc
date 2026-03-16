@@ -1,9 +1,10 @@
+import { TestBed } from '@angular/core/testing';
+
 import { provideHttpClient } from '@angular/common/http';
 import {
   HttpTestingController,
-  provideHttpClientTesting
+  provideHttpClientTesting,
 } from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
 
 import { Employee } from './employee';
 import { EmployeeService } from './employee.service';
@@ -18,7 +19,7 @@ describe('Employee Service', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [provideHttpClient(), provideHttpClientTesting()]
+      providers: [provideHttpClient(), provideHttpClientTesting()],
     });
 
     httpTestingController = TestBed.inject(HttpTestingController);
@@ -28,14 +29,14 @@ describe('Employee Service', () => {
     // an unmodified copy of the test data.
     testEmployee = [
       {
-        firstName: 'Sara'
+        firstName: 'Sara',
       },
       {
-        firstName: 'Joe'
+        firstName: 'Joe',
       },
       {
-        firstName: 'Bob'
-      }
+        firstName: 'Bob',
+      },
     ];
   });
 
@@ -46,13 +47,11 @@ describe('Employee Service', () => {
     service.getList().subscribe(
       list =>
         // This line will execute after the call to req.flush(testEmployee)
-        (employees = list)
+        (employees = list),
     );
 
     // expectOne will throw an error if this url has not been requested exactly one time
-    const req = httpTestingController.expectOne(
-      apiUrl + '/employees'
-    );
+    const req = httpTestingController.expectOne(apiUrl + '/employees');
 
     expect(req.request.method).toEqual('GET');
 
@@ -71,12 +70,10 @@ describe('Employee Service', () => {
 
     service.getList().subscribe(list => (employees = list));
 
-    const req = httpTestingController.expectOne(
-      apiUrl + '/employees'
-    );
+    const req = httpTestingController.expectOne(apiUrl + '/employees');
 
     const mockError = new ErrorEvent('Network Error', {
-      message: 'connection timeout'
+      message: 'connection timeout',
     });
     req.error(mockError);
 

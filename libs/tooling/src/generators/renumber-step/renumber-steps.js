@@ -73,19 +73,14 @@ fs.readdir(baseDir, (err, files) => {
       }
 
       let startNewSection = false;
-      const outlineFileName = path.join(
-        baseDir,
-        file,
-        '_explanation.md'
-      );
+      const outlineFileName = path.join(baseDir, file, '_explanation.md');
       if (fs.existsSync(outlineFileName)) {
         const contents = fs
           .readFileSync(outlineFileName, 'utf8')
           .toString()
           .split('\n');
         startNewSection =
-          contents.findIndex(line => line.match(/^# .*/) !== null) >=
-          0;
+          contents.findIndex(line => line.match(/^# .*/) !== null) >= 0;
       } else {
         console.log('no instructor file:', outlineFileName);
       }
@@ -100,7 +95,7 @@ fs.readdir(baseDir, (err, files) => {
       return {
         before: file,
         after: prefix + fmtNum(labelNum) + name,
-        temp: 'TEMP-' + prefix + fmtNum(labelNum) + name
+        temp: 'TEMP-' + prefix + fmtNum(labelNum) + name,
       };
     })
     .filter(pair => pair.before != pair.after)
@@ -108,7 +103,7 @@ fs.readdir(baseDir, (err, files) => {
       console.log(
         path.join(baseDir, pair.before),
         '==>',
-        path.join(baseDir, pair.after)
+        path.join(baseDir, pair.after),
       );
       return pair;
     })
@@ -116,7 +111,7 @@ fs.readdir(baseDir, (err, files) => {
       if (doIt) {
         fs.renameSync(
           path.join(baseDir, pair.before),
-          path.join(baseDir, pair.temp)
+          path.join(baseDir, pair.temp),
         );
       }
       return pair;
@@ -125,7 +120,7 @@ fs.readdir(baseDir, (err, files) => {
       if (doIt) {
         fs.renameSync(
           path.join(baseDir, pair.temp),
-          path.join(baseDir, pair.after)
+          path.join(baseDir, pair.after),
         );
       }
     });

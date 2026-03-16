@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+
 import { Spy, createSpyFromClass } from 'jest-auto-spies';
 
 import { AppComponent } from './app.component';
@@ -12,7 +13,7 @@ describe('AppComponent', () => {
 
   beforeEach(() => {
     configSvc = createSpyFromClass(ConfigService, {
-      observablePropsToSpyOn: ['title']
+      observablePropsToSpyOn: ['title'],
     });
     configSvc.title.nextWith(title);
 
@@ -21,9 +22,9 @@ describe('AppComponent', () => {
         AppComponent,
         {
           provide: ConfigService,
-          useValue: configSvc
-        }
-      ]
+          useValue: configSvc,
+        },
+      ],
     });
 
     component = TestBed.inject(AppComponent);

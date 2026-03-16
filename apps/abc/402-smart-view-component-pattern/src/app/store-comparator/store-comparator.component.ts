@@ -1,9 +1,7 @@
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import { AsyncPipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject
-} from '@angular/core';
+
 import { tap } from 'rxjs';
 
 import { EmployeeComparisonComponent } from '../employee-comparison/employee-comparison.component';
@@ -11,14 +9,15 @@ import { EmployeeExplorerComponent } from '../employee-explorer/employee-explore
 import { Employee, EmployeeLoader } from '../employee-loader.service';
 
 @Component({
+  selector: 'app-store-comparator',
   templateUrl: './store-comparator.component.html',
   styleUrl: './store-comparator.component.scss',
   imports: [
     EmployeeComparisonComponent,
     EmployeeExplorerComponent,
-    AsyncPipe
+    AsyncPipe,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class StoreComparatorComponent {
   private readonly el = inject(EmployeeLoader);
@@ -28,7 +27,7 @@ export default class StoreComparatorComponent {
     .pipe(
       tap(list => {
         this.easternEmployee = list[0];
-      })
+      }),
     );
 
   protected readonly westernEmployeeList = this.el
@@ -36,7 +35,7 @@ export default class StoreComparatorComponent {
     .pipe(
       tap(list => {
         this.westernEmployee = list[0];
-      })
+      }),
     );
 
   protected easternEmployee: Employee | undefined;

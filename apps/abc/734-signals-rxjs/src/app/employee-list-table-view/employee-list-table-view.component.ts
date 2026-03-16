@@ -1,8 +1,8 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  output,
   input,
-  ChangeDetectionStrategy
+  output,
 } from '@angular/core';
 
 import { Employee } from '../employee';
@@ -11,7 +11,7 @@ import { Employee } from '../employee';
   selector: 'app-employee-list-table-view',
   templateUrl: './employee-list-table-view.component.html',
   styleUrl: './employee-list-table-view.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeListTableViewComponent {
   public readonly list = input<Employee[]>([]);

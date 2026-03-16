@@ -2,21 +2,20 @@ import { join } from 'path/posix';
 
 import {
   E2eTestRunner,
-  applicationGenerator
+  applicationGenerator,
 } from '@nx/angular/generators';
 import {
+  TargetConfiguration,
+  Tree,
   formatFiles,
   generateFiles,
   getWorkspaceLayout,
+  joinPathFragments,
   names,
   offsetFromRoot,
-  Tree,
-  updateProjectConfiguration,
   readProjectConfiguration,
-  TargetConfiguration,
-  joinPathFragments
+  updateProjectConfiguration,
 } from '@nx/devkit';
-import { Linter } from '@nx/eslint';
 import { moveGenerator } from '@nx/workspace';
 
 import { ToolingGeneratorSchema } from './schema';
@@ -33,14 +32,11 @@ interface NormalizedSchema extends ToolingGeneratorSchema {
 
 function normalizeOptions(
   tree: Tree,
-  options: ToolingGeneratorSchema
+  options: ToolingGeneratorSchema,
 ): NormalizedSchema {
   const name = names(options.name).fileName;
   const projectDirectory = `${names(options.class).fileName}/${name}`;
-  const projectName = projectDirectory.replace(
-    new RegExp('/', 'g'),
-    '-'
-  );
+  const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
   const projectRoot = `${
     getWorkspaceLayout(tree).appsDir
   }/${projectDirectory}`;
@@ -60,7 +56,7 @@ function normalizeOptions(
     projectRoot,
     projectDirectory,
     appTitle,
-    hasWorkshop: options.includeWorkshop ?? false
+    hasWorkshop: options.includeWorkshop ?? false,
   };
 }
 
@@ -68,25 +64,25 @@ function addFiles(
   tree: Tree,
   options: NormalizedSchema,
   filesFolder: string,
-  projectRoot?: string
+  projectRoot?: string,
 ) {
   const templateOptions = {
     ...options,
     ...names(options.name),
     offsetFromRoot: offsetFromRoot(options.projectRoot),
-    tmpl: ''
+    tmpl: '',
   };
   generateFiles(
     tree,
     joinPathFragments(__dirname, filesFolder),
     projectRoot ? projectRoot : options.projectRoot,
-    templateOptions
+    templateOptions,
   );
 }
 
 export default async function (
   tree: Tree,
-  options: ToolingGeneratorSchema
+  options: ToolingGeneratorSchema,
 ) {
   const normalizedOptions = normalizeOptions(tree, options);
 
@@ -96,33 +92,30 @@ export default async function (
     style: 'scss',
     skipTests: true,
     directory: normalizedOptions.projectRoot,
-    linter: Linter.EsLint,
+    linter: 'eslint',
     strict: true,
     port: 4300,
     standalone: true,
     e2eTestRunner: E2eTestRunner.Cypress,
-    bundler: 'esbuild'
+    bundler: 'esbuild',
   });
 
   const projectConfiguration = readProjectConfiguration(
     tree,
-    normalizedOptions.projectName
+    normalizedOptions.projectName,
   );
 
   // Need to update the assets globbing, stylePreprocessorOptions, and styles
   // in the Build Target's Options
   let buildTarget = projectConfiguration.targets
     ?.build as TargetConfiguration<{
-    assets: (
-      | string
-      | { glob: string; input: string; output: string }
-    )[];
+    assets: (string | { glob: string; input: string; output: string })[];
     stylePreprocessorOptions: { includePaths: string[] };
     styles: string[];
   }>;
 
   const matchingCurriculumStep = curriculumSets.find(
-    curriculumSet => curriculumSet === normalizedOptions.class
+    curriculumSet => curriculumSet === normalizedOptions.class,
   );
 
   if (buildTarget.options) {
@@ -138,15 +131,15 @@ export default async function (
                 {
                   glob: '**/*',
                   input: `libs/shared/assets/${matchingCurriculumStep}`,
-                  output: '/assets/'
-                }
+                  output: '/assets/',
+                },
               ]
             : []),
           {
             glob: '**/*',
             input: 'libs/shared/assets/shared',
-            output: '/assets/'
-          }
+            output: '/assets/',
+          },
         ],
         stylePreprocessorOptions: {
           includePaths: [
@@ -154,19 +147,17 @@ export default async function (
               ? [`libs/shared/styles/${matchingCurriculumStep}`]
               : []),
             'libs/shared/styles/shared',
-            'node_modules/@angular/material'
-          ]
+            'node_modules/@angular/material',
+          ],
         },
         styles: [
           ...buildOptions.styles,
           ...(matchingCurriculumStep
-            ? [
-                `libs/shared/styles/${matchingCurriculumStep}/shared.scss`
-              ]
+            ? [`libs/shared/styles/${matchingCurriculumStep}/shared.scss`]
             : []),
-          'libs/shared/styles/shared/shared.scss'
-        ]
-      }
+          'libs/shared/styles/shared/shared.scss',
+        ],
+      },
     };
   }
 
@@ -182,8 +173,8 @@ export default async function (
       ...serveTarget,
       options: {
         ...serveOptions,
-        proxyConfig: 'proxy.conf.json'
-      }
+        proxyConfig: 'proxy.conf.json',
+      },
     };
   }
 
@@ -196,10 +187,10 @@ export default async function (
       serve: {
         executor: '@class-materials/tooling:serve-step',
         options: {
-          serveTarget: `${normalizedOptions.projectName}:ng-serve`
-        }
-      }
-    }
+          serveTarget: `${normalizedOptions.projectName}:ng-serve`,
+        },
+      },
+    },
   });
 
   addFiles(tree, normalizedOptions, 'files');
@@ -211,7 +202,7 @@ export default async function (
     normalizedOptions.projectRoot,
     'src',
     'app',
-    'nx-welcome.component.ts'
+    'nx-welcome.component.ts',
   );
   if (tree.isFile(nxSplashScreenComponentPath)) {
     tree.delete(nxSplashScreenComponentPath);
@@ -221,35 +212,32 @@ export default async function (
     projectName: `${normalizedOptions.projectName}-e2e`,
     newProjectName: `${normalizedOptions.projectName}-e2e`,
     destination: `${normalizedOptions.projectRoot}/cypress`,
-    updateImportPath: true
+    updateImportPath: true,
   });
 
   addFiles(
     tree,
     normalizedOptions,
     'e2e-files',
-    join(normalizedOptions.projectRoot, 'cypress')
+    join(normalizedOptions.projectRoot, 'cypress'),
   );
 
   const cypressConfiguration = readProjectConfiguration(
     tree,
-    `${normalizedOptions.projectName}-e2e`
+    `${normalizedOptions.projectName}-e2e`,
   );
 
   // Swap the default `serve` end-point to our new `ng-serve`
   // The reason for this is that the e2e executor hangs on our nx run-commands executor...
   // The api server will have to be run manually for e2e
   const updatedCypressConfiguration = JSON.parse(
-    JSON.stringify(cypressConfiguration).replace(
-      /:serve/g,
-      ':ng-serve'
-    )
+    JSON.stringify(cypressConfiguration).replace(/:serve/g, ':ng-serve'),
   );
 
   updateProjectConfiguration(
     tree,
     `${normalizedOptions.projectName}-e2e`,
-    updatedCypressConfiguration
+    updatedCypressConfiguration,
   );
 
   await formatFiles(tree);

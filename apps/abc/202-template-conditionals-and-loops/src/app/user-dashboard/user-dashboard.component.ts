@@ -2,31 +2,31 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  signal
+  signal,
 } from '@angular/core';
 
 const meetings = [
   {
     description: 'Standup',
-    participants: ['John', 'Paul', 'Ringo', 'George']
+    participants: ['John', 'Paul', 'Ringo', 'George'],
   },
   {
     description: 'Meet with the Bills',
-    participants: ['Bill', 'Bill', 'Peter']
+    participants: ['Bill', 'Bill', 'Peter'],
   },
-  { description: 'Working lunch', participants: ['Joe', 'Jane'] }
+  { description: 'Working lunch', participants: ['Joe', 'Jane'] },
 ];
 
 const todoList = [
   { label: 'Attach cover letter to TPS report' },
   { label: 'Double check decimal places' },
-  { label: 'Jump to conclusions' }
+  { label: 'Jump to conclusions' },
 ];
 
 @Component({
   selector: 'app-user-dashboard',
   templateUrl: './user-dashboard.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class UserDashboardComponent {
   protected readonly showProfile = signal(true);
@@ -34,13 +34,13 @@ export default class UserDashboardComponent {
   protected readonly todos = signal(todoList);
 
   protected readonly showHideProfileMessage = computed(
-    () => (this.showProfile() ? 'Hide' : 'Show') + ' Profile'
+    () => (this.showProfile() ? 'Hide' : 'Show') + ' Profile',
   );
 
   protected addTodo() {
     this.todos.update(list => [
       { label: `Task ${list.length + 1}` },
-      ...list
+      ...list,
     ]);
   }
 }

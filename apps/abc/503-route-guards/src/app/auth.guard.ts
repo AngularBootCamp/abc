@@ -1,15 +1,16 @@
 import { inject } from '@angular/core';
+
 import {
   ActivatedRouteSnapshot,
   Router,
-  RouterStateSnapshot
+  RouterStateSnapshot,
 } from '@angular/router';
 
 import { AuthService } from './auth.service';
 
-export function AuthGuard(
+export function authGuard(
   route: ActivatedRouteSnapshot,
-  _state: RouterStateSnapshot
+  _state: RouterStateSnapshot,
 ) {
   const authService = inject(AuthService);
   const router = inject(Router);
@@ -19,9 +20,7 @@ export function AuthGuard(
   if (authService.currentUserHasAccessTo(route)) {
     return true;
   } else {
-    console.log(
-      'User does not have access to route -- redirecting...'
-    );
+    console.log('User does not have access to route -- redirecting...');
     // Returning a route to redirect to
     return router.parseUrl('forbidden');
   }

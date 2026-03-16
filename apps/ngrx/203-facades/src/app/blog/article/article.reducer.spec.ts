@@ -1,5 +1,5 @@
 import { articleApiActions } from './article.actions';
-import { initialState, articleFeature } from './article.reducer';
+import { articleFeature, initialState } from './article.reducer';
 import { mockArticles } from './mock.articles';
 
 describe('Article Reducer', () => {
@@ -18,7 +18,7 @@ describe('Article Reducer', () => {
       const articles = mockArticles;
       const result = articleFeature.reducer(
         initialState,
-        articleApiActions.loadArticlesSuccess({ articles })
+        articleApiActions.loadArticlesSuccess({ articles }),
       );
 
       expect(result.articles).toEqual(articles);
@@ -31,16 +31,16 @@ describe('Article Reducer', () => {
         authorId: 3,
         id: 4,
         title: 'titleNew',
-        body: 'bodyNew'
+        body: 'bodyNew',
       };
 
       const result = [
         articleApiActions.loadArticlesSuccess({
-          articles: mockArticles
+          articles: mockArticles,
         }),
         articleApiActions.createArticleSuccess({
-          article: newArticle
-        })
+          article: newArticle,
+        }),
       ].reduce(articleFeature.reducer, initialState);
 
       expect(result.articles.length).toBe(4);
@@ -52,11 +52,11 @@ describe('Article Reducer', () => {
     it('should delete an article', () => {
       const result = [
         articleApiActions.loadArticlesSuccess({
-          articles: mockArticles
+          articles: mockArticles,
         }),
         articleApiActions.deleteArticleSuccess({
-          articleId: 2
-        })
+          articleId: 2,
+        }),
       ].reduce(articleFeature.reducer, initialState);
 
       expect(result.articles.length).toBe(2);
@@ -68,15 +68,15 @@ describe('Article Reducer', () => {
     it('should update an article', () => {
       const newArticle = {
         ...mockArticles[2],
-        title: 'changedTitle'
+        title: 'changedTitle',
       };
       const result = [
         articleApiActions.loadArticlesSuccess({
-          articles: mockArticles
+          articles: mockArticles,
         }),
         articleApiActions.updateArticleSuccess({
-          article: newArticle
-        })
+          article: newArticle,
+        }),
       ].reduce(articleFeature.reducer, initialState);
 
       expect(result.articles.length).toBe(3);

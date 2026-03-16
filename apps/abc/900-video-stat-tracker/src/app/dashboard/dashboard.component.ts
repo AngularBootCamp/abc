@@ -1,5 +1,6 @@
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
 
 import { DashboardService } from './dashboard.service';
 import { Video } from './dashboard.types';
@@ -17,8 +18,9 @@ import { ViewsFilterComponent } from './views-filter/views-filter.component';
     VideoContainerComponent,
     ViewsBreakdownComponent,
     ViewsFilterComponent,
-    AsyncPipe
-  ]
+    AsyncPipe,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class DashboardComponent {
   private readonly ds = inject(DashboardService);

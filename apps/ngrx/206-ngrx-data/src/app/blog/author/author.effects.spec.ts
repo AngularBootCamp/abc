@@ -1,14 +1,13 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
+
+import { Observable, Subject, of, throwError } from 'rxjs';
+
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';
 import { Spy, createSpyFromClass } from 'jest-auto-spies';
-import { Observable, Subject, of, throwError } from 'rxjs';
 
 import { AuthorLoaderService } from './author-loader.service';
-import {
-  authorApiActions,
-  authorInitActions
-} from './author.actions';
+import { authorApiActions, authorInitActions } from './author.actions';
 import { AuthorEffects } from './author.effects';
 import { mockAuthors } from './mock.authors';
 
@@ -25,8 +24,8 @@ describe('AuthorEffects', () => {
       providers: [
         AuthorEffects,
         provideMockActions(() => actions$),
-        { provide: AuthorLoaderService, useValue: authorLoaderMock }
-      ]
+        { provide: AuthorLoaderService, useValue: authorLoaderMock },
+      ],
     });
 
     effects = TestBed.inject(AuthorEffects);
@@ -42,8 +41,8 @@ describe('AuthorEffects', () => {
       effects.loadAuthors$.subscribe(a => {
         expect(a).toEqual(
           authorApiActions.loadAuthorsSuccess({
-            authors: mockAuthors
-          })
+            authors: mockAuthors,
+          }),
         );
 
         // check that the service was called
@@ -51,21 +50,17 @@ describe('AuthorEffects', () => {
       });
 
       // emit an action
-      (actions$ as Subject<Action>).next(
-        authorInitActions.loadAuthors()
-      );
+      (actions$ as Subject<Action>).next(authorInitActions.loadAuthors());
     }));
 
     it('should handle author loading failing', waitForAsync(() => {
       authorLoaderMock.load.mockReturnValue(throwError(() => 'oops'));
       effects.loadAuthors$.subscribe(a => {
         expect(a).toEqual(
-          authorApiActions.loadAuthorsFailure({ error: 'oops' })
+          authorApiActions.loadAuthorsFailure({ error: 'oops' }),
         );
       });
-      (actions$ as Subject<Action>).next(
-        authorInitActions.loadAuthors()
-      );
+      (actions$ as Subject<Action>).next(authorInitActions.loadAuthors());
     }));
   });
 });

@@ -1,10 +1,10 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
-import { LogHandlers } from './log-handler';
+import { LOG_HANDLERS } from './log-handler';
 
 @Injectable({ providedIn: 'root' })
 export class LogService {
-  private readonly loggers = inject(LogHandlers);
+  private readonly loggers = inject(LOG_HANDLERS);
 
   log(message: string) {
     this.loggers.forEach(logger => logger.log(message));

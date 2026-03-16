@@ -1,8 +1,10 @@
 import { Component, effect, inject } from '@angular/core';
+
 import { FormControl } from '@angular/forms';
+import { RouterLink, RouterOutlet } from '@angular/router';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterLink, RouterOutlet } from '@angular/router';
 
 import { DisplayOrEditComponent } from '@class-materials/shared/ui-display-or-edit';
 import { HeaderComponent } from '@class-materials/shared/ui-page-header';
@@ -19,8 +21,8 @@ import { ConfigStore } from './config.store';
     MatButtonModule,
     MatToolbarModule,
     RouterLink,
-    RouterOutlet
-  ]
+    RouterOutlet,
+  ],
 })
 export class AppComponent {
   private readonly configStore = inject(ConfigStore);

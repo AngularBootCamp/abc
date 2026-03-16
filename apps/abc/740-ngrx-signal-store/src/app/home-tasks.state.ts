@@ -3,7 +3,7 @@ import {
   signalStore,
   withHooks,
   withMethods,
-  withState
+  withState,
 } from '@ngrx/signals';
 
 import { Task } from './types';
@@ -14,7 +14,7 @@ export interface HomeTaskState {
 }
 
 export const HomeTaskStore = signalStore(
-  { providedIn: 'root', protectedState: false },
+  { providedIn: 'root' },
   withState<HomeTaskState>({ todoHome: [], doneHome: [] }),
   withMethods(state => ({
     setHomeState(task: Task, complete: boolean) {
@@ -24,19 +24,19 @@ export const HomeTaskStore = signalStore(
           state.todoHome(),
           state.doneHome(),
           task,
-          complete
-        )
+          complete,
+        ),
       );
     },
     completeAll() {
       patchState(state, {
         doneHome: [...state.doneHome(), ...state.todoHome()],
-        todoHome: []
+        todoHome: [],
       });
     },
     homeTasksReceived(tasks: HomeTaskState) {
       patchState(state, tasks);
-    }
+    },
   })),
   withHooks({
     onInit({ homeTasksReceived }) {
@@ -45,15 +45,15 @@ export const HomeTaskStore = signalStore(
           { label: 'cook dinner' },
           { label: 'go grocery shopping' },
           { label: 'sweep the floors' },
-          { label: 'do the laundry' }
+          { label: 'do the laundry' },
         ],
         todoHome: [
           { label: 'fix the leaky faucet' },
-          { label: 'mow the lawn' }
-        ]
+          { label: 'mow the lawn' },
+        ],
       });
-    }
-  })
+    },
+  }),
 );
 
 // Necessary to inject HomeTaskStore as a type
@@ -63,7 +63,7 @@ function setHomeTaskStatus(
   oldTodoHome: Task[],
   oldDoneHome: Task[],
   task: Task,
-  complete: boolean
+  complete: boolean,
 ): HomeTaskState {
   const todoHome = oldTodoHome.filter(x => x !== task);
   const doneHome = oldDoneHome.filter(x => x !== task);

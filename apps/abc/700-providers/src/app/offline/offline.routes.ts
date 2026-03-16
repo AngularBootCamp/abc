@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
-import { ClickComponent } from '../click/click.component';
 import { ClickService } from '../click.service';
+import { ClickComponent } from '../click/click.component';
 
 import { OfflineService } from './offline.service';
 
@@ -12,10 +12,10 @@ const offlineRoutes: Routes = [
     providers: [
       {
         provide: ClickService,
-        useClass: OfflineService
-      }
-    ]
-  }
+        useClass: OfflineService,
+      },
+    ],
+  },
 ];
 
 export default offlineRoutes;

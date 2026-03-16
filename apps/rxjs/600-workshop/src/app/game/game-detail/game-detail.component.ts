@@ -1,10 +1,13 @@
-import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component, OnDestroy, inject } from '@angular/core';
+
+import { AsyncPipe, DatePipe } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { map } from 'rxjs';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs';
 
 import { selectedGameIdRouteParamName } from '../../app.constants';
 import { CardListComponent } from '../card-list/card-list.component';
@@ -25,8 +28,8 @@ import { ShotListComponent } from '../shot-list/shot-list.component';
     ShotListComponent,
     CardListComponent,
     AsyncPipe,
-    DatePipe
-  ]
+    DatePipe,
+  ],
 })
 export class GameDetailComponent implements OnDestroy {
   private ar = inject(ActivatedRoute);
@@ -45,9 +48,7 @@ export class GameDetailComponent implements OnDestroy {
   delete() {
     this.deleting = true;
     this.gameService
-      .deleteGame(
-        this.ar.snapshot.params[selectedGameIdRouteParamName]
-      )
+      .deleteGame(this.ar.snapshot.params[selectedGameIdRouteParamName])
       .then(() => this.router.navigate(['games']))
       .catch(() => (this.deleting = false));
   }

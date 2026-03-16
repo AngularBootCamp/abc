@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
+
 import {
   RouterLink,
   RouterLinkActive,
-  RouterOutlet
+  RouterOutlet,
 } from '@angular/router';
+
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { HeaderComponent } from '@class-materials/shared/ui-page-header';
 
@@ -19,7 +21,7 @@ import { HeaderComponent } from '@class-materials/shared/ui-page-header';
     MatSidenavModule,
     RouterLink,
     RouterLinkActive,
-    RouterOutlet
-  ]
+    RouterOutlet,
+  ],
 })
 export class AppComponent {}

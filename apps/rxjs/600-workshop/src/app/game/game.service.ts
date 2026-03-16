@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
+
 import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
 
 import { Card, Game, ShotOnGoal } from '../app.types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GameService {
-  readonly gameId = new BehaviorSubject<string | undefined>(
-    undefined
-  );
+  readonly gameId = new BehaviorSubject<string | undefined>(undefined);
   readonly gameAdded = new Subject<void>();
   readonly gameDeleted = new Subject<string>();
   readonly gameUpdated = new Subject<string>();
@@ -17,8 +16,10 @@ export class GameService {
   /**
    * A simple list of all games
    *
+   * ```ts
    * http.get<Game[]>(gameEndpointLocation)
-   *
+   * ```
+
    * This observable has the following characteristics
    * - Fires initially and updates when games are added,
    *    deleted or updated
@@ -32,7 +33,9 @@ export class GameService {
    * Returns an observable containing game details excluding stats
    * Often used as the base for more complex representations
    *
+   * ```ts
    * this.http.get<Game>(`${gameEndpointLocation}/${id}`)
+   * ```
    *
    * Resulting observable has the following characteristics
    * - Fires initially and updates when the indicated game is updated
@@ -50,7 +53,9 @@ export class GameService {
    * Returns an observable containing the shots on goal for an
    * indicated game
    *
+   * ```ts
    * http.get<ShotOnGoal[]>(`${goalEndpointLocation}?game=${id}`
+   * ```
    *
    * Resulting observable has the following characteristics
    * - Fires initially and updates when the indicated game is updated
@@ -67,7 +72,9 @@ export class GameService {
    * Returns an observable containing the cards for an
    * indicated game
    *
+   * ```ts
    * http.get<Card[]>(`${cardEndpointLocation}?game=${id}`)
+   * ```
    *
    * Resulting observable has the following characteristics
    * - Fires initially and updates when the indicated game is updated
@@ -91,7 +98,9 @@ export class GameService {
    *
    * Makes an AJAX request to add a game to the system
    *
+   * ```ts
    * http.post<Game>(gameEndpointLocation, {name, date, location, players: []})
+   * ```
    *
    * Updates corresponding observable pipelines upon success
    *
@@ -99,31 +108,35 @@ export class GameService {
   async addGame(
     _location: string,
     _date: string,
-    _name: string
+    _name: string,
   ): Promise<void> {}
 
   /**
    *
    * Makes an AJAX request to add a player to the indicated game
    *
+   * ```ts
    * http.put(`${gameEndpointLocation}/${gameId}`, {
    *   ...game,
    *   players: [...game.players, playerId]
    * })
+   * ```
    *
    * Updates corresponding observable pipelines upon success
    *
    */
   async addPlayerToGame(
     _gameId: string,
-    _playerId: string
+    _playerId: string,
   ): Promise<void> {}
 
   /**
    *
    * Makes an AJAX request to add a shot to the indicated game
    *
+   * ```ts
    * http.post(goalEndpointLocation, shot)
+   * ```
    *
    * Updates corresponding observable pipelines upon success
    *
@@ -134,7 +147,9 @@ export class GameService {
    *
    * Makes an AJAX request to add a card to the indicated game
    *
+   * ```ts
    * http.post(cardEndpointLocation, card)
+   * ```
    *
    * Updates corresponding observable pipelines upon success
    *
@@ -145,7 +160,9 @@ export class GameService {
    *
    * Makes an AJAX request to remove the indicated game
    *
+   * ```ts
    * http.delete(`${gameEndpointLocation}/${id}`)
+   * ```
    *
    * Updates corresponding observable pipelines upon success
    *

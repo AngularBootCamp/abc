@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
 
 export interface Employee {
@@ -18,7 +20,7 @@ export interface Employee {
 const apiUrl = 'https://api.angularbootcamp.com';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeeLoader {
   private readonly http = inject(HttpClient);

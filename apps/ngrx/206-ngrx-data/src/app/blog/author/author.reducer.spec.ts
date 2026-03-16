@@ -1,5 +1,5 @@
 import { authorApiActions } from './author.actions';
-import { initialState, authorFeature } from './author.reducer';
+import { authorFeature, initialState } from './author.reducer';
 import { mockAuthors } from './mock.authors';
 
 describe('Author Reducer', () => {
@@ -18,13 +18,13 @@ describe('Author Reducer', () => {
       const authors = mockAuthors;
       const result = authorFeature.reducer(
         initialState,
-        authorApiActions.loadAuthorsSuccess({ authors })
+        authorApiActions.loadAuthorsSuccess({ authors }),
       );
 
       expect(result.ids).toEqual([1, 2]);
       expect(result.entities).toEqual({
         1: mockAuthors[0],
-        2: mockAuthors[1]
+        2: mockAuthors[1],
       });
     });
   });

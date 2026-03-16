@@ -81,8 +81,7 @@ body > nav.abc-banner {
     // because Angular will copy this file to the root of the app's
     // dist. This does duplicate the file if it's in the hosted assets
     // folder.
-    background: url(../../assets/abc/abc-logo-light-mode.svg)
-      no-repeat;
+    background: url(../../assets/abc/abc-logo-light-mode.svg) no-repeat;
 
     background-size: 100% 100%;
   }

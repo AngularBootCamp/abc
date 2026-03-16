@@ -11,6 +11,6 @@ export const articleActions = createActionGroup({
     'Create Article': props<{ article: Omit<Article, 'id'> }>(),
     'Delete Article': props<{ article: Article }>(),
     'Update Article': props<{ article: Article }>(),
-    'Choose Article': props<{ articleId: number | undefined }>()
-  }
+    'Choose Article': props<{ articleId: number | undefined }>(),
+  },
 });

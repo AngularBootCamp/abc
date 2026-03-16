@@ -1,7 +1,11 @@
 <article>
   <header>Contact Details</header>
 
-  <form [formGroup]="dynamicFormGroup" (ngSubmit)="onSubmit()">
+  <form
+    [formGroup]="dynamicFormGroup"
+    (ngSubmit)="onSubmit()"
+    autocomplete="off"
+  >
     <!-- Show each field defined in the schema. -->
     @for (fieldinfo of schema(); track fieldinfo.fieldName) {
       <div>
@@ -31,9 +35,7 @@
             @if (controls[fieldinfo.fieldName].hasError('required')) {
               <span>{{ fieldinfo.fieldLabel }} is required.</span>
             }
-            @if (
-              controls[fieldinfo.fieldName].hasError('minlength')
-            ) {
+            @if (controls[fieldinfo.fieldName].hasError('minlength')) {
               <span>
                 {{ fieldinfo.fieldLabel }} must be at least
                 {{
@@ -43,9 +45,7 @@
                 characters long.
               </span>
             }
-            @if (
-              controls[fieldinfo.fieldName].hasError('maxlength')
-            ) {
+            @if (controls[fieldinfo.fieldName].hasError('maxlength')) {
               <span>
                 {{ fieldinfo.fieldLabel }} cannot be more than
                 {{

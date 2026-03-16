@@ -33,7 +33,7 @@
           "libs/shared/styles/abc/shared.scss",
           "libs/shared/styles/shared/shared.scss"
         ],
-        "scripts": [],
+        "scripts": ["libs/shared/scripts/abc-banner.js"],
         "stylePreprocessorOptions": {
           "includePaths": [
             "libs/shared/styles/abc",

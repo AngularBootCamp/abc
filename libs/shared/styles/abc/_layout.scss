@@ -7,7 +7,7 @@ $-breakpoints: (
   sm: 576px,
   md: 768px,
   lg: 992px,
-  xl: 1200px
+  xl: 1200px,
 );
 
 // Given a map of breakpoint/column pairs define the number of grid
@@ -36,7 +36,7 @@ $-breakpoints: (
 @mixin two-across() {
   @include -grid-columns-by-container-breakpoint(
     (
-      map.get($-breakpoints, 'sm'): 2
+      map.get($-breakpoints, 'sm'): 2,
     )
   );
 }
@@ -44,7 +44,7 @@ $-breakpoints: (
 @mixin three-across() {
   @include -grid-columns-by-container-breakpoint(
     (
-      map.get($-breakpoints, 'sm'): 3
+      map.get($-breakpoints, 'sm'): 3,
     )
   );
 }
@@ -53,7 +53,7 @@ $-breakpoints: (
   @include -grid-columns-by-container-breakpoint(
     (
       map.get($-breakpoints, 'sm'): 2,
-      map.get($-breakpoints, 'md'): 4
+      map.get($-breakpoints, 'md'): 4,
     )
   );
 }

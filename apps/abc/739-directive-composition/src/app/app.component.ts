@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { BorderDirective } from './border.directive';
 import { HighlightAndBorderDiComponent } from './highlight-and-border-di.component';
@@ -14,8 +14,9 @@ import { HighlightDirective } from './highlight.directive';
     HighlightAndBorderDirective,
     HighlightAndBorderDiComponent,
     HighlightAndBorderInputsComponent,
-    HighlightDirective
+    HighlightDirective,
   ],
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}

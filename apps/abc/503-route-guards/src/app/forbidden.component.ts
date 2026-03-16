@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -11,6 +12,6 @@ import { RouterLink } from '@angular/router';
     </article>
   `,
   imports: [RouterLink],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ForbiddenComponent {}

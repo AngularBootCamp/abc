@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+
 import { getState } from '@ngrx/signals';
 
 import { ConfigStore } from './config.store';

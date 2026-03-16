@@ -1,10 +1,11 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
-  input,
   inject,
-  ChangeDetectionStrategy
+  input,
 } from '@angular/core';
+
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 import { Video } from '../dashboard.types';
@@ -15,7 +16,7 @@ const URLPREFIX = 'https://www.youtube-nocookie.com/embed/';
   selector: 'vst-video-container',
   templateUrl: './video-container.component.html',
   styleUrl: './video-container.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VideoContainerComponent {
   public readonly currentVideo = input.required<Video | undefined>();
@@ -30,7 +31,7 @@ export class VideoContainerComponent {
     const value = this.currentVideo();
     return value
       ? this.domSanitizer.bypassSecurityTrustResourceUrl(
-          URLPREFIX + '/' + value.id
+          URLPREFIX + '/' + value.id,
         )
       : undefined;
   });

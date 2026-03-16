@@ -5,6 +5,6 @@ import { ClicksGateway } from './clicks.gateway';
 
 @Module({
   providers: [ClicksGateway],
-  controllers: [ClicksController]
+  controllers: [ClicksController],
 })
 export class ClicksModule {}

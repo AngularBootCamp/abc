@@ -1,15 +1,13 @@
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import { AsyncPipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject
-} from '@angular/core';
+
 import { Store } from '@ngrx/store';
 
 import {
+  homeTaskActions,
   selectDoneHome,
   selectTodoHome,
-  homeTaskActions
 } from '../../home-task.state';
 import { TodoListComponent } from '../../todo-list/todo-list.component';
 import { Task } from '../../types';
@@ -21,7 +19,7 @@ import { Task } from '../../types';
   selector: 'app-home-task-list',
   templateUrl: './home-task-list.component.html',
   imports: [TodoListComponent, AsyncPipe],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeTaskListComponent {
   private readonly store = inject(Store);

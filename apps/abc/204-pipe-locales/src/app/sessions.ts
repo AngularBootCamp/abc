@@ -11,33 +11,33 @@ export const upcomingSessions: ClassSession[] = [
     date: new Date('18 Feb 2025'),
     price: {
       amount: 500,
-      currency: 'EUR'
+      currency: 'EUR',
     },
-    locale: 'de'
+    locale: 'de',
   },
   {
     location: 'New York',
     date: new Date('18 Mar 2025'),
     price: {
-      amount: 600
-    }
+      amount: 600,
+    },
   },
   {
     location: 'Moscow (Москва)',
     date: new Date('7 May 2025'),
     price: {
       amount: 50000,
-      currency: 'RUB'
+      currency: 'RUB',
     },
-    locale: 'ru'
+    locale: 'ru',
   },
   {
     location: 'Beijing (北京市)',
     date: new Date('12 Jun 2025'),
     price: {
       amount: 4000,
-      currency: 'CNY'
+      currency: 'CNY',
     },
-    locale: 'zh'
-  }
+    locale: 'zh',
+  },
 ];

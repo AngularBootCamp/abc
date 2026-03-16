@@ -1,10 +1,11 @@
 import {
-  booleanAttribute,
   Component,
   EventEmitter,
   Input,
-  Output
+  Output,
+  booleanAttribute,
 } from '@angular/core';
+
 import { MatListModule } from '@angular/material/list';
 
 import { Task } from '../../types';
@@ -12,7 +13,7 @@ import { Task } from '../../types';
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  imports: [MatListModule]
+  imports: [MatListModule],
 })
 export class TodoListComponent {
   @Input({ required: true }) list!: Task[];

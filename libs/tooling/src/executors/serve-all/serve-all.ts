@@ -4,30 +4,37 @@ import * as path from 'path';
 import * as readline from 'readline';
 
 import {
+  Observable,
+  Subscription,
+  debounceTime,
+  filter,
+  groupBy,
+  map,
+  mergeMap,
+} from 'rxjs';
+
+import {
   ExecutorContext,
   PromiseExecutor,
   logger,
-  stripIndents
+  stripIndents,
 } from '@nx/devkit';
 import * as BetterQueue from 'better-queue';
 import chokidar from 'chokidar';
 import * as fg from 'fast-glob';
 import FiveServer from 'five-server';
-import {
-  Observable,
-  filter,
-  map,
-  groupBy,
-  mergeMap,
-  debounceTime,
-  Subscription
-} from 'rxjs';
 
 import { ServeAllExecutorSchema } from './schema';
 
+type BQTask = {
+  id: string;
+  initial?: boolean;
+};
+
+type BQCallback = () => void;
+
 class ServeAll {
-  private readonly projects =
-    this.context.projectsConfigurations.projects;
+  private readonly projects = this.context.projectsConfigurations.projects;
 
   private readonly appNames = Object.values(this.projects)
     .filter(
@@ -35,7 +42,7 @@ class ServeAll {
         project.name !== undefined &&
         project.projectType === 'application' &&
         project.targets?.build &&
-        !project.name.toLowerCase().endsWith('-e2e')
+        !project.name.toLowerCase().endsWith('-e2e'),
     )
     .map(project => project.name)
     .filter(name => name !== undefined)
@@ -49,23 +56,23 @@ class ServeAll {
 
   constructor(
     private readonly context: ExecutorContext,
-    options: ServeAllExecutorSchema
+    options: ServeAllExecutorSchema,
   ) {
     this.prefix = options.prefix;
     this.port = options.port;
     this.concurrent = options.concurrent;
 
-    this.workQueue = new BetterQueue(
+    this.workQueue = new BetterQueue<BQTask, BQCallback>(
       (task, cb) => this.buildProject(task, cb),
       {
         concurrent: this.concurrent,
         filo: true,
-        cancelIfRunning: true
-      }
+        cancelIfRunning: true,
+      },
     );
 
     this.workQueue.on('drain', () =>
-      logger.info(' \nAll builds complete. Waiting for changes.')
+      logger.info(' \nAll builds complete. Waiting for changes.'),
     );
     this.startDevServer();
     this.enqueueUnBuilt();
@@ -83,7 +90,7 @@ class ServeAll {
     const distNames: string[] = fg.sync('*', {
       cwd: `dist/apps/${this.prefix}`,
       deep: 1,
-      onlyDirectories: true
+      onlyDirectories: true,
     });
 
     // console.debug({ distNames });
@@ -98,8 +105,8 @@ class ServeAll {
           name.startsWith(this.prefix) &&
           !!this.projects[name].targets?.build &&
           !distNames.find(
-            distName => `${this.prefix}-${distName}` === name
-          )
+            distName => `${this.prefix}-${distName}` === name,
+          ),
       )
       .sort()
       .reverse();
@@ -117,9 +124,7 @@ class ServeAll {
     const normalizedFilePath = path.normalize(filePath);
 
     for (const appName of this.appNames) {
-      const normalizedRoot = path.normalize(
-        this.projects[appName].root
-      );
+      const normalizedRoot = path.normalize(this.projects[appName].root);
       if (normalizedFilePath.startsWith(normalizedRoot)) {
         return appName;
       }
@@ -129,52 +134,45 @@ class ServeAll {
 
   rebuildOnChange() {
     // TODO: Improve types
-    const changes = new Observable<Record<string, string>>(
-      observer => {
-        const watcher = chokidar.watch(
-          [
-            `./apps/${this.prefix}`
-            // './libs/shared'
-          ],
-          { ignoreInitial: true }
-        );
-        watcher.on('all', (event: string, filePath: string) =>
-          observer.next({ event, filePath })
-        );
+    const changes = new Observable<Record<string, string>>(observer => {
+      const watcher = chokidar.watch(
+        [
+          `./apps/${this.prefix}`,
+          // './libs/shared'
+        ],
+        { ignoreInitial: true },
+      );
+      watcher.on('all', (event: string, filePath: string) =>
+        observer.next({ event, filePath }),
+      );
 
-        return () => watcher.close();
-      }
-    );
+      return () => watcher.close();
+    });
 
     this.subscriptions.push(
       changes
         .pipe(
           filter(({ event }) => event === 'change'),
-          groupBy(({ filePath }) =>
-            this.projectForChangedFile(filePath)
-          ),
+          groupBy(({ filePath }) => this.projectForChangedFile(filePath)),
           mergeMap(projectChanges$ =>
             projectChanges$.pipe(
               debounceTime(500),
-              map(() => projectChanges$.key)
-            )
-          )
+              map(() => projectChanges$.key),
+            ),
+          ),
         )
         .subscribe(projectName => {
           // logger.debug(` \nChange detected in ${projectName}`);
           this.workQueue.cancel(projectName);
           this.workQueue.push({ id: projectName });
-        })
+        }),
     );
 
     const distChanges = new Observable<string>(observer => {
-      const distWatcher = chokidar.watch(
-        [`./dist/apps/${this.prefix}`],
-        {
-          depth: 0,
-          ignoreInitial: true
-        }
-      );
+      const distWatcher = chokidar.watch([`./dist/apps/${this.prefix}`], {
+        depth: 0,
+        ignoreInitial: true,
+      });
       distWatcher.on('unlinkDir', path => {
         // logger.debug(`Detected unlinkDir of ${path}`);
         observer.next(path);
@@ -185,15 +183,13 @@ class ServeAll {
 
     this.subscriptions.push(
       distChanges.pipe(debounceTime(2000)).subscribe(() => {
-        logger.info(
-          ` \nChange detected in ./dist/apps/${this.prefix}`
-        );
+        logger.info(` \nChange detected in ./dist/apps/${this.prefix}`);
         this.enqueueUnBuilt();
-      })
+      }),
     );
   }
 
-  buildProject(task: any, completedCallback: any) {
+  buildProject(task: BQTask, completedCallback: BQCallback) {
     const projectName = task.id;
 
     logger.info(` \nBuilding ${projectName}...`);
@@ -220,25 +216,21 @@ class ServeAll {
     builder.on('exit', code => {
       if (code) {
         logger.error(
-          ` \n✖ ERROR building ${projectName} (code: ${code})\n `
+          ` \n✖ ERROR building ${projectName} (code: ${code})\n `,
         );
       } else {
         const milliseconds = performance.now() - start;
         const seconds = (milliseconds / 1000).toFixed(2);
-        logger.info(
-          ` \n✔ ${projectName} build complete (${seconds}s)`
-        );
+        logger.info(` \n✔ ${projectName} build complete (${seconds}s)`);
       }
       completedCallback();
     });
 
     return {
       cancel: function () {
-        logger.info(
-          ` \nStopping ${projectName} build in progress...`
-        );
+        logger.info(` \nStopping ${projectName} build in progress...`);
         builder.kill('SIGINT'); // control C
-      }
+      },
     };
   }
 
@@ -251,26 +243,23 @@ class ServeAll {
       wait: 300,
       logLevel: 0,
       mount: {
-        '/favicon.ico': path.resolve(
-          process.cwd(),
-          'tools/favicon.ico'
-        )
+        '/favicon.ico': path.resolve(process.cwd(), 'tools/favicon.ico'),
       },
       proxy: {
-        '/api': 'http://localhost:8085'
-      }
+        '/api': 'http://localhost:8085',
+      },
     });
 
     logger.info(
       `Serving ${this.prefix} applications at http://localhost:${this.port}` +
-        '\n \nPress ? for help'
+        '\n \nPress ? for help',
     );
   }
 }
 
 const runExecutor: PromiseExecutor<ServeAllExecutorSchema> = async (
   options: ServeAllExecutorSchema,
-  context: ExecutorContext
+  context: ExecutorContext,
 ) => {
   const menu = stripIndents`
     q: quit

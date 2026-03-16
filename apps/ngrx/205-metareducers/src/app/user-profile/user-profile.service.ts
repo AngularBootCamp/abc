@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+
+import { HttpClient } from '@angular/common/http';
+
+import { Observable, map, of } from 'rxjs';
 
 import { UserProfile } from './user-profile.types';
 
@@ -26,7 +28,7 @@ export class UserProfileService {
             throw new Error('not found');
           }
           return authors[0];
-        })
+        }),
       );
   }
 

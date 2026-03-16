@@ -1,24 +1,27 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Store } from '@ngrx/store';
+
+import { HttpClient } from '@angular/common/http';
+
 import {
+  Observable,
   combineLatest,
   firstValueFrom,
-  Observable,
-  switchMap
+  switchMap,
 } from 'rxjs';
+
+import { Store } from '@ngrx/store';
 
 import {
   Card,
   Game,
   GameWithEvents,
   PlayerWithStats,
-  ShotOnGoal
+  ShotOnGoal,
 } from './api-types';
 import {
   cardEndpointLocation,
   gameEndpointLocation,
-  goalEndpointLocation
+  goalEndpointLocation,
 } from './api-urls';
 import { gamePageActions } from './state/actions';
 import {
@@ -27,7 +30,7 @@ import {
   selectGamesState,
   selectGameWithDetails,
   selectPlayerWithDetails,
-  selectShotsForGame
+  selectShotsForGame,
 } from './state/selectors';
 
 @Injectable({ providedIn: 'root' })
@@ -51,7 +54,7 @@ export class GameService {
 
   getPlayerDetails(ids: string[]): Observable<PlayerWithStats[]> {
     return combineLatest(
-      ids.map(id => this.store.select(selectPlayerWithDetails(id)))
+      ids.map(id => this.store.select(selectPlayerWithDetails(id))),
     );
   }
 
@@ -65,8 +68,8 @@ export class GameService {
         name,
         date,
         location,
-        players: []
-      })
+        players: [],
+      }),
     );
     this.store.dispatch(gamePageActions.addGame({ game }));
   }
@@ -77,31 +80,31 @@ export class GameService {
         switchMap(g =>
           this.http.put<Game>(`${gameEndpointLocation}/${gameId}`, {
             ...g,
-            players: [...(g ? g.players : []), playerId]
-          })
-        )
-      )
+            players: [...(g ? g.players : []), playerId],
+          }),
+        ),
+      ),
     );
     this.store.dispatch(gamePageActions.updateGame({ game }));
   }
 
   async addShotToGame(shot: Partial<ShotOnGoal>) {
     const s = await firstValueFrom(
-      this.http.post<ShotOnGoal>(goalEndpointLocation, shot)
+      this.http.post<ShotOnGoal>(goalEndpointLocation, shot),
     );
     this.store.dispatch(gamePageActions.addShot({ shot: s }));
   }
 
   async deleteGame(id: string) {
     await firstValueFrom(
-      this.http.delete(`${gameEndpointLocation}/${id}`)
+      this.http.delete(`${gameEndpointLocation}/${id}`),
     );
     this.store.dispatch(gamePageActions.deleteGame({ id }));
   }
 
   async addCardToGame(newCard: Partial<Card>) {
     const card = await firstValueFrom(
-      this.http.post<Card>(cardEndpointLocation, newCard)
+      this.http.post<Card>(cardEndpointLocation, newCard),
     );
     this.store.dispatch(gamePageActions.addCard({ card }));
   }

@@ -1,4 +1,4 @@
-import { join, basename } from 'path';
+import { basename, join } from 'path';
 
 export function curriculumCypressEnv(dir: string) {
   let projectName = basename(dir);
@@ -6,6 +6,6 @@ export function curriculumCypressEnv(dir: string) {
     projectName = basename(join(dir, '../'));
   }
   return {
-    projectName
+    projectName,
   };
 }

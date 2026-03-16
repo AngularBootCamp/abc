@@ -7,6 +7,6 @@ import { TemperatureGraphComponent } from './temperature/temperature-graph/tempe
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [HeaderComponent, TemperatureGraphComponent]
+  imports: [HeaderComponent, TemperatureGraphComponent],
 })
 export class AppComponent {}

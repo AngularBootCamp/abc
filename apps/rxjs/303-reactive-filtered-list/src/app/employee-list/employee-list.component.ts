@@ -1,21 +1,25 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+
+import {
+  Observable,
+  Subject,
+  combineLatest,
+  debounceTime,
+  map,
+  startWith,
+  switchMap,
+} from 'rxjs';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+
 import { sortBy } from 'lodash-es';
-import {
-  combineLatest,
-  debounceTime,
-  map,
-  Observable,
-  startWith,
-  Subject,
-  switchMap
-} from 'rxjs';
 
 import { Employee } from '../employee';
 import { EmployeeDetailComponent } from '../employee-detail-view/employee-detail-view.component';
@@ -35,8 +39,8 @@ import { EmployeeLoaderService } from '../employee-loader.service';
     MatOptionModule,
     EmployeeListTableViewComponent,
     EmployeeDetailComponent,
-    AsyncPipe
-  ]
+    AsyncPipe,
+  ],
 })
 export class EmployeeListComponent {
   nameFilter = new FormControl('', { nonNullable: true });
@@ -51,25 +55,25 @@ export class EmployeeListComponent {
 
     // .valueChanges is missing the initial value; add it:
     const nameFilter = this.nameFilter.valueChanges.pipe(
-      startWith<string>(this.nameFilter.value)
+      startWith<string>(this.nameFilter.value),
     );
 
     const sort = this.sort.valueChanges.pipe(
-      startWith<string>(this.sort.value)
+      startWith<string>(this.sort.value),
     );
 
     // List reacts to filter and sort changes
     this.filteredList = combineLatest([
       nameFilter.pipe(
         debounceTime(250),
-        switchMap(x => loader.getList(x))
+        switchMap(x => loader.getList(x)),
       ),
-      sort
+      sort,
     ]).pipe(map(([list, sortKey]) => sortBy(list, sortKey)));
 
     // Detail reacts to selected employee changes
     this.selectedEmployee = this.selectedId.pipe(
-      switchMap(id => loader.getDetails(id))
+      switchMap(id => loader.getDetails(id)),
     );
   }
 }

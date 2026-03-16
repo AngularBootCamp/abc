@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+
+import { RouterLink, RouterOutlet } from '@angular/router';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterLink, RouterOutlet } from '@angular/router';
 
 import { HeaderComponent } from '@class-materials/shared/ui-page-header';
 
@@ -13,7 +15,7 @@ import { HeaderComponent } from '@class-materials/shared/ui-page-header';
     MatButtonModule,
     MatToolbarModule,
     RouterLink,
-    RouterOutlet
-  ]
+    RouterOutlet,
+  ],
 })
 export class AppComponent {}

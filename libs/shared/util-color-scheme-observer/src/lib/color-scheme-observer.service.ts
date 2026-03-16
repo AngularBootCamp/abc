@@ -1,24 +1,26 @@
-import { MediaMatcher } from '@angular/cdk/layout';
-import { Injectable, inject, DOCUMENT } from '@angular/core';
+import { DOCUMENT, Injectable, inject } from '@angular/core';
+
 import {
   Observable,
   Observer,
   combineLatestWith,
   fromEvent,
   map,
+  shareReplay,
   startWith,
-  shareReplay
 } from 'rxjs';
+
+import { MediaMatcher } from '@angular/cdk/layout';
 
 type ColorScheme = 'light' | 'dark';
 
 // Use the system color scheme and the custom color scheme (if there is
 // one) to return the "effective" color scheme -- that is, just 'light'
 // or 'dark'.
-function effectiveColorScheme([
-  systemColorScheme,
-  customColorScheme
-]: [ColorScheme, string | null]): ColorScheme {
+function effectiveColorScheme([systemColorScheme, customColorScheme]: [
+  ColorScheme,
+  string | null,
+]): ColorScheme {
   // Note that any non-null customColorScheme value other than 'dark'
   // implies 'light', which matches the behavior of Pico CSS. (I don't
   // love this behavior, TBH, but it's probably the right thing to do.
@@ -38,45 +40,40 @@ function effectiveColorScheme([
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ColorSchemeObserver {
   private readonly DOCUMENT = inject(DOCUMENT);
-  private readonly defaultObservedElement =
-    this.DOCUMENT.documentElement;
+  private readonly defaultObservedElement = this.DOCUMENT.documentElement;
   private readonly defaultObservedAttribute = 'data-theme';
   private readonly systemColorSchemeQuery = inject(
-    MediaMatcher
+    MediaMatcher,
   ).matchMedia('(prefers-color-scheme: dark)');
 
   private readonly systemColorScheme$ = fromEvent<MediaQueryList>(
     this.systemColorSchemeQuery,
-    'change'
+    'change',
   ).pipe(
     startWith(this.systemColorSchemeQuery),
-    map(e => (e.matches ? 'dark' : 'light'))
+    map(e => (e.matches ? 'dark' : 'light')),
   );
 
   private observeCustomColorScheme(
     observedElement: HTMLElement,
-    observedAttribute: string
+    observedAttribute: string,
   ) {
     return new Observable<string | null>(
       (observer: Observer<string | null>) => {
-        const mutationObserver = new MutationObserver(
-          mutationList => {
-            // Notify the observer for every change to the custom color scheme.
-            mutationList.forEach(() => {
-              observer.next(
-                observedElement.getAttribute(observedAttribute)
-              );
-            });
-          }
-        );
+        const mutationObserver = new MutationObserver(mutationList => {
+          // Notify the observer for every change to the custom color scheme.
+          mutationList.forEach(() => {
+            observer.next(observedElement.getAttribute(observedAttribute));
+          });
+        });
 
         mutationObserver.observe(observedElement, {
           attributeFilter: [observedAttribute],
-          subtree: false
+          subtree: false,
         });
 
         return () => {
@@ -85,25 +82,20 @@ export class ColorSchemeObserver {
           mutationObserver.takeRecords();
           mutationObserver.disconnect();
         };
-      }
-    ).pipe(
-      startWith(observedElement.getAttribute(observedAttribute))
-    );
+      },
+    ).pipe(startWith(observedElement.getAttribute(observedAttribute)));
   }
 
   observe(
     observedElement = this.defaultObservedElement,
-    observedAttribute = this.defaultObservedAttribute
+    observedAttribute = this.defaultObservedAttribute,
   ): Observable<ColorScheme> {
     return this.systemColorScheme$.pipe(
       combineLatestWith(
-        this.observeCustomColorScheme(
-          observedElement,
-          observedAttribute
-        )
+        this.observeCustomColorScheme(observedElement, observedAttribute),
       ),
       map(effectiveColorScheme),
-      shareReplay({ bufferSize: 1, refCount: true })
+      shareReplay({ bufferSize: 1, refCount: true }),
     );
   }
 }

@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
+
 import { Observable, interval, switchMap, tap } from 'rxjs';
 
 // Local API server
@@ -20,7 +22,7 @@ export interface Employee {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeesService {
   private readonly http = inject(HttpClient);
@@ -29,14 +31,14 @@ export class EmployeesService {
 
   fetchEmployees() {
     return this.http.get<Employee[]>(url).pipe(
-      tap(employees => console.table(employees))
+      tap(employees => console.table(employees)),
       // catchError(() => of(undefined))
     );
   }
 
   pollEmployees(): Observable<Employee[] | undefined> {
     return interval(2000).pipe(
-      switchMap(() => this.fetchEmployees())
+      switchMap(() => this.fetchEmployees()),
       // catchError(() => of(undefined))
     );
   }

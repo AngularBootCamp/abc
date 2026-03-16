@@ -1,12 +1,17 @@
+/* eslint-disable @angular-eslint/use-injectable-provided-in
+-- Effect injectables are handled by NgRx
+*/
 import { Injectable, inject } from '@angular/core';
+
+import { catchError, concatMap, filter, map, of, tap } from 'rxjs';
+
 import {
   Actions,
   OnInitEffects,
   createEffect,
-  ofType
+  ofType,
 } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { catchError, concatMap, filter, map, of, tap } from 'rxjs';
 
 import { ArticleLoaderService } from '../article-list/article-loader.service';
 
@@ -14,104 +19,102 @@ import {
   articleApiActions,
   articleInitActions,
   articleListPageActions,
-  articlePageActions
+  articlePageActions,
 } from './article.actions';
 
 @Injectable()
 export class ArticleEffects implements OnInitEffects {
-  private actions$ = inject(Actions);
-  private articleLoaderService = inject(ArticleLoaderService);
+  private readonly actions$ = inject(Actions);
+  private readonly articleLoaderService = inject(ArticleLoaderService);
 
-  loadArticles$ = createEffect(() =>
+  public readonly loadArticles$ = createEffect(() =>
     this.actions$.pipe(
       ofType(articleInitActions.loadArticles),
       concatMap(() =>
         this.articleLoaderService.load().pipe(
           map(articles =>
-            articleApiActions.loadArticlesSuccess({ articles })
+            articleApiActions.loadArticlesSuccess({ articles }),
           ),
           catchError(error =>
-            of(articleApiActions.loadArticlesFailure({ error }))
-          )
-        )
-      )
-    )
+            of(articleApiActions.loadArticlesFailure({ error })),
+          ),
+        ),
+      ),
+    ),
   );
 
-  createArticle$ = createEffect(() =>
+  public readonly createArticle$ = createEffect(() =>
     this.actions$.pipe(
       ofType(articleListPageActions.createArticle),
       concatMap(action =>
         this.articleLoaderService.create(action.article).pipe(
           map(article =>
-            articleApiActions.createArticleSuccess({ article })
+            articleApiActions.createArticleSuccess({ article }),
           ),
           catchError(error =>
-            of(articleApiActions.createArticleFailure({ error }))
-          )
-        )
-      )
-    )
+            of(articleApiActions.createArticleFailure({ error })),
+          ),
+        ),
+      ),
+    ),
   );
 
-  deleteArticle$ = createEffect(() =>
+  public readonly deleteArticle$ = createEffect(() =>
     this.actions$.pipe(
       ofType(articlePageActions.deleteArticle),
       // Having the confirmation in the component was fine, but we
       // move it here to show an example of how to test a dispatching
       // effect that does not dispatch.
       filter(() =>
-        window.confirm(
-          'Are you sure you want to delete this article?'
-        )
+        window.confirm('Are you sure you want to delete this article?'),
       ),
       concatMap(action =>
         this.articleLoaderService.delete(action.article).pipe(
           map(() =>
             articleApiActions.deleteArticleSuccess({
-              articleId: action.article.id
-            })
+              articleId: action.article.id,
+            }),
           ),
           catchError(error =>
-            of(articleApiActions.deleteArticleFailure({ error }))
-          )
-        )
-      )
-    )
+            of(articleApiActions.deleteArticleFailure({ error })),
+          ),
+        ),
+      ),
+    ),
   );
 
-  updateArticle$ = createEffect(() =>
+  public readonly updateArticle$ = createEffect(() =>
     this.actions$.pipe(
       ofType(articlePageActions.updateArticle),
       concatMap(action =>
         this.articleLoaderService.update(action.article).pipe(
           map(() =>
             articleApiActions.updateArticleSuccess({
-              article: action.article
-            })
+              article: action.article,
+            }),
           ),
           catchError(error =>
-            of(articleApiActions.updateArticleFailure({ error }))
-          )
-        )
-      )
-    )
+            of(articleApiActions.updateArticleFailure({ error })),
+          ),
+        ),
+      ),
+    ),
   );
 
-  handleError$ = createEffect(
+  public readonly handleError$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(
           articleApiActions.loadArticlesFailure,
           articleApiActions.createArticleFailure,
           articleApiActions.deleteArticleFailure,
-          articleApiActions.updateArticleFailure
+          articleApiActions.updateArticleFailure,
         ),
         tap(({ type, error }) => {
           console.error('Error with', type, error);
-        })
+        }),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   /**

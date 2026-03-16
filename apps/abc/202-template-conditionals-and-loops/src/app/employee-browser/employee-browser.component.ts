@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  signal
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 // prettier-ignore
 const employees = [
@@ -42,7 +38,7 @@ const employees = [
 @Component({
   selector: 'app-employee-browser',
   templateUrl: './employee-browser.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class EmployeeBrowserComponent {
   protected readonly showInactiveRoles = signal(true);

@@ -1,14 +1,16 @@
+import {
+  TestBed,
+  fakeAsync,
+  tick,
+  waitForAsync,
+} from '@angular/core/testing';
+
 import { provideHttpClient } from '@angular/common/http';
 import {
   HttpTestingController,
-  provideHttpClientTesting
+  provideHttpClientTesting,
 } from '@angular/common/http/testing';
-import {
-  fakeAsync,
-  TestBed,
-  tick,
-  waitForAsync
-} from '@angular/core/testing';
+
 import { firstValueFrom } from 'rxjs';
 
 import { Employee } from './employee';
@@ -27,7 +29,7 @@ describe('Employee Service', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [provideHttpClient(), provideHttpClientTesting()]
+      providers: [provideHttpClient(), provideHttpClientTesting()],
     });
 
     httpTestingController = TestBed.inject(HttpTestingController);
@@ -35,14 +37,14 @@ describe('Employee Service', () => {
 
     mockEmployees = [
       {
-        firstName: 'Sara'
+        firstName: 'Sara',
       },
       {
-        firstName: 'Joe'
+        firstName: 'Joe',
       },
       {
-        firstName: 'Bob'
-      }
+        firstName: 'Bob',
+      },
     ];
   });
 
@@ -65,7 +67,7 @@ describe('Employee Service', () => {
         expect(list).toEqual(['Bob', 'Joe', 'Sara']);
       });
       const req = httpTestingController.expectOne(
-        apiUrl + '/employees?q=foo&_limit=20'
+        apiUrl + '/employees?q=foo&_limit=20',
       );
       expect(req.request.method).toEqual('GET');
       expect(req.request.body).toBeNull();
@@ -85,7 +87,7 @@ describe('Employee Service', () => {
       });
 
       const req = httpTestingController.expectOne(
-        apiUrl + '/employees?q=foo&_limit=20'
+        apiUrl + '/employees?q=foo&_limit=20',
       );
 
       expect(req.request.method).toEqual('GET');
@@ -103,7 +105,7 @@ describe('Employee Service', () => {
       const result = firstValueFrom(service.getFilteredList('foo'));
 
       const req = httpTestingController.expectOne(
-        apiUrl + '/employees?q=foo&_limit=20'
+        apiUrl + '/employees?q=foo&_limit=20',
       );
       req.flush(mockEmployees);
       // need to flush _before_ the await
@@ -130,9 +132,7 @@ describe('Employee Service', () => {
         expect(list).toEqual(['Bob', 'Joe', 'foo']);
       });
 
-      const req = httpTestingController.expectOne(
-        apiUrl + '/employees'
-      );
+      const req = httpTestingController.expectOne(apiUrl + '/employees');
 
       expect(req.request.method).toEqual('GET');
 
@@ -151,9 +151,7 @@ describe('Employee Service', () => {
         expect(list).toEqual(['Bob', 'Joe', 'Sara']);
       });
 
-      const req = httpTestingController.expectOne(
-        apiUrl + '/employees'
-      );
+      const req = httpTestingController.expectOne(apiUrl + '/employees');
 
       expect(req.request.method).toEqual('GET');
 
@@ -169,9 +167,7 @@ describe('Employee Service', () => {
         expect(list).toEqual(['Bob', 'Joe', 'Sara']);
       });
 
-      const req = httpTestingController.expectOne(
-        apiUrl + '/employees'
-      );
+      const req = httpTestingController.expectOne(apiUrl + '/employees');
 
       expect(req.request.method).toEqual('GET');
 
@@ -185,9 +181,7 @@ describe('Employee Service', () => {
       console.time('using promises');
       const result = firstValueFrom(service.getDelayedList());
 
-      const req = httpTestingController.expectOne(
-        apiUrl + '/employees'
-      );
+      const req = httpTestingController.expectOne(apiUrl + '/employees');
       req.flush(mockEmployees);
       // need to flush _before_ the await
       expect(await result).toEqual(['Bob', 'Joe', 'Sara']);
@@ -202,9 +196,7 @@ describe('Employee Service', () => {
       console.time('using promises and fakeAsync');
       const result = firstValueFrom(service.getDelayedList());
 
-      const req = httpTestingController.expectOne(
-        apiUrl + '/employees'
-      );
+      const req = httpTestingController.expectOne(apiUrl + '/employees');
       req.flush(mockEmployees);
       tick(2000);
       // need to flush _before_ the await

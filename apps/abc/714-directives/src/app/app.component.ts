@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { BlinkDirective } from './blink.directive';
 import { BounceDirective } from './bounce.directive';
@@ -7,6 +7,7 @@ import { DragDirective } from './drag.directive';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [BlinkDirective, BounceDirective, DragDirective]
+  imports: [BlinkDirective, BounceDirective, DragDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-credits',
@@ -41,6 +41,7 @@ import { Component } from '@angular/core';
       >
       Creative Commons Attribution 4.0 International license</a>.      
     </p>
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CreditsComponent {}

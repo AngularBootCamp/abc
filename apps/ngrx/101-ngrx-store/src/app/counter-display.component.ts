@@ -1,9 +1,5 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 
@@ -11,7 +7,7 @@ import { MatCardModule } from '@angular/material/card';
   selector: 'app-counter-display',
   templateUrl: './counter-display.component.html',
   styleUrl: './counter-display.component.scss',
-  imports: [MatCardModule, MatButtonModule]
+  imports: [MatCardModule, MatButtonModule],
 })
 export class CounterDisplayComponent {
   @Input({ required: true }) label!: string;

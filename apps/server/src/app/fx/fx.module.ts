@@ -4,6 +4,6 @@ import { FxController } from './fx.controller';
 
 @Module({
   imports: [],
-  controllers: [FxController]
+  controllers: [FxController],
 })
 export class FxModule {}

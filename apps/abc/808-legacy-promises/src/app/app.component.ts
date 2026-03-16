@@ -1,5 +1,12 @@
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  inject,
+} from '@angular/core';
+
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+
 import { firstValueFrom } from 'rxjs';
 
 import { jsonRequestHeaders } from './httpUtils';
@@ -20,11 +27,13 @@ interface ISwapiStarShipResponse {
         <li>{{ s.name }}</li>
       }
     </ul>
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  starships: { name: string }[] = [];
-  // Note that index.html changed to include http
+  protected starships: { name: string }[] = [];
+
+  private cdr = inject(ChangeDetectorRef);
 
   constructor() {
     const http = inject(HttpClient);
@@ -34,18 +43,21 @@ export class AppComponent {
     firstValueFrom(
       http.get<ISwapiStarShipResponse>(
         'https://swapi.dev/api/starships/',
-        { headers: jsonRequestHeaders }
-      )
+        {
+          headers: jsonRequestHeaders,
+        },
+      ),
     )
       .then((response: ISwapiStarShipResponse) => {
         console.log(response);
-        // throw ('broke on purpose');
+        // throw 'broke on purpose';
         return response;
       })
       .then(
         (response: ISwapiStarShipResponse) =>
-          (this.starships = response.results)
+          (this.starships = response.results),
       )
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => this.cdr.markForCheck());
   }
 }

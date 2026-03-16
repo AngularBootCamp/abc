@@ -8,6 +8,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       Welcome, Authorized User!
     </article>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminComponent {}

@@ -12,7 +12,7 @@
         paths: 'subset',
         queryParams: 'subset',
         matrixParams: 'ignored',
-        fragment: 'ignored'
+        fragment: 'ignored',
       }"
     >
       {{ c.name }}
@@ -30,9 +30,7 @@
     <div class="abbreviation">{{ c.iauAbbreviation }}</div>
     <div class="meaning">{{ c.meaning }}</div>
   } @else {
-    <div class="instructions">
-      Select a constellation to see details
-    </div>
+    <div class="instructions">Select a constellation to see details</div>
   }
 </div>
 

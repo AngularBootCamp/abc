@@ -1,10 +1,8 @@
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import { AsyncPipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject
-} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { Observable, map, of, switchMap } from 'rxjs';
 
 import { Employee } from '../employee';
@@ -21,15 +19,13 @@ import { EmployeeLoaderService } from '../employee-loader.service';
     EmployeeFilterComponent,
     EmployeeListComponent,
     EmployeeDetailComponent,
-    AsyncPipe
+    AsyncPipe,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class EmployeeViewerComponent {
   protected readonly filteredList: Observable<Employee[]>;
-  protected readonly selectedEmployee: Observable<
-    Employee | undefined
-  >;
+  protected readonly selectedEmployee: Observable<Employee | undefined>;
 
   constructor() {
     const employeeLoader = inject(EmployeeLoaderService);
@@ -37,7 +33,7 @@ export default class EmployeeViewerComponent {
 
     this.filteredList = route.queryParamMap.pipe(
       map(params => params.get('employeeFilter')),
-      switchMap(filter => employeeLoader.getList(filter ?? ''))
+      switchMap(filter => employeeLoader.getList(filter ?? '')),
     );
 
     this.selectedEmployee = route.queryParamMap.pipe(
@@ -48,7 +44,7 @@ export default class EmployeeViewerComponent {
         } else {
           return of(undefined);
         }
-      })
+      }),
     );
   }
 }

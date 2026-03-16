@@ -1,9 +1,12 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+
 import { FormControl } from '@angular/forms';
+import { RouterLink, RouterOutlet } from '@angular/router';
+
+import { Subject, takeUntil } from 'rxjs';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
 
 import { DisplayOrEditComponent } from '@class-materials/shared/ui-display-or-edit';
 import { HeaderComponent } from '@class-materials/shared/ui-page-header';
@@ -20,14 +23,14 @@ import { ConfigService } from './config.service';
     MatButtonModule,
     MatToolbarModule,
     RouterLink,
-    RouterOutlet
-  ]
+    RouterOutlet,
+  ],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  private configService = inject(ConfigService);
+  private readonly configService = inject(ConfigService);
 
-  title = new FormControl();
-  destroy = new Subject();
+  protected readonly title = new FormControl();
+  protected readonly destroy = new Subject();
 
   ngOnInit() {
     this.configService.title
@@ -35,7 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .subscribe(titleValue => this.title.setValue(titleValue));
   }
 
-  setTitle() {
+  protected setTitle() {
     this.configService.setTitle(this.title.value);
   }
 

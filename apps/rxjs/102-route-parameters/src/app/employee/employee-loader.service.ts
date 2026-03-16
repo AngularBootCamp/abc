@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { map, Observable } from 'rxjs';
+
+import { HttpClient } from '@angular/common/http';
+
+import { Observable, map } from 'rxjs';
 
 export interface Employee {
   id: number;
@@ -28,8 +30,6 @@ export class EmployeeLoaderService {
   }
 
   getDetails(employeeId: number): Observable<Employee> {
-    return this.http.get<Employee>(
-      `${apiUrl}/employees/${employeeId}`
-    );
+    return this.http.get<Employee>(`${apiUrl}/employees/${employeeId}`);
   }
 }

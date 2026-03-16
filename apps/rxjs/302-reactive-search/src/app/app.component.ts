@@ -7,6 +7,6 @@ import { RedditSearchComponent } from './reddit-search/reddit-search.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [HeaderComponent, RedditSearchComponent]
+  imports: [HeaderComponent, RedditSearchComponent],
 })
 export class AppComponent {}

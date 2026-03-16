@@ -1,22 +1,13 @@
-import { AsyncPipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject
-} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
+  selector: 'app-name',
   template: `
-    <h2>Hello {{ name | async }}!</h2>
+    <header>Hello {{ name() || 'Random Citizen' }}!</header>
     <p>I am a sample component.</p>
   `,
-  imports: [AsyncPipe],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NameComponent {
-  protected readonly name = inject(ActivatedRoute).paramMap.pipe(
-    map(params => params.get('name') as string)
-  );
+  public readonly name = input<string>();
 }

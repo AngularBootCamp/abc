@@ -7,6 +7,6 @@ import { MessageHeaderComponent } from '../message-header/message-header.compone
   selector: 'app-message-display',
   templateUrl: './message-display.component.html',
   imports: [MessageHeaderComponent, MessageBodyComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessageDisplayComponent {}

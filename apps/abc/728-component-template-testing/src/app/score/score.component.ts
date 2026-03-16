@@ -1,10 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-  numberAttribute,
-  output
-} from '@angular/core';
+/* eslint-disable @angular-eslint/prefer-on-push-component-change-detection
+-- This older unit testing example assumes zone.js and Default CDS
+*/
+import { Component, input, numberAttribute, output } from '@angular/core';
 
 @Component({
   selector: 'app-show-score',
@@ -20,11 +17,10 @@ import {
       <button (click)="onNotify()">Notify</button>
     </p>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ScoreComponent {
   public readonly value = input.required<number, unknown>({
-    transform: numberAttribute
+    transform: numberAttribute,
   });
   public readonly notify = output<string>();
 

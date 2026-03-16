@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
-import { EmployeeResolver } from './employee.resolver';
+import { employeeResolver } from './employee.resolver';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: 'employees', pathMatch: 'full' },
@@ -10,6 +10,6 @@ export const appRoutes: Routes = [
   {
     path: 'employees/:employeeId',
     component: EmployeeDetailComponent,
-    resolve: { employee: EmployeeResolver }
-  }
+    resolve: { employee: employeeResolver },
+  },
 ];

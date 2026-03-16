@@ -1,10 +1,13 @@
 import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+
 import { RouterTestingModule } from '@angular/router/testing';
+
+import { ReplaySubject, Subject, firstValueFrom } from 'rxjs';
+
 import { subscribeSpyTo } from '@hirez_io/observer-spy';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { Spy, createSpyFromClass } from 'jest-auto-spies';
-import { firstValueFrom, ReplaySubject, Subject } from 'rxjs';
 
 import { ConfigStore } from '../../config.store';
 import { selectCurrentAuthorId } from '../../router.selectors';
@@ -37,9 +40,9 @@ describe('ArticleListComponent', () => {
         provideMockStore({}),
         { provide: ConfigStore, useValue: configStore },
         { provide: ArticleStore, useValue: articleStore },
-        { provide: AuthorService, useValue: authorSvc }
+        { provide: AuthorService, useValue: authorSvc },
       ],
-      imports: [RouterTestingModule]
+      imports: [RouterTestingModule],
     });
 
     component = TestBed.inject(ArticleListComponent);

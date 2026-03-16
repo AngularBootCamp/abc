@@ -4,20 +4,22 @@ import {
   EventEmitter,
   Input,
   Output,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
+
 import {
   FormControl,
+  ReactiveFormsModule,
   Validators,
-  ReactiveFormsModule
 } from '@angular/forms';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput, MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-player-name-editor',
   templateUrl: './player-name-editor.component.html',
-  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule]
+  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule],
 })
 export class PlayerNameEditorComponent implements AfterViewChecked {
   @Input({ required: true }) set playerName(p: string) {
@@ -30,7 +32,7 @@ export class PlayerNameEditorComponent implements AfterViewChecked {
   playerNameCache!: string;
   playerNameEdit = new FormControl('', {
     nonNullable: true,
-    validators: Validators.required
+    validators: Validators.required,
   });
   editing = false;
 

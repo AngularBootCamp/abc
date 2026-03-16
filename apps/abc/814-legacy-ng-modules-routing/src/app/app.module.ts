@@ -1,5 +1,9 @@
-import { HttpClientModule } from '@angular/common/http';
+/* eslint-disable @typescript-eslint/no-deprecated
+-- This is an example of legacy code
+*/
 import { NgModule } from '@angular/core';
+
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,6 +12,6 @@ import { AppComponent } from './app.component';
 @NgModule({
   declarations: [AppComponent],
   imports: [AppRoutingModule, BrowserModule, HttpClientModule],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

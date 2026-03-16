@@ -3,10 +3,7 @@
     [playerName]="(player | async)?.name ?? ''"
     (playerNameChanged)="updateName($event)"
   />
-  <div
-    class="delete-control"
-    [matTooltip]="(canDelete | async) ?? ''"
-  >
+  <div class="delete-control" [matTooltip]="(canDelete | async) ?? ''">
     <button
       mat-raised-button
       color="warn"
@@ -17,7 +14,7 @@
       <mat-icon>delete</mat-icon>
     </button>
     @if (deleting | async) {
-      <mat-spinner diameter="20"></mat-spinner>
+      <mat-spinner diameter="20" />
     }
   </div>
 </mat-card-title>

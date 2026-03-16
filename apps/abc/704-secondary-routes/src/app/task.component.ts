@@ -1,16 +1,8 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  template: `
-    <div
-      style="
-        border: 3px solid var(--abc-category-2-color);
-        padding: 3px;
-        margin: 3px;
-      "
-    >
-      <h5>Here are some tasks</h5>
-    </div>
-  `
+  selector: 'app-task',
+  template: `<header>Here are some tasks</header>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskComponent {}

@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  signal
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 import { Order, fakeApiOrders } from '../api-types';
 import { OrderDetailsComponent } from '../order-details/order-details.component';
@@ -12,13 +8,11 @@ import { OrderListComponent } from '../order-list/order-list.component';
   selector: 'app-order-manager',
   templateUrl: './order-manager.component.html',
   imports: [OrderListComponent, OrderDetailsComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderManagerComponent {
   protected readonly orderList = signal(fakeApiOrders);
-  protected readonly selectedOrder = signal<Order | undefined>(
-    undefined
-  );
+  protected readonly selectedOrder = signal<Order | undefined>(undefined);
 
   protected setOrder(order: Order) {
     this.selectedOrder.set(order);

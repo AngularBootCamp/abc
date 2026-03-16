@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+
 import { provideMockStore } from '@ngrx/store/testing';
 
 import { AppComponent } from './app.component';
@@ -15,11 +16,11 @@ describe('AppComponent', () => {
         provideMockStore({
           initialState: {
             config: {
-              title
-            }
-          }
-        })
-      ]
+              title,
+            },
+          },
+        }),
+      ],
     });
 
     component = TestBed.inject(AppComponent);

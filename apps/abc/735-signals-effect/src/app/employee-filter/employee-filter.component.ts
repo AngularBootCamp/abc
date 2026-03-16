@@ -2,18 +2,20 @@ import {
   ChangeDetectionStrategy,
   Component,
   effect,
-  inject
+  inject,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-employee-filter',
   templateUrl: './employee-filter.component.html',
   imports: [ReactiveFormsModule],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeFilterComponent {
   private readonly router = inject(Router);
@@ -31,18 +33,18 @@ export class EmployeeFilterComponent {
       this.employeeFilter.valueChanges.pipe(
         startWith(this.employeeFilter.value),
         debounceTime(250),
-        distinctUntilChanged()
-      )
+        distinctUntilChanged(),
+      ),
     );
 
     // This effect replaces a manual subscription
     effect(() => {
       const queryParams = {
-        employeeFilter: filterText() || undefined
+        employeeFilter: filterText() || undefined,
       };
       void this.router.navigate([], {
         queryParams,
-        queryParamsHandling: 'merge'
+        queryParamsHandling: 'merge',
       });
     });
   }

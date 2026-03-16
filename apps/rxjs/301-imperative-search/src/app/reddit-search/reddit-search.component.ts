@@ -1,9 +1,12 @@
 import { Component, inject } from '@angular/core';
+
 import { FormsModule } from '@angular/forms';
+
 import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+
 import { debounce } from 'lodash-es';
 
 import { ImageMetadata } from '../types';
@@ -19,18 +22,13 @@ import { RedditImageSearchService } from './reddit-image-search.service';
     MatFormFieldModule,
     MatSelectModule,
     MatOptionModule,
-    MatInputModule
-  ]
+    MatInputModule,
+  ],
 })
 export class RedditSearchComponent {
   private ris = inject(RedditImageSearchService);
 
-  subReddits = [
-    'aww',
-    'wholesomememes',
-    'mildlyinteresting',
-    'awesome'
-  ];
+  subReddits = ['aww', 'wholesomememes', 'mildlyinteresting', 'awesome'];
   subReddit = this.subReddits[0];
   search = '';
   results: ImageMetadata[] = [];
@@ -42,7 +40,7 @@ export class RedditSearchComponent {
     // a practical problem in this use case, so we override the type.
     this.findResults = debounce(
       this.findResults.bind(this),
-      500
+      500,
     ) as () => Promise<void>;
   }
 

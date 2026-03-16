@@ -15,9 +15,8 @@
       <header>
         <p>
           <em>Idle</em>
-          will trigger the deferred block once the browser has reached
-          an idle state. This example shows the placeholder for 2
-          seconds.
+          will trigger the deferred block once the browser has reached an
+          idle state. This example shows the placeholder for 2 seconds.
         </p>
 
         <p>
@@ -39,9 +38,8 @@
       <header>
         <p>
           <em>Viewport</em>
-          will trigger the deferred block when the specified content
-          enters the viewport. This example shows the placeholder for
-          2 seconds.
+          will trigger the deferred block when the specified content enters
+          the viewport. This example shows the placeholder for 2 seconds.
         </p>
       </header>
       <ul class="collection list">
@@ -66,8 +64,8 @@
       <header>
         <p>
           <em>Interaction</em>
-          will trigger the deferred block when the user interacts with
-          the specified element through click or keydown events.
+          will trigger the deferred block when the user interacts with the
+          specified element through click or keydown events.
         </p>
       </header>
 
@@ -85,8 +83,7 @@
         <app-interaction />
       } @placeholder {
         <p>
-          Click on the button above this to load (clicking here won't
-          work)
+          Click on the button above this to load (clicking here won't work)
         </p>
       } @loading (after 100ms; minimum 2s) {
         <p>This shows for 2 seconds while loading</p>
@@ -96,8 +93,8 @@
       <header>
         <p>
           <em>Hover</em>
-          triggers deferred loading when the mouse has hovered over
-          the trigger area.
+          triggers deferred loading when the mouse has hovered over the
+          trigger area.
         </p>
       </header>
 
@@ -115,8 +112,8 @@
         <app-hover />
       } @placeholder {
         <p>
-          'Hover' over the button above this to load (hovering here
-          won't work)
+          'Hover' over the button above this to load (hovering here won't
+          work)
         </p>
       }
     }
@@ -124,8 +121,8 @@
       <header>
         <p>
           <em>Immediate</em>
-          triggers the deferred load immediately, meaning once the
-          client has finished rendering.
+          triggers the deferred load immediately, meaning once the client
+          has finished rendering.
         </p>
       </header>
 
@@ -174,8 +171,8 @@
     @case ('Multiple') {
       <header>
         <p>
-          When there are multiple triggers, they work as OR; loading
-          will happen whenever any of the conditions are met.
+          When there are multiple triggers, they work as OR; loading will
+          happen whenever any of the conditions are met.
         </p>
       </header>
 
@@ -191,8 +188,8 @@
         <app-multiple />
       } @placeholder {
         <p>
-          Loading will start when the value is above 3, or if you
-          hover over this text.
+          Loading will start when the value is above 3, or if you hover
+          over this text.
         </p>
       } @loading (minimum 2s) {
         <p>This shows for 2 seconds while loading</p>
@@ -201,8 +198,8 @@
     @case ('Prefetched') {
       <header>
         <p>
-          Prefetching allows you to start loading the component before
-          the display trigger is invoked.
+          Prefetching allows you to start loading the component before the
+          display trigger is invoked.
         </p>
       </header>
 
@@ -210,8 +207,8 @@
         <app-prefetched />
       } @placeholder {
         <p>
-          Hover over this text to display (though it was already
-          loaded when the tab was clicked)
+          Hover over this text to display (though it was already loaded
+          when the tab was clicked)
         </p>
       }
     }

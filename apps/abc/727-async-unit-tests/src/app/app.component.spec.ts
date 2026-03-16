@@ -1,7 +1,8 @@
-import { TestBed } from '@angular/core/testing';
-import { fakeAsync, tick } from '@angular/core/testing';
-import { Spy, createSpyFromClass } from 'jest-auto-spies';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+
 import { of, take } from 'rxjs';
+
+import { Spy, createSpyFromClass } from 'jest-auto-spies';
 
 import { AppComponent } from './app.component';
 import { EmployeeService } from './employee.service';
@@ -24,9 +25,9 @@ describe('App Component', () => {
           AppComponent,
           {
             provide: EmployeeService,
-            useValue: employeeService
-          }
-        ]
+            useValue: employeeService,
+          },
+        ],
       });
 
       appComponent = TestBed.inject(AppComponent);

@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
+
 import {
   RouterLink,
   RouterLinkActive,
-  RouterOutlet
+  RouterOutlet,
 } from '@angular/router';
+
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-tasks-dashboard-dashboard',
@@ -16,7 +18,7 @@ import {
     MatListModule,
     RouterLink,
     RouterLinkActive,
-    RouterOutlet
-  ]
+    RouterOutlet,
+  ],
 })
 export class TasksDashboardComponent {}

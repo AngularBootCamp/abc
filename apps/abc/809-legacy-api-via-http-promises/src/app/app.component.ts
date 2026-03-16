@@ -1,20 +1,30 @@
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  inject,
+} from '@angular/core';
+
 import { JsonPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
 
 import { FilmMeta, StarshipApiService } from './starship-api.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [JsonPipe]
+  imports: [JsonPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  starships: FilmMeta[] = [];
+  protected starships: FilmMeta[] = [];
+
+  private cdr = inject(ChangeDetectorRef);
 
   constructor() {
     inject(StarshipApiService)
       .loadStarships()
       .then(ships => (this.starships = ships))
-      .catch(_err => (this.starships = []));
+      .catch(_err => (this.starships = []))
+      .finally(() => this.cdr.markForCheck());
   }
 }

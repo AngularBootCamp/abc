@@ -1,21 +1,24 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { MatOptionModule } from '@angular/material/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
+
 import {
+  Observable,
   combineLatest,
   debounceTime,
   distinctUntilChanged,
   filter,
   map,
-  Observable,
   retry,
   startWith,
-  switchMap
+  switchMap,
 } from 'rxjs';
+
+import { MatOptionModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 import { ImageMetadata } from '../types';
 
@@ -31,18 +34,13 @@ import { RedditImageSearchService } from './reddit-image-search.service';
     ReactiveFormsModule,
     MatOptionModule,
     MatInputModule,
-    AsyncPipe
-  ]
+    AsyncPipe,
+  ],
 })
 export class RedditSearchComponent {
-  subReddits = [
-    'aww',
-    'wholesomememes',
-    'mildlyinteresting',
-    'awesome'
-  ];
+  subReddits = ['aww', 'wholesomememes', 'mildlyinteresting', 'awesome'];
   subReddit = new FormControl(this.subReddits[0], {
-    nonNullable: true
+    nonNullable: true,
   });
   search = new FormControl('', { nonNullable: true });
   results: Observable<ImageMetadata[]>;
@@ -51,7 +49,7 @@ export class RedditSearchComponent {
     const ris = inject(RedditImageSearchService);
 
     const validSubReddit = this.subReddit.valueChanges.pipe(
-      startWith<string>(this.subReddit.value)
+      startWith<string>(this.subReddit.value),
     );
 
     const validSearch = this.search.valueChanges.pipe(
@@ -59,12 +57,12 @@ export class RedditSearchComponent {
       map(search => search.trim()),
       debounceTime(200),
       distinctUntilChanged(),
-      filter(search => search !== '')
+      filter(search => search !== ''),
     );
 
     const combinedCriteria = combineLatest([
       validSubReddit,
-      validSearch
+      validSearch,
     ]).pipe(map(([subReddit, search]) => ({ subReddit, search })));
 
     this.results = combinedCriteria.pipe(
@@ -72,9 +70,9 @@ export class RedditSearchComponent {
         ris.search(val.subReddit, val.search).pipe(
           retry(3),
           // Clear previous entries while waiting
-          startWith([])
-        )
-      )
+          startWith([]),
+        ),
+      ),
     );
   }
 }

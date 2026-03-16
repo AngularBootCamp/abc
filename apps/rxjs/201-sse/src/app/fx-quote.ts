@@ -9,5 +9,5 @@ export const placeholderQuote = {
   timestamp: 0,
   symbol: '-',
   bid: '',
-  ask: ''
+  ask: '',
 };

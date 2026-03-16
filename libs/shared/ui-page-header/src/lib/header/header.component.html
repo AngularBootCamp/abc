@@ -14,16 +14,12 @@
       <div class="toolbar-spacer"></div>
       @for (document of documents(); track document) {
         <div>
-          <a
-            class="document-button"
-            mat-flat-button
-            href="{{ document.url }}"
-          >
+          <a class="document-button" mat-flat-button [href]="document.url">
             {{ document.label }}
           </a>
         </div>
       }
     </mat-toolbar-row>
   </ng-container>
-  <ng-content></ng-content>
+  <ng-content />
 </mat-toolbar>

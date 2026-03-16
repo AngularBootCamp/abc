@@ -10,6 +10,6 @@ export const userProfileActions = createActionGroup({
     'Load User Profile Failure': props<{ error: unknown }>(),
     'Save User Profile': props<{ profile: UserProfile }>(),
     'Save User Profile Success': props<{ profile: UserProfile }>(),
-    'Save User Profile Failure': props<{ error: unknown }>()
-  }
+    'Save User Profile Failure': props<{ error: unknown }>(),
+  },
 });

@@ -1,4 +1,4 @@
-import { initialState, articleFeature } from './article.reducer';
+import { articleFeature, initialState } from './article.reducer';
 
 describe('Article Reducer', () => {
   describe('an unknown action', () => {

@@ -1,9 +1,17 @@
-import { Component, inject, signal, computed } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
+
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   private readonly sanitizer = inject(DomSanitizer);
@@ -17,6 +25,6 @@ export class AppComponent {
 
   // TODO: Make sure the HTML is actually safe. :)
   protected readonly htmlProperty = computed(() =>
-    this.sanitizer.bypassSecurityTrustHtml(this.stringWithHtml())
+    this.sanitizer.bypassSecurityTrustHtml(this.stringWithHtml()),
   );
 }

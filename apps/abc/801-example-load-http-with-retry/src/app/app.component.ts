@@ -1,5 +1,7 @@
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+
 import { Observable, Subject, filter, map, share, tap } from 'rxjs';
 
 import { Employee } from './employee';
@@ -10,23 +12,18 @@ import { faulty } from './loader/faulty';
 import {
   LoadResultStatus,
   loadWithRetry,
-  statusStrings
+  statusStrings,
 } from './loader/loadWithRetry';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [
-    EmployeeListComponent,
-    EmployeeDisplayComponent,
-    AsyncPipe
-  ]
+  imports: [EmployeeListComponent, EmployeeDisplayComponent, AsyncPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  protected readonly selectedEmployee: Observable<
-    Employee | undefined
-  >;
+  protected readonly selectedEmployee: Observable<Employee | undefined>;
   protected readonly status: Observable<string>;
   protected readonly selectedEmployeeId = new Subject<number>();
   protected readonly employees: Observable<Employee[]>;
@@ -39,23 +36,21 @@ export class AppComponent {
 
     const loadResults = loadWithRetry(
       this.selectedEmployeeId,
-      id => employeeLoader.getDetails(id).pipe(faulty<Employee>()) // add this to simulate bad connection
+      id => employeeLoader.getDetails(id).pipe(faulty<Employee>()), // add this to simulate bad connection
     ).pipe(share());
 
     this.status = loadResults.pipe(
-      tap(result =>
-        console.log('RECEIVED', result, 'at', new Date())
-      ),
-      map(result => statusStrings[result.status])
+      tap(result => console.log('RECEIVED', result, 'at', new Date())),
+      map(result => statusStrings[result.status]),
     );
 
     this.showEmployeeDetails = loadResults.pipe(
-      map(result => result.status === LoadResultStatus.Success)
+      map(result => result.status === LoadResultStatus.Success),
     );
 
     this.selectedEmployee = loadResults.pipe(
       filter(result => result.status === LoadResultStatus.Success),
-      map(result => result.payload)
+      map(result => result.payload),
     );
   }
 }

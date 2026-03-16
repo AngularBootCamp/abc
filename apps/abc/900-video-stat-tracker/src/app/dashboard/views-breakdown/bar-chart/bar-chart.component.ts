@@ -1,11 +1,12 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { GraphData, Rect } from '../graph-helper';
 
 @Component({
   selector: 'vst-bar-chart',
   templateUrl: './bar-chart.component.html',
-  styleUrl: './bar-chart.component.scss'
+  styleUrl: './bar-chart.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BarChartComponent {
   public readonly graphData = input.required<GraphData | undefined>();

@@ -9,7 +9,7 @@
     [attr.x2]="width"
     [attr.y2]="height / 2"
     style="stroke: black; stroke-width: 1"
-  ></line>
+  />
   @for (point of points; track $index) {
     <circle
       [attr.cx]="$index * intervalSpacing"
@@ -17,7 +17,7 @@
       stroke="black"
       r="2"
       fill="black"
-    ></circle>
+    />
   }
   @for (line of lines; track line) {
     <line
@@ -26,6 +26,6 @@
       [attr.x2]="($index + 1) * intervalSpacing"
       [attr.y2]="line.end + height / 2"
       style="stroke: black; stroke-width: 1"
-    ></line>
+    />
   }
 </svg>

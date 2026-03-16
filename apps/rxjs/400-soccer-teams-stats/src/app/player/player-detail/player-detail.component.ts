@@ -1,12 +1,15 @@
-import { AsyncPipe, PercentPipe } from '@angular/common';
 import { Component, OnDestroy, inject } from '@angular/core';
+
+import { AsyncPipe, PercentPipe } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { Subject, map, merge } from 'rxjs';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ActivatedRoute, Router } from '@angular/router';
-import { map, merge, Subject } from 'rxjs';
 
 import { selectedPlayerIdRouteParamName } from '../../app.constants';
 import { PlayerNameEditorComponent } from '../player-name-editor/player-name-editor.component';
@@ -25,8 +28,8 @@ import { PlayerService } from '../player.service';
     MatProgressSpinnerModule,
     MatTableModule,
     AsyncPipe,
-    PercentPipe
-  ]
+    PercentPipe,
+  ],
 })
 export class PlayerDetailComponent implements OnDestroy {
   private activatedRoute = inject(ActivatedRoute);
@@ -49,7 +52,7 @@ export class PlayerDetailComponent implements OnDestroy {
     'shotAverage',
     'assists',
     'yellowCard',
-    'redCard'
+    'redCard',
   ];
 
   player = this.playerStatsService.selectedPlayerWithStats;
@@ -60,16 +63,16 @@ export class PlayerDetailComponent implements OnDestroy {
   canDelete = merge(
     this.activatedRoute.params.pipe(
       map(params => params[selectedPlayerIdRouteParamName]),
-      map(() => 'Loading player data')
+      map(() => 'Loading player data'),
     ),
     this.playerGameTableData.pipe(
       map(td =>
         td.length > 0
           ? 'Cannot delete a player that has games'
-          : undefined
-      )
+          : undefined,
+      ),
     ),
-    this.deleting
+    this.deleting,
   );
 
   ngOnDestroy() {
@@ -78,10 +81,8 @@ export class PlayerDetailComponent implements OnDestroy {
 
   updateName(newName: string) {
     return this.playerService.changePlayerName(
-      this.activatedRoute.snapshot.params[
-        selectedPlayerIdRouteParamName
-      ],
-      newName
+      this.activatedRoute.snapshot.params[selectedPlayerIdRouteParamName],
+      newName,
     );
   }
 
@@ -91,7 +92,7 @@ export class PlayerDetailComponent implements OnDestroy {
       .deletePlayer(
         this.activatedRoute.snapshot.params[
           selectedPlayerIdRouteParamName
-        ]
+        ],
       )
       .then(() => this.router.navigate(['players']))
       .catch(() => this.deleting.next(''));

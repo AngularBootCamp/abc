@@ -5,7 +5,7 @@ import {
   createSelector,
   emptyProps,
   on,
-  props
+  props,
 } from '@ngrx/store';
 
 import { generalActions } from './state';
@@ -17,8 +17,8 @@ export const workTaskActions = createActionGroup({
     'Set Work Task': props<{ task: Task; complete: boolean }>(),
     'Load Work Tasks': emptyProps(),
     'Load Work Tasks Success': props<{ tasks: WorkTaskState }>(),
-    'Load Work Tasks Failure': props<{ error: unknown }>()
-  }
+    'Load Work Tasks Failure': props<{ error: unknown }>(),
+  },
 });
 
 export interface WorkTaskState {
@@ -28,28 +28,28 @@ export interface WorkTaskState {
 
 const defaultWorkTaskState: WorkTaskState = {
   todoWork: [],
-  doneWork: []
+  doneWork: [],
 };
 
 export const workTaskReducer = createReducer(
   defaultWorkTaskState,
   on(workTaskActions.setWorkTask, (state, action) =>
-    setWorkTaskStatus(state, action.task, action.complete)
+    setWorkTaskStatus(state, action.task, action.complete),
   ),
   on(generalActions.completeAllSuccess, state => ({
     doneWork: [...state.doneWork, ...state.todoWork],
-    todoWork: []
+    todoWork: [],
   })),
   on(
     workTaskActions.loadWorkTasksSuccess,
-    (_state, action) => action.tasks
-  )
+    (_state, action) => action.tasks,
+  ),
 );
 
 function setWorkTaskStatus(
   currentState: WorkTaskState,
   task: Task,
-  complete: boolean
+  complete: boolean,
 ): WorkTaskState {
   const todoWork = currentState.todoWork.filter(x => x !== task);
   const doneWork = currentState.doneWork.filter(x => x !== task);
@@ -69,10 +69,10 @@ const selectWorkTaskState =
 
 export const selectTodoWork = createSelector(
   selectWorkTaskState,
-  state => [...state.todoWork]
+  state => [...state.todoWork],
 );
 
 export const selectDoneWork = createSelector(
   selectWorkTaskState,
-  state => [...state.doneWork]
+  state => [...state.doneWork],
 );

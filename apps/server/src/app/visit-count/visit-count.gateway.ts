@@ -2,7 +2,7 @@ import {
   ConnectedSocket,
   OnGatewayConnection,
   WebSocketGateway,
-  WebSocketServer
+  WebSocketServer,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 

@@ -6,6 +6,7 @@
         <form
           [formGroup]="profileForm"
           (ngSubmit)="saveUser(profile)"
+          autocomplete="off"
         >
           <mat-form-field>
             <mat-label>Name</mat-label>

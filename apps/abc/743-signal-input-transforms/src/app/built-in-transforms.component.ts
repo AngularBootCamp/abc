@@ -1,8 +1,9 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  input,
   booleanAttribute,
-  numberAttribute
+  input,
+  numberAttribute,
 } from '@angular/core';
 
 @Component({
@@ -13,16 +14,17 @@ import {
     Boolean: {{ booleanValue() }}
     <br />
     Number: {{ numberValue() }}
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BuiltInTransformsComponent {
   public readonly explanation = input.required<string>();
 
   public readonly booleanValue = input(false, {
-    transform: booleanAttribute
+    transform: booleanAttribute,
   });
 
   public readonly numberValue = input(0, {
-    transform: numberAttribute
+    transform: numberAttribute,
   });
 }

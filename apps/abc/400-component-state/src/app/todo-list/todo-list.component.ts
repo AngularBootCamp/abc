@@ -1,8 +1,8 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  output,
   input,
-  ChangeDetectionStrategy
+  output,
 } from '@angular/core';
 
 import { Task } from '../types';
@@ -10,7 +10,7 @@ import { Task } from '../types';
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoListComponent {
   public readonly list = input.required<Task[]>();

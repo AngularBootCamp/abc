@@ -4,7 +4,7 @@ import {
   createReducer,
   createSelector,
   on,
-  props
+  props,
 } from '@ngrx/store';
 
 import { globalActions } from './state';
@@ -14,8 +14,8 @@ export const homeTaskActions = createActionGroup({
   source: 'Home Tasks',
   events: {
     'Task Completed': props<{ task: Task }>(),
-    'Task Reset': props<{ task: Task }>()
-  }
+    'Task Reset': props<{ task: Task }>(),
+  },
 });
 
 export interface HomeTaskState {
@@ -25,31 +25,28 @@ export interface HomeTaskState {
 
 const defaultHomeTaskState: HomeTaskState = {
   todo: [],
-  done: []
+  done: [],
 };
 
 export const homeTaskReducer = createReducer(
   defaultHomeTaskState,
   on(homeTaskActions.taskCompleted, (state, action) =>
-    setHomeTaskStatus(state, action.task, true)
+    setHomeTaskStatus(state, action.task, true),
   ),
   on(homeTaskActions.taskReset, (state, action) =>
-    setHomeTaskStatus(state, action.task, false)
+    setHomeTaskStatus(state, action.task, false),
   ),
   on(globalActions.completeAll, state => ({
     done: [...state.done, ...state.todo],
-    todo: []
+    todo: [],
   })),
-  on(
-    globalActions.tasksReceived,
-    (_state, { homeTasks }) => homeTasks
-  )
+  on(globalActions.tasksReceived, (_state, { homeTasks }) => homeTasks),
 );
 
 function setHomeTaskStatus(
   currentState: HomeTaskState,
   task: Task,
-  markDone: boolean
+  markDone: boolean,
 ): HomeTaskState {
   const done = currentState.done.filter(x => x !== task);
   const todo = currentState.todo.filter(x => x !== task);
@@ -68,10 +65,10 @@ const selectHomeTaskState =
 
 export const selectTodoHome = createSelector(
   selectHomeTaskState,
-  state => [...state.todo]
+  state => [...state.todo],
 );
 
 export const selectDoneHome = createSelector(
   selectHomeTaskState,
-  state => [...state.done]
+  state => [...state.done],
 );

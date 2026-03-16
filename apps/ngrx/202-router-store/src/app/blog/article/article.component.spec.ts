@@ -1,14 +1,17 @@
 import { TestBed } from '@angular/core/testing';
+
 import {
   ActivatedRoute,
-  convertToParamMap,
   Params,
-  Router
+  Router,
+  convertToParamMap,
 } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+
+import { firstValueFrom, of } from 'rxjs';
+
 import { MemoizedSelector } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { firstValueFrom, of } from 'rxjs';
 
 import { AppState } from '../../reducers';
 import { Article } from '../types';
@@ -29,7 +32,7 @@ describe('ArticleComponent', () => {
 
   beforeEach(() => {
     params = {
-      authorId: '1'
+      authorId: '1',
     };
 
     TestBed.configureTestingModule({
@@ -38,18 +41,18 @@ describe('ArticleComponent', () => {
         provideMockStore({
           initialState: {
             article: {
-              articles: mockArticles
-            }
-          }
+              articles: mockArticles,
+            },
+          },
         }),
         {
           provide: ActivatedRoute,
           useValue: {
-            paramMap: of(convertToParamMap(params))
-          }
-        }
+            paramMap: of(convertToParamMap(params)),
+          },
+        },
       ],
-      imports: [RouterTestingModule]
+      imports: [RouterTestingModule],
     });
 
     component = TestBed.inject(ArticleComponent);
@@ -58,7 +61,7 @@ describe('ArticleComponent', () => {
     mockStore = TestBed.inject(MockStore);
     selectCurrentArticleMock = mockStore.overrideSelector(
       selectCurrentArticle,
-      mockArticles[1]
+      mockArticles[1],
     );
   });
 

@@ -1,42 +1,44 @@
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import { JsonPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
 import {
   NonNullableFormBuilder,
+  ReactiveFormsModule,
   Validators,
-  ReactiveFormsModule
 } from '@angular/forms';
 
 import {
   simpleAsyncValidator,
   slowAsyncValidator,
-  westernZipValidatorFactory
+  westernZipValidatorFactory,
 } from './asyncValidators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [ReactiveFormsModule, JsonPipe]
+  imports: [ReactiveFormsModule, JsonPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  protected readonly inputFormGroup = inject(
-    NonNullableFormBuilder
-  ).group({
-    input: ['', Validators.nullValidator, simpleAsyncValidator],
-    zip: [
-      '',
-      [
-        Validators.minLength(5),
-        Validators.maxLength(5),
-        Validators.required
+  protected readonly inputFormGroup = inject(NonNullableFormBuilder).group(
+    {
+      input: ['', Validators.nullValidator, simpleAsyncValidator],
+      zip: [
+        '',
+        [
+          Validators.minLength(5),
+          Validators.maxLength(5),
+          Validators.required,
+        ],
+        [
+          slowAsyncValidator,
+          westernZipValidatorFactory(inject(HttpClient)),
+        ],
       ],
-      [
-        slowAsyncValidator,
-        westernZipValidatorFactory(inject(HttpClient))
-      ]
-    ]
-  });
+    },
+  );
 
   protected onFormSubmit(): void {
     console.log('submitted', this.inputFormGroup.value);

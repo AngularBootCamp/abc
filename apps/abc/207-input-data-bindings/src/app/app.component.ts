@@ -6,6 +6,6 @@ import { OrderManagerComponent } from './order-manager/order-manager.component';
   selector: 'app-root',
   templateUrl: './app.component.html',
   imports: [OrderManagerComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}

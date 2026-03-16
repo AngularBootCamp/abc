@@ -1,8 +1,11 @@
 import {
   ApplicationConfig,
-  provideZoneChangeDetection
+  provideBrowserGlobalErrorListeners,
+  provideZoneChangeDetection,
 } from '@angular/core';
+
 import { provideRouter } from '@angular/router';
+
 import { provideRouterStore } from '@ngrx/router-store';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
@@ -14,13 +17,14 @@ import { reducers } from './reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),
     provideStore(reducers),
     provideRouterStore(),
     provideStoreDevtools({
       maxAge: 50,
-      logOnly: environment.production
-    })
-  ]
+      logOnly: environment.production,
+    }),
+  ],
 };

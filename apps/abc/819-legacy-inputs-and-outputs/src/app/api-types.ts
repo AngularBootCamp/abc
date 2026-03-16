@@ -16,17 +16,17 @@ export const fakeApiOrders = [
     items: [
       {
         quantity: 3,
-        description: 'Widgets'
+        description: 'Widgets',
       },
       {
         quantity: 2,
-        description: 'Thingamabobs'
+        description: 'Thingamabobs',
       },
       {
         quantity: 6,
-        description: 'Doodads'
-      }
-    ]
+        description: 'Doodads',
+      },
+    ],
   },
   {
     id: 456,
@@ -34,16 +34,16 @@ export const fakeApiOrders = [
     items: [
       {
         quantity: 1,
-        description: 'Sprockets'
+        description: 'Sprockets',
       },
       {
         quantity: 26,
-        description: 'Spanners'
+        description: 'Spanners',
       },
       {
         quantity: 9,
-        description: 'Gizmos'
-      }
-    ]
-  }
+        description: 'Gizmos',
+      },
+    ],
+  },
 ];

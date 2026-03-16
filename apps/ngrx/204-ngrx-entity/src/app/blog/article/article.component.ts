@@ -1,9 +1,12 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
 import { FormControl } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
-import { combineLatest, filter, map, Observable, tap } from 'rxjs';
+
+import { Observable, combineLatest, filter, map, tap } from 'rxjs';
+
+import { MatCardModule } from '@angular/material/card';
 
 import { DisplayOrEditComponent } from '@class-materials/shared/ui-display-or-edit';
 
@@ -18,7 +21,7 @@ import { articlePageActions } from './article.actions';
   selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
-  imports: [AsyncPipe, DisplayOrEditComponent, MatCardModule]
+  imports: [AsyncPipe, DisplayOrEditComponent, MatCardModule],
 })
 export class ArticleComponent {
   private articleService = inject(ArticleService);
@@ -35,8 +38,8 @@ export class ArticleComponent {
     this.article$ = combineLatest([
       articleService.currentArticle,
       authorService.currentAuthorId.pipe(
-        filter((authorId): authorId is number => !!authorId)
-      )
+        filter((authorId): authorId is number => !!authorId),
+      ),
     ]).pipe(
       tap(([article, authorId]) => {
         if (
@@ -49,26 +52,26 @@ export class ArticleComponent {
         ) {
           void router.navigate([], {
             queryParams: { [articleIdQueryParam]: undefined },
-            queryParamsHandling: 'merge'
+            queryParamsHandling: 'merge',
           });
         }
       }),
       map(([article, authorId]) =>
         // discard the article if the article is from the wrong author
-        authorId === article?.authorId ? article : undefined
+        authorId === article?.authorId ? article : undefined,
       ),
       tap(article => {
         if (article) {
           this.title.setValue(article.title);
           this.body.setValue(article.body);
         }
-      })
+      }),
     );
   }
 
   delete(article: Article) {
     this.articleService.dispatch(
-      articlePageActions.deleteArticle({ article })
+      articlePageActions.deleteArticle({ article }),
     );
   }
 
@@ -77,9 +80,9 @@ export class ArticleComponent {
       articlePageActions.updateArticle({
         article: {
           ...article,
-          title: this.title.value
-        }
-      })
+          title: this.title.value,
+        },
+      }),
     );
   }
 
@@ -88,9 +91,9 @@ export class ArticleComponent {
       articlePageActions.updateArticle({
         article: {
           ...article,
-          body: this.body.value
-        }
-      })
+          body: this.body.value,
+        },
+      }),
     );
   }
 }

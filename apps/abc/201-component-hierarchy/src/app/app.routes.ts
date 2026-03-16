@@ -4,11 +4,11 @@ export const appRoutes: Routes = [
   { path: '', redirectTo: 'email', pathMatch: 'full' },
   {
     path: 'help',
-    loadComponent: () => import('./help/help.component')
+    loadComponent: () => import('./help/help.component'),
   },
   {
     path: 'email',
     loadComponent: () =>
-      import('./email/email-container/email-container.component')
-  }
+      import('./email/email-container/email-container.component'),
+  },
 ];

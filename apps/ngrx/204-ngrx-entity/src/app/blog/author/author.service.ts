@@ -1,12 +1,10 @@
 import { Injectable, inject } from '@angular/core';
+
 import { Store } from '@ngrx/store';
 
 import { selectCurrentAuthorId } from '../../router.selectors';
 
-import {
-  selectCurrentAuthor,
-  selectAuthors
-} from './author.selectors';
+import { selectAuthors, selectCurrentAuthor } from './author.selectors';
 
 @Injectable({ providedIn: 'root' })
 export class AuthorService {

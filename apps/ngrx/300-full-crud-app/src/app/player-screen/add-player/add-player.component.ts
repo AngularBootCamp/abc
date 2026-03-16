@@ -1,14 +1,13 @@
 import { Component, inject } from '@angular/core';
+
 import {
   FormControl,
+  ReactiveFormsModule,
   Validators,
-  ReactiveFormsModule
 } from '@angular/forms';
+
 import { MatButtonModule } from '@angular/material/button';
-import {
-  MatDialogRef,
-  MatDialogModule
-} from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -24,8 +23,8 @@ import { PlayerService } from '../../player.service';
     MatInputModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatProgressSpinnerModule
-  ]
+    MatProgressSpinnerModule,
+  ],
 })
 export class AddPlayerComponent {
   private dialogRef =
@@ -34,7 +33,7 @@ export class AddPlayerComponent {
 
   playerInput = new FormControl('', {
     nonNullable: true,
-    validators: Validators.required
+    validators: Validators.required,
   });
   saving = false;
 

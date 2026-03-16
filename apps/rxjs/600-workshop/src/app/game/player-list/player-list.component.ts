@@ -3,8 +3,9 @@ import {
   EventEmitter,
   Input,
   Output,
-  inject
+  inject,
 } from '@angular/core';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,7 +17,7 @@ import { AddPlayerToGameComponent } from '../add-player-to-game/add-player-to-ga
 @Component({
   selector: 'app-player-list',
   templateUrl: './player-list.component.html',
-  imports: [MatListModule, MatButtonModule, MatIconModule]
+  imports: [MatListModule, MatButtonModule, MatIconModule],
 })
 export class PlayerListComponent {
   private dialog = inject(MatDialog);
@@ -30,7 +31,7 @@ export class PlayerListComponent {
     if (this.gameId) {
       const game: GameModalTransfer = {
         id: this.gameId,
-        players: this.playersNotInGame
+        players: this.playersNotInGame,
       };
       this.dialog
         .open(AddPlayerToGameComponent, { data: game })

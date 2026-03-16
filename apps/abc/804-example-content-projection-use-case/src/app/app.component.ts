@@ -1,12 +1,12 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 import {
   AnnouncementComponent,
-  AnnouncementComponentChildrenComponent
+  AnnouncementComponentChildrenComponent,
 } from './announcement.component';
 import {
+  CollectionPanelChildrenComponent,
   CollectionPanelComponent,
-  CollectionPanelChildrenComponent
 } from './collection-panel.component';
 
 export interface Announcement {
@@ -19,7 +19,7 @@ function sampleAnnouncements() {
   const descriptions = [
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales velit leo, id vestibulum risus maximus eget.',
     'Ut arcu eros, blandit ac sem vel, tincidunt efficitur risus. Curabitur tempor sapien massa, in bibendum mauris.',
-    'Duis congue velit a nibh auctor hendrerit. In sollicitudin pulvinar magna ut vulputate. Duis semper, est maximus.'
+    'Duis congue velit a nibh auctor hendrerit. In sollicitudin pulvinar magna ut vulputate. Duis semper, est maximus.',
   ];
 
   const arr: Announcement[] = [];
@@ -28,7 +28,7 @@ function sampleAnnouncements() {
     arr.push({
       title: `Announcement ${x + 1}`,
       image: `./assets/image${(x % 2) + 1}.jpg`,
-      description: descriptions[x % 3]
+      description: descriptions[x % 3],
     });
   }
 
@@ -43,11 +43,12 @@ function sampleAnnouncements() {
     CollectionPanelComponent,
     CollectionPanelChildrenComponent,
     AnnouncementComponent,
-    AnnouncementComponentChildrenComponent
-  ]
+    AnnouncementComponentChildrenComponent,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   protected readonly announcements = signal<Announcement[]>(
-    sampleAnnouncements()
+    sampleAnnouncements(),
   );
 }

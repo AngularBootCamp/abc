@@ -1,18 +1,22 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
 import {
   FormControl,
   FormGroup,
   NonNullableFormBuilder,
+  ReactiveFormsModule,
   Validators,
-  ReactiveFormsModule
 } from '@angular/forms';
+
+import { tap } from 'rxjs';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+
 import { Store } from '@ngrx/store';
-import { tap } from 'rxjs';
 
 import { userProfilePageActions } from './user-profile.actions';
 import { selectUserProfile } from './user-profile.selectors';
@@ -28,8 +32,8 @@ import { UserProfile } from './user-profile.types';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    AsyncPipe
-  ]
+    AsyncPipe,
+  ],
 })
 export default class UserProfileComponent {
   private store = inject(Store);
@@ -41,23 +45,23 @@ export default class UserProfileComponent {
   }> = inject(NonNullableFormBuilder).group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    phone: ['', Validators.required]
+    phone: ['', Validators.required],
   });
 
   userProfile = this.store.select(selectUserProfile).pipe(
     tap(p => {
       this.profileForm.patchValue(p ?? {}, { emitEvent: false });
       this.profileForm.reset(this.profileForm.value); // resets pristine flag
-    })
+    }),
   );
 
   saveUser(userProfile: UserProfile) {
     const profile: UserProfile = {
       ...userProfile,
-      ...this.profileForm.value
+      ...this.profileForm.value,
     };
     this.store.dispatch(
-      userProfilePageActions.saveUserProfile({ profile })
+      userProfilePageActions.saveUserProfile({ profile }),
     );
   }
 }

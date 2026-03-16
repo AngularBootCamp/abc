@@ -1,11 +1,10 @@
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import { AsyncPipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject
-} from '@angular/core';
-import { Store } from '@ngrx/store';
+
 import { map } from 'rxjs';
+
+import { Store } from '@ngrx/store';
 
 import { CounterDisplayComponent } from './counter-display.component';
 import { AppState, emptyCart, pickApples, pickBerry } from './state';
@@ -15,27 +14,30 @@ import { AppState, emptyCart, pickApples, pickBerry } from './state';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   imports: [CounterDisplayComponent, AsyncPipe],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   // We will learn a better way (that doesn't violate linting) in the
   // next step.
-  // eslint-disable-next-line @ngrx/no-typed-global-store
-  private readonly store = inject<Store<AppState>>(Store);
 
-  // eslint-disable-next-line @ngrx/prefer-selector-in-select
+  /* eslint-disable-next-line @ngrx/no-typed-global-store */
+  private readonly store = inject(Store<AppState>);
+
+  /* eslint-disable @ngrx/prefer-selector-in-select */
+
   protected readonly berry = this.store.select(
-    myAppState => myAppState.berryCounter
+    myAppState => myAppState.berryCounter,
   );
 
-  // eslint-disable-next-line @ngrx/prefer-selector-in-select
   protected readonly apple = this.store.select(
-    state => state.appleCounter
+    state => state.appleCounter,
   );
+
+  /* eslint-enable @ngrx/prefer-selector-in-select */
 
   // Internally, store.select uses RxJS that looks like this:
   protected readonly total = this.store.pipe(
-    map(s => s.berryCounter + s.appleCounter)
+    map(s => s.berryCounter + s.appleCounter),
   );
 
   protected pickBerry() {

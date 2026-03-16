@@ -1,10 +1,10 @@
 export const selectedPlayerIdRouteParamName = 'playerId';
 export const selectedGameIdRouteParamName = 'gameId';
-export enum cardTypes {
+export enum CardTypes {
   red = 'red',
-  yellow = 'yellow'
+  yellow = 'yellow',
 }
-export const cardTypesList = Object.values(cardTypes);
+export const cardTypesList = Object.values(CardTypes);
 
 // Local API server
 // const apiUrl = '/api';

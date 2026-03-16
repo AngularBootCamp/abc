@@ -4,6 +4,6 @@ export abstract class LogHandler {
   abstract log(message: string): void;
 }
 
-export const LogHandlers = new InjectionToken<LogHandler[]>(
-  'LogHandlers'
+export const LOG_HANDLERS = new InjectionToken<LogHandler[]>(
+  'LogHandlers',
 );

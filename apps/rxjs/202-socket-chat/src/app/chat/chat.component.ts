@@ -1,6 +1,8 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -20,8 +22,8 @@ import { ChatService } from '../chat.service';
     MatInputModule,
     ReactiveFormsModule,
     MatButtonModule,
-    AsyncPipe
-  ]
+    AsyncPipe,
+  ],
 })
 export class ChatComponent {
   private chat = inject(ChatService);
@@ -33,7 +35,7 @@ export class ChatComponent {
   sendChat() {
     this.chat.sendChat({
       name: this.name.value,
-      contents: this.message.value
+      contents: this.message.value,
     });
     this.message.reset();
   }

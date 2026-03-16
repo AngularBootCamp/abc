@@ -12,8 +12,8 @@ import { Directive, signal } from '@angular/core';
     `,
     '[style.left.px]': 'x()',
     '[style.top.px]': 'y()',
-    '(mousedown)': 'mousedown($event)'
-  }
+    '(mousedown)': 'mousedown($event)',
+  },
 })
 export class DragDirective {
   protected readonly x = signal(0);

@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { map, Observable } from 'rxjs';
+
+import { HttpClient } from '@angular/common/http';
+
+import { Observable, map } from 'rxjs';
 
 // Local API server
 // const apiUrl = '/api';
@@ -15,7 +17,7 @@ export interface Employee {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeeLoaderService {
   private readonly http = inject(HttpClient);

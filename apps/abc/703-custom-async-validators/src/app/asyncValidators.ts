@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
-import { catchError, delay, map, Observable, of, tap } from 'rxjs';
+
+import { Observable, catchError, delay, map, of, tap } from 'rxjs';
 
 interface LocationDetails {
   places: { longitude: number }[];
@@ -24,9 +25,7 @@ export function slowAsyncValidator(): Observable<ValidationErrors | null> {
 export function westernZipValidatorFactory(http: HttpClient) {
   const url = 'https://api.zippopotam.us/us/';
 
-  return (
-    control: AbstractControl
-  ): Observable<ValidationErrors | null> =>
+  return (control: AbstractControl): Observable<ValidationErrors | null> =>
     http.get<LocationDetails>(url + control.value).pipe(
       tap(r => console.log(r)),
       map(locationDetails => locationDetails.places[0].longitude),
@@ -34,9 +33,9 @@ export function westernZipValidatorFactory(http: HttpClient) {
       tap(ok =>
         ok
           ? console.log('It is west enough')
-          : console.log('It is not west enough')
+          : console.log('It is not west enough'),
       ),
       map(ok => (ok ? null : { westerliness: 'not enough' })),
-      catchError(_e => of({ westerliness: 'Unable to verify' }))
+      catchError(_e => of({ westerliness: 'Unable to verify' })),
     );
 }

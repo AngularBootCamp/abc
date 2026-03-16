@@ -8,18 +8,15 @@ export const { selectAuthorState } = authorFeature;
 
 const { selectAll, selectEntities } = adapter.getSelectors();
 
-export const selectAuthors = createSelector(
-  selectAuthorState,
-  selectAll
-);
+export const selectAuthors = createSelector(selectAuthorState, selectAll);
 
 const selectAuthorEntities = createSelector(
   selectAuthorState,
-  selectEntities
+  selectEntities,
 );
 
 export const selectCurrentAuthor = createSelector(
   selectAuthorEntities,
   selectCurrentAuthorId,
-  (entities, authorId) => (authorId ? entities[authorId] : undefined)
+  (entities, authorId) => (authorId ? entities[authorId] : undefined),
 );

@@ -4,14 +4,14 @@ import {
   createFeature,
   createReducer,
   on,
-  props
+  props,
 } from '@ngrx/store';
 
 export const configActions = createActionGroup({
   source: 'Config',
   events: {
-    'Update Title': props<{ title: string }>()
-  }
+    'Update Title': props<{ title: string }>(),
+  },
 });
 
 export interface ConfigState {
@@ -19,7 +19,7 @@ export interface ConfigState {
 }
 
 const initialConfigState: ConfigState = {
-  title: 'Our Blog'
+  title: 'Our Blog',
 };
 
 export interface AppState {
@@ -32,13 +32,13 @@ const configFeature = createFeature({
     initialConfigState,
     on(configActions.updateTitle, (state, action) => ({
       ...state,
-      title: action.title
-    }))
-  )
+      title: action.title,
+    })),
+  ),
 });
 
 export const reducers: ActionReducerMap<AppState> = {
-  config: configFeature.reducer
+  config: configFeature.reducer,
 };
 
 // A simple, non-memoized selector for ConfigState:

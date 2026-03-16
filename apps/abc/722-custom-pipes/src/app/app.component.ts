@@ -1,16 +1,13 @@
-import {
-  UpperCasePipe,
-  LowerCasePipe,
-  DatePipe
-} from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+
+import { DatePipe, LowerCasePipe, UpperCasePipe } from '@angular/common';
 
 import {
   CheckmarkPipe,
   ContainsXPipe,
   DefaultToStringPipe,
   FieldRangePipe,
-  SentenceCasePipe
+  SentenceCasePipe,
 } from './pipes';
 
 interface Car {
@@ -31,8 +28,9 @@ interface Car {
     ContainsXPipe,
     DefaultToStringPipe,
     FieldRangePipe,
-    SentenceCasePipe
-  ]
+    SentenceCasePipe,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   protected readonly value12345 = signal(12345);
@@ -45,7 +43,7 @@ export class AppComponent {
     { brand: 'Toyota', year: 2011, color: 'Green' },
     { brand: 'Ford', year: 2005, color: 'Black' },
     { brand: 'Ford', year: 2009, color: 'White' },
-    { brand: 'Ford', year: 2013, color: 'Yellow' }
+    { brand: 'Ford', year: 2013, color: 'Yellow' },
   ]);
 
   protected readonly items = signal([
@@ -53,6 +51,6 @@ export class AppComponent {
     '123',
     'xyzabcdef',
     'abc123',
-    '8756'
+    '8756',
   ]);
 }

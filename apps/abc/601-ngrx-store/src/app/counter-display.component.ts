@@ -1,14 +1,14 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  output,
   input,
-  ChangeDetectionStrategy
+  output,
 } from '@angular/core';
 
 @Component({
   selector: 'app-counter-display',
   templateUrl: './counter-display.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CounterDisplayComponent {
   public readonly label = input.required<string>();

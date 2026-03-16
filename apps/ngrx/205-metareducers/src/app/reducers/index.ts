@@ -1,8 +1,4 @@
-import {
-  ActionReducer,
-  ActionReducerMap,
-  MetaReducer
-} from '@ngrx/store';
+import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
 
 import { environment } from '../../environments/environment';
 import { appApiActions } from '../app.actions';
@@ -17,47 +13,39 @@ export interface AppState {
 export const reducers: ActionReducerMap<AppState> = {
   [fromUserProfile.userProfileFeature.name]:
     fromUserProfile.userProfileFeature.reducer,
-  [fromUndoredo.undoRedoFeatureKey]: fromUndoredo.undoRedoReducer
+  [fromUndoredo.undoRedoFeatureKey]: fromUndoredo.undoRedoReducer,
 };
 
-export function logger(
-  reducer: ActionReducer<any>
-): ActionReducer<any> {
+export function logger(reducer: ActionReducer<any>): ActionReducer<any> {
   return function newReducer(state, action) {
     console.group(action.type);
     const nextState = reducer(state, action);
     console.log(
       `%c prev state`,
       `color: #9E9E9E; font-weight: bold`,
-      state
+      state,
     );
-    console.log(
-      `%c action`,
-      `color: #03A9F4; font-weight: bold`,
-      action
-    );
+    console.log(`%c action`, `color: #03A9F4; font-weight: bold`, action);
     console.log(
       `%c next state`,
       `color: #4CAF50; font-weight: bold`,
-      nextState
+      nextState,
     );
     console.groupEnd();
     return nextState;
   };
 }
 
-export function clear(
-  reducer: ActionReducer<any>
-): ActionReducer<any> {
+export function clear(reducer: ActionReducer<any>): ActionReducer<any> {
   return function newReducer(state, action) {
     if (action.type === appApiActions.clearStateSuccess.type) {
       // clear everything but undoRedo
       return reducer(
         {
           [fromUndoredo.undoRedoFeatureKey]:
-            state[fromUndoredo.undoRedoFeatureKey]
+            state[fromUndoredo.undoRedoFeatureKey],
         },
-        action
+        action,
       );
     }
 
@@ -73,5 +61,5 @@ export const metaReducers: MetaReducer<AppState>[] = [
   fromUndoredo.undoRedoMeta,
   clear,
   // include logger only for non-production
-  ...(!environment.production ? [logger] : [])
+  ...(!environment.production ? [logger] : []),
 ];

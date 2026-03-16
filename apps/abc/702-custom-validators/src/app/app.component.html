@@ -1,14 +1,15 @@
 <article>
   <header>Login Form</header>
 
-  <form [formGroup]="loginFormGroup" (ngSubmit)="onLogin()">
+  <form
+    [formGroup]="loginFormGroup"
+    (ngSubmit)="onLogin()"
+    autocomplete="off"
+  >
     <div class="form-fields">
       <label>
         <span>Login</span>
-        <input
-          type="text"
-          [formControl]="loginFormGroup.controls.login"
-        />
+        <input type="text" [formControl]="loginFormGroup.controls.login" />
         @if (loginFormGroup.controls.login.hasError('required')) {
           <span>Username is required</span>
         }
@@ -39,9 +40,7 @@
           type="text"
           [formControl]="loginFormGroup.controls.enterFive"
         />
-        @if (
-          loginFormGroup.controls.enterFive.hasError('verifyFive')
-        ) {
+        @if (loginFormGroup.controls.enterFive.hasError('verifyFive')) {
           <span>You must enter 5</span>
         }
       </label>

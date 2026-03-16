@@ -4,6 +4,6 @@ import { NonStandaloneComponent } from './non-standalone.component';
 
 @NgModule({
   declarations: [NonStandaloneComponent],
-  exports: [NonStandaloneComponent]
+  exports: [NonStandaloneComponent],
 })
 export class NonStandaloneModule {}

@@ -1,10 +1,14 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+
 import { FormControl } from '@angular/forms';
+import { RouterLink, RouterOutlet } from '@angular/router';
+
+import { Subject, takeUntil } from 'rxjs';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterLink, RouterOutlet } from '@angular/router';
+
 import { Store } from '@ngrx/store';
-import { Subject, takeUntil } from 'rxjs';
 
 import { DisplayOrEditComponent } from '@class-materials/shared/ui-display-or-edit';
 import { HeaderComponent } from '@class-materials/shared/ui-page-header';
@@ -21,8 +25,8 @@ import { configActions, selectTitle } from './reducers';
     MatButtonModule,
     MatToolbarModule,
     RouterLink,
-    RouterOutlet
-  ]
+    RouterOutlet,
+  ],
 })
 export class AppComponent implements OnInit, OnDestroy {
   private store = inject(Store);
@@ -42,7 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   setTitle() {
     this.store.dispatch(
-      configActions.updateTitle({ title: this.title.value })
+      configActions.updateTitle({ title: this.title.value }),
     );
   }
 

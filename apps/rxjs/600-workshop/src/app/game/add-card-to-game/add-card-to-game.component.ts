@@ -1,22 +1,24 @@
 import { Component, inject } from '@angular/core';
+
 import {
   NonNullableFormBuilder,
+  ReactiveFormsModule,
   Validators,
-  ReactiveFormsModule
 } from '@angular/forms';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule } from '@angular/material/core';
 import {
   MAT_DIALOG_DATA,
+  MatDialogModule,
   MatDialogRef,
-  MatDialogModule
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 
-import { cardTypes, cardTypesList } from '../../app.constants';
+import { CardTypes, cardTypesList } from '../../app.constants';
 import { GameModalTransfer } from '../../app.types';
 import { GameService } from '../game.service';
 
@@ -32,8 +34,8 @@ import { GameService } from '../game.service';
     MatOptionModule,
     MatInputModule,
     MatButtonModule,
-    MatProgressSpinnerModule
-  ]
+    MatProgressSpinnerModule,
+  ],
 })
 export class AddCardToGameComponent {
   private dialogRef =
@@ -44,8 +46,8 @@ export class AddCardToGameComponent {
 
   cardForm = this.fb.group({
     player: ['', Validators.required],
-    type: [cardTypes['yellow']],
-    minute: [0, Validators.required]
+    type: [CardTypes['yellow']],
+    minute: [0, Validators.required],
   });
   saving = false;
   cardtypes = cardTypesList;
@@ -55,7 +57,7 @@ export class AddCardToGameComponent {
     try {
       await this.gameService.addCardToGame({
         game: this.game.id,
-        ...this.cardForm.value
+        ...this.cardForm.value,
       });
       this.dialogRef.close();
     } catch (e) {

@@ -18,9 +18,7 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@class-materials/shared/e2e/env": [
-        "libs/shared/e2e/src/lib/env"
-      ],
+      "@class-materials/shared/e2e/env": ["libs/shared/e2e/src/lib/env"],
       "@class-materials/shared/e2e/helpers": [
         "libs/shared/e2e/src/lib/helpers"
       ],
@@ -29,9 +27,6 @@
       ],
       "@class-materials/shared/ui-display-or-edit": [
         "libs/shared/ui-display-or-edit/src/index.ts"
-      ],
-      "@class-materials/shared/ui-page-copyright": [
-        "libs/shared/ui-page-copyright/src/index.ts"
       ],
       "@class-materials/shared/ui-page-header": [
         "libs/shared/ui-page-header/src/index.ts"

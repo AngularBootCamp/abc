@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { HomeTaskStore } from '../home-tasks.state';
 import { ModalService } from '../modal.service';
@@ -16,7 +12,7 @@ import { WorkTaskListComponent } from './work-task-list/work-task-list.component
   templateUrl: './notification-manager.component.html',
   styleUrl: './notification-manager.component.scss',
   imports: [WorkTaskListComponent, HomeTaskListComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotificationManagerComponent {
   private readonly homeTaskStore = inject(HomeTaskStore);

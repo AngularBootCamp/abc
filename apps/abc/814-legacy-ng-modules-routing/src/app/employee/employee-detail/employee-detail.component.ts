@@ -1,5 +1,8 @@
-import { Component, inject } from '@angular/core';
+/* eslint-disable @angular-eslint/prefer-standalone */
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import { ActivatedRoute } from '@angular/router';
+
 import { Observable, map, share, switchMap } from 'rxjs';
 
 import { Employee, EmployeeLoader } from '../employee-loader.service';
@@ -7,7 +10,8 @@ import { Employee, EmployeeLoader } from '../employee-loader.service';
 @Component({
   selector: 'app-employee-detail',
   templateUrl: './employee-detail.component.html',
-  standalone: false
+  standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeDetailComponent {
   protected readonly employee: Observable<Employee>;
@@ -19,7 +23,7 @@ export class EmployeeDetailComponent {
     this.employee = route.paramMap.pipe(
       map(paramMap => paramMap.get('employeeId') as string),
       switchMap(id => loader.getDetails(id)),
-      share()
+      share(),
     );
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { BorderDirective } from './border.directive';
 import { HighlightDirective } from './highlight.directive';
@@ -15,12 +15,13 @@ import { HighlightDirective } from './highlight.directive';
   hostDirectives: [
     {
       directive: HighlightDirective,
-      inputs: ['color: highlightColor']
+      inputs: ['color: highlightColor'],
     },
     {
       directive: BorderDirective,
-      inputs: ['color: border']
-    }
-  ]
+      inputs: ['color: border'],
+    },
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HighlightAndBorderInputsComponent {}

@@ -1,4 +1,7 @@
-import { Component, Input } from '@angular/core';
+/* eslint-disable @angular-eslint/prefer-signals, @typescript-eslint/explicit-member-accessibility
+-- This is an example of legacy code
+*/
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-custom-transforms',
@@ -6,13 +9,14 @@ import { Component, Input } from '@angular/core';
     Lower: {{ lowerString }}
     <br />
     Upper: {{ upperStringInline }}
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomTransformsComponent {
   @Input({
     required: true,
     // transforms can be inline pure functions
-    transform: (value: string) => value.toLocaleUpperCase()
+    transform: (value: string) => value.toLocaleUpperCase(),
   })
   upperStringInline!: string;
 

@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  signal
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 import { Task } from '../types';
 
@@ -15,57 +11,50 @@ import { WorkTaskListComponent } from './work-task-list/work-task-list.component
 // associated with monoliths.
 
 @Component({
+  selector: 'app-dont',
   templateUrl: './dont.component.html',
   imports: [WorkTaskListComponent, HomeTaskListComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class DontComponent {
   protected readonly doneWork = signal<Task[]>([
     { label: 'file paperwork' },
     { label: 'send emails' },
     { label: 'work on project A' },
-    { label: 'submit report to manager' }
+    { label: 'submit report to manager' },
   ]);
 
   protected readonly todoWork = signal<Task[]>([
     { label: 'work on project B' },
-    { label: 'update task list' }
+    { label: 'update task list' },
   ]);
 
   protected readonly doneHome = signal<Task[]>([
     { label: 'cook dinner' },
     { label: 'go grocery shopping' },
     { label: 'sweep the floors' },
-    { label: 'do the laundry' }
+    { label: 'do the laundry' },
   ]);
 
   protected readonly todoHome = signal<Task[]>([
     { label: 'fix the leaky faucet' },
-    { label: 'mow the lawn' }
+    { label: 'mow the lawn' },
   ]);
 
   // This method is a perfect example of the complexity that's created
   // when all state is (poorly) managed in one location.
   protected toggleTask(task: Task, complete: boolean, type: string) {
     if (complete && type === 'work') {
-      this.doneWork.update(arr =>
-        arr.filter(curTask => curTask !== task)
-      );
+      this.doneWork.update(arr => arr.filter(curTask => curTask !== task));
       this.todoWork.update(arr => [...arr, task]);
     } else if (!complete && type === 'work') {
-      this.todoWork.update(arr =>
-        arr.filter(curTask => curTask !== task)
-      );
+      this.todoWork.update(arr => arr.filter(curTask => curTask !== task));
       this.doneWork.update(arr => [...arr, task]);
     } else if (complete && type === 'home') {
-      this.doneHome.update(arr =>
-        arr.filter(curTask => curTask !== task)
-      );
+      this.doneHome.update(arr => arr.filter(curTask => curTask !== task));
       this.todoHome.update(arr => [...arr, task]);
     } else if (!complete && type === 'home') {
-      this.todoHome.update(arr =>
-        arr.filter(curTask => curTask !== task)
-      );
+      this.todoHome.update(arr => arr.filter(curTask => curTask !== task));
       this.doneHome.update(arr => [...arr, task]);
     }
   }

@@ -5,7 +5,7 @@ import {
   Game,
   Player,
   PlayerWithStats,
-  ShotOnGoalWithNames
+  ShotOnGoalWithNames,
 } from './api-types';
 
 export abstract class PlayerService {
@@ -17,24 +17,22 @@ export abstract class PlayerService {
 
   abstract changePlayerName(
     playerId: string,
-    newName: string
+    newName: string,
   ): Promise<void>;
 
   abstract playerGames(playerId: string): Observable<Game[]>;
 
   abstract playerShots(
-    playerId: string
+    playerId: string,
   ): Observable<ShotOnGoalWithNames[]>;
 
   abstract playerCards(playerId: string): Observable<Card[]>;
 
   abstract playerAssists(
-    playerId: string
+    playerId: string,
   ): Observable<ShotOnGoalWithNames[]>;
 
-  abstract playerWithStats(
-    playerId: string
-  ): Observable<PlayerWithStats>;
+  abstract playerWithStats(playerId: string): Observable<PlayerWithStats>;
 
   abstract deletePlayer(playerId: string): Promise<void>;
 }

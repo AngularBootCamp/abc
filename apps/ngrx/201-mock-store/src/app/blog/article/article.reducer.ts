@@ -4,7 +4,7 @@ import { Article } from '../types';
 
 import {
   articleApiActions,
-  articleListPageActions
+  articleListPageActions,
 } from './article.actions';
 
 export interface State {
@@ -14,7 +14,7 @@ export interface State {
 
 export const initialState: State = {
   articles: [],
-  currentArticleId: undefined
+  currentArticleId: undefined,
 };
 
 export const articleFeature = createFeature({
@@ -24,21 +24,21 @@ export const articleFeature = createFeature({
 
     on(articleApiActions.loadArticlesSuccess, (state, action) => ({
       ...state,
-      articles: [...action.articles]
+      articles: [...action.articles],
     })),
     on(articleApiActions.createArticleSuccess, (state, action) => ({
       ...state,
-      articles: [...state.articles, action.article]
+      articles: [...state.articles, action.article],
     })),
     on(articleApiActions.deleteArticleSuccess, (state, action) => ({
       ...state,
       articles: state.articles.filter(
-        article => article.id !== action.articleId
-      )
+        article => article.id !== action.articleId,
+      ),
     })),
     on(articleApiActions.updateArticleSuccess, (state, action) => {
       const index = state.articles.findIndex(
-        article => article.id === action.article.id
+        article => article.id === action.article.id,
       );
       if (index >= 0) {
         return {
@@ -46,8 +46,8 @@ export const articleFeature = createFeature({
           articles: [
             ...state.articles.slice(0, index),
             action.article,
-            ...state.articles.slice(index + 1, state.articles.length)
-          ]
+            ...state.articles.slice(index + 1, state.articles.length),
+          ],
         };
       } else {
         return state;
@@ -55,7 +55,7 @@ export const articleFeature = createFeature({
     }),
     on(articleListPageActions.chooseArticle, (state, action) => ({
       ...state,
-      currentArticleId: action.articleId
-    }))
-  )
+      currentArticleId: action.articleId,
+    })),
+  ),
 });

@@ -1,4 +1,4 @@
-<oasis-header title="HTTP"></oasis-header>
+<oasis-header title="HTTP" />
 <div class="page-layout">
   <mat-card>
     <mat-card-header>
@@ -7,9 +7,7 @@
     <mat-card-content>
       <mat-list>
         @for (e of employeeData; track e.id) {
-          <mat-list-item>
-            {{ e.firstName }} {{ e.lastName }}
-          </mat-list-item>
+          <mat-list-item>{{ e.firstName }} {{ e.lastName }}</mat-list-item>
         }
       </mat-list>
     </mat-card-content>

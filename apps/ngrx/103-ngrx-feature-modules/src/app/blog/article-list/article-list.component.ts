@@ -1,21 +1,25 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import {
+  Observable,
+  distinctUntilChanged,
+  firstValueFrom,
+  map,
+  shareReplay,
+  switchMap,
+  tap,
+} from 'rxjs';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { ActivatedRoute, Router } from '@angular/router';
+
 import { Store } from '@ngrx/store';
 import { isEqual } from 'lodash-es';
-import {
-  distinctUntilChanged,
-  firstValueFrom,
-  map,
-  Observable,
-  shareReplay,
-  switchMap,
-  tap
-} from 'rxjs';
 
 import { selectTitle } from '../../reducers';
 import { articleIdQueryParam } from '../../routing-parameters';
@@ -33,8 +37,8 @@ import { Article } from '../types';
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    AsyncPipe
-  ]
+    AsyncPipe,
+  ],
 })
 export class ArticleListComponent {
   private router = inject(Router);
@@ -56,7 +60,7 @@ export class ArticleListComponent {
     this.authorId = route.paramMap.pipe(extractAuthorId());
 
     this.articles = this.authorId.pipe(
-      switchMap(authorId => this.getArticlesByAuthor(authorId))
+      switchMap(authorId => this.getArticlesByAuthor(authorId)),
     );
 
     this.selectedArticleId = route.queryParamMap.pipe(
@@ -64,11 +68,9 @@ export class ArticleListComponent {
       distinctUntilChanged(isEqual),
       map(articleId => (articleId ? Number(articleId) : undefined)),
       tap(articleId =>
-        this.store.dispatch(
-          articleActions.chooseArticle({ articleId })
-        )
+        this.store.dispatch(articleActions.chooseArticle({ articleId })),
       ),
-      shareReplay({ refCount: true, bufferSize: 1 })
+      shareReplay({ refCount: true, bufferSize: 1 }),
     );
   }
 
@@ -80,7 +82,7 @@ export class ArticleListComponent {
     const queryParams = { [articleIdQueryParam]: articleId };
     void this.router.navigate([], {
       queryParams,
-      queryParamsHandling: 'merge'
+      queryParamsHandling: 'merge',
     });
   }
 
@@ -90,10 +92,10 @@ export class ArticleListComponent {
     const newArticle: Omit<Article, 'id'> = {
       body: 'placeholder body',
       title: 'placeholder title',
-      authorId: uid || 0
+      authorId: uid || 0,
     };
     this.store.dispatch(
-      articleActions.createArticle({ article: newArticle })
+      articleActions.createArticle({ article: newArticle }),
     );
   }
 }

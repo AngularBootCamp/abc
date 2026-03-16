@@ -109,9 +109,7 @@ nav {
   }
 
   ul {
-    padding-inline: var(
-      #{$-pico-prefix}-nav-element-spacing-horizontal
-    );
+    padding-inline: var(#{$-pico-prefix}-nav-element-spacing-horizontal);
   }
 
   // Make secondary navs shorter (that is, less tall) than regular
@@ -140,9 +138,7 @@ td {
 // and remove list item markers.
 ul.collection {
   color: var(#{$-pico-prefix}-form-element-color);
-  background-color: var(
-    #{$-pico-prefix}-form-element-background-color
-  );
+  background-color: var(#{$-pico-prefix}-form-element-background-color);
 
   border-width: var(#{$-pico-prefix}-border-width);
   border-style: solid;
@@ -153,9 +149,7 @@ ul.collection {
 
   & > li {
     list-style-type: none;
-    margin-inline: var(
-      #{$-pico-prefix}-form-element-spacing-horizontal
-    );
+    margin-inline: var(#{$-pico-prefix}-form-element-spacing-horizontal);
     margin-block: var(#{$-pico-prefix}-form-element-spacing-vertical);
   }
 }

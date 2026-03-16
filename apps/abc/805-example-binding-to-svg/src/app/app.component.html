@@ -6,7 +6,7 @@
       stroke="var(--abc-on-surface-color)"
       [attr.y1]="rel.source.y"
       [attr.y2]="rel.target.y"
-    ></line>
+    />
   }
 
   @for (personNode of peopleNodes(); track personNode.index) {
@@ -16,6 +16,6 @@
       "
       r="5"
       [style.fill]="personNode.color"
-    ></circle>
+    />
   }
 </svg>

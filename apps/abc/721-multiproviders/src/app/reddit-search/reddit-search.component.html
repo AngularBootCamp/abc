@@ -11,7 +11,12 @@
   </div>
   <div>
     <label for="search">for images containing:</label>
-    <input id="search" type="text" [formControl]="search" />
+    <input
+      id="search"
+      type="text"
+      [formControl]="search"
+      autocomplete="off"
+    />
   </div>
 </div>
 

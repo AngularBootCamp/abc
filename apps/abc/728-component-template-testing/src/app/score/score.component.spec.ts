@@ -1,9 +1,13 @@
+/* eslint-disable @angular-eslint/prefer-on-push-component-change-detection
+-- This older example assumes zone.js and ChangeDetectionStrategy.Default
+*/
 import { Component, DebugElement } from '@angular/core';
 import {
   ComponentFixture,
   TestBed,
-  waitForAsync
+  waitForAsync,
 } from '@angular/core/testing';
+
 import { By } from '@angular/platform-browser';
 
 import { ScoreComponent } from './score.component';
@@ -14,7 +18,7 @@ describe('ScoreComponent', () => {
 
   beforeEach(waitForAsync(() =>
     TestBed.configureTestingModule({
-      imports: [ScoreComponent]
+      imports: [ScoreComponent],
     }).compileComponents()));
 
   beforeEach(() => {
@@ -28,7 +32,7 @@ describe('ScoreComponent', () => {
     beforeEach(() => {
       // find the DOM elements we expect to change
       const valueDisplayDe = fixture.debugElement.query(
-        By.css('.value-display')
+        By.css('.value-display'),
       );
       valueDisplayEl = valueDisplayDe.nativeElement;
     });
@@ -58,7 +62,7 @@ describe('ScoreComponent', () => {
 
       let notification = '';
       component.notify.subscribe(
-        (event: string) => (notification = event)
+        (event: string) => (notification = event),
       );
       buttonDe.triggerEventHandler('click', null);
       expect(notification).toBe('Your score was 42');
@@ -72,13 +76,13 @@ describe('ScoreComponent inside a test host', () => {
     template: `
       <app-show-score [value]="score" (notify)="onNotify($event)" />
     `,
-    imports: [ScoreComponent]
+    imports: [ScoreComponent],
   })
   class TestHostComponent {
-    score = 42;
-    notification: string | undefined;
+    public score = 42;
+    public notification: string | undefined;
 
-    onNotify(event: string) {
+    protected onNotify(event: string) {
       this.notification = event;
     }
   }
@@ -89,14 +93,14 @@ describe('ScoreComponent inside a test host', () => {
 
   beforeEach(waitForAsync(() =>
     TestBed.configureTestingModule({
-      imports: [TestHostComponent]
+      imports: [TestHostComponent],
     }).compileComponents()));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestHostComponent);
     testHost = fixture.componentInstance;
     scoreComponentDe = fixture.debugElement.query(
-      By.css('app-show-score')
+      By.css('app-show-score'),
     );
   });
 
@@ -106,7 +110,7 @@ describe('ScoreComponent inside a test host', () => {
     beforeEach(() => {
       // find the DOM elements we expect to change
       const valueDisplayDe = scoreComponentDe.query(
-        By.css('.value-display')
+        By.css('.value-display'),
       );
       valueDisplayEl = valueDisplayDe.nativeElement;
     });

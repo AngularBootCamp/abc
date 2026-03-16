@@ -1,8 +1,8 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  output,
   input,
-  ChangeDetectionStrategy
+  output,
 } from '@angular/core';
 
 import { Order } from '../api-types';
@@ -10,7 +10,7 @@ import { Order } from '../api-types';
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderListComponent {
   public readonly orders = input.required<Order[]>();

@@ -1,10 +1,14 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
 import { FormControl } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { Observable, combineLatest, map, tap } from 'rxjs';
+
+import { MatCardModule } from '@angular/material/card';
+
 import { Store } from '@ngrx/store';
-import { combineLatest, map, Observable, tap } from 'rxjs';
 
 import { DisplayOrEditComponent } from '@class-materials/shared/ui-display-or-edit';
 
@@ -19,14 +23,14 @@ import { selectCurrentArticle } from './article.selectors';
   selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
-  imports: [AsyncPipe, DisplayOrEditComponent, MatCardModule]
+  imports: [AsyncPipe, DisplayOrEditComponent, MatCardModule],
 })
 export class ArticleComponent {
-  private store = inject(Store);
+  private readonly store = inject(Store);
 
-  article$: Observable<Article | undefined>;
-  title = new FormControl();
-  body = new FormControl();
+  protected readonly article$: Observable<Article | undefined>;
+  protected readonly title = new FormControl();
+  protected readonly body = new FormControl();
 
   constructor() {
     const router = inject(Router);
@@ -36,54 +40,52 @@ export class ArticleComponent {
 
     this.article$ = combineLatest([
       this.store.select(selectCurrentArticle),
-      authorId$
+      authorId$,
     ]).pipe(
       tap(([article, authorId]) => {
         if (!article || authorId !== article.authorId) {
           void router.navigate([], {
             queryParams: { [articleIdQueryParam]: undefined },
-            queryParamsHandling: 'merge'
+            queryParamsHandling: 'merge',
           });
         }
       }),
       map(([article, authorId]) =>
         // discard the article if the article is from the wrong author
-        authorId === article?.authorId ? article : undefined
+        authorId === article?.authorId ? article : undefined,
       ),
       tap(article => {
         if (article) {
           this.title.setValue(article.title);
           this.body.setValue(article.body);
         }
-      })
+      }),
     );
   }
 
-  delete(article: Article) {
-    this.store.dispatch(
-      articlePageActions.deleteArticle({ article })
-    );
+  protected delete(article: Article) {
+    this.store.dispatch(articlePageActions.deleteArticle({ article }));
   }
 
-  setTitle(article: Article) {
+  protected setTitle(article: Article) {
     this.store.dispatch(
       articlePageActions.updateArticle({
         article: {
           ...article,
-          title: this.title.value
-        }
-      })
+          title: this.title.value,
+        },
+      }),
     );
   }
 
-  setBody(article: Article) {
+  protected setBody(article: Article) {
     this.store.dispatch(
       articlePageActions.updateArticle({
         article: {
           ...article,
-          body: this.body.value
-        }
-      })
+          body: this.body.value,
+        },
+      }),
     );
   }
 }

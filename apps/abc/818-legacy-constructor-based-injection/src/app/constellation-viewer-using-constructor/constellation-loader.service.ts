@@ -1,36 +1,36 @@
 /* eslint-disable @angular-eslint/prefer-inject */
 
-import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+
+import { HttpClient } from '@angular/common/http';
+
+import { Observable, map } from 'rxjs';
 
 import {
+  CONSTELLATION_LOADER_CONFIG,
   Constellation,
   ConstellationLoaderConfig,
-  CONSTELLATION_LOADER_CONFIG
 } from '../types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ConstellationLoader {
   constructor(
     private readonly http: HttpClient,
     @Inject(CONSTELLATION_LOADER_CONFIG)
-    private readonly config: ConstellationLoaderConfig
+    private readonly config: ConstellationLoaderConfig,
   ) {}
 
   getConstellations(): Observable<Constellation[]> {
     return this.http.get<Constellation[]>(this.config.endpoint, {
       params: {
-        _sort: 'name'
-      }
+        _sort: 'name',
+      },
     });
   }
 
-  getConstellation(
-    iauAbbreviation: string
-  ): Observable<Constellation> {
+  getConstellation(iauAbbreviation: string): Observable<Constellation> {
     return this.http
       .get<
         Constellation[]

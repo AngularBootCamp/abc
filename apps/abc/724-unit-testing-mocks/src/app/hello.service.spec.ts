@@ -20,13 +20,13 @@ describe('HelloUserService', () => {
     const user = {
       id: '1',
       firstName: 'Jack',
-      lastName: 'Baur'
+      lastName: 'Baur',
     };
     userService.currentUser.mockReturnValue(user);
 
     // execute test method and assert result
     expect(helloService.calculateHello('Hello')).toEqual(
-      'Hello, Jack Baur!'
+      'Hello, Jack Baur!',
     );
 
     // various options for verifying mocks

@@ -1,9 +1,7 @@
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import { AsyncPipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject
-} from '@angular/core';
+
 import {
   Observable,
   Subject,
@@ -11,7 +9,7 @@ import {
   map,
   scan,
   shareReplay,
-  startWith
+  startWith,
 } from 'rxjs';
 
 import { WhenVisibleDirective } from '../when-visible.directive';
@@ -23,7 +21,7 @@ import { Employee, EmployeeService } from './employees.service';
   templateUrl: './employees.component.html',
   styleUrl: './employees.component.scss',
   imports: [WhenVisibleDirective, AsyncPipe],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesComponent {
   private readonly employeeService = inject(EmployeeService);
@@ -36,22 +34,22 @@ export class EmployeesComponent {
     const pagedResults = this.fetchEmployees.pipe(
       scan(acc => acc + 1, -1),
       concatMap(page => this.employeeService.loadEmployees(page)),
-      shareReplay({ refCount: true, bufferSize: 1 })
+      shareReplay({ refCount: true, bufferSize: 1 }),
     );
 
     this.employees = pagedResults.pipe(
       scan<Employee[], Employee[]>(
         (alreadyLoaded, newlyArrived) => [
           ...alreadyLoaded,
-          ...newlyArrived
+          ...newlyArrived,
         ],
-        []
-      )
+        [],
+      ),
     );
 
     this.doneLoading = pagedResults.pipe(
       map(employees => !employees.length),
-      startWith(false)
+      startWith(false),
     );
   }
 

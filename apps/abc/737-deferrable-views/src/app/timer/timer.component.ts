@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-timer',
-  template: `
-    <p>I was loaded after the timer completed</p>
-  `
+  template: ` <p>I was loaded after the timer completed</p> `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TimerComponent {}

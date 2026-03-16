@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
+
 import {
   NonNullableFormBuilder,
+  ReactiveFormsModule,
   Validators,
-  ReactiveFormsModule
 } from '@angular/forms';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule } from '@angular/material/core';
 import {
   MAT_DIALOG_DATA,
+  MatDialogModule,
   MatDialogRef,
-  MatDialogModule
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -37,8 +39,8 @@ export interface AddCardToGameData {
     MatOptionModule,
     MatInputModule,
     MatButtonModule,
-    MatProgressSpinnerModule
-  ]
+    MatProgressSpinnerModule,
+  ],
 })
 export class AddCardToGameComponent {
   private dialogRef =
@@ -50,7 +52,7 @@ export class AddCardToGameComponent {
   cardForm = this.fb.group({
     player: ['', Validators.required],
     type: ['yellow' as CardType],
-    minute: [0, Validators.required]
+    minute: [0, Validators.required],
   });
   saving = false;
   cardtypes = Object.keys(cardTypes).map(k => cardTypes[k]);
@@ -60,7 +62,7 @@ export class AddCardToGameComponent {
     this.gs
       .addCardToGame({
         game: this.data.gameId,
-        ...this.cardForm.value
+        ...this.cardForm.value,
       })
       .then(() => this.dialogRef.close())
       .catch(e => {

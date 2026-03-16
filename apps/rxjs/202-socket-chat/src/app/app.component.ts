@@ -7,6 +7,6 @@ import { ChatComponent } from './chat/chat.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [ChatComponent, HeaderComponent]
+  imports: [ChatComponent, HeaderComponent],
 })
 export class AppComponent {}

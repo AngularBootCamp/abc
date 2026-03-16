@@ -1,13 +1,15 @@
+import { Component, inject } from '@angular/core';
+
 import { JsonPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   NonNullableFormBuilder,
+  ReactiveFormsModule,
   Validators,
-  ReactiveFormsModule
 } from '@angular/forms';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,7 +20,7 @@ import { HeaderComponent } from '@class-materials/shared/ui-page-header';
 import {
   simpleAsyncValidator,
   slowAsyncValidator,
-  westernZipValidatorFactory
+  westernZipValidatorFactory,
 } from './asyncValidators';
 
 @Component({
@@ -32,8 +34,8 @@ import {
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
 export class AppComponent {
   inputFormGroup: FormGroup<{
@@ -54,10 +56,10 @@ export class AppComponent {
         [
           Validators.minLength(5),
           Validators.maxLength(5),
-          Validators.required
+          Validators.required,
         ],
-        [slowAsyncValidator, westernZipValidatorFactory(http)]
-      ]
+        [slowAsyncValidator, westernZipValidatorFactory(http)],
+      ],
     });
   }
 

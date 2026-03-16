@@ -1,19 +1,21 @@
+import { Injectable, inject } from '@angular/core';
+
 import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
-  NonNullableFormBuilder
+  NonNullableFormBuilder,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import {
+  Observable,
   combineLatest,
   map,
-  Observable,
   shareReplay,
   tap,
-  withLatestFrom
+  withLatestFrom,
 } from 'rxjs';
 
 import { Video } from './dashboard.types';
@@ -25,7 +27,7 @@ import { Video } from './dashboard.types';
 const apiUrl = 'https://api.angularbootcamp.com';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DashboardService {
   private readonly http = inject(HttpClient);
@@ -51,7 +53,7 @@ export class DashboardService {
 
     this.selectedVideoId = activeRoute.queryParamMap.pipe(
       // Query params are optional, so make sure we explicitly handle that.
-      map(paramMap => paramMap.get('videoId') || undefined)
+      map(paramMap => paramMap.get('videoId') || undefined),
     );
 
     this.videoList = this.http.get<Video[]>(apiUrl + '/videos').pipe(
@@ -60,7 +62,7 @@ export class DashboardService {
       // video. `withLatestFrom` will only trigger as the list changes.
       withLatestFrom(this.selectedVideoId, (list, id) => ({
         list,
-        id
+        id,
       })),
       // Use a tap to make it explicit that we are triggering
       // a side effect.
@@ -69,7 +71,7 @@ export class DashboardService {
           // There's no selected video id, so initialize it with the first
           // video in the list.
           const navigationExtras = {
-            queryParams: { videoId: list[0].id }
+            queryParams: { videoId: list[0].id },
           };
           // "[]" means don't actually navigate; we're just updating the
           // query parameters.
@@ -82,7 +84,7 @@ export class DashboardService {
       // If any future subscribers arrive, make sure that we are giving
       // them the previous results rather than repeating the process
       // described above.
-      shareReplay(1)
+      shareReplay(1),
     );
 
     // Create the form in the service that way any concerned party
@@ -94,20 +96,20 @@ export class DashboardService {
       minor: [true],
       adults: [true],
       middleAged: [true],
-      retired: [true]
+      retired: [true],
     });
 
     // If the video list or selected video id change
     // lookup the video in the list and return it
     this.currentVideo = combineLatest([
       this.selectedVideoId,
-      this.videoList
+      this.videoList,
     ]).pipe(map(([id, list]) => list.find(video => video.id === id)));
   }
 
   updateVideo(video: Video) {
     void this.router.navigate([], {
-      queryParams: { videoId: video.id }
+      queryParams: { videoId: video.id },
     });
   }
 }

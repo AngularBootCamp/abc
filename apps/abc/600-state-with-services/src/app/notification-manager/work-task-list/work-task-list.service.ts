@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 // Behavior Subject is a subclass of Observable that
 // allows the creator to "push" new values into it.
 import { BehaviorSubject } from 'rxjs';
@@ -6,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Task } from '../../types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WorkTaskListService {
   // Application state is stored in private properties.
@@ -15,12 +16,12 @@ export class WorkTaskListService {
     { label: 'File paperwork' },
     { label: 'Send emails' },
     { label: 'Work on project A' },
-    { label: 'Submit report to manager' }
+    { label: 'Submit report to manager' },
   ];
 
   private _todo = [
     { label: 'Work on project B' },
-    { label: 'Update task list' }
+    { label: 'Update task list' },
   ];
 
   // The behavior subjects are used to notify subscribers when the

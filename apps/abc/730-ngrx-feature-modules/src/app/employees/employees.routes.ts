@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
 
@@ -10,7 +11,7 @@ const employeeRoutes: Routes = [
     path: '',
     providers: [
       provideEffects(EmployeesEffects),
-      provideState(fromEmployees.employeesFeature)
+      provideState(fromEmployees.employeesFeature),
     ],
     loadComponent: () => import('./employees.component'),
     children: [
@@ -18,15 +19,15 @@ const employeeRoutes: Routes = [
       {
         path: 'current',
         loadComponent: () =>
-          import('./current-employees/current-employees.component')
+          import('./current-employees/current-employees.component'),
       },
       {
         path: 'new',
         loadComponent: () =>
-          import('./new-employees/new-employees.component')
-      }
-    ]
-  }
+          import('./new-employees/new-employees.component'),
+      },
+    ],
+  },
 ];
 
 export default employeeRoutes;

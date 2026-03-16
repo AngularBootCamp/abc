@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
+
 import { Observable, forkJoin, map, mergeMap } from 'rxjs';
 
 import { jsonRequestHeaders } from './httpUtils';
@@ -22,7 +24,7 @@ export class StarshipApiService {
     const url = 'https://swapi.dev/api/starships/';
     return this.http
       .get<{ results: FilmMeta[] }>(url, {
-        headers: jsonRequestHeaders
+        headers: jsonRequestHeaders,
       })
       .pipe(
         // extract results field
@@ -32,20 +34,15 @@ export class StarshipApiService {
             console.log('GETting film data for ' + ship.name);
             return this.http
               .get<Film>(ship.films[0], {
-                headers: jsonRequestHeaders
+                headers: jsonRequestHeaders,
               })
-              .pipe(
-                map(film => {
-                  ship.filmName = film.title;
-                  return ship;
-                })
-              );
+              .pipe(map(film => ({ ...ship, filmName: film.title })));
           });
 
           // forkJoin is somewhat like Promise.all();
           // array of Observables -> Observable of an array
           return forkJoin(shipObservables);
-        })
+        }),
       );
   }
 }

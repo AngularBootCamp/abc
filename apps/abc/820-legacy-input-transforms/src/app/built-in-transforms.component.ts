@@ -1,8 +1,12 @@
+/* eslint-disable @angular-eslint/prefer-signals, @typescript-eslint/explicit-member-accessibility
+-- This is an example of legacy code
+*/
 import {
+  ChangeDetectionStrategy,
   Component,
   Input,
   booleanAttribute,
-  numberAttribute
+  numberAttribute,
 } from '@angular/core';
 
 @Component({
@@ -13,7 +17,8 @@ import {
     Boolean: {{ booleanValue }}
     <br />
     Number: {{ numberValue }}
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BuiltInTransformsComponent {
   @Input({ required: true }) explanation!: string;

@@ -1,19 +1,25 @@
-import { HttpClient } from '@angular/common/http';
+/* eslint-disable @angular-eslint/use-injectable-provided-in
+-- Effect injectables are handled by NgRx
+*/
 import { Injectable, inject } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
+
+import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
+
 import {
   Actions,
+  OnInitEffects,
   createEffect,
   ofType,
-  OnInitEffects
 } from '@ngrx/effects';
-import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
 
 import { Card, Game, Player, ShotOnGoal } from '../api-types';
 import {
   cardEndpointLocation,
   gameEndpointLocation,
   goalEndpointLocation,
-  playerEndpointLocation
+  playerEndpointLocation,
 } from '../api-urls';
 
 import { apiActions, initActions } from './actions';
@@ -23,6 +29,8 @@ export class SoccerTeamEffects implements OnInitEffects {
   private readonly http = inject(HttpClient);
   private actions = inject(Actions);
 
+  /* eslint-disable @ngrx/no-multiple-actions-in-effects */
+
   translateGetAll = createEffect(() =>
     this.actions.pipe(
       ofType(initActions.loadAll),
@@ -30,10 +38,12 @@ export class SoccerTeamEffects implements OnInitEffects {
         initActions.loadCards(),
         initActions.loadPlayers(),
         initActions.loadGames(),
-        initActions.loadShots()
-      ])
-    )
+        initActions.loadShots(),
+      ]),
+    ),
   );
+
+  /* eslint-enable @ngrx/no-multiple-actions-in-effects */
 
   getCards = createEffect(() =>
     this.actions.pipe(
@@ -41,10 +51,10 @@ export class SoccerTeamEffects implements OnInitEffects {
       switchMap(() =>
         this.http.get<Card[]>(cardEndpointLocation).pipe(
           map(cards => apiActions.loadCardsSuccess({ cards })),
-          catchError(e => of(apiActions.loadCardsFailure(e)))
-        )
-      )
-    )
+          catchError(e => of(apiActions.loadCardsFailure(e))),
+        ),
+      ),
+    ),
   );
 
   getPlayers = createEffect(() =>
@@ -53,10 +63,10 @@ export class SoccerTeamEffects implements OnInitEffects {
       switchMap(() =>
         this.http.get<Player[]>(playerEndpointLocation).pipe(
           map(players => apiActions.loadPlayersSuccess({ players })),
-          catchError(e => of(apiActions.loadPlayersFailure(e)))
-        )
-      )
-    )
+          catchError(e => of(apiActions.loadPlayersFailure(e))),
+        ),
+      ),
+    ),
   );
 
   getGames = createEffect(() =>
@@ -65,10 +75,10 @@ export class SoccerTeamEffects implements OnInitEffects {
       switchMap(() =>
         this.http.get<Game[]>(gameEndpointLocation).pipe(
           map(games => apiActions.loadGamesSuccess({ games })),
-          catchError(e => of(apiActions.loadGamesFailure(e)))
-        )
-      )
-    )
+          catchError(e => of(apiActions.loadGamesFailure(e))),
+        ),
+      ),
+    ),
   );
 
   getShots = createEffect(() =>
@@ -77,10 +87,10 @@ export class SoccerTeamEffects implements OnInitEffects {
       switchMap(() =>
         this.http.get<ShotOnGoal[]>(goalEndpointLocation).pipe(
           map(shots => apiActions.loadShotsSuccess({ shots })),
-          catchError(e => of(apiActions.loadShotsFailure(e)))
-        )
-      )
-    )
+          catchError(e => of(apiActions.loadShotsFailure(e))),
+        ),
+      ),
+    ),
   );
 
   ngrxOnInitEffects() {

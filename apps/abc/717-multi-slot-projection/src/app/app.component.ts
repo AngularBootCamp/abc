@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import {
+  InfoWrapperChildrenComponent,
   InfoWrapperComponent,
-  InfoWrapperChildrenComponent
 } from './info-wrapper.component';
 import { WarningWrapperComponent } from './warning-wrapper.component';
 
@@ -12,7 +12,8 @@ import { WarningWrapperComponent } from './warning-wrapper.component';
   imports: [
     WarningWrapperComponent,
     InfoWrapperComponent,
-    InfoWrapperChildrenComponent
-  ]
+    InfoWrapperChildrenComponent,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}

@@ -2,13 +2,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  input
+  input,
 } from '@angular/core';
+
 import {
   FormArray,
   FormControl,
   NonNullableFormBuilder,
-  ReactiveFormsModule
+  ReactiveFormsModule,
 } from '@angular/forms';
 
 @Component({
@@ -16,7 +17,7 @@ import {
   templateUrl: './form-toppings.component.html',
   styleUrl: './form-toppings.component.scss',
   imports: [ReactiveFormsModule],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormToppingsComponent {
   private readonly fb = inject(NonNullableFormBuilder);

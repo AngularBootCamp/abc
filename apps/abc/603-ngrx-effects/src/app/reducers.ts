@@ -6,5 +6,5 @@ import { workTaskReducer } from './work-tasks.state';
 
 export const reducers: ActionReducerMap<AppState> = {
   workTasks: workTaskReducer,
-  homeTasks: homeTaskReducer
+  homeTasks: homeTaskReducer,
 };

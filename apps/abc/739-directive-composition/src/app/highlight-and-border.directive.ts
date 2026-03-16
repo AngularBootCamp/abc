@@ -8,12 +8,12 @@ import { HighlightDirective } from './highlight.directive';
   hostDirectives: [
     {
       directive: HighlightDirective,
-      inputs: ['color: highlightColor']
+      inputs: ['color: highlightColor'],
     },
     {
       directive: BorderDirective,
-      inputs: ['color: border']
-    }
-  ]
+      inputs: ['color: border'],
+    },
+  ],
 })
 export class HighlightAndBorderDirective {}

@@ -24,7 +24,7 @@ export class JsonServerService {
     this.data = JSON.parse(this.dataFileContents);
     this.router = jsonServer.router(this.data);
     const middlewares = jsonServer.defaults({
-      readOnly
+      readOnly,
     });
     // Doing this to remove faulty errorhandler() middleware function
     // It doesn't currently work in latest `nx` & `nrwl/node` versions

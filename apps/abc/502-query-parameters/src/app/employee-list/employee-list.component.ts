@@ -1,8 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+
 import { RouterLink } from '@angular/router';
 
 import { Employee } from '../employee';
@@ -12,7 +9,7 @@ import { Employee } from '../employee';
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss',
   imports: [RouterLink],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeListComponent {
   public readonly list = input.required<Employee[]>();

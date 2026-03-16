@@ -5,7 +5,7 @@ export const employees = [
     lastName: 'Holmes',
     email: 'hholmes0@goodreads.com',
     hoursWorked: 29,
-    hourlyWage: 19
+    hourlyWage: 19,
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ export const employees = [
     lastName: 'Cox',
     email: 'hcox1@who.int',
     hoursWorked: 18,
-    hourlyWage: 11
+    hourlyWage: 11,
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ export const employees = [
     lastName: 'Garcia',
     email: 'bgarcia2@addthis.com',
     hoursWorked: 4,
-    hourlyWage: 17
+    hourlyWage: 17,
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ export const employees = [
     lastName: 'Young',
     email: 'pyoung3@wix.com',
     hoursWorked: 47,
-    hourlyWage: 12
+    hourlyWage: 12,
   },
   {
     id: 5,
@@ -37,6 +37,6 @@ export const employees = [
     lastName: 'Jacobs',
     email: 'jjacobs4@prweb.com',
     hoursWorked: 45,
-    hourlyWage: 12
-  }
+    hourlyWage: 12,
+  },
 ];

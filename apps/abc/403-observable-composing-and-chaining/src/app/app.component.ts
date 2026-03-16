@@ -6,6 +6,6 @@ import { RedditSearchComponent } from './reddit-search/reddit-search.component';
   selector: 'app-root',
   templateUrl: './app.component.html',
   imports: [RedditSearchComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}

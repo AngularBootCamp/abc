@@ -6,5 +6,5 @@ export const { selectUserProfile } = userProfileFeature;
 
 export const selectUserName = createSelector(
   selectUserProfile,
-  profile => profile?.name || ''
+  profile => profile?.name || '',
 );

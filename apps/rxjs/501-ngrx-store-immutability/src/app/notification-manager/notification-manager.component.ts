@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
+
 import { MatButtonModule } from '@angular/material/button';
+
 import { Store } from '@ngrx/store';
 
 import { HomeTaskState } from '../home-task.state';
@@ -13,11 +15,7 @@ import { WorkTaskListComponent } from './work-task-list/work-task-list.component
   selector: 'app-notification-manager',
   templateUrl: './notification-manager.component.html',
   styleUrl: './notification-manager.component.scss',
-  imports: [
-    WorkTaskListComponent,
-    HomeTaskListComponent,
-    MatButtonModule
-  ]
+  imports: [WorkTaskListComponent, HomeTaskListComponent, MatButtonModule],
 })
 export class NotificationManagerComponent {
   private store = inject(Store);
@@ -28,12 +26,12 @@ export class NotificationManagerComponent {
         { label: 'file paperwork' },
         { label: 'send emails' },
         { label: 'work on project A' },
-        { label: 'submit report to manager' }
+        { label: 'submit report to manager' },
       ],
       todo: [
         { label: 'work on project B' },
-        { label: 'update task list' }
-      ]
+        { label: 'update task list' },
+      ],
     };
 
     const homeTasks: HomeTaskState = {
@@ -41,16 +39,13 @@ export class NotificationManagerComponent {
         { label: 'cook dinner' },
         { label: 'go grocery shopping' },
         { label: 'sweep the floors' },
-        { label: 'do the laundry' }
+        { label: 'do the laundry' },
       ],
-      todo: [
-        { label: 'fix the leaky faucet' },
-        { label: 'mow the lawn' }
-      ]
+      todo: [{ label: 'fix the leaky faucet' }, { label: 'mow the lawn' }],
     };
 
     this.store.dispatch(
-      globalActions.tasksReceived({ workTasks, homeTasks })
+      globalActions.tasksReceived({ workTasks, homeTasks }),
     );
   }
 

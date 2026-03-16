@@ -1,29 +1,31 @@
 import { computed, inject } from '@angular/core';
+
+import { concatMap, filter, pipe } from 'rxjs';
+
 import { tapResponse } from '@ngrx/operators';
 import {
   patchState,
   signalStore,
   withComputed,
   withHooks,
-  withMethods
+  withMethods,
 } from '@ngrx/signals';
 import {
   addEntity,
   removeEntity,
   setAllEntities,
   updateEntity,
-  withEntities
+  withEntities,
 } from '@ngrx/signals/entities';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { Store } from '@ngrx/store';
-import { concatMap, filter, pipe } from 'rxjs';
 
 import { selectCurrentArticleId } from '../../router.selectors';
 import { ArticleLoaderService } from '../article-list/article-loader.service';
 import { Article } from '../types';
 
 export const ArticleStore = signalStore(
-  { providedIn: 'root', protectedState: false },
+  { providedIn: 'root' },
   withEntities<Article>(),
   withComputed(({ entityMap }) => {
     const store = inject(Store);
@@ -34,7 +36,7 @@ export const ArticleStore = signalStore(
         const id = articleId();
         const map = entityMap();
         return id ? (map[id] ?? null) : undefined;
-      })
+      }),
     };
   }),
   withMethods(state => {
@@ -49,11 +51,11 @@ export const ArticleStore = signalStore(
                 next: newArticles =>
                   patchState(state, setAllEntities(newArticles)),
                 error: error =>
-                  console.error('Error with Load Articles', error)
-              })
+                  console.error('Error with Load Articles', error),
+              }),
             );
-          })
-        )
+          }),
+        ),
       ),
       createArticle: rxMethod<Omit<Article, 'id'>>(
         pipe(
@@ -63,11 +65,11 @@ export const ArticleStore = signalStore(
                 next: newArticle =>
                   patchState(state, addEntity(newArticle)),
                 error: error =>
-                  console.error('Error with Create Article', error)
-              })
+                  console.error('Error with Create Article', error),
+              }),
             );
-          })
-        )
+          }),
+        ),
       ),
       deleteArticle: rxMethod<Article>(
         pipe(
@@ -76,20 +78,19 @@ export const ArticleStore = signalStore(
           // effect that does not dispatch.
           filter(() =>
             window.confirm(
-              'Are you sure you want to delete this article?'
-            )
+              'Are you sure you want to delete this article?',
+            ),
           ),
           concatMap(article => {
             return articleLoaderService.delete(article).pipe(
               tapResponse({
-                next: () =>
-                  patchState(state, removeEntity(article.id)),
+                next: () => patchState(state, removeEntity(article.id)),
                 error: error =>
-                  console.error('Error with Delete Article', error)
-              })
+                  console.error('Error with Delete Article', error),
+              }),
             );
-          })
-        )
+          }),
+        ),
       ),
       updateArticle: rxMethod<Article>(
         pipe(
@@ -101,23 +102,23 @@ export const ArticleStore = signalStore(
                     state,
                     updateEntity({
                       id: article.id,
-                      changes: updatedArticle
-                    })
+                      changes: updatedArticle,
+                    }),
                   ),
                 error: error =>
-                  console.error('Error with Update Article', error)
-              })
+                  console.error('Error with Update Article', error),
+              }),
             );
-          })
-        )
-      )
+          }),
+        ),
+      ),
     };
   }),
   withHooks({
     onInit({ load }) {
       load();
-    }
-  })
+    },
+  }),
 );
 
 // Necessary to inject ArticleStore as a type

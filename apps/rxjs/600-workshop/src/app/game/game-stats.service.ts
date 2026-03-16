@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { Observable, of } from 'rxjs';
 
 import {
@@ -6,7 +7,7 @@ import {
   Game,
   GameWithEvents,
   Player,
-  ShotOnGoal
+  ShotOnGoal,
 } from '../app.types';
 
 @Injectable({ providedIn: 'root' })
@@ -49,7 +50,7 @@ export class GameStatsService {
    */
   gatherGameDetails(
     _games: Game[],
-    _id: string
+    _id: string,
   ): Observable<GameWithEvents> {
     return of({} as any);
   }
@@ -71,23 +72,23 @@ export function buildGameWithEvents(
   game: Game | undefined,
   playerDetails: Player[],
   shots: ShotOnGoal[],
-  cards: Card[]
+  cards: Card[],
 ): GameWithEvents {
   const shotsWithNames = shots.map(s => ({
     ...s,
     playerName: playerDetails.find(p => p.id === s.player)?.name,
     assistName: s.assist
       ? playerDetails.find(p => p.id === s.assist)?.name
-      : 'None'
+      : 'None',
   }));
   const cardsWithNames = cards.map(c => ({
     ...c,
-    playerName: playerDetails.find(p => p.id === c.player)?.name
+    playerName: playerDetails.find(p => p.id === c.player)?.name,
   }));
   return {
     ...game,
     playerDetails,
     shots: shotsWithNames,
-    cards: cardsWithNames
+    cards: cardsWithNames,
   } as const as GameWithEvents;
 }

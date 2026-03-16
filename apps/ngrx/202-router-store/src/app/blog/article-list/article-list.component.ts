@@ -1,12 +1,16 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { firstValueFrom, switchMap } from 'rxjs';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { ActivatedRoute, Router } from '@angular/router';
+
 import { Store } from '@ngrx/store';
-import { firstValueFrom, switchMap } from 'rxjs';
 
 import { selectTitle } from '../../reducers';
 import { selectCurrentArticleId } from '../../router.selectors';
@@ -25,8 +29,8 @@ import { Article } from '../types';
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    AsyncPipe
-  ]
+    AsyncPipe,
+  ],
 })
 export class ArticleListComponent {
   private router = inject(Router);
@@ -36,11 +40,9 @@ export class ArticleListComponent {
   readonly authorId =
     inject(ActivatedRoute).paramMap.pipe(extractAuthorId());
   readonly articles = this.authorId.pipe(
-    switchMap(authorId => this.getArticlesByAuthor(authorId))
+    switchMap(authorId => this.getArticlesByAuthor(authorId)),
   );
-  readonly selectedArticleId = this.store.select(
-    selectCurrentArticleId
-  );
+  readonly selectedArticleId = this.store.select(selectCurrentArticleId);
 
   getArticlesByAuthor(authorId: number) {
     return this.store.select(selectArticlesByAuthor(authorId));
@@ -50,7 +52,7 @@ export class ArticleListComponent {
     const queryParams = { [articleIdQueryParam]: articleId };
     void this.router.navigate([], {
       queryParams,
-      queryParamsHandling: 'merge'
+      queryParamsHandling: 'merge',
     });
   }
 
@@ -60,10 +62,10 @@ export class ArticleListComponent {
     const newArticle: Omit<Article, 'id'> = {
       body: 'placeholder body',
       title: 'placeholder title',
-      authorId: uid || 0
+      authorId: uid || 0,
     };
     this.store.dispatch(
-      articleListPageActions.createArticle({ article: newArticle })
+      articleListPageActions.createArticle({ article: newArticle }),
     );
   }
 }

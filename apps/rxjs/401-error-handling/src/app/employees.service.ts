@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
+
 import { catchError, interval, map, of, switchMap, tap } from 'rxjs';
 
 // Local API server
@@ -15,7 +17,7 @@ export interface Employee {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeesService {
   private readonly http = inject(HttpClient);
@@ -25,10 +27,10 @@ export class EmployeesService {
       catchError(err => {
         console.error('handling error within getEmployees()', err);
         const fakeData: Employee[] = [
-          { id: -1, firstName: 'no employees could be loaded' }
+          { id: -1, firstName: 'no employees could be loaded' },
         ];
         return of(fakeData);
-      })
+      }),
     );
   }
 
@@ -36,17 +38,17 @@ export class EmployeesService {
     return interval(2000).pipe(
       map(n => (n % 2 ? '/employeesZZZ' : '/employees')),
       switchMap((dataUrl: string) =>
-        this.http.get<Employee[]>(apiUrl + dataUrl)
+        this.http.get<Employee[]>(apiUrl + dataUrl),
       ),
 
       catchError(err => {
         console.error('handling error within poll1()', err);
         const fakeData: Employee[] = [
-          { id: -1, firstName: 'no employees could be loaded' }
+          { id: -1, firstName: 'no employees could be loaded' },
         ];
         return of(fakeData);
       }),
-      tap(data => console.log('Data arrived', data))
+      tap(data => console.log('Data arrived', data)),
     );
   }
 
@@ -54,7 +56,7 @@ export class EmployeesService {
     return interval(2000).pipe(
       map((n: number) => (n % 2 ? '/employeesZZZ' : '/employees')),
       switchMap(dataUrl => this.getEmployees(dataUrl)),
-      tap(data => console.log('Data arrived', data))
+      tap(data => console.log('Data arrived', data)),
     );
   }
 }

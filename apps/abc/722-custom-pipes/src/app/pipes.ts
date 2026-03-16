@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'checkmark'
+  name: 'checkmark',
 })
 export class CheckmarkPipe implements PipeTransform {
   transform(input: unknown) {
@@ -12,18 +12,16 @@ export class CheckmarkPipe implements PipeTransform {
 }
 
 @Pipe({
-  name: 'sentenceCase'
+  name: 'sentenceCase',
 })
 export class SentenceCasePipe implements PipeTransform {
   transform(input: string) {
-    return (
-      input.slice(0, 1).toUpperCase() + input.toLowerCase().slice(1)
-    );
+    return input.slice(0, 1).toUpperCase() + input.toLowerCase().slice(1);
   }
 }
 
 @Pipe({
-  name: 'containsX'
+  name: 'containsX',
 })
 export class ContainsXPipe implements PipeTransform {
   transform(collection: string[], searchTerm: string) {
@@ -35,23 +33,23 @@ export class ContainsXPipe implements PipeTransform {
 }
 
 @Pipe({
-  name: 'fieldRange'
+  name: 'fieldRange',
 })
 export class FieldRangePipe implements PipeTransform {
   transform<T, F extends keyof T>(
     input: T[],
     fieldName: F,
     lower: T[F],
-    upper: T[F]
+    upper: T[F],
   ) {
     return input.filter(
-      v => v[fieldName] >= lower && v[fieldName] <= upper
+      v => v[fieldName] >= lower && v[fieldName] <= upper,
     );
   }
 }
 
 @Pipe({
-  name: 'defaultToString'
+  name: 'defaultToString',
 })
 export class DefaultToStringPipe implements PipeTransform {
   transform(input: string | null | undefined) {

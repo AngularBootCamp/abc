@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { AxleSelectorComponent } from '../axle-selector/axle-selector.component';
 import { CarStateService } from '../car-state.service';
@@ -12,7 +12,8 @@ import { WheelSelectorComponent } from '../wheel-selector/wheel-selector.compone
   imports: [
     AxleSelectorComponent,
     WheelSelectorComponent,
-    ValidityDisplayComponent
-  ]
+    ValidityDisplayComponent,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CarOrderComponent {}

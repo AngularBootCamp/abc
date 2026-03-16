@@ -1,21 +1,17 @@
 import {
-  fakeAsync,
   TestBed,
+  fakeAsync,
   tick,
-  waitForAsync
+  waitForAsync,
 } from '@angular/core/testing';
+
+import { Observable, Subject, firstValueFrom, of, throwError } from 'rxjs';
+
 import { subscribeSpyTo } from '@hirez_io/observer-spy';
 import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';
 import { Spy, createSpyFromClass } from 'jest-auto-spies';
-import {
-  firstValueFrom,
-  Observable,
-  of,
-  Subject,
-  throwError
-} from 'rxjs';
 
 import { ArticleLoaderService } from '../article-list/article-loader.service';
 import { Article } from '../types';
@@ -24,7 +20,7 @@ import {
   articleApiActions,
   articleInitActions,
   articleListPageActions,
-  articlePageActions
+  articlePageActions,
 } from './article.actions';
 import { ArticleEffects } from './article.effects';
 import { mockArticles } from './mock.articles';
@@ -43,8 +39,8 @@ describe('ArticleEffects', () => {
       providers: [
         ArticleEffects,
         provideMockActions(() => actions$),
-        { provide: ArticleLoaderService, useValue: articleLoaderMock }
-      ]
+        { provide: ArticleLoaderService, useValue: articleLoaderMock },
+      ],
     });
 
     effects = TestBed.inject(ArticleEffects);
@@ -73,8 +69,8 @@ describe('ArticleEffects', () => {
       effects.loadArticles$.subscribe(a => {
         expect(a).toEqual(
           articleApiActions.loadArticlesSuccess({
-            articles: mockArticles
-          })
+            articles: mockArticles,
+          }),
         );
 
         // check that the service was called
@@ -85,7 +81,7 @@ describe('ArticleEffects', () => {
 
       // emit an action
       (actions$ as Subject<Action>).next(
-        articleInitActions.loadArticles()
+        articleInitActions.loadArticles(),
       );
     });
 
@@ -101,8 +97,8 @@ describe('ArticleEffects', () => {
       effects.loadArticles$.subscribe(a => {
         expect(a).toEqual(
           articleApiActions.loadArticlesSuccess({
-            articles: mockArticles
-          })
+            articles: mockArticles,
+          }),
         );
 
         // check that the service was called
@@ -111,7 +107,7 @@ describe('ArticleEffects', () => {
 
       // emit an action
       (actions$ as Subject<Action>).next(
-        articleInitActions.loadArticles()
+        articleInitActions.loadArticles(),
       );
     }));
 
@@ -119,17 +115,15 @@ describe('ArticleEffects', () => {
     // it outside the subscribe block works for async tests
     it('should handle article loading failing', () => {
       let action = undefined;
-      articleLoaderMock.load.mockReturnValue(
-        throwError(() => 'oops')
-      );
+      articleLoaderMock.load.mockReturnValue(throwError(() => 'oops'));
       effects.loadArticles$.subscribe(a => (action = a));
       (actions$ as Subject<Action>).next(
-        articleInitActions.loadArticles()
+        articleInitActions.loadArticles(),
       );
 
       // Assert
       expect(action).toEqual(
-        articleApiActions.loadArticlesFailure({ error: 'oops' })
+        articleApiActions.loadArticlesFailure({ error: 'oops' }),
       );
     });
   });
@@ -141,7 +135,7 @@ describe('ArticleEffects', () => {
       newArticle = {
         authorId: 3,
         title: 'titleNew',
-        body: 'bodyNew'
+        body: 'bodyNew',
       };
     });
 
@@ -150,19 +144,19 @@ describe('ArticleEffects', () => {
     it('should create an article', fakeAsync(() => {
       const newArticleWithId = {
         ...newArticle,
-        id: 4
+        id: 4,
       };
 
       articleLoaderMock.create.mockReturnValue(of(newArticleWithId));
       effects.createArticle$.subscribe(a => {
         expect(a).toEqual(
           articleApiActions.createArticleSuccess({
-            article: newArticleWithId
-          })
+            article: newArticleWithId,
+          }),
         );
       });
       (actions$ as Subject<Action>).next(
-        articleListPageActions.createArticle({ article: newArticle })
+        articleListPageActions.createArticle({ article: newArticle }),
       );
       tick();
     }));
@@ -171,16 +165,14 @@ describe('ArticleEffects', () => {
     // and then using async/await is an effective way to handle
     // async tests
     it('should handle article creation failing', async () => {
-      articleLoaderMock.create.mockReturnValue(
-        throwError(() => 'oops')
-      );
+      articleLoaderMock.create.mockReturnValue(throwError(() => 'oops'));
       const result = firstValueFrom(effects.createArticle$);
       (actions$ as Subject<Action>).next(
-        articleListPageActions.createArticle({ article: newArticle })
+        articleListPageActions.createArticle({ article: newArticle }),
       );
 
       expect(await result).toEqual(
-        articleApiActions.createArticleFailure({ error: 'oops' })
+        articleApiActions.createArticleFailure({ error: 'oops' }),
       );
     });
   });
@@ -189,9 +181,7 @@ describe('ArticleEffects', () => {
     let spyConfirm: jest.SpyInstance;
 
     beforeEach(() => {
-      spyConfirm = jest
-        .spyOn(window, 'confirm')
-        .mockReturnValue(true);
+      spyConfirm = jest.spyOn(window, 'confirm').mockReturnValue(true);
 
       articleLoaderMock.delete.mockReturnValue(of({}));
     });
@@ -200,7 +190,7 @@ describe('ArticleEffects', () => {
       spyConfirm.mockReturnValue(false);
 
       actions$ = of(
-        articlePageActions.deleteArticle({ article: mockArticles[1] })
+        articlePageActions.deleteArticle({ article: mockArticles[1] }),
       );
 
       // ObserverSpy (https://github.com/hirezio/observer-spy) is a
@@ -217,13 +207,13 @@ describe('ArticleEffects', () => {
     // ObserverSpy can also be used for standard async tests
     it('should delete an article with confirmation', () => {
       actions$ = of(
-        articlePageActions.deleteArticle({ article: mockArticles[1] })
+        articlePageActions.deleteArticle({ article: mockArticles[1] }),
       );
 
       const observerSpy = subscribeSpyTo(effects.deleteArticle$);
 
       expect(observerSpy.getFirstValue()).toEqual(
-        articleApiActions.deleteArticleSuccess({ articleId: 2 })
+        articleApiActions.deleteArticleSuccess({ articleId: 2 }),
       );
 
       expect(spyConfirm).toHaveBeenCalled();
@@ -231,16 +221,14 @@ describe('ArticleEffects', () => {
     });
 
     it('should handle article deletion failing after confirmation', waitForAsync(() => {
-      articleLoaderMock.delete.mockReturnValue(
-        throwError(() => 'oops')
-      );
+      articleLoaderMock.delete.mockReturnValue(throwError(() => 'oops'));
       effects.deleteArticle$.subscribe(a => {
         expect(a).toEqual(
-          articleApiActions.deleteArticleFailure({ error: 'oops' })
+          articleApiActions.deleteArticleFailure({ error: 'oops' }),
         );
       });
       (actions$ as Subject<Action>).next(
-        articlePageActions.deleteArticle({ article: mockArticles[1] })
+        articlePageActions.deleteArticle({ article: mockArticles[1] }),
       );
     }));
   });
@@ -257,30 +245,28 @@ describe('ArticleEffects', () => {
       effects.updateArticle$.subscribe(a => {
         expect(a).toEqual(
           articleApiActions.updateArticleSuccess({
-            article: updatedArticle
-          })
+            article: updatedArticle,
+          }),
         );
       });
       (actions$ as Subject<Action>).next(
         articlePageActions.updateArticle({
-          article: updatedArticle
-        })
+          article: updatedArticle,
+        }),
       );
     }));
 
     it('should handle article update failing', waitForAsync(() => {
-      articleLoaderMock.update.mockReturnValue(
-        throwError(() => 'oops')
-      );
+      articleLoaderMock.update.mockReturnValue(throwError(() => 'oops'));
       effects.updateArticle$.subscribe(a => {
         expect(a).toEqual(
-          articleApiActions.updateArticleFailure({ error: 'oops' })
+          articleApiActions.updateArticleFailure({ error: 'oops' }),
         );
       });
       (actions$ as Subject<Action>).next(
         articlePageActions.updateArticle({
-          article: updatedArticle
-        })
+          article: updatedArticle,
+        }),
       );
     }));
   });
@@ -294,7 +280,7 @@ describe('ArticleEffects', () => {
       { actionCreator: articleApiActions.loadArticlesFailure },
       { actionCreator: articleApiActions.createArticleFailure },
       { actionCreator: articleApiActions.deleteArticleFailure },
-      { actionCreator: articleApiActions.updateArticleFailure }
+      { actionCreator: articleApiActions.updateArticleFailure },
     ])(
       'should log a value for $actionCreator.type',
       ({ actionCreator }) => {
@@ -310,7 +296,7 @@ describe('ArticleEffects', () => {
         expect(observerSpy.getFirstValue()).toEqual(action);
 
         expect(console.error).toHaveBeenCalled();
-      }
+      },
     );
   });
 });

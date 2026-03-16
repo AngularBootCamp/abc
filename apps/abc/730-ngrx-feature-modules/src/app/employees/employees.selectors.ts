@@ -11,10 +11,10 @@ export const selectNewEmployees = createSelector(
   // notice that we don't create this selector - it's automatically
   // created by NgRx
   selectLists,
-  state => [...state.newEmployees]
+  state => [...state.newEmployees],
 );
 
 export const selectCurrentEmployees = createSelector(
   selectLists,
-  state => [...state.currentEmployees]
+  state => [...state.currentEmployees],
 );

@@ -1,6 +1,11 @@
+/* eslint-disable @angular-eslint/use-injectable-provided-in
+-- Services can be provided in different injectors to illustrate hierchical DI
+*/
 import { Injectable, inject } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
+
 import { shareReplay } from 'rxjs';
+
+import { Socket } from 'ngx-socket-io';
 
 import { ClickService } from '../click.service';
 
@@ -8,7 +13,7 @@ import { ClickService } from '../click.service';
 export class MultiPlayerService implements ClickService {
   private readonly socket = inject(Socket);
 
-  readonly clickCount = this.socket
+  public readonly clickCount = this.socket
     .fromEvent<number, 'count'>('count')
     .pipe(shareReplay({ refCount: true, bufferSize: 1 }));
 
@@ -16,7 +21,7 @@ export class MultiPlayerService implements ClickService {
     console.log('Multi-Player Service Activated');
   }
 
-  async increment() {
+  public async increment() {
     this.socket.emit('increment');
   }
 }

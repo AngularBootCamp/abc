@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  signal
+  signal,
 } from '@angular/core';
 
 import { regionRecords } from './records';
@@ -10,7 +10,7 @@ import { regionRecords } from './records';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   // Pretend we're loading data from an external source.
@@ -32,7 +32,7 @@ export class AppComponent {
 
     return {
       units: 100 / maxUnits,
-      totalRevenue: 100 / maxTotalRevenue
+      totalRevenue: 100 / maxTotalRevenue,
     };
   });
 }

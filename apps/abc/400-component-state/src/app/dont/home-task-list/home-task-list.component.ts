@@ -1,8 +1,8 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  output,
   input,
-  ChangeDetectionStrategy
+  output,
 } from '@angular/core';
 
 import { TodoListComponent } from '../../todo-list/todo-list.component';
@@ -15,7 +15,7 @@ import { Task, TaskToggle } from '../../types';
   selector: 'app-home-task-list',
   templateUrl: './home-task-list.component.html',
   imports: [TodoListComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeTaskListComponent {
   public readonly done = input.required<Task[]>();
@@ -25,7 +25,7 @@ export class HomeTaskListComponent {
   protected toggle(outputTask: Task, outputComplete: boolean) {
     this.toggleTask.emit({
       task: outputTask,
-      complete: outputComplete
+      complete: outputComplete,
     });
   }
 }

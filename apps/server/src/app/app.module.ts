@@ -15,8 +15,8 @@ import { VisitCountModule } from './visit-count/visit-count.module';
     VisitCountModule,
     FxModule,
     SportModule,
-    ClicksModule
+    ClicksModule,
   ],
-  controllers: [AppController]
+  controllers: [AppController],
 })
 export class AppModule {}

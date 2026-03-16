@@ -1,11 +1,13 @@
-import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  signal
+  signal,
 } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+
 import {
   Observable,
   combineLatest,
@@ -15,7 +17,7 @@ import {
   map,
   retry,
   startWith,
-  switchMap
+  switchMap,
 } from 'rxjs';
 
 import { RedditImageSearchService } from './reddit-image-search.service';
@@ -26,24 +28,21 @@ import { ImageMetadata } from './types';
   templateUrl: './reddit-search.component.html',
   styleUrl: './reddit-search.component.scss',
   imports: [ReactiveFormsModule, AsyncPipe],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RedditSearchComponent {
   protected readonly subReddits = signal([
     'aww',
     'wholesomememes',
     'mildlyinteresting',
-    'awesome'
+    'awesome',
   ]);
 
-  protected readonly subReddit = new FormControl(
-    this.subReddits()[0],
-    {
-      nonNullable: true
-    }
-  );
+  protected readonly subReddit = new FormControl(this.subReddits()[0], {
+    nonNullable: true,
+  });
   protected readonly search = new FormControl('', {
-    nonNullable: true
+    nonNullable: true,
   });
 
   protected readonly results: Observable<ImageMetadata[]>;
@@ -52,7 +51,7 @@ export class RedditSearchComponent {
     const ris = inject(RedditImageSearchService);
 
     const validSubReddit = this.subReddit.valueChanges.pipe(
-      startWith(this.subReddit.value)
+      startWith(this.subReddit.value),
     );
 
     const validSearch = this.search.valueChanges.pipe(
@@ -60,7 +59,7 @@ export class RedditSearchComponent {
       map(search => search.trim()),
       debounceTime(350),
       distinctUntilChanged(),
-      filter(search => search !== '')
+      filter(search => search !== ''),
     );
 
     this.results = combineLatest([validSubReddit, validSearch]).pipe(
@@ -68,9 +67,9 @@ export class RedditSearchComponent {
         ris.search(subReddit, search).pipe(
           retry(3),
           // Clear previous entries while waiting
-          startWith([])
-        )
-      )
+          startWith([]),
+        ),
+      ),
     );
   }
 }

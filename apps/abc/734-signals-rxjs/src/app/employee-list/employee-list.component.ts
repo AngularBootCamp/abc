@@ -1,13 +1,15 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  computed,
-  signal,
   Signal,
+  computed,
   inject,
-  ChangeDetectionStrategy
+  signal,
 } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+
 import { debounceTime, startWith, switchMap } from 'rxjs';
 
 import { Employee } from '../employee';
@@ -22,9 +24,9 @@ import { EmployeeLoaderService } from '../employee-loader.service';
   imports: [
     EmployeeListTableViewComponent,
     EmployeeDetailComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeListComponent {
   // We make sure that the sort options will always have a value
@@ -34,10 +36,10 @@ export class EmployeeListComponent {
     value: keyof Employee;
   }[] = [
     { display: 'Last Name', value: 'lastName' },
-    { display: 'Hours Worked', value: 'hoursWorked' }
+    { display: 'Hours Worked', value: 'hoursWorked' },
   ];
   protected readonly nameFilter = new FormControl('', {
-    nonNullable: true
+    nonNullable: true,
   });
   // We tell TypeScript that the value of this will always be a
   // property of Employee, which works because of the types of
@@ -45,8 +47,8 @@ export class EmployeeListComponent {
   protected readonly sort = new FormControl<keyof Employee>(
     this.sortCriteria[0].value,
     {
-      nonNullable: true
-    }
+      nonNullable: true,
+    },
   );
 
   protected readonly filteredList: Signal<Employee[]>;
@@ -61,25 +63,25 @@ export class EmployeeListComponent {
       this.nameFilter.valueChanges.pipe(
         startWith(this.nameFilter.value),
         debounceTime(250),
-        switchMap(x => loader.getList(x))
+        switchMap(x => loader.getList(x)),
       ),
-      { initialValue: [] }
+      { initialValue: [] },
     );
 
     const sortKey = toSignal(this.sort.valueChanges, {
-      initialValue: this.sort.value
+      initialValue: this.sort.value,
     });
 
     // List reacts to filter and sort changes
     this.filteredList = computed(() => [
-      ...rawList().sort(propertyComparator(sortKey()))
+      ...rawList().sort(propertyComparator(sortKey())),
     ]);
 
     // Detail reacts to selected employee changes
     this.selectedEmployee = toSignal(
       toObservable(this.selectedId).pipe(
-        switchMap(id => loader.getDetails(id))
-      )
+        switchMap(id => loader.getDetails(id)),
+      ),
     );
   }
 }

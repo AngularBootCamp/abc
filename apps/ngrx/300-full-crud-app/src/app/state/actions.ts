@@ -1,4 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
+
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 
 import { Card, Game, Player, ShotOnGoal } from '../api-types';
@@ -10,8 +11,8 @@ export const initActions = createActionGroup({
     'Load Cards': emptyProps(),
     'Load Games': emptyProps(),
     'Load Players': emptyProps(),
-    'Load Shots': emptyProps()
-  }
+    'Load Shots': emptyProps(),
+  },
 });
 
 export const apiActions = createActionGroup({
@@ -24,8 +25,8 @@ export const apiActions = createActionGroup({
     'Load Players Success': props<{ players: Player[] }>(),
     'Load Players Failure': props<{ error: HttpErrorResponse }>(),
     'Load Shots Success': props<{ shots: ShotOnGoal[] }>(),
-    'Load Shots Failure': props<{ error: HttpErrorResponse }>()
-  }
+    'Load Shots Failure': props<{ error: HttpErrorResponse }>(),
+  },
 });
 
 export const playerPageActions = createActionGroup({
@@ -33,8 +34,8 @@ export const playerPageActions = createActionGroup({
   events: {
     'Add Player': props<{ player: Player }>(),
     'Delete Player': props<{ id: string }>(),
-    'Update Player Name': props<{ newName: string; id: string }>()
-  }
+    'Update Player Name': props<{ newName: string; id: string }>(),
+  },
 });
 
 export const gamePageActions = createActionGroup({
@@ -45,6 +46,6 @@ export const gamePageActions = createActionGroup({
     'Add Shot': props<{ shot: ShotOnGoal }>(),
     'Delete Card': props<{ id: string }>(),
     'Delete Game': props<{ id: string }>(),
-    'Update Game': props<{ game: Game }>()
-  }
+    'Update Game': props<{ game: Game }>(),
+  },
 });

@@ -3,8 +3,8 @@ import { Directive, OnDestroy, input, signal } from '@angular/core';
 @Directive({
   selector: '[appBounce]',
   host: {
-    '[style.transform]': 'transform()'
-  }
+    '[style.transform]': 'transform()',
+  },
 })
 export class BounceDirective implements OnDestroy {
   protected readonly transform = signal('');

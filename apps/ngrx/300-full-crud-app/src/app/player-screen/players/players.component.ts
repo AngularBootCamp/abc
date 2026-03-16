@@ -1,15 +1,17 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
+import {
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import {
-  RouterLinkActive,
-  RouterLink,
-  RouterOutlet
-} from '@angular/router';
 
 import { PlayerService } from '../../player.service';
 import { AddPlayerComponent } from '../add-player/add-player.component';
@@ -27,8 +29,8 @@ import { AddPlayerComponent } from '../add-player/add-player.component';
     MatListModule,
     RouterLink,
     RouterLinkActive,
-    RouterOutlet
-  ]
+    RouterOutlet,
+  ],
 })
 export class PlayersComponent {
   private ps = inject(PlayerService);

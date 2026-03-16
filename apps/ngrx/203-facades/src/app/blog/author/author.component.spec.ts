@@ -1,10 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { provideMockStore } from '@ngrx/store/testing';
-import { createSpyFromClass } from 'jest-auto-spies';
+
 import { firstValueFrom } from 'rxjs';
 
-import { mockArticles } from '../article/mock.articles';
+import { provideMockStore } from '@ngrx/store/testing';
+import { createSpyFromClass } from 'jest-auto-spies';
+
 import { ArticleService } from '../article-list/article.service';
+import { mockArticles } from '../article/mock.articles';
 
 import { AuthorComponent } from './author.component';
 
@@ -13,7 +15,7 @@ describe('AuthorComponent', () => {
 
   beforeEach(() => {
     const articleSvc = createSpyFromClass(ArticleService, {
-      observablePropsToSpyOn: ['articles']
+      observablePropsToSpyOn: ['articles'],
     });
     articleSvc.articles.nextWith(mockArticles);
 
@@ -21,8 +23,8 @@ describe('AuthorComponent', () => {
       providers: [
         AuthorComponent,
         provideMockStore({}),
-        { provide: ArticleService, useValue: articleSvc }
-      ]
+        { provide: ArticleService, useValue: articleSvc },
+      ],
     });
 
     component = TestBed.inject(AuthorComponent);

@@ -8,17 +8,14 @@
           <mat-icon>delete</mat-icon>
         </button>
         @if (deleting) {
-          <mat-spinner diameter="20"></mat-spinner>
+          <mat-spinner diameter="20" />
         }
       </div>
     </mat-card-title>
     <mat-card class="players">
       <mat-card-title>Players</mat-card-title>
       <mat-card-content>
-        <app-player-list
-          [players]="g.playerDetails"
-          [gameId]="g.id"
-        />
+        <app-player-list [players]="g.playerDetails" [gameId]="g.id" />
       </mat-card-content>
     </mat-card>
     <mat-card class="shots">

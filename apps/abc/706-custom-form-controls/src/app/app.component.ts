@@ -1,5 +1,6 @@
-import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+
+import { JsonPipe } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { UsStatesSelectorComponent } from './us-states-selector/us-states-selector.component';
@@ -8,10 +9,10 @@ import { UsStatesSelectorComponent } from './us-states-selector/us-states-select
   selector: 'app-root',
   templateUrl: './app.component.html',
   imports: [ReactiveFormsModule, UsStatesSelectorComponent, JsonPipe],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   protected readonly usStateSelector = new FormControl<string | null>(
-    null
+    null,
   );
 }

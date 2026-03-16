@@ -1,7 +1,7 @@
 import {
   EntityAdapter,
   EntityState,
-  createEntityAdapter
+  createEntityAdapter,
 } from '@ngrx/entity';
 import { createFeature, createReducer, on } from '@ngrx/store';
 
@@ -22,7 +22,7 @@ export const authorFeature = createFeature({
     initialState,
 
     on(authorApiActions.loadAuthorsSuccess, (state, action) =>
-      adapter.setAll(action.authors, state)
-    )
-  )
+      adapter.setAll(action.authors, state),
+    ),
+  ),
 });

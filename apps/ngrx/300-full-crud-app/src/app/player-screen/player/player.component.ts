@@ -1,25 +1,28 @@
-import { AsyncPipe, PercentPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe, PercentPipe } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import {
+  Observable,
+  Subject,
+  map,
+  merge,
+  shareReplay,
+  startWith,
+  switchMap,
+} from 'rxjs';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ActivatedRoute, Router } from '@angular/router';
-import {
-  map,
-  merge,
-  Observable,
-  shareReplay,
-  startWith,
-  Subject,
-  switchMap
-} from 'rxjs';
 
 import {
   cardTypes,
-  selectedPlayerIdRouteParamName
+  selectedPlayerIdRouteParamName,
 } from '../../feature.constants';
 import { PlayerService } from '../../player.service';
 import { PlayerNameEditorComponent } from '../player-name-editor/player-name-editor.component';
@@ -47,8 +50,8 @@ interface PlayerDataByGame {
     MatProgressSpinnerModule,
     MatTableModule,
     AsyncPipe,
-    PercentPipe
-  ]
+    PercentPipe,
+  ],
 })
 export class PlayerComponent {
   private ar = inject(ActivatedRoute);
@@ -58,7 +61,7 @@ export class PlayerComponent {
   player = this.ar.params.pipe(
     map(params => params[selectedPlayerIdRouteParamName]),
     switchMap(id => this.ps.playerWithStats(id)),
-    shareReplay()
+    shareReplay(),
   );
 
   deleting = new Subject<string>();
@@ -72,48 +75,47 @@ export class PlayerComponent {
     'shotAverage',
     'assists',
     'yellowCard',
-    'redCard'
+    'redCard',
   ];
 
-  playerGameTableData: Observable<PlayerDataByGame[]> =
-    this.player.pipe(
-      map(p =>
-        p.games.map(g => ({
-          name: g.name,
-          location: g.location,
-          date: g.date,
-          shots: p.shotsOnGoal.filter(s => s.game === g.id).length,
-          goals: p.shotsOnGoal
-            .filter(s => s.game === g.id)
-            .filter(sog => sog.scored).length,
-          assists: p.assists.filter(s => s.game === g.id).length,
-          redCard:
-            p.cards.filter(
-              c => c.game === g.id && c.type === cardTypes['red']
-            ).length > 0,
-          yellowCard:
-            p.cards.filter(
-              c => c.game === g.id && c.type === cardTypes['yellow']
-            ).length > 0
-        }))
-      )
-    );
+  playerGameTableData: Observable<PlayerDataByGame[]> = this.player.pipe(
+    map(p =>
+      p.games.map(g => ({
+        name: g.name,
+        location: g.location,
+        date: g.date,
+        shots: p.shotsOnGoal.filter(s => s.game === g.id).length,
+        goals: p.shotsOnGoal
+          .filter(s => s.game === g.id)
+          .filter(sog => sog.scored).length,
+        assists: p.assists.filter(s => s.game === g.id).length,
+        redCard:
+          p.cards.filter(
+            c => c.game === g.id && c.type === cardTypes['red'],
+          ).length > 0,
+        yellowCard:
+          p.cards.filter(
+            c => c.game === g.id && c.type === cardTypes['yellow'],
+          ).length > 0,
+      })),
+    ),
+  );
 
   canDelete = merge(
     this.playerGameTableData.pipe(
       map(td =>
         td.length > 0
           ? 'Cannot delete a player that has games'
-          : undefined
-      )
+          : undefined,
+      ),
     ),
-    this.deleting
+    this.deleting,
   ).pipe(startWith('Loading player data'), shareReplay());
 
   updateName(newName: string) {
     return this.ps.changePlayerName(
       this.ar.snapshot.params[selectedPlayerIdRouteParamName],
-      newName
+      newName,
     );
   }
 
@@ -121,7 +123,7 @@ export class PlayerComponent {
     this.deleting.next('Deletion in progress');
     try {
       await this.ps.deletePlayer(
-        this.ar.snapshot.params[selectedPlayerIdRouteParamName]
+        this.ar.snapshot.params[selectedPlayerIdRouteParamName],
       );
       await this.router.navigate(['players']);
     } catch (_err) {

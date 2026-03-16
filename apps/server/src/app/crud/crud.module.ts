@@ -1,18 +1,10 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable @typescript-eslint/no-require-imports */
-
-import {
-  MiddlewareConsumer,
-  Module,
-  NestModule
-} from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+const pause = require('connect-pause');
 
 import { JsonServerService } from '../json-server.service';
 
-const pause = require('connect-pause');
-
 @Module({
-  providers: [JsonServerService]
+  providers: [JsonServerService],
 })
 export class CrudModule implements NestModule {
   constructor(private jss: JsonServerService) {}
@@ -27,7 +19,7 @@ export class CrudModule implements NestModule {
           'hello(.*)',
           'soccer(.*)',
           'count(.*)',
-          'increment(.*)'
+          'increment(.*)',
         )
         .forRoutes('/');
     }

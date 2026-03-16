@@ -1,4 +1,4 @@
-<oasis-header title="Error Handling"></oasis-header>
+<oasis-header title="Error Handling" />
 
 <div class="page-layout">
   <mat-card>
@@ -8,9 +8,7 @@
     <mat-card-content>
       <mat-list>
         @for (e of employees | async; track e.id) {
-          <mat-list-item>
-            {{ e.firstName }} {{ e.lastName }}
-          </mat-list-item>
+          <mat-list-item>{{ e.firstName }} {{ e.lastName }}</mat-list-item>
         }
       </mat-list>
     </mat-card-content>

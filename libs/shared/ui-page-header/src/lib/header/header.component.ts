@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -8,9 +9,10 @@ import { UrlHandler } from '../types';
   selector: 'oasis-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
-  imports: [MatToolbarModule, MatButtonModule]
+  imports: [MatToolbarModule, MatButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  readonly title = input.required<string>();
-  readonly documents = input<UrlHandler[]>([]);
+  public readonly title = input.required<string>();
+  public readonly documents = input<UrlHandler[]>([]);
 }

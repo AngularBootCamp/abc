@@ -3,23 +3,15 @@
   [documents]="[
     {
       label: 'Metareducer Docs',
-      url: 'https://ngrx.io/guide/store/metareducers'
-    }
+      url: 'https://ngrx.io/guide/store/metareducers',
+    },
   ]"
 >
   <mat-toolbar-row>
-    <a
-      mat-flat-button
-      routerLinkActive="mat-accent"
-      routerLink="tasks"
-    >
+    <a mat-flat-button routerLinkActive="mat-accent" routerLink="tasks">
       Tasks
     </a>
-    <a
-      mat-flat-button
-      routerLinkActive="mat-accent"
-      routerLink="profile"
-    >
+    <a mat-flat-button routerLinkActive="mat-accent" routerLink="profile">
       <span>User Profile</span>
     </a>
     <button mat-icon-button color="warn" (click)="clear()">

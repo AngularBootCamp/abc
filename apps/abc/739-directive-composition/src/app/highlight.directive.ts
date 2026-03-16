@@ -3,8 +3,8 @@ import { Directive, model } from '@angular/core';
 @Directive({
   selector: '[appHighlight]',
   host: {
-    '[style.backgroundColor]': 'getBackgroundColor()'
-  }
+    '[style.backgroundColor]': 'getBackgroundColor()',
+  },
 })
 export class HighlightDirective {
   public readonly color = model('var(--abc-highlight-color)');

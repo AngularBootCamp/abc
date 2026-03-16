@@ -1,10 +1,16 @@
-import { Component, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
+
 import {
   FormArray,
   FormControl,
   FormGroup,
   NonNullableFormBuilder,
-  ReactiveFormsModule
+  ReactiveFormsModule,
 } from '@angular/forms';
 
 import { FormSelectComponent } from './form-select/form-select.component';
@@ -27,8 +33,9 @@ type PizzaFormGroup = FormGroup<{
   imports: [
     ReactiveFormsModule,
     FormSelectComponent,
-    FormToppingsComponent
-  ]
+    FormToppingsComponent,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   private readonly fb = inject(NonNullableFormBuilder);
@@ -41,37 +48,29 @@ export class AppComponent {
     'Small',
     'Medium',
     'Large',
-    'Extra Large'
+    'Extra Large',
   ]);
   protected readonly crusts = signal([
     'Original',
     'Thin',
     'Cheese Filled',
-    'Gluten-Free'
+    'Gluten-Free',
   ]);
   protected readonly sauceTypes = signal([
     'None',
     'Original',
     'White Sauce',
     'BBQ',
-    'Ranch'
+    'Ranch',
   ]);
-  protected readonly sauceAmounts = signal([
-    'Normal',
-    'Light',
-    'Extra'
-  ]);
+  protected readonly sauceAmounts = signal(['Normal', 'Light', 'Extra']);
   protected readonly cheeseTypes = signal([
     'None',
     'Original',
     '3-Cheese Blend',
-    'Parmesan'
+    'Parmesan',
   ]);
-  protected readonly cheeseAmounts = signal([
-    'Normal',
-    'Light',
-    'Extra'
-  ]);
+  protected readonly cheeseAmounts = signal(['Normal', 'Light', 'Extra']);
 
   constructor() {
     this.addNewPizza();
@@ -90,8 +89,8 @@ export class AppComponent {
         sauceAmount: this.fb.control(''),
         cheeseType: this.fb.control(''),
         cheeseAmount: this.fb.control(''),
-        toppings: this.fb.array([this.fb.control('')])
-      })
+        toppings: this.fb.array([this.fb.control('')]),
+      }),
     );
     this.activePizza = this.pizzasFormArray.length - 1;
   }

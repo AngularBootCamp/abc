@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-content-wrapper',
   template: `
     <article>
       <header>I wrap content</header>
-      <ng-content></ng-content>
+      <ng-content />
     </article>
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContentWrapperComponent {}

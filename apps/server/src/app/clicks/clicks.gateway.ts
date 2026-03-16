@@ -2,7 +2,7 @@ import {
   ConnectedSocket,
   SubscribeMessage,
   WebSocketGateway,
-  WebSocketServer
+  WebSocketServer,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 
@@ -16,9 +16,7 @@ export class ClicksGateway {
   }
 
   @SubscribeMessage('increment')
-  async onIncrement(
-    @ConnectedSocket() _client: Socket
-  ): Promise<void> {
+  async onIncrement(@ConnectedSocket() _client: Socket): Promise<void> {
     this.numClicks++;
     this.server?.emit('count', this.numClicks);
   }

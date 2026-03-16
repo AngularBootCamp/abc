@@ -1,12 +1,14 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
 import { JsonPipe } from '@angular/common';
-import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [FormsModule, JsonPipe]
+  imports: [FormsModule, JsonPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   protected readonly credentials = { login: '', password: '' };

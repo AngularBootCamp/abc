@@ -1,17 +1,21 @@
+/* eslint-disable @angular-eslint/use-injectable-provided-in
+-- Effect injectables are handled by NgRx
+*/
 import { Injectable, inject } from '@angular/core';
+
 import {
   DefaultHttpUrlGenerator,
   HttpResourceUrls,
-  Pluralizer
+  Pluralizer,
 } from '@ngrx/data';
 
 /**
- * UrlGenerator that always returns the plural version. @ngrx/data
+ * UrlGenerator that always returns the plural version. `@ngrx/data`
  * assumes that actions that operate on a single entity will use a
  * singular rest call (like GET /api/employee/1), but actions that
  * operated on multiple entities will use a plural rest call (like GET
- * /api/employees). Our server uses plural for both, and this is the
- * way to achieve that.
+ * /api/employees). Our server uses plural for both, and this is the way
+ * to achieve that.
  *
  * See the official documentation:
  * https://ngrx.io/guide/data/extension-points#replace-the-httpurlgenerator
@@ -30,7 +34,7 @@ export class PluralHttpUrlGenerator extends DefaultHttpUrlGenerator {
 
   protected override getResourceUrls(
     entityName: string,
-    root: string
+    root: string,
   ): HttpResourceUrls {
     let resourceUrls = this.knownHttpResourceUrls[entityName];
     if (!resourceUrls) {
@@ -39,11 +43,11 @@ export class PluralHttpUrlGenerator extends DefaultHttpUrlGenerator {
       // const nRoot = normalizeRoot(root);
       const nRoot = root;
       const url = `${nRoot}/${this.myPluralizer.pluralize(
-        entityName
+        entityName,
       )}/`.toLowerCase();
       resourceUrls = {
         entityResourceUrl: url,
-        collectionResourceUrl: url
+        collectionResourceUrl: url,
       };
       this.registerHttpResourceUrls({ [entityName]: resourceUrls });
     }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { ContentWrapperComponent } from './content-wrapper.component';
 
@@ -7,8 +7,8 @@ import { ContentWrapperComponent } from './content-wrapper.component';
   template: `
     <app-content-wrapper>
       <p>
-        This is a p tag. Its only job is to be transcluded into the
-        wrapper directive.
+        This is a p tag. Its only job is to be transcluded into the wrapper
+        directive.
       </p>
     </app-content-wrapper>
 
@@ -16,6 +16,7 @@ import { ContentWrapperComponent } from './content-wrapper.component';
       Here's another block of transcluded text.
     </app-content-wrapper>
   `,
-  imports: [ContentWrapperComponent]
+  imports: [ContentWrapperComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}

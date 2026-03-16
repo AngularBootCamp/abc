@@ -1,7 +1,8 @@
-import { TestBed } from '@angular/core/testing';
-import { fakeAsync, tick } from '@angular/core/testing';
-import { Spy, createSpyFromClass } from 'jest-auto-spies';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+
 import { of, take } from 'rxjs';
+
+import { Spy, createSpyFromClass } from 'jest-auto-spies';
 
 import { AppComponent } from './app.component';
 import { EmployeeService } from './employee.service';
@@ -20,9 +21,9 @@ describe('App Component', () => {
         AppComponent,
         {
           provide: EmployeeService,
-          useValue: employeeService
-        }
-      ]
+          useValue: employeeService,
+        },
+      ],
     });
 
     appComponent = TestBed.inject(AppComponent);
@@ -39,9 +40,7 @@ describe('App Component', () => {
       tick(249);
       expect(employeeService.getFilteredList).not.toHaveBeenCalled();
       tick(1);
-      expect(employeeService.getFilteredList).toHaveBeenCalledTimes(
-        1
-      );
+      expect(employeeService.getFilteredList).toHaveBeenCalledTimes(1);
     }));
 
     it('should only make one call, 250ms after last typing', fakeAsync(() => {
@@ -57,11 +56,9 @@ describe('App Component', () => {
       tick(249);
       expect(employeeService.getFilteredList).not.toHaveBeenCalled();
       tick(1);
-      expect(employeeService.getFilteredList).toHaveBeenCalledTimes(
-        1
-      );
+      expect(employeeService.getFilteredList).toHaveBeenCalledTimes(1);
       expect(employeeService.getFilteredList.mock.calls[0]).toEqual([
-        'Bob'
+        'Bob',
       ]);
     }));
   });

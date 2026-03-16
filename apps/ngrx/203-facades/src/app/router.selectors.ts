@@ -3,7 +3,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import {
   articleIdQueryParam,
-  authorIdRouteParam
+  authorIdRouteParam,
 } from './routing-parameters';
 
 export interface State {
@@ -16,20 +16,16 @@ export const selectRouter =
 export const { selectRouteParam, selectQueryParam } =
   fromRouter.getRouterSelectors(selectRouter);
 
-const selectCurrentArticleIdParam = selectQueryParam(
-  articleIdQueryParam
-);
+const selectCurrentArticleIdParam = selectQueryParam(articleIdQueryParam);
 
 export const selectCurrentArticleId = createSelector(
   selectCurrentArticleIdParam,
-  articleId => (articleId ? Number(articleId) : undefined)
+  articleId => (articleId ? Number(articleId) : undefined),
 );
 
-const selectCurrentAuthorIdParam = selectRouteParam(
-  authorIdRouteParam
-);
+const selectCurrentAuthorIdParam = selectRouteParam(authorIdRouteParam);
 
 export const selectCurrentAuthorId = createSelector(
   selectCurrentAuthorIdParam,
-  authorId => (authorId ? Number(authorId) : undefined)
+  authorId => (authorId ? Number(authorId) : undefined),
 );

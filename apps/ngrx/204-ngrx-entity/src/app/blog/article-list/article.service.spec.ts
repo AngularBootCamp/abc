@@ -1,7 +1,9 @@
 import { TestBed } from '@angular/core/testing';
+
+import { firstValueFrom } from 'rxjs';
+
 import { provideMockStore } from '@ngrx/store/testing';
 import { keyBy } from 'lodash-es';
-import { firstValueFrom } from 'rxjs';
 
 import { mockArticles } from '../article/mock.articles';
 
@@ -17,11 +19,11 @@ describe('ArticleService', () => {
           initialState: {
             article: {
               ids: mockArticles.map(article => article.id),
-              entities: keyBy(mockArticles, 'id')
-            }
-          }
-        })
-      ]
+              entities: keyBy(mockArticles, 'id'),
+            },
+          },
+        }),
+      ],
     });
 
     articleSvc = TestBed.inject(ArticleService);
@@ -30,7 +32,7 @@ describe('ArticleService', () => {
   describe('getArticlesByAuthor', () => {
     it('should return the articles', async () => {
       const result = await firstValueFrom(
-        articleSvc.getArticlesByAuthor(1)
+        articleSvc.getArticlesByAuthor(1),
       );
 
       expect(result).toEqual([mockArticles[0], mockArticles[1]]);

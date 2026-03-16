@@ -1,6 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-namespace
+/* eslint-disable-next-line @typescript-eslint/no-namespace */
 declare namespace Cypress {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
   interface Chainable<Subject> {
     appName(): Chainable<JQuery<HTMLElement>>;
     checkAppNameAndPageTitle(): void;
@@ -30,7 +30,7 @@ const normalize = (title: string) => {
 // Get the element containing the application name, via one of the many
 // ways it might be specified across different applications.
 Cypress.Commands.add('appName', () =>
-  cy.get('nav > span, oasis-header h1, nav > h1')
+  cy.get('nav > span, oasis-header h1, nav > h1'),
 );
 
 // Make sure the application name and the page title are exactly the
@@ -43,7 +43,7 @@ Cypress.Commands.add('checkAppNameAndPageTitle', () =>
       const trimmedName = name.trim();
       cy.title().should('eq', trimmedName);
       expect(normalize(trimmedName)).to.equal(
-        normalize(Cypress.env()['projectName'])
+        normalize(Cypress.env()['projectName']),
       );
-    })
+    }),
 );

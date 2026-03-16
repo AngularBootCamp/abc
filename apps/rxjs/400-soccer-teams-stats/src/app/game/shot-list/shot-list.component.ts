@@ -1,4 +1,5 @@
 import { Component, Input, inject } from '@angular/core';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,14 +8,14 @@ import { MatTableModule } from '@angular/material/table';
 import {
   GameModalTransfer,
   Player,
-  ShotOnGoalWithNames
+  ShotOnGoalWithNames,
 } from '../../app.types';
 import { AddShotToGameComponent } from '../add-shot-to-game/add-shot-to-game.component';
 
 @Component({
   selector: 'app-shot-list',
   templateUrl: './shot-list.component.html',
-  imports: [MatTableModule, MatButtonModule, MatIconModule]
+  imports: [MatTableModule, MatButtonModule, MatIconModule],
 })
 export class ShotListComponent {
   private dialog = inject(MatDialog);
@@ -27,10 +28,8 @@ export class ShotListComponent {
   addShot() {
     const game: GameModalTransfer = {
       id: this.gameId,
-      players: this.players
+      players: this.players,
     };
-    this.dialog
-      .open(AddShotToGameComponent, { data: game })
-      .afterClosed();
+    this.dialog.open(AddShotToGameComponent, { data: game }).afterClosed();
   }
 }

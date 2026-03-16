@@ -1,8 +1,11 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
+
+import { Observable } from 'rxjs';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
-import { Observable } from 'rxjs';
 
 import { HeaderComponent } from '@class-materials/shared/ui-page-header';
 
@@ -11,7 +14,7 @@ import { Employee, EmployeesService } from './employees.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [AsyncPipe, HeaderComponent, MatCardModule, MatListModule]
+  imports: [AsyncPipe, HeaderComponent, MatCardModule, MatListModule],
 })
 export class AppComponent {
   employees: Observable<Employee[]>;

@@ -1,4 +1,8 @@
+/* eslint-disable @angular-eslint/use-injectable-provided-in
+-- Effect injectables are handled by NgRx
+*/
 import { Injectable } from '@angular/core';
+
 import { OnInitEffects } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 
@@ -10,9 +14,9 @@ const initialTasks: TaskState = {
     { label: 'cook dinner' },
     { label: 'go grocery shopping' },
     { label: 'sweep the floors' },
-    { label: 'do the laundry' }
+    { label: 'do the laundry' },
   ],
-  todo: [{ label: 'fix the leaky faucet' }, { label: 'mow the lawn' }]
+  todo: [{ label: 'fix the leaky faucet' }, { label: 'mow the lawn' }],
 };
 
 @Injectable()

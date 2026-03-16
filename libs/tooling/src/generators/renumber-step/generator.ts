@@ -1,13 +1,13 @@
 import * as path from 'path';
 
 import {
+  Tree,
   addProjectConfiguration,
   formatFiles,
   generateFiles,
   getWorkspaceLayout,
   names,
   offsetFromRoot,
-  Tree
 } from '@nx/devkit';
 
 import { RenumberStepGeneratorSchema } from './schema';
@@ -21,16 +21,13 @@ interface NormalizedSchema extends RenumberStepGeneratorSchema {
 
 function normalizeOptions(
   tree: Tree,
-  options: RenumberStepGeneratorSchema
+  options: RenumberStepGeneratorSchema,
 ): NormalizedSchema {
   const name = names(options.name).fileName;
   const projectDirectory = options.directory
     ? `${names(options.directory).fileName}/${name}`
     : name;
-  const projectName = projectDirectory.replace(
-    new RegExp('/', 'g'),
-    '-'
-  );
+  const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
   const projectRoot = `${
     getWorkspaceLayout(tree).libsDir
   }/${projectDirectory}`;
@@ -43,7 +40,7 @@ function normalizeOptions(
     projectName,
     projectRoot,
     projectDirectory,
-    parsedTags
+    parsedTags,
   };
 }
 
@@ -52,19 +49,19 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
     ...options,
     ...names(options.name),
     offsetFromRoot: offsetFromRoot(options.projectRoot),
-    template: ''
+    template: '',
   };
   generateFiles(
     tree,
     path.join(__dirname, 'files'),
     options.projectRoot,
-    templateOptions
+    templateOptions,
   );
 }
 
 export default async function (
   tree: Tree,
-  options: RenumberStepGeneratorSchema
+  options: RenumberStepGeneratorSchema,
 ) {
   const normalizedOptions = normalizeOptions(tree, options);
   addProjectConfiguration(tree, normalizedOptions.projectName, {
@@ -73,10 +70,10 @@ export default async function (
     sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
       build: {
-        executor: '@class-materials/tooling:build'
-      }
+        executor: '@class-materials/tooling:build',
+      },
     },
-    tags: normalizedOptions.parsedTags
+    tags: normalizedOptions.parsedTags,
   });
   addFiles(tree, normalizedOptions);
   await formatFiles(tree);

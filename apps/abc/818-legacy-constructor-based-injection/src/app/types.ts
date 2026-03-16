@@ -17,5 +17,5 @@ export type ConstellationLoaderConfig = {
 
 export const CONSTELLATION_LOADER_CONFIG =
   new InjectionToken<ConstellationLoaderConfig>(
-    'ConstellationLoader configuration'
+    'ConstellationLoader configuration',
   );

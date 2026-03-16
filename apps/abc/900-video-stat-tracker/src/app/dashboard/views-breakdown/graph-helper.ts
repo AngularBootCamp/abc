@@ -6,25 +6,25 @@ const ageRanges = [
   { label: 'Under 18', lower: 0, upper: 18, id: 'minor' },
   { label: '18 - 39', lower: 18, upper: 40, id: 'adults' },
   { label: '40 - 59', lower: 40, upper: 60, id: 'middleAged' },
-  { label: '60 and up', lower: 60, upper: 999, id: 'retired' }
+  { label: '60 and up', lower: 60, upper: 999, id: 'retired' },
 ];
 
 export class Rect {
-  x?: number;
-  y?: number;
-  width?: number;
-  height?: number;
+  public x?: number;
+  public y?: number;
+  public width?: number;
+  public height?: number;
 
   constructor(
     public value: string,
-    public count: number
+    public count: number,
   ) {}
 }
 
 export class GraphData {
-  rectList: Rect[];
-  width: number;
-  height: number;
+  public rectList: Rect[];
+  public width: number;
+  public height: number;
 
   constructor(views: VideoView[], viewsFilter: FilterOptions) {
     this.height = GRAPH_HEIGHT;
@@ -41,7 +41,7 @@ export class GraphData {
   // 6. Divide the width of the graph amongst the number of unique values
   // 7. Assign widths and x positions accordingly
   calcRectList(views: VideoView[], viewsFilter: FilterOptions) {
-    const rects: Rect[] = [];
+    let rects: Rect[] = [];
     const filteredViews = filterViews(views, viewsFilter);
     if (filteredViews.length) {
       const groups = countBy(filteredViews, 'age');
@@ -52,11 +52,15 @@ export class GraphData {
       const maxRec = maxBy(rects, 'count');
       const maxValue = maxRec ? maxRec.count : 0;
       const width = GRAPH_WIDTH / rects.length - 1;
-      rects.forEach((rect, index) => {
-        rect.height = calcHeight(maxValue, rect.count, GRAPH_HEIGHT);
-        rect.y = GRAPH_HEIGHT - rect.height;
-        rect.width = width;
-        rect.x = index * width;
+      rects = rects.map((rect, index) => {
+        const height = calcHeight(maxValue, rect.count, GRAPH_HEIGHT);
+        return {
+          ...rect,
+          height,
+          width,
+          x: index * width,
+          y: GRAPH_HEIGHT - height,
+        };
       });
     }
     return rects;
@@ -65,16 +69,12 @@ export class GraphData {
 
 export function getGraphData(
   currentVideo: Video,
-  viewsFilterState: FilterOptions
+  viewsFilterState: FilterOptions,
 ) {
   return new GraphData(currentVideo.viewDetails, viewsFilterState);
 }
 
-function calcHeight(
-  maxValue: number,
-  value: number,
-  graphHeight: number
-) {
+function calcHeight(maxValue: number, value: number, graphHeight: number) {
   return Math.floor((value / maxValue) * graphHeight);
 }
 
@@ -89,7 +89,7 @@ function filterViews(views: VideoView[], viewsFilter: FilterOptions) {
         range =>
           view.age >= range.lower &&
           view.age < range.upper &&
-          !!viewsFilter[range.id]
+          !!viewsFilter[range.id],
       )
     ) {
       return false;
@@ -107,7 +107,7 @@ function filterViews(views: VideoView[], viewsFilter: FilterOptions) {
     const videoDate = new Date(view.date);
     return isWithinInterval(videoDate, {
       start: fromDate,
-      end: toDate
+      end: toDate,
     });
   });
   return filteredResults;
@@ -117,19 +117,20 @@ function filterViews(views: VideoView[], viewsFilter: FilterOptions) {
 // work on StackBlitz
 function countBy(
   collection: VideoView[],
-  property: keyof VideoView
+  property: keyof VideoView,
 ): Record<string | number, number> {
   return collection.reduce(
     (result, value) => {
+      const newResult = { ...result };
       const key = value[property];
       if (Object.prototype.hasOwnProperty.call(result, key)) {
-        ++result[key];
+        ++newResult[key];
       } else {
-        result[key] = 1;
+        newResult[key] = 1;
       }
-      return result;
+      return newResult;
     },
-    {} as Record<string, number>
+    {} as Record<string, number>,
   );
 }
 
@@ -160,7 +161,7 @@ function maxBy<T>(array: T[], property: keyof T): T | undefined {
 // StackBlitz
 function isWithinInterval(
   date: Date,
-  interval: { start: Date; end: Date }
+  interval: { start: Date; end: Date },
 ): boolean {
   const time = Number(date);
   const startTime = Number(interval.start);

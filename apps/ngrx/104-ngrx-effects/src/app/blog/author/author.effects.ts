@@ -1,3 +1,6 @@
+/* eslint-disable @angular-eslint/use-injectable-provided-in
+-- Effect injectables are handled by NgRx
+*/
 import { Injectable } from '@angular/core';
 // import { Actions, createEffect, ofType } from '@ngrx/effects';
 // import { catchError, concatMap, EMPTY, map, of } from 'rxjs';
@@ -10,7 +13,8 @@ export class AuthorEffects {
   //   return this.actions$.pipe(
   //     ofType(authorInitActions.loadAuthors),
   //     concatMap(() =>
-  //       /** An EMPTY observable only emits completion. Replace with your own observable API request */
+  //       // An EMPTY observable only emits completion.
+  //       // Replace with your own observable API request.
   //       EMPTY.pipe(
   //         map(data => authorApiActions.loadAuthorsSuccess({ data })),
   //         catchError(error => of(authorApiActions.loadAuthorsFailure({ error }))))

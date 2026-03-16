@@ -3,8 +3,9 @@ import {
   Component,
   inject,
   input,
-  signal
+  signal,
 } from '@angular/core';
+
 import { Router, RouterLink } from '@angular/router';
 
 import { EmployeeListHeaderComponent } from '../employee-list-header/employee-list-header.component';
@@ -14,33 +15,31 @@ import { Employee, TableOptions } from '../employees.service';
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   imports: [EmployeeListHeaderComponent, RouterLink],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeListComponent {
   public readonly employees = input.required<Employee[]>();
-  public readonly options = input.required<
-    TableOptions | undefined
-  >();
+  public readonly options = input.required<TableOptions | undefined>();
 
   private readonly router = inject(Router);
 
   protected readonly headers = signal([
     {
       propertyName: 'firstName',
-      display: 'First Name'
+      display: 'First Name',
     },
     {
       propertyName: 'lastName',
-      display: 'Last Name'
+      display: 'Last Name',
     },
     {
       propertyName: 'hoursWorked',
-      display: 'Hours Worked'
+      display: 'Hours Worked',
     },
     {
       propertyName: 'hourlyWage',
-      display: 'Hourly Wage'
-    }
+      display: 'Hourly Wage',
+    },
   ]);
 
   protected headerClicked(sortBy: string) {
@@ -51,18 +50,17 @@ export class EmployeeListComponent {
       const queryParams = { sortBy, sortDirection: undefined };
       void this.router.navigate([], {
         queryParams,
-        queryParamsHandling: 'merge'
+        queryParamsHandling: 'merge',
       });
     }
   }
 
   private changeDirection(options: TableOptions) {
-    const sortDirection =
-      options.sortDirection === 'asc' ? 'desc' : 'asc';
+    const sortDirection = options.sortDirection === 'asc' ? 'desc' : 'asc';
     const queryParams = { sortDirection };
     void this.router.navigate([], {
       queryParams,
-      queryParamsHandling: 'merge'
+      queryParamsHandling: 'merge',
     });
   }
 }

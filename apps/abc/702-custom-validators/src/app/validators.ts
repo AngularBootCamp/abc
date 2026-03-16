@@ -1,55 +1,53 @@
 import {
   AbstractControl,
   FormGroup,
-  ValidationErrors
+  ValidationErrors,
 } from '@angular/forms';
 
 export function trivialValidator(
-  control: AbstractControl
+  control: AbstractControl,
 ): ValidationErrors | null {
   if (control.value === '12345') {
     return null;
   } else {
     return {
-      trivial: true
+      trivial: true,
     };
   }
 }
 
 export function fiveValidator(
-  control: AbstractControl
+  control: AbstractControl,
 ): ValidationErrors | null {
   if (control.value !== '5') {
     return {
-      verifyFive: true
+      verifyFive: true,
     };
   }
   return null;
 }
 
 export function matchingPasswordValidator(
-  group: AbstractControl
+  group: AbstractControl,
 ): ValidationErrors | null {
   if (group instanceof FormGroup) {
     const first = group.get('password');
     const second = group.get('confirmPassword');
     if (first?.value !== second?.value) {
       return {
-        mismatched: true
+        mismatched: true,
       };
     }
     return null;
   } else {
-    throw Error(
-      'Only use `matchingPasswordValidator` with FormGroups'
-    );
+    throw Error('Only use `matchingPasswordValidator` with FormGroups');
   }
 }
 
 export function matchingFieldValidator(
   firstKey: string,
   secondKey: string,
-  errorName: string
+  errorName: string,
 ) {
   return (group: AbstractControl): ValidationErrors | null => {
     if (group instanceof FormGroup) {
@@ -57,14 +55,12 @@ export function matchingFieldValidator(
       const second = group.controls[secondKey];
       if (first?.value !== second?.value) {
         return {
-          [errorName]: true
+          [errorName]: true,
         };
       }
       return null;
     } else {
-      throw Error(
-        'Only use `matchingFieldValidator` with FormGroups'
-      );
+      throw Error('Only use `matchingFieldValidator` with FormGroups');
     }
   };
 }

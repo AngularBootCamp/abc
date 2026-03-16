@@ -4,11 +4,11 @@ import {
   OnDestroy,
   OnInit,
   inject,
-  output
+  output,
 } from '@angular/core';
 
 @Directive({
-  selector: '[appWhenVisible]'
+  selector: '[appWhenVisible]',
 })
 export class WhenVisibleDirective implements OnInit, OnDestroy {
   private readonly element = inject(ElementRef);

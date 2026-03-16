@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { TodoListComponent } from '../../todo-list/todo-list.component';
 import { Task } from '../../types';
@@ -12,7 +8,7 @@ import { WorkTaskStore } from '../../work-tasks.state';
   selector: 'app-work-task-list',
   templateUrl: './work-task-list.component.html',
   imports: [TodoListComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WorkTaskListComponent {
   private readonly store = inject(WorkTaskStore);

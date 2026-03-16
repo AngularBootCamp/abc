@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
 
@@ -13,15 +14,15 @@ const tasksRoutes: Routes = [
     path: '',
     providers: [
       provideState(fromTasks.tasksFeature),
-      provideEffects(TasksEffects)
+      provideEffects(TasksEffects),
     ],
     component: TasksDashboardComponent,
     children: [
       { path: '', redirectTo: 'done', pathMatch: 'prefix' },
       { path: 'done', component: DoneTasksComponent },
-      { path: 'todo', component: TodoTasksComponent }
-    ]
-  }
+      { path: 'todo', component: TodoTasksComponent },
+    ],
+  },
 ];
 
 export default tasksRoutes;

@@ -1,4 +1,4 @@
-import { initialState, authorFeature } from './author.reducer';
+import { authorFeature, initialState } from './author.reducer';
 
 describe('Author Reducer', () => {
   describe('an unknown action', () => {

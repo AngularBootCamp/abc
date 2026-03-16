@@ -3,3 +3,17 @@ app-root {
   grid-template-columns: 1fr 3fr 1fr;
   grid-gap: 1.5rem;
 }
+
+header {
+  margin-block-end: 1rem;
+}
+
+app-chat,
+app-home,
+app-name,
+app-task {
+  display: block;
+  outline: medium solid var(--abc-primary-color);
+  border-radius: 10px;
+  padding: 1rem;
+}

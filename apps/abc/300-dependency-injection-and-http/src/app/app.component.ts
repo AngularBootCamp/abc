@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  signal
+  signal,
 } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
 
 // Local API server
 // const apiUrl = '/api';
@@ -21,7 +22,7 @@ interface Employee {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   protected readonly employees = signal<Employee[]>([]);
@@ -30,11 +31,9 @@ export class AppComponent {
   constructor() {
     const http = inject(HttpClient);
 
-    http
-      .get<Employee[]>(apiUrl + '/employees')
-      .subscribe(employees => {
-        this.loading.set(false);
-        this.employees.set(employees);
-      });
+    http.get<Employee[]>(apiUrl + '/employees').subscribe(employees => {
+      this.loading.set(false);
+      this.employees.set(employees);
+    });
   }
 }

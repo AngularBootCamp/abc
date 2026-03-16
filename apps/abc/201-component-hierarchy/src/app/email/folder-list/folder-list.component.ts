@@ -6,6 +6,6 @@ import { FolderItemComponent } from '../folder-item/folder-item.component';
   selector: 'app-folder-list',
   templateUrl: './folder-list.component.html',
   imports: [FolderItemComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FolderListComponent {}

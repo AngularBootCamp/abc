@@ -7,6 +7,6 @@ import { MessageDisplayComponent } from '../message-display/message-display.comp
   selector: 'app-email-container',
   templateUrl: './email-container.component.html',
   imports: [FolderListComponent, MessageDisplayComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class EmailContainerComponent {}

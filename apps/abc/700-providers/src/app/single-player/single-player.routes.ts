@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
-import { ClickComponent } from '../click/click.component';
 import { ClickService } from '../click.service';
+import { ClickComponent } from '../click/click.component';
 
 import { SinglePlayerService } from './single-player.service';
 
@@ -12,10 +12,10 @@ const singlePlayerRoutes: Routes = [
     providers: [
       {
         provide: ClickService,
-        useClass: SinglePlayerService
-      }
-    ]
-  }
+        useClass: SinglePlayerService,
+      },
+    ],
+  },
 ];
 
 export default singlePlayerRoutes;

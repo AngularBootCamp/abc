@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+
 import { provideMockStore } from '@ngrx/store/testing';
 
 import { AppComponent } from './app.component';
@@ -8,7 +9,7 @@ describe('AppComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AppComponent, provideMockStore({})]
+      providers: [AppComponent, provideMockStore({})],
     });
 
     component = TestBed.inject(AppComponent);

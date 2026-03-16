@@ -1,13 +1,17 @@
-import { AsyncPipe } from '@angular/common';
-import { Component, computed, inject, Signal } from '@angular/core';
+import { Component, Signal, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+
+import { AsyncPipe } from '@angular/common';
+import { Router } from '@angular/router';
+
+import { filter, firstValueFrom } from 'rxjs';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { Router } from '@angular/router';
+
 import { Store } from '@ngrx/store';
-import { filter, firstValueFrom } from 'rxjs';
 
 import { ConfigStore } from '../../config.store';
 import { selectCurrentArticleId } from '../../router.selectors';
@@ -25,8 +29,8 @@ import { Article } from '../types';
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    AsyncPipe
-  ]
+    AsyncPipe,
+  ],
 })
 export class ArticleListComponent {
   private router = inject(Router);
@@ -34,11 +38,11 @@ export class ArticleListComponent {
   private readonly articleStore = inject(ArticleStore);
   readonly title = inject(ConfigStore).title;
   readonly authorId = inject(AuthorService).currentAuthorId.pipe(
-    filter((authorId): authorId is number => !!authorId)
+    filter((authorId): authorId is number => !!authorId),
   );
 
   readonly selectedArticleId = inject(Store).select(
-    selectCurrentArticleId
+    selectCurrentArticleId,
   );
 
   readonly articles: Signal<Article[]>;
@@ -57,7 +61,7 @@ export class ArticleListComponent {
     const queryParams = { [articleIdQueryParam]: articleId };
     void this.router.navigate([], {
       queryParams,
-      queryParamsHandling: 'merge'
+      queryParamsHandling: 'merge',
     });
   }
 
@@ -67,7 +71,7 @@ export class ArticleListComponent {
     const newArticle: Omit<Article, 'id'> = {
       body: 'placeholder body',
       title: 'placeholder title',
-      authorId: uid || 0
+      authorId: uid || 0,
     };
     this.articleStore.createArticle(newArticle);
   }

@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { HomeTaskStore } from '../../home-tasks.state';
 import { TodoListComponent } from '../../todo-list/todo-list.component';
@@ -12,7 +8,7 @@ import { Task } from '../../types';
   selector: 'app-home-task-list',
   templateUrl: './home-task-list.component.html',
   imports: [TodoListComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeTaskListComponent {
   private readonly store = inject(HomeTaskStore);

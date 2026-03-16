@@ -1,11 +1,11 @@
 import { join } from 'path/posix';
 
 import {
-  formatFiles,
   Tree,
-  readProjectConfiguration,
+  formatFiles,
   getProjects,
-  logger
+  logger,
+  readProjectConfiguration,
 } from '@nx/devkit';
 import { moveGenerator } from '@nx/workspace';
 
@@ -13,16 +13,16 @@ import { DeleteStepGeneratorSchema } from './schema';
 
 export default async function (
   tree: Tree,
-  options: DeleteStepGeneratorSchema
+  options: DeleteStepGeneratorSchema,
 ) {
   const projectToDeleteConfig = readProjectConfiguration(
     tree,
-    options.project
+    options.project,
   );
 
   const projectToDeleteE2EConfig = readProjectConfiguration(
     tree,
-    options.project + '-e2e'
+    options.project + '-e2e',
   );
 
   logger.info(`Deleting ${options.project}`);
@@ -56,16 +56,13 @@ export default async function (
 
   for (const projectName of projectsToReNumber) {
     const projectNameSplit = projectName.split('-');
-    const [
-      projectCurriculumSet,
-      projectStepNumber,
-      ...projectNameRest
-    ] = projectNameSplit;
+    const [projectCurriculumSet, projectStepNumber, ...projectNameRest] =
+      projectNameSplit;
     const newStepNumber = Number(projectStepNumber) - 1;
     const newProjectName = [
       projectCurriculumSet,
       newStepNumber.toString(),
-      projectNameRest.join('-')
+      projectNameRest.join('-'),
     ].join('-');
 
     logger.info(`Renaming ${projectName} -> ${newProjectName}`);
@@ -73,30 +70,28 @@ export default async function (
       projectName: `${projectName}-e2e`,
       destination: join(
         projectCurriculumSet,
-        [newStepNumber.toString(), ...projectNameRest, 'e2e'].join(
-          '-'
-        )
+        [newStepNumber.toString(), ...projectNameRest, 'e2e'].join('-'),
       ),
       newProjectName: `${projectName}-e2e`,
-      updateImportPath: true
+      updateImportPath: true,
     });
 
     tree.delete(
       join(
         'apps',
         projectCurriculumSet,
-        [projectStepNumber, ...projectNameRest].join('-')
-      )
+        [projectStepNumber, ...projectNameRest].join('-'),
+      ),
     );
 
     await moveGenerator(tree, {
       projectName,
       destination: join(
         projectCurriculumSet,
-        [newStepNumber.toString(), ...projectNameRest].join('-')
+        [newStepNumber.toString(), ...projectNameRest].join('-'),
       ),
       newProjectName,
-      updateImportPath: true
+      updateImportPath: true,
     });
 
     await moveGenerator(tree, {
@@ -104,10 +99,10 @@ export default async function (
       destination: join(
         projectCurriculumSet,
         [newStepNumber.toString(), ...projectNameRest].join('-'),
-        'cypress'
+        'cypress',
       ),
       newProjectName: `${newProjectName}-e2e`,
-      updateImportPath: true
+      updateImportPath: true,
     });
   }
 

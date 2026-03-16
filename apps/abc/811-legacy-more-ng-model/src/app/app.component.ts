@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
 import { FormsModule } from '@angular/forms';
 
 interface IColor {
@@ -10,7 +11,8 @@ interface IColor {
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [FormsModule]
+  imports: [FormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   protected version = 'Beta';
@@ -21,15 +23,15 @@ export class AppComponent {
   protected colors: IColor[] = [
     {
       code: 'Blue',
-      display: 'Blue ish'
+      display: 'Blue ish',
     },
     {
       code: 'Red',
-      display: 'Red ish'
+      display: 'Red ish',
     },
     {
       code: 'Green',
-      display: 'Green ish'
-    }
+      display: 'Green ish',
+    },
   ];
 }

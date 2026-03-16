@@ -1,34 +1,34 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
+
 import {
   BehaviorSubject,
+  Observable,
+  Subject,
   filter,
   firstValueFrom,
   merge,
-  Observable,
   shareReplay,
   startWith,
-  Subject,
   switchMap,
-  take
+  take,
 } from 'rxjs';
 
 import {
   cardEndpointLocation,
   gameEndpointLocation,
-  goalEndpointLocation
+  goalEndpointLocation,
 } from '../app.constants';
 import { Card, Game, ShotOnGoal } from '../app.types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GameService {
   private readonly http = inject(HttpClient);
 
-  readonly gameId = new BehaviorSubject<string | undefined>(
-    undefined
-  );
+  readonly gameId = new BehaviorSubject<string | undefined>(undefined);
   readonly gameAdded = new Subject<void>();
   readonly gameDeleted = new Subject<string>();
   readonly gameUpdated = new Subject<string>();
@@ -36,7 +36,9 @@ export class GameService {
   /**
    * A simple list of all games
    *
+   * ```ts
    * http.get<Game[]>(gameEndpointLocation)
+   * ```
    *
    * This observable has the following characteristics
    * - Fires initially and updates when games are added,
@@ -47,11 +49,11 @@ export class GameService {
   readonly games: Observable<Game[]> = merge(
     this.gameAdded,
     this.gameDeleted,
-    this.gameUpdated
+    this.gameUpdated,
   ).pipe(
     startWith(undefined),
     switchMap(() => this.http.get<Game[]>(gameEndpointLocation)),
-    shareReplay({ refCount: true, bufferSize: 1 })
+    shareReplay({ refCount: true, bufferSize: 1 }),
   );
 
   /**
@@ -59,7 +61,9 @@ export class GameService {
    * Returns an observable containing game details excluding stats
    * Often used as the base for more complex representations
    *
+   * ```ts
    * this.http.get<Game>(`${gameEndpointLocation}/${id}`)
+   * ```
    *
    * Resulting observable has the following characteristics
    * - Fires initially and updates when the indicated game is updated
@@ -76,9 +80,9 @@ export class GameService {
       switchMap(() =>
         this.http
           .get<Game>(`${gameEndpointLocation}/${id}`)
-          .pipe(startWith(undefined))
+          .pipe(startWith(undefined)),
       ),
-      shareReplay({ refCount: true, bufferSize: 1 })
+      shareReplay({ refCount: true, bufferSize: 1 }),
     );
   }
 
@@ -86,7 +90,9 @@ export class GameService {
    * Returns an observable containing the shots on goal for an
    * indicated game
    *
+   * ```ts
    * http.get<ShotOnGoal[]>(`${goalEndpointLocation}?game=${id}`
+   * ```
    *
    * Resulting observable has the following characteristics
    * - Fires initially and updates when the indicated game is updated
@@ -100,11 +106,9 @@ export class GameService {
       startWith(id),
       filter(gameChangeId => gameChangeId === id),
       switchMap(() =>
-        this.http.get<ShotOnGoal[]>(
-          `${goalEndpointLocation}?game=${id}`
-        )
+        this.http.get<ShotOnGoal[]>(`${goalEndpointLocation}?game=${id}`),
       ),
-      shareReplay({ refCount: true, bufferSize: 1 })
+      shareReplay({ refCount: true, bufferSize: 1 }),
     );
   }
 
@@ -112,7 +116,9 @@ export class GameService {
    * Returns an observable containing the cards for an
    * indicated game
    *
+   * ```ts
    * http.get<Card[]>(`${cardEndpointLocation}?game=${id}`)
+   * ```
    *
    * Resulting observable has the following characteristics
    * - Fires initially and updates when the indicated game is updated
@@ -126,9 +132,9 @@ export class GameService {
       startWith(id),
       filter(gameChangeId => gameChangeId === id),
       switchMap(() =>
-        this.http.get<Card[]>(`${cardEndpointLocation}?game=${id}`)
+        this.http.get<Card[]>(`${cardEndpointLocation}?game=${id}`),
       ),
-      shareReplay({ refCount: true, bufferSize: 1 })
+      shareReplay({ refCount: true, bufferSize: 1 }),
     );
   }
 
@@ -143,7 +149,9 @@ export class GameService {
    *
    * Makes an AJAX request to add a game to the system
    *
+   * ```ts
    * http.post<Game>(gameEndpointLocation, {name, date, location, players: []})
+   * ```
    *
    * Updates corresponding observable pipelines upon success
    *
@@ -151,15 +159,15 @@ export class GameService {
   async addGame(
     location: string,
     date: string,
-    name: string
+    name: string,
   ): Promise<void> {
     await firstValueFrom(
       this.http.post<Game>(gameEndpointLocation, {
         name,
         date,
         location,
-        players: []
-      })
+        players: [],
+      }),
     );
     this.gameAdded.next();
   }
@@ -168,18 +176,17 @@ export class GameService {
    *
    * Makes an AJAX request to add a player to the indicated game
    *
+   * ```ts
    * http.put(`${gameEndpointLocation}/${gameId}`, {
    *   ...game,
    *   players: [...game.players, playerId]
    * })
+   * ```
    *
    * Updates corresponding observable pipelines upon success
    *
    */
-  async addPlayerToGame(
-    gameId: string,
-    playerId: string
-  ): Promise<void> {
+  async addPlayerToGame(gameId: string, playerId: string): Promise<void> {
     await firstValueFrom(
       this.getGame(gameId).pipe(
         filter((game): game is Game => !!game),
@@ -187,10 +194,10 @@ export class GameService {
         switchMap(game =>
           this.http.put(`${gameEndpointLocation}/${gameId}`, {
             ...game,
-            players: [...game.players, playerId]
-          })
-        )
-      )
+            players: [...game.players, playerId],
+          }),
+        ),
+      ),
     );
     this.gameUpdated.next('');
   }
@@ -199,7 +206,9 @@ export class GameService {
    *
    * Makes an AJAX request to add a shot to the indicated game
    *
+   * ```ts
    * http.post(goalEndpointLocation, shot)
+   * ```
    *
    * Updates corresponding observable pipelines upon success
    *
@@ -213,7 +222,9 @@ export class GameService {
    *
    * Makes an AJAX request to add a card to the indicated game
    *
+   * ```ts
    * http.post(cardEndpointLocation, card)
+   * ```
    *
    * Updates corresponding observable pipelines upon success
    *
@@ -227,14 +238,16 @@ export class GameService {
    *
    * Makes an AJAX request to remove the indicated game
    *
+   * ```ts
    * http.delete(`${gameEndpointLocation}/${id}`)
+   * ```
    *
    * Updates corresponding observable pipelines upon success
    *
    */
   async deleteGame(id: string): Promise<void> {
     await firstValueFrom(
-      this.http.delete(`${gameEndpointLocation}/${id}`)
+      this.http.delete(`${gameEndpointLocation}/${id}`),
     );
     this.gameDeleted.next('');
   }

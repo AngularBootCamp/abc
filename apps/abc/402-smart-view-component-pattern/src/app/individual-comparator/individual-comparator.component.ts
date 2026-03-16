@@ -1,9 +1,7 @@
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import { AsyncPipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject
-} from '@angular/core';
+
 import { tap } from 'rxjs';
 
 import { EmployeeComparisonComponent } from '../employee-comparison/employee-comparison.component';
@@ -11,13 +9,14 @@ import { EmployeeExplorerComponent } from '../employee-explorer/employee-explore
 import { Employee, EmployeeLoader } from '../employee-loader.service';
 
 @Component({
+  selector: 'app-individual-comparator',
   templateUrl: './individual-comparator.component.html',
   imports: [
     EmployeeComparisonComponent,
     EmployeeExplorerComponent,
-    AsyncPipe
+    AsyncPipe,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class IndividualComparatorComponent {
   private readonly el = inject(EmployeeLoader);
@@ -25,7 +24,7 @@ export default class IndividualComparatorComponent {
   protected readonly employeeList = this.el.getAllEmployees().pipe(
     tap(list => {
       this.comparedEmployees = [list[0], list[1]];
-    })
+    }),
   );
 
   protected comparedEmployees: Employee[] = [];
@@ -37,7 +36,7 @@ export default class IndividualComparatorComponent {
   protected reverseComparison() {
     this.comparedEmployees = [
       this.comparedEmployees[1],
-      this.comparedEmployees[0]
+      this.comparedEmployees[0],
     ];
   }
 }

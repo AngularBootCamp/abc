@@ -1,10 +1,12 @@
 import { inject } from '@angular/core';
+
 import { ActivatedRouteSnapshot } from '@angular/router';
+
 import { delay, tap } from 'rxjs';
 
 import { EmployeeLoaderService } from './employee-loader.service';
 
-export function EmployeeResolver(route: ActivatedRouteSnapshot) {
+export function employeeResolver(route: ActivatedRouteSnapshot) {
   const loader = inject(EmployeeLoaderService);
 
   console.log('started retrieving employee');
@@ -13,6 +15,6 @@ export function EmployeeResolver(route: ActivatedRouteSnapshot) {
 
   return loader.getDetails(employeeId).pipe(
     delay(3000), // Simulate backend latency
-    tap(data => console.log('employee information arrived', data))
+    tap(data => console.log('employee information arrived', data)),
   );
 }

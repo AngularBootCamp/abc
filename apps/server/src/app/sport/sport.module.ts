@@ -1,22 +1,14 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable @typescript-eslint/no-require-imports */
-
-import {
-  MiddlewareConsumer,
-  Module,
-  NestModule
-} from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+const pause = require('connect-pause');
 
 import { JsonServerService } from '../json-server.service';
 
 import { SportController } from './sport.controller';
 
-const pause = require('connect-pause');
-
 @Module({
   imports: [],
   controllers: [SportController],
-  providers: [JsonServerService]
+  providers: [JsonServerService],
 })
 export class SportModule implements NestModule {
   constructor(private jss: JsonServerService) {}
@@ -29,7 +21,7 @@ export class SportModule implements NestModule {
         .exclude(
           'soccer/hello(.*)',
           'soccer/reset(.*)',
-          'soccer/remove-e2e(.*)'
+          'soccer/remove-e2e(.*)',
         )
         .forRoutes('soccer');
     }

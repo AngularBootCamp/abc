@@ -1,18 +1,20 @@
 import { Component, inject } from '@angular/core';
+
 import {
   AbstractControl,
   NonNullableFormBuilder,
+  ReactiveFormsModule,
   ValidationErrors,
   Validators,
-  ReactiveFormsModule
 } from '@angular/forms';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatOptionModule } from '@angular/material/core';
 import {
   MAT_DIALOG_DATA,
+  MatDialogModule,
   MatDialogRef,
-  MatDialogModule
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -22,14 +24,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { GameModalTransfer } from '../../app.types';
 import { GameService } from '../game.service';
 
-function CantAssistYourselfValidator(
-  group: AbstractControl
+function cantAssistYourselfValidator(
+  group: AbstractControl,
 ): ValidationErrors | null {
   const player = group.get('player');
   const assist = group.get('assist');
   if (player && assist && player.value === assist.value) {
     return {
-      cantAssistYourself: true
+      cantAssistYourself: true,
     };
   }
   return null;
@@ -48,8 +50,8 @@ function CantAssistYourselfValidator(
     MatInputModule,
     MatCheckboxModule,
     MatButtonModule,
-    MatProgressSpinnerModule
-  ]
+    MatProgressSpinnerModule,
+  ],
 })
 export class AddShotToGameComponent {
   private dialogRef =
@@ -63,11 +65,11 @@ export class AddShotToGameComponent {
       player: ['', Validators.required],
       assist: [''],
       scored: [true, Validators.required],
-      minute: [0, Validators.required]
+      minute: [0, Validators.required],
     },
     {
-      validators: [CantAssistYourselfValidator]
-    }
+      validators: [cantAssistYourselfValidator],
+    },
   );
   saving = false;
 
@@ -76,7 +78,7 @@ export class AddShotToGameComponent {
     this.gs
       .addShotToGame({
         game: this.game.id,
-        ...this.shotForm.value
+        ...this.shotForm.value,
       })
       .then(() => this.dialogRef.close())
       .catch(e => {

@@ -5,11 +5,11 @@ export const appRoutes: Routes = [
   {
     path: 'store-comparator',
     loadComponent: () =>
-      import('./store-comparator/store-comparator.component')
+      import('./store-comparator/store-comparator.component'),
   },
   {
     path: 'individual-comparator',
     loadComponent: () =>
-      import('./individual-comparator/individual-comparator.component')
-  }
+      import('./individual-comparator/individual-comparator.component'),
+  },
 ];

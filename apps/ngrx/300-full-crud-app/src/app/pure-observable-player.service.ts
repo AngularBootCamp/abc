@@ -1,14 +1,19 @@
-import { HttpClient } from '@angular/common/http';
+/* eslint-disable @angular-eslint/use-injectable-provided-in
+-- Effect injectables are handled by NgRx
+*/
 import { Injectable, inject } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
+
 import {
+  Observable,
+  Subject,
   firstValueFrom,
   forkJoin,
   map,
-  Observable,
   shareReplay,
   startWith,
-  Subject,
-  switchMap
+  switchMap,
 } from 'rxjs';
 
 import {
@@ -17,13 +22,13 @@ import {
   Player,
   PlayerWithStats,
   ShotOnGoal,
-  ShotOnGoalWithNames
+  ShotOnGoalWithNames,
 } from './api-types';
 import {
   cardEndpointLocation,
   gameEndpointLocation,
   goalEndpointLocation,
-  playerEndpointLocation
+  playerEndpointLocation,
 } from './api-urls';
 import { PlayerService } from './player.service';
 
@@ -37,7 +42,7 @@ export class PureObservablePlayerService extends PlayerService {
   readonly players = this.loadList.pipe(
     startWith(undefined),
     switchMap(() => this.http.get<Player[]>(playerEndpointLocation)),
-    shareReplay(1)
+    shareReplay(1),
   );
 
   player(id: string) {
@@ -46,7 +51,7 @@ export class PureObservablePlayerService extends PlayerService {
 
   async addPlayer(name: string) {
     await firstValueFrom(
-      this.http.post<Player>(playerEndpointLocation, { name })
+      this.http.post<Player>(playerEndpointLocation, { name }),
     );
     this.loadList.next();
   }
@@ -55,8 +60,8 @@ export class PureObservablePlayerService extends PlayerService {
     await firstValueFrom(
       this.http.put<Player>(`${playerEndpointLocation}/${id}`, {
         id,
-        name: newName
-      })
+        name: newName,
+      }),
     );
     this.loadList.next();
   }
@@ -76,25 +81,23 @@ export class PureObservablePlayerService extends PlayerService {
             shots.map(s =>
               forkJoin([
                 this.player(s.player),
-                this.player(s.assist)
+                this.player(s.assist),
               ]).pipe(
                 map(([player, assist]) => ({
                   ...s,
                   playerName: player.name,
-                  assistName: assist.name
-                }))
-              )
-            )
-          )
+                  assistName: assist.name,
+                })),
+              ),
+            ),
+          ),
         ),
-        startWith([])
+        startWith([]),
       );
   }
 
   playerCards(id: string) {
-    return this.http.get<Card[]>(
-      `${cardEndpointLocation}?player=${id}`
-    );
+    return this.http.get<Card[]>(`${cardEndpointLocation}?player=${id}`);
   }
 
   playerAssists(id: string): Observable<ShotOnGoalWithNames[]> {
@@ -106,18 +109,18 @@ export class PureObservablePlayerService extends PlayerService {
             shots.map(s =>
               forkJoin([
                 this.player(s.player),
-                this.player(s.assist)
+                this.player(s.assist),
               ]).pipe(
                 map(([player, assist]) => ({
                   ...s,
                   playerName: player.name,
-                  assistName: assist.name
-                }))
-              )
-            )
-          )
+                  assistName: assist.name,
+                })),
+              ),
+            ),
+          ),
         ),
-        startWith([])
+        startWith([]),
       );
   }
 
@@ -127,21 +130,21 @@ export class PureObservablePlayerService extends PlayerService {
       this.playerGames(id),
       this.playerShots(id),
       this.playerCards(id),
-      this.playerAssists(id)
+      this.playerAssists(id),
     ]).pipe(
       map(([player, games, shotsOnGoal, cards, assists]) => ({
         ...player,
         games,
         shotsOnGoal,
         cards,
-        assists
-      }))
+        assists,
+      })),
     );
   }
 
   async deletePlayer(id: string) {
     await firstValueFrom(
-      this.http.delete<void>(`${playerEndpointLocation}/${id}`)
+      this.http.delete<void>(`${playerEndpointLocation}/${id}`),
     );
     this.loadList.next();
   }

@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { BorderDirective } from './border.directive';
 import { HighlightDirective } from './highlight.directive';
@@ -12,13 +8,12 @@ import { HighlightDirective } from './highlight.directive';
   template: `
     <p>
       <span class="description">
-        Component defining border and highlight with dependency
-        injection
+        Component defining border and highlight with dependency injection
       </span>
     </p>
   `,
   hostDirectives: [HighlightDirective, BorderDirective],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HighlightAndBorderDiComponent {
   private readonly highlight = inject(HighlightDirective);

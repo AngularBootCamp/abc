@@ -9,7 +9,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  authors: []
+  authors: [],
 };
 
 export const authorFeature = createFeature({
@@ -18,7 +18,7 @@ export const authorFeature = createFeature({
     initialState,
     on(authorApiActions.loadAuthorsSuccess, (state, action) => ({
       ...state,
-      authors: [...action.authors]
-    }))
-  )
+      authors: [...action.authors],
+    })),
+  ),
 });

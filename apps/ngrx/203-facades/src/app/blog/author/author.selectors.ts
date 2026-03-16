@@ -9,6 +9,5 @@ export const { selectAuthors } = authorFeature;
 export const selectCurrentAuthor = createSelector(
   selectAuthors,
   selectCurrentAuthorId,
-  (authors, authorId) =>
-    authors.find(author => author.id === authorId)
+  (authors, authorId) => authors.find(author => author.id === authorId),
 );

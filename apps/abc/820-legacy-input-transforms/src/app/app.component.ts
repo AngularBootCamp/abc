@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { BuiltInTransformsComponent } from './built-in-transforms.component';
 import { CustomTransformsComponent } from './custom-transforms.component';
@@ -7,6 +7,7 @@ import { CustomTransformsComponent } from './custom-transforms.component';
   selector: 'app-root',
   imports: [BuiltInTransformsComponent, CustomTransformsComponent],
   styleUrl: './app.component.scss',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}

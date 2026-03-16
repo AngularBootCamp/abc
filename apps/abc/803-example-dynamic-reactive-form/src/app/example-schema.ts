@@ -5,20 +5,20 @@ export const exampleSchema: FieldDef[] = [
     fieldName: 'firstName',
     fieldLabel: 'First Name',
     fieldType: 'text',
-    mandatory: true
+    mandatory: true,
   },
 
   {
     fieldName: 'lastName',
     fieldLabel: 'Last Name',
     fieldType: 'text',
-    mandatory: true
+    mandatory: true,
   },
 
   {
     fieldName: 'dob',
     fieldLabel: 'Birthdate',
-    fieldType: 'date'
+    fieldType: 'date',
   },
 
   {
@@ -26,7 +26,7 @@ export const exampleSchema: FieldDef[] = [
     fieldLabel: 'Postal Code',
     fieldType: 'text',
     mandatory: true,
-    matchesPattern: '\\d{5}'
+    matchesPattern: '\\d{5}',
   },
 
   {
@@ -35,13 +35,13 @@ export const exampleSchema: FieldDef[] = [
     fieldType: 'password',
     mandatory: true,
     minimumLength: 3,
-    maximumLength: 10
+    maximumLength: 10,
   },
 
   {
     fieldName: 'notes',
     fieldLabel: 'Notes',
     fieldType: 'text',
-    defaultValue: ''
-  }
+    defaultValue: '',
+  },
 ];

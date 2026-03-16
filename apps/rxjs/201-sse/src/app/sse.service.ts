@@ -1,8 +1,9 @@
 import { Injectable, NgZone, inject } from '@angular/core';
+
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SseService {
   private zone = inject(NgZone);

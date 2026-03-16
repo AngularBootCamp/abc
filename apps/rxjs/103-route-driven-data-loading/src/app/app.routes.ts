@@ -4,6 +4,6 @@ export const appRoutes: Routes = [
   { path: '', redirectTo: 'employees', pathMatch: 'full' },
   {
     path: 'employees',
-    loadChildren: () => import('./employee/employee.routes')
-  }
+    loadChildren: () => import('./employee/employee.routes'),
+  },
 ];

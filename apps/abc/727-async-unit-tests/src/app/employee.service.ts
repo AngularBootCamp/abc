@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, of, catchError, delay, map } from 'rxjs';
+
+import { HttpClient } from '@angular/common/http';
+
+import { Observable, catchError, delay, map, of } from 'rxjs';
 
 import { Employee } from './employee';
 
@@ -11,7 +13,7 @@ import { Employee } from './employee';
 const apiUrl = 'https://api.angularbootcamp.com';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeeService {
   private readonly http = inject(HttpClient);
@@ -25,7 +27,7 @@ export class EmployeeService {
         console.error('handling error within getEmployees()', err);
         const mockEmployees = ['no employees could be loaded'];
         return of(mockEmployees);
-      })
+      }),
     );
   }
 
@@ -33,7 +35,7 @@ export class EmployeeService {
     const params = { q: searchText, _limit: '20' };
 
     return this.http.get<Employee[]>(apiUrl + '/employees', {
-      params
+      params,
     });
   }
 }

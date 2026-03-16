@@ -1,11 +1,14 @@
-import { AsyncPipe, JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe, JsonPipe } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+
+import { Observable, debounceTime, startWith, switchMap } from 'rxjs';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { debounceTime, Observable, startWith, switchMap } from 'rxjs';
 
 import { HeaderComponent } from '@class-materials/shared/ui-page-header';
 
@@ -23,8 +26,8 @@ import { EmployeeService } from './employee.service';
     MatFormFieldModule,
     MatInputModule,
     JsonPipe,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
 export class AppComponent {
   nameFilter = new FormControl('', { nonNullable: true });
@@ -36,7 +39,7 @@ export class AppComponent {
     this.filteredTeam = this.nameFilter.valueChanges.pipe(
       startWith(this.nameFilter.value as string),
       debounceTime(250),
-      switchMap(x => sw.getFilteredList(x))
+      switchMap(x => sw.getFilteredList(x)),
     );
   }
 }

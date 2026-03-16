@@ -1,11 +1,12 @@
 import { Injectable, inject } from '@angular/core';
+
 import { Action, Store } from '@ngrx/store';
 
 import { selectCurrentArticleId } from '../../router.selectors';
 import {
-  selectCurrentArticle,
   selectArticles,
-  selectArticlesByAuthor
+  selectArticlesByAuthor,
+  selectCurrentArticle,
 } from '../article/article.selectors';
 
 @Injectable({ providedIn: 'root' })

@@ -1,30 +1,32 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
+
 import {
   BehaviorSubject,
+  Observable,
+  Subject,
   combineLatest,
   filter,
   firstValueFrom,
   merge,
-  Observable,
   of,
   shareReplay,
   startWith,
-  Subject,
-  switchMap
+  switchMap,
 } from 'rxjs';
 
 import { playerEndpointLocation } from '../app.constants';
 import { Player } from '../app.types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PlayerService {
   private readonly http = inject(HttpClient);
 
   readonly selectedPlayerId = new BehaviorSubject<string | undefined>(
-    undefined
+    undefined,
   );
   readonly playerAdded = new Subject<void>();
   readonly playerUpdated = new Subject<string>();
@@ -44,11 +46,11 @@ export class PlayerService {
   readonly players = merge(
     this.playerAdded,
     this.playerUpdated,
-    this.playerDeleted
+    this.playerDeleted,
   ).pipe(
     startWith(undefined),
     switchMap(() => this.http.get<Player[]>(playerEndpointLocation)),
-    shareReplay({ refCount: true, bufferSize: 1 })
+    shareReplay({ refCount: true, bufferSize: 1 }),
   );
 
   /**
@@ -71,9 +73,9 @@ export class PlayerService {
       switchMap(() =>
         this.http
           .get<Player>(`${playerEndpointLocation}/${id}`)
-          .pipe(startWith(undefined))
+          .pipe(startWith(undefined)),
       ),
-      shareReplay({ refCount: true, bufferSize: 1 })
+      shareReplay({ refCount: true, bufferSize: 1 }),
     );
   }
 
@@ -91,9 +93,9 @@ export class PlayerService {
     return ids.length
       ? combineLatest(ids.map(id => this.getPlayer(id))).pipe(
           filter((players): players is Player[] =>
-            players.every(player => !!player)
+            players.every(player => !!player),
           ),
-          shareReplay({ refCount: true, bufferSize: 1 })
+          shareReplay({ refCount: true, bufferSize: 1 }),
         )
       : of([]);
   }
@@ -114,7 +116,7 @@ export class PlayerService {
    */
   async addPlayer(name: string): Promise<void> {
     await firstValueFrom(
-      this.http.post<Player>(playerEndpointLocation, { name })
+      this.http.post<Player>(playerEndpointLocation, { name }),
     );
     this.playerAdded.next();
   }
@@ -131,8 +133,8 @@ export class PlayerService {
     await firstValueFrom(
       this.http.put<Player>(`${playerEndpointLocation}/${id}`, {
         id,
-        name: newName
-      })
+        name: newName,
+      }),
     );
     this.playerUpdated.next(id);
   }
@@ -146,7 +148,7 @@ export class PlayerService {
    */
   async deletePlayer(id: string): Promise<void> {
     await firstValueFrom(
-      this.http.delete<void>(`${playerEndpointLocation}/${id}`)
+      this.http.delete<void>(`${playerEndpointLocation}/${id}`),
     );
     this.playerDeleted.next(id);
   }

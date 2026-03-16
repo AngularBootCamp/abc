@@ -2,11 +2,11 @@ import {
   AfterViewInit,
   Directive,
   ElementRef,
-  inject
+  inject,
 } from '@angular/core';
 
 @Directive({
-  selector: '[oasisFocusInput]'
+  selector: '[oasisFocusInput]',
 })
 export class FocusInputDirective implements AfterViewInit {
   private el = inject(ElementRef);

@@ -1,9 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+
+import { Subject, firstValueFrom } from 'rxjs';
+
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { Spy, createSpyFromClass } from 'jest-auto-spies';
-import { Subject, firstValueFrom } from 'rxjs';
 
 import { selectCurrentAuthorId } from '../../router.selectors';
 import { ArticleService } from '../article-list/article.service';
@@ -21,7 +24,7 @@ describe('ArticleComponent', () => {
 
   beforeEach(() => {
     articleSvc = createSpyFromClass(ArticleService, {
-      observablePropsToSpyOn: ['currentArticle']
+      observablePropsToSpyOn: ['currentArticle'],
     });
     articleSvc.currentArticle.nextWith(mockArticles[1]);
     currentArticle = articleSvc.currentArticle.returnSubject();
@@ -30,9 +33,9 @@ describe('ArticleComponent', () => {
       providers: [
         ArticleComponent,
         provideMockStore({}),
-        { provide: ArticleService, useValue: articleSvc }
+        { provide: ArticleService, useValue: articleSvc },
       ],
-      imports: [RouterTestingModule]
+      imports: [RouterTestingModule],
     });
 
     component = TestBed.inject(ArticleComponent);

@@ -1,7 +1,9 @@
 import {
   ApplicationConfig,
-  provideZoneChangeDetection
+  provideBrowserGlobalErrorListeners,
+  provideZoneChangeDetection,
 } from '@angular/core';
+
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
@@ -11,12 +13,13 @@ import { reducers } from './state';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideStore(reducers),
     provideStoreDevtools({
       maxAge: 50,
       logOnly: environment.production,
-      trace: true
-    })
-  ]
+      trace: true,
+    }),
+  ],
 };

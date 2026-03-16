@@ -1,5 +1,7 @@
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+
 import { map } from 'rxjs';
 
 import { CarStateService, wheelTypes } from '../car-state.service';
@@ -8,7 +10,8 @@ import { CarStateService, wheelTypes } from '../car-state.service';
   selector: 'app-wheel-selector',
   templateUrl: './wheel-selector.component.html',
   styleUrl: './wheel-selector.component.scss',
-  imports: [AsyncPipe]
+  imports: [AsyncPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WheelSelectorComponent {
   private readonly carStateService = inject(CarStateService);
@@ -19,9 +22,9 @@ export class WheelSelectorComponent {
     map(carState =>
       carState.wheelQtys.map((q, index) => ({
         wt: wheelTypes[index],
-        q
-      }))
-    )
+        q,
+      })),
+    ),
   );
 
   protected more(i: number) {

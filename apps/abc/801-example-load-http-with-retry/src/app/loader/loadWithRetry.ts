@@ -2,14 +2,14 @@ import {
   BehaviorSubject,
   Observable,
   defer,
-  merge,
-  timer,
   delayWhen,
   filter,
   map,
+  merge,
   retryWhen,
   switchMap,
-  tap
+  tap,
+  timer,
 } from 'rxjs';
 
 export enum LoadResultStatus {
@@ -17,7 +17,7 @@ export enum LoadResultStatus {
   Retrying,
   Waiting,
   Success,
-  Error
+  Error,
 }
 
 export const statusStrings = [
@@ -25,7 +25,7 @@ export const statusStrings = [
   'Retrying',
   'Waiting to Retry',
   'Success',
-  'Error'
+  'Error',
 ];
 
 export interface LoadResult<T> {
@@ -49,20 +49,20 @@ const defaultOptions: Options = {
   attempts: 3,
   retryDelayMs: 2000,
   retryBackoffCoefficient: 1.5,
-  retryMaxDelayMs: 30000
+  retryMaxDelayMs: 30000,
 };
 
 export function loadWithRetry<S, T>(
   source: Observable<S>,
   producer: (key: S) => Observable<T>,
-  opts?: LoadWithRetryOptions
+  opts?: LoadWithRetryOptions,
 ): Observable<LoadResult<T>> {
   const options = { ...defaultOptions, ...opts };
 
   return source.pipe(
     switchMap(key => {
       const notifications = new BehaviorSubject<LoadResult<T>>({
-        status: LoadResultStatus.InProgress
+        status: LoadResultStatus.InProgress,
       });
       let attempt = 0;
       return merge(
@@ -71,48 +71,47 @@ export function loadWithRetry<S, T>(
           attempt++;
           return producer(key);
         }).pipe(
+          /* eslint-disable-next-line @typescript-eslint/no-deprecated */
           retryWhen(errors =>
             errors.pipe(
               tap(error =>
                 notifications.next({
                   status: LoadResultStatus.Error,
                   error,
-                  willRetry: attempt < options.attempts
-                })
+                  willRetry: attempt < options.attempts,
+                }),
               ),
               filter(_ => attempt < options.attempts),
               tap(_ =>
                 notifications.next({
-                  status: LoadResultStatus.Waiting
-                })
+                  status: LoadResultStatus.Waiting,
+                }),
               ),
               delayWhen(() => retryDelay(options, attempt)),
               tap(_ =>
                 notifications.next({
-                  status: LoadResultStatus.Retrying
-                })
-              )
-            )
+                  status: LoadResultStatus.Retrying,
+                }),
+              ),
+            ),
           ),
           map((payload: T) => ({
             status: LoadResultStatus.Success,
-            payload
-          }))
-        )
+            payload,
+          })),
+        ),
       );
-    })
+    }),
   );
 }
 
-function retryDelay(
-  options: Options,
-  attempt: number
-): Observable<0> {
+function retryDelay(options: Options, attempt: number): Observable<0> {
   const jitter = (Math.random() - 0.5) * options.retryDelayMs * 0.5;
-  let delay =
+  const delay = Math.min(
+    options.retryMaxDelayMs,
     options.retryDelayMs *
       Math.pow(options.retryBackoffCoefficient, attempt - 1) +
-    jitter;
-  delay = Math.min(delay, options.retryMaxDelayMs);
+      jitter,
+  );
   return timer(delay);
 }

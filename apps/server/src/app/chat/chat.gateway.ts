@@ -3,7 +3,7 @@ import {
   MessageBody,
   SubscribeMessage,
   WebSocketGateway,
-  WebSocketServer
+  WebSocketServer,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 
@@ -20,7 +20,7 @@ export class ChatGateway {
   @SubscribeMessage('chat')
   async onChat(
     @ConnectedSocket() _client: Socket,
-    @MessageBody() message: Message
+    @MessageBody() message: Message,
   ): Promise<void> {
     this.messages.push(message);
     this.server?.emit('chat', this.messages);

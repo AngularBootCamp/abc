@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { FirstComponent } from './first.component';
 import { SecondComponent } from './second.component';
@@ -14,6 +14,7 @@ import { ThirdComponent } from './third.component';
       <app-third />
     </div>
   `,
-  imports: [FirstComponent, SecondComponent, ThirdComponent]
+  imports: [FirstComponent, SecondComponent, ThirdComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}

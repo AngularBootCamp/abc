@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
+
 import { map, tap } from 'rxjs';
 
 export interface Company {
@@ -21,7 +23,7 @@ function logWithTimestamp(messageList: unknown[]) {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CompanyLoader {
   private readonly http = inject(HttpClient);
@@ -29,7 +31,7 @@ export class CompanyLoader {
   loadOneCompany() {
     return this.http.get<Company[]>(apiUrl + '/companies').pipe(
       tap(companies => logWithTimestamp(companies)),
-      map(companies => companies[0])
+      map(companies => companies[0]),
     );
   }
 }

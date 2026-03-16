@@ -1,22 +1,24 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
+
 import {
+  Observable,
   combineLatest,
   filter,
   map,
   merge,
-  Observable,
   of,
   shareReplay,
   startWith,
-  switchMap
+  switchMap,
 } from 'rxjs';
 
 import {
+  CardTypes,
   cardEndpointLocation,
-  cardTypes,
   gameEndpointLocation,
-  goalEndpointLocation
+  goalEndpointLocation,
 } from '../app.constants';
 import {
   Card,
@@ -25,14 +27,14 @@ import {
   PlayerStatsByGame,
   PlayerWithStats,
   ShotOnGoal,
-  ShotOnGoalWithNames
+  ShotOnGoalWithNames,
 } from '../app.types';
 import { GameService } from '../game/game.service';
 
 import { PlayerService } from './player.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PlayerStatsService {
   private readonly http = inject(HttpClient);
@@ -53,7 +55,7 @@ export class PlayerStatsService {
   selectedPlayerWithStats = this.playerService.selectedPlayerId.pipe(
     filter((id): id is string => !!id),
     switchMap(id => this.getPlayerWithStats(id)),
-    shareReplay({ refCount: true, bufferSize: 1 })
+    shareReplay({ refCount: true, bufferSize: 1 }),
   );
 
   /**
@@ -68,7 +70,7 @@ export class PlayerStatsService {
    */
   gameBreakdownForSelectedPlayer = this.selectedPlayerWithStats.pipe(
     map(player => createGameBreakdown(player)),
-    shareReplay({ refCount: true, bufferSize: 1 })
+    shareReplay({ refCount: true, bufferSize: 1 }),
   );
 
   /**
@@ -88,18 +90,18 @@ export class PlayerStatsService {
     return merge(
       this.playerService.playerDeleted.pipe(
         startWith(id),
-        filter(playerDeletedId => playerDeletedId === id)
+        filter(playerDeletedId => playerDeletedId === id),
       ),
       this.gameService.gameUpdated,
-      this.gameService.gameDeleted
+      this.gameService.gameDeleted,
     ).pipe(
       switchMap(() =>
         this.http
           .get<Game[]>(gameEndpointLocation)
-          .pipe(startWith([] as Game[]))
+          .pipe(startWith([] as Game[])),
       ),
       map(games => games.filter(g => g.players.includes(id))),
-      shareReplay({ refCount: true, bufferSize: 1 })
+      shareReplay({ refCount: true, bufferSize: 1 }),
     );
   }
 
@@ -127,16 +129,16 @@ export class PlayerStatsService {
       this.gameService.gameUpdated,
       merge(
         this.playerService.playerUpdated,
-        this.playerService.playerDeleted
+        this.playerService.playerDeleted,
       ).pipe(
         startWith(id),
-        filter(playerUpdatedId => playerUpdatedId === id)
-      )
+        filter(playerUpdatedId => playerUpdatedId === id),
+      ),
     ).pipe(
       switchMap(() =>
         this.http
           .get<ShotOnGoal[]>(`${goalEndpointLocation}?player=${id}`)
-          .pipe(startWith([] as ShotOnGoal[]))
+          .pipe(startWith([] as ShotOnGoal[])),
       ),
       switchMap(shots =>
         shots.length
@@ -145,15 +147,13 @@ export class PlayerStatsService {
                 this.playerService
                   .getPlayers([s.player, s.assist])
                   .pipe(
-                    map(([player, assist]) =>
-                      formShot(s, player, assist)
-                    )
-                  )
-              )
+                    map(([player, assist]) => formShot(s, player, assist)),
+                  ),
+              ),
             )
-          : of([])
+          : of([]),
       ),
-      shareReplay({ refCount: true, bufferSize: 1 })
+      shareReplay({ refCount: true, bufferSize: 1 }),
     );
   }
 
@@ -175,15 +175,15 @@ export class PlayerStatsService {
       this.gameService.gameUpdated,
       this.playerService.playerDeleted.pipe(
         startWith(id),
-        filter(playerUpdatedId => playerUpdatedId === id)
-      )
+        filter(playerUpdatedId => playerUpdatedId === id),
+      ),
     ).pipe(
       switchMap(() =>
         this.http
           .get<Card[]>(`${cardEndpointLocation}?player=${id}`)
-          .pipe(startWith([] as Card[]))
+          .pipe(startWith([] as Card[])),
       ),
-      shareReplay({ refCount: true, bufferSize: 1 })
+      shareReplay({ refCount: true, bufferSize: 1 }),
     );
   }
 
@@ -208,16 +208,16 @@ export class PlayerStatsService {
       this.gameService.gameUpdated,
       merge(
         this.playerService.playerUpdated,
-        this.playerService.playerDeleted
+        this.playerService.playerDeleted,
       ).pipe(
         startWith(id),
-        filter(playerUpdatedId => playerUpdatedId === id)
-      )
+        filter(playerUpdatedId => playerUpdatedId === id),
+      ),
     ).pipe(
       switchMap(() =>
         this.http
           .get<ShotOnGoal[]>(`${goalEndpointLocation}?assist=${id}`)
-          .pipe(startWith([] as ShotOnGoal[]))
+          .pipe(startWith([] as ShotOnGoal[])),
       ),
       switchMap(shots =>
         shots.length
@@ -226,15 +226,13 @@ export class PlayerStatsService {
                 this.playerService
                   .getPlayers([s.player, s.assist])
                   .pipe(
-                    map(([player, assist]) =>
-                      formShot(s, player, assist)
-                    )
-                  )
-              )
+                    map(([player, assist]) => formShot(s, player, assist)),
+                  ),
+              ),
             )
-          : of([])
+          : of([]),
       ),
-      shareReplay({ refCount: true, bufferSize: 1 })
+      shareReplay({ refCount: true, bufferSize: 1 }),
     );
   }
 
@@ -258,16 +256,16 @@ export class PlayerStatsService {
       this.getPlayerGames(id),
       this.getPlayerShots(id),
       this.getPlayerCards(id),
-      this.getPlayerAssists(id)
+      this.getPlayerAssists(id),
     ]).pipe(
       map(([player, games, shotsOnGoal, cards, assists]) => ({
         ...player,
         games,
         shotsOnGoal,
         cards,
-        assists
+        assists,
       })),
-      shareReplay({ refCount: true, bufferSize: 1 })
+      shareReplay({ refCount: true, bufferSize: 1 }),
     );
   }
 }
@@ -276,41 +274,37 @@ export class PlayerStatsService {
  * Brings together various pieces of a shot to form
  * a more detailed representation.
  *
- * @param shot basic shot details to be added to the detailed format
- * @param player player who made the shot
- * @param assist player who assisted on the shot
+ * @param shot - basic shot details to be added to the detailed format
+ * @param player - player who made the shot
+ * @param assist - player who assisted on the shot
  */
 function formShot(shot: ShotOnGoal, player: Player, assist: Player) {
   return {
     ...shot,
     playerName: player.name,
-    assistName: assist.name
+    assistName: assist.name,
   };
 }
 
 function createGameBreakdown(
-  player: PlayerWithStats
+  player: PlayerWithStats,
 ): PlayerStatsByGame[] {
   return player.games.map(game => ({
     name: game.name,
     location: game.location,
     date: game.date,
-    shots: player.shotsOnGoal.filter(shot => shot.game === game.id)
-      .length,
+    shots: player.shotsOnGoal.filter(shot => shot.game === game.id).length,
     goals: player.shotsOnGoal
       .filter(shot => shot.game === game.id)
       .filter(sog => sog.scored).length,
-    assists: player.assists.filter(shot => shot.game === game.id)
-      .length,
+    assists: player.assists.filter(shot => shot.game === game.id).length,
     redCard:
       player.cards.filter(
-        card =>
-          card.game === game.id && card.type === cardTypes['red']
+        card => card.game === game.id && card.type === CardTypes['red'],
       ).length > 0,
     yellowCard:
       player.cards.filter(
-        card =>
-          card.game === game.id && card.type === cardTypes['yellow']
-      ).length > 0
+        card => card.game === game.id && card.type === CardTypes['yellow'],
+      ).length > 0,
   }));
 }

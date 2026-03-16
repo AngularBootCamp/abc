@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
+
 import { Observable, delay } from 'rxjs';
 
 import { Employee } from './employee';
@@ -21,7 +23,7 @@ function randomDelay() {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeeLoaderService {
   private readonly http = inject(HttpClient);
@@ -31,7 +33,7 @@ export class EmployeeLoaderService {
 
     return this.http
       .get<Employee[]>(apiUrl + '/employees', {
-        params
+        params,
       })
       .pipe(delay(randomDelay()));
   }

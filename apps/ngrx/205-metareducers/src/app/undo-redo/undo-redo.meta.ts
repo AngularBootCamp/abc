@@ -20,14 +20,14 @@ export interface UndoRedoState {
 
 const initialState: UndoRedoState = {
   undoOperations: [],
-  redoOperations: []
+  redoOperations: [],
 };
 
 const UNDOABLE_ACTIONS: string[] = [
   taskPageActions.taskCompleted.type,
   taskPageActions.taskReset.type,
   appApiActions.clearStateSuccess.type,
-  userProfileApiActions.saveUserProfileSuccess.type
+  userProfileApiActions.saveUserProfileSuccess.type,
 ];
 
 const UNDOABLE_KEYS = ['tasks', 'userProfile'];
@@ -35,7 +35,7 @@ const UNDOABLE_KEYS = ['tasks', 'userProfile'];
 export const undoRedoFeatureKey = 'undoRedo';
 
 export function undoRedoMeta(
-  reducer: ActionReducer<any>
+  reducer: ActionReducer<any>,
 ): ActionReducer<AppState> {
   return (state, action) => {
     function onUndo() {
@@ -47,7 +47,7 @@ export function undoRedoMeta(
       const previous = undoOperations[undoOperations.length - 1];
       const newUndoOperations = undoOperations.slice(
         0,
-        undoOperations.length - 1
+        undoOperations.length - 1,
       );
 
       return {
@@ -58,11 +58,11 @@ export function undoRedoMeta(
           redoOperations: [
             {
               type: previous.type,
-              state: extractState(state)
+              state: extractState(state),
             },
-            ...state.undoRedo.redoOperations
-          ]
-        }
+            ...state.undoRedo.redoOperations,
+          ],
+        },
       };
     }
 
@@ -81,10 +81,10 @@ export function undoRedoMeta(
         undoRedo: {
           undoOperations: [
             ...state.undoRedo.undoOperations,
-            { type: next.type, state: extractState(state) }
+            { type: next.type, state: extractState(state) },
           ],
-          redoOperations: newFuture
-        }
+          redoOperations: newFuture,
+        },
       };
     }
 
@@ -103,10 +103,10 @@ export function undoRedoMeta(
             undoRedo: {
               undoOperations: [
                 ...state.undoRedo.undoOperations,
-                { type: action.type, state: extractState(state) }
+                { type: action.type, state: extractState(state) },
               ],
-              redoOperations: []
-            }
+              redoOperations: [],
+            },
           };
         } else {
           return newState;
@@ -119,7 +119,7 @@ export function undoRedoMeta(
 /**
  * Retrieves undoable part of the state.
  *
- * @param state application state
+ * @param state - application state
  */
 function extractState(state: Partial<AppState>) {
   return pick(state, UNDOABLE_KEYS);

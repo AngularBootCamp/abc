@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
-  output
+  output,
 } from '@angular/core';
 
 import { TableOptions } from '../employees.service';
@@ -11,13 +11,11 @@ import { TableOptions } from '../employees.service';
   selector: 'app-employee-list-header',
   templateUrl: './employee-list-header.component.html',
   styleUrl: './employee-list-header.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeListHeaderComponent {
   public readonly propertyName = input.required<string>();
   public readonly display = input.required<string>();
-  public readonly options = input.required<
-    TableOptions | undefined
-  >();
+  public readonly options = input.required<TableOptions | undefined>();
   public readonly clicked = output<string>();
 }

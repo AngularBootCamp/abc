@@ -1,7 +1,9 @@
 import { TestBed } from '@angular/core/testing';
+
+import { firstValueFrom } from 'rxjs';
+
 import { subscribeSpyTo } from '@hirez_io/observer-spy';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { firstValueFrom } from 'rxjs';
 
 import { mockAuthors } from '../author/mock.authors';
 
@@ -18,11 +20,11 @@ describe('AuthorListComponent', () => {
         provideMockStore({
           initialState: {
             author: {
-              authors: mockAuthors
-            }
-          }
-        })
-      ]
+              authors: mockAuthors,
+            },
+          },
+        }),
+      ],
     });
 
     component = TestBed.inject(AuthorListComponent);
@@ -43,8 +45,8 @@ describe('AuthorListComponent', () => {
     it('should handle empty authors', async () => {
       mockStore.setState({
         author: {
-          authors: []
-        }
+          authors: [],
+        },
       });
 
       const observerSpy = subscribeSpyTo(component.authors$);

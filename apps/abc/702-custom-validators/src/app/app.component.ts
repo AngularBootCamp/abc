@@ -1,39 +1,36 @@
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import { JsonPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
 import {
   NonNullableFormBuilder,
+  ReactiveFormsModule,
   Validators,
-  ReactiveFormsModule
 } from '@angular/forms';
 
-import {
-  fiveValidator,
-  matchingPasswordValidator
-} from './validators';
+import { fiveValidator, matchingPasswordValidator } from './validators';
 // import { trivialValidator, matchingFieldValidator } from './validators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [ReactiveFormsModule, JsonPipe]
+  imports: [ReactiveFormsModule, JsonPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  protected readonly loginFormGroup = inject(
-    NonNullableFormBuilder
-  ).group(
+  protected readonly loginFormGroup = inject(NonNullableFormBuilder).group(
     {
       login: ['user', Validators.required],
       password: [
         'defaultPass',
-        [Validators.minLength(3), Validators.required]
+        [Validators.minLength(3), Validators.required],
       ],
       enterFive: ['5', fiveValidator],
-      confirmPassword: ['pass', Validators.minLength(3)]
+      confirmPassword: ['pass', Validators.minLength(3)],
     },
     {
-      validators: matchingPasswordValidator
+      validators: matchingPasswordValidator,
       // validators: matchingFieldValidator('password', 'confirmPassword', 'mismatched')
-    }
+    },
   );
 
   protected onLogin(): void {

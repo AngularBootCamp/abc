@@ -1,8 +1,11 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { MatListModule } from '@angular/material/list';
+
+import { AsyncPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
+
 import { filter } from 'rxjs';
+
+import { MatListModule } from '@angular/material/list';
 
 import { AuthorService } from '../author/author.service';
 
@@ -10,10 +13,10 @@ import { AuthorService } from '../author/author.service';
   selector: 'app-author-list',
   templateUrl: './author-list.component.html',
   styleUrls: ['./author-list.component.scss'],
-  imports: [MatListModule, RouterLink, AsyncPipe]
+  imports: [MatListModule, RouterLink, AsyncPipe],
 })
 export class AuthorListComponent {
   readonly authors$ = inject(AuthorService).authors.pipe(
-    filter(authors => !!authors.length)
+    filter(authors => !!authors.length),
   );
 }

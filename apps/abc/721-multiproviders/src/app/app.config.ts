@@ -1,20 +1,24 @@
-import { ApplicationConfig } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+} from '@angular/core';
 
 import { ConsoleLogHandler } from './loggers/console-log-handler';
-import { LogHandlers } from './loggers/log-handler';
+import { LOG_HANDLERS } from './loggers/log-handler';
 import { TelemetryLogHandler } from './loggers/telemetry-log-handler';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideBrowserGlobalErrorListeners(),
     {
-      provide: LogHandlers,
+      provide: LOG_HANDLERS,
       useClass: ConsoleLogHandler,
-      multi: true
+      multi: true,
     },
     {
-      provide: LogHandlers,
+      provide: LOG_HANDLERS,
       useClass: TelemetryLogHandler,
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 };

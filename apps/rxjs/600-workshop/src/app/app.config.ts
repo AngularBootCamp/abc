@@ -1,16 +1,20 @@
 import {
   ApplicationConfig,
-  provideZoneChangeDetection
+  provideBrowserGlobalErrorListeners,
+  provideZoneChangeDetection,
 } from '@angular/core';
-import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
+
 import { provideRouter } from '@angular/router';
+
+import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 
 import { appRoutes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideMomentDateAdapter(),
-    provideRouter(appRoutes)
-  ]
+    provideRouter(appRoutes),
+  ],
 };

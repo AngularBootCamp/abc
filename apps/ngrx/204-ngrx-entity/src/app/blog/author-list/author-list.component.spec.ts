@@ -1,7 +1,9 @@
 import { TestBed } from '@angular/core/testing';
+
+import { Subject, firstValueFrom } from 'rxjs';
+
 import { subscribeSpyTo } from '@hirez_io/observer-spy';
 import { Spy, createSpyFromClass } from 'jest-auto-spies';
-import { Subject, firstValueFrom } from 'rxjs';
 
 import { AuthorService } from '../author/author.service';
 import { mockAuthors } from '../author/mock.authors';
@@ -16,7 +18,7 @@ describe('AuthorListComponent', () => {
 
   beforeEach(() => {
     authorSvc = createSpyFromClass(AuthorService, {
-      observablePropsToSpyOn: ['authors']
+      observablePropsToSpyOn: ['authors'],
     });
     authorSvc.authors.nextWith(mockAuthors);
     authors = authorSvc.authors.returnSubject();
@@ -24,8 +26,8 @@ describe('AuthorListComponent', () => {
     TestBed.configureTestingModule({
       providers: [
         AuthorListComponent,
-        { provide: AuthorService, useValue: authorSvc }
-      ]
+        { provide: AuthorService, useValue: authorSvc },
+      ],
     });
 
     component = TestBed.inject(AuthorListComponent);

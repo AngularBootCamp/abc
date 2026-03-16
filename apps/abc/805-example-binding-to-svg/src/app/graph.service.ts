@@ -263,12 +263,12 @@ const names = [
   'Mr. Dannie Hills',
   'Mr. Bessie Schmidt',
   'Shaun Towne',
-  'Kiara Williamson IV'
+  'Kiara Williamson IV',
 ];
 
 const mockData: RelMap = {
   people: [],
-  relationships: []
+  relationships: [],
 };
 
 // Generate mock data from the list of names.
@@ -277,28 +277,28 @@ names.forEach((name, index) => {
   mockData.people.push({
     displayName: name,
     index,
-    color: `var(--abc-category-${(index % 8) + 1}-color)`
+    color: `var(--abc-category-${(index % 8) + 1}-color)`,
   });
 
   // Connect this node to some other random node.
   mockData.relationships.push({
     source: name,
-    target: names[Math.floor(Math.random() * names.length)]
+    target: names[Math.floor(Math.random() * names.length)],
   });
 });
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GraphService {
   // Pretend we're loading data from an external source.
   private readonly peopleAndRelationships = signal(mockData);
 
-  readonly people = computed(
-    () => this.peopleAndRelationships().people
+  public readonly people = computed(
+    () => this.peopleAndRelationships().people,
   );
 
-  readonly relationships = computed(
-    () => this.peopleAndRelationships().relationships
+  public readonly relationships = computed(
+    () => this.peopleAndRelationships().relationships,
   );
 }

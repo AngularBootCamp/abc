@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 
 import { AdminComponent } from './admin.component';
-import { AuthGuard } from './auth.guard';
+import { authGuard } from './auth.guard';
 import { BigFormComponent } from './big-form.component';
 import { ForbiddenComponent } from './forbidden.component';
-import { FormDeactivateGuard } from './form-deactivate.guard';
+import { formDeactivateGuard } from './form-deactivate.guard';
 import { HomeComponent } from './home.component';
 import { NameComponent } from './name.component';
 
@@ -16,11 +16,11 @@ export const appRoutes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [AuthGuard]
+    canActivate: [authGuard],
   },
   {
     path: 'bigform',
     component: BigFormComponent,
-    canDeactivate: [FormDeactivateGuard]
-  }
+    canDeactivate: [formDeactivateGuard],
+  },
 ];

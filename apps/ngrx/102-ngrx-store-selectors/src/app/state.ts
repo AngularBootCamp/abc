@@ -10,8 +10,8 @@ export const globalActions = createActionGroup({
     'Tasks Received': props<{
       workTasks: WorkTaskState;
       homeTasks: HomeTaskState;
-    }>()
-  }
+    }>(),
+  },
 });
 
 export interface AppState {

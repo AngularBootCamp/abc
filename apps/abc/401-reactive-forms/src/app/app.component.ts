@@ -1,14 +1,15 @@
-import { JsonPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  signal
+  signal,
 } from '@angular/core';
+
+import { JsonPipe } from '@angular/common';
 import {
   FormBuilder,
+  ReactiveFormsModule,
   Validators,
-  ReactiveFormsModule
 } from '@angular/forms';
 
 @Component({
@@ -16,7 +17,7 @@ import {
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   imports: [ReactiveFormsModule, JsonPipe],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   // Consider using NonNullableFormBuilder if you never set or want to
@@ -32,7 +33,7 @@ export class AppComponent {
     immediateSupervisor: [''],
     phoneNumber: ['', Validators.pattern(/^\d{3}-\d{3}-\d{4}$/)],
     email: ['', [Validators.email, Validators.required]],
-    status: ['Active', Validators.required]
+    status: ['Active', Validators.required],
   });
 
   protected readonly departments = signal(['HR', 'Payroll']);

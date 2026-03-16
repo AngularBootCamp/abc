@@ -2,10 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   Signal,
-  inject
+  inject,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+
 import { ActivatedRoute } from '@angular/router';
+
 import { map, of, switchMap } from 'rxjs';
 
 import { Employee } from '../employee';
@@ -21,9 +23,9 @@ import { EmployeeLoaderService } from '../employee-loader.service';
   imports: [
     EmployeeFilterComponent,
     EmployeeListComponent,
-    EmployeeDetailComponent
+    EmployeeDetailComponent,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class EmployeeViewerComponent {
   protected readonly filteredList: Signal<Employee[]>;
@@ -36,9 +38,9 @@ export default class EmployeeViewerComponent {
     this.filteredList = toSignal(
       route.queryParamMap.pipe(
         map(params => params.get('employeeFilter')),
-        switchMap(filter => employeeLoader.getList(filter ?? ''))
+        switchMap(filter => employeeLoader.getList(filter ?? '')),
       ),
-      { initialValue: [] }
+      { initialValue: [] },
     );
 
     this.selectedEmployee = toSignal(
@@ -50,8 +52,8 @@ export default class EmployeeViewerComponent {
           } else {
             return of(undefined);
           }
-        })
-      )
+        }),
+      ),
     );
   }
 }

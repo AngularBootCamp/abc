@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+
 import { Spy, createSpyFromClass } from 'jest-auto-spies';
 
 import { AppComponent } from './app.component';
 import { HelloService } from './hello.service';
 
-/**
- * Testing a component class without the DOM (same as a service test)
- */
+// Testing a component class without the DOM (same as a service test)
+
 describe('App Component', () => {
   let appComponent: AppComponent;
   let helloService: Spy<HelloService>;
@@ -19,9 +19,9 @@ describe('App Component', () => {
         AppComponent,
         {
           provide: HelloService,
-          useValue: helloService
-        }
-      ]
+          useValue: helloService,
+        },
+      ],
     });
 
     appComponent = TestBed.inject(AppComponent);

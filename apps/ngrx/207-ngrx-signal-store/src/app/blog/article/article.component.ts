@@ -1,15 +1,18 @@
 import {
   Component,
+  Signal,
   computed,
   effect,
   inject,
-  Signal
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+
 import { FormControl } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
+
 import { filter } from 'rxjs';
+
+import { MatCardModule } from '@angular/material/card';
 
 import { DisplayOrEditComponent } from '@class-materials/shared/ui-display-or-edit';
 
@@ -23,7 +26,7 @@ import { ArticleStore } from './article.store';
   selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
-  imports: [DisplayOrEditComponent, MatCardModule]
+  imports: [DisplayOrEditComponent, MatCardModule],
 })
 export class ArticleComponent {
   private readonly articleStore = inject(ArticleStore);
@@ -37,8 +40,8 @@ export class ArticleComponent {
 
     const authorIdSignal = toSignal(
       authorService.currentAuthorId.pipe(
-        filter((authorId): authorId is number => !!authorId)
-      )
+        filter((authorId): authorId is number => !!authorId),
+      ),
     );
     effect(() => {
       const article = this.articleStore.currentArticle();
@@ -59,7 +62,7 @@ export class ArticleComponent {
         setTimeout(() => {
           void router.navigate([], {
             queryParams: { [articleIdQueryParam]: undefined },
-            queryParamsHandling: 'merge'
+            queryParamsHandling: 'merge',
           });
         });
       }
@@ -88,14 +91,14 @@ export class ArticleComponent {
   setTitle(article: Article) {
     this.articleStore.updateArticle({
       ...article,
-      title: this.title.value
+      title: this.title.value,
     });
   }
 
   setBody(article: Article) {
     this.articleStore.updateArticle({
       ...article,
-      body: this.body.value
+      body: this.body.value,
     });
   }
 }

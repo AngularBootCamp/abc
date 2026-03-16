@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
+
 import { Observable, map } from 'rxjs';
 
 export interface Employee {
@@ -18,7 +20,7 @@ export interface Employee {
 const apiUrl = 'https://api.angularbootcamp.com';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeeLoaderService {
   private readonly http = inject(HttpClient);
@@ -30,8 +32,6 @@ export class EmployeeLoaderService {
   }
 
   getDetails(employeeId: string): Observable<Employee> {
-    return this.http.get<Employee>(
-      `${apiUrl}/employees/${employeeId}`
-    );
+    return this.http.get<Employee>(`${apiUrl}/employees/${employeeId}`);
   }
 }

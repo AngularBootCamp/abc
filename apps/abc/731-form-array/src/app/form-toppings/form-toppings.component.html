@@ -2,10 +2,6 @@
 
 <button (click)="addNewTopping()">Add Topping</button>
 
-@if (!toppingControls.length) {
-  <div>No Toppings Chosen...</div>
-}
-
 @for (topping of toppingControls; track topping) {
   @let toppingNumber = $index + 1;
   @let toppingID = 'topping' + toppingNumber;
@@ -19,4 +15,6 @@
     />
     <button (click)="removeTopping($index)">x</button>
   </div>
+} @empty {
+  <div>No Toppings Chosen...</div>
 }

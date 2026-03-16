@@ -1,18 +1,21 @@
 import {
   ApplicationConfig,
-  provideZoneChangeDetection
+  importProvidersFrom,
+  provideBrowserGlobalErrorListeners,
+  provideZoneChangeDetection,
 } from '@angular/core';
-import { importProvidersFrom } from '@angular/core';
+
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 
 const config: SocketIoConfig = {
   url: 'http://localhost:8085',
-  options: {}
+  options: {},
 };
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    importProvidersFrom(SocketIoModule.forRoot(config))
-  ]
+    importProvidersFrom(SocketIoModule.forRoot(config)),
+  ],
 };

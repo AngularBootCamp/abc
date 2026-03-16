@@ -5,18 +5,19 @@ import {
   effect,
   input,
   numberAttribute,
-  signal
+  signal,
 } from '@angular/core';
+
 import { Subscription, interval, map } from 'rxjs';
 
 @Directive({
   selector: '[appBlink]',
   host: {
-    '[style.visibility]': 'viz()'
-  }
+    '[style.visibility]': 'viz()',
+  },
 })
 export class BlinkDirective implements OnDestroy, OnInit {
-  protected viz = signal('visible');
+  protected readonly viz = signal('visible');
 
   public readonly speed = input(500, { transform: numberAttribute });
 
@@ -37,9 +38,7 @@ export class BlinkDirective implements OnDestroy, OnInit {
 
   start(ms: number) {
     this.intervalSubscription = interval(ms)
-      .pipe(
-        map(() => (this.viz() === 'visible' ? 'hidden' : 'visible'))
-      )
+      .pipe(map(() => (this.viz() === 'visible' ? 'hidden' : 'visible')))
       .subscribe(visibility => this.viz.set(visibility));
   }
 

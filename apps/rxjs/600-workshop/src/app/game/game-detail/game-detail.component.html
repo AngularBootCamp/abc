@@ -1,15 +1,13 @@
 @if (gameDetails | async; as game) {
   <div class="game-title">
-    <h1>
-      {{ game.name }} - {{ game.location }} - {{ game.date | date }}
-    </h1>
+    <h1>{{ game.name }} - {{ game.location }} - {{ game.date | date }}</h1>
     <div>
       <button mat-raised-button color="warn" (click)="delete()">
         Delete
         <mat-icon>delete</mat-icon>
       </button>
       @if (deleting) {
-        <mat-spinner diameter="20"></mat-spinner>
+        <mat-spinner diameter="20" />
       }
     </div>
   </div>

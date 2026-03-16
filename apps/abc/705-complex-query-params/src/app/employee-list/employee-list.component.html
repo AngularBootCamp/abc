@@ -17,10 +17,7 @@
     @for (employee of employees(); track employee.id) {
       <tr>
         <td>
-          <a
-            routerLink
-            [queryParams]="{ filter: employee.firstName }"
-          >
+          <a routerLink [queryParams]="{ filter: employee.firstName }">
             {{ employee.firstName }}
           </a>
         </td>

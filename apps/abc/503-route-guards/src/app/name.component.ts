@@ -8,6 +8,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       This is another example component.
     </article>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NameComponent {}

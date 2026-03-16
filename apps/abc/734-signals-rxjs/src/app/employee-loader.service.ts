@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
+
 import { Observable, delay, of } from 'rxjs';
 
 import { Employee } from './employee';
@@ -17,7 +19,7 @@ const apiLatency = 100;
 const apiJitter = 100;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeeLoaderService {
   private readonly http = inject(HttpClient);
@@ -27,14 +29,12 @@ export class EmployeeLoaderService {
 
     return this.http
       .get<Employee[]>(apiUrl + '/employees', {
-        params
+        params,
       })
       .pipe(delay(randomDelay()));
   }
 
-  getDetails(
-    employeeId: number | null
-  ): Observable<Employee | undefined> {
+  getDetails(employeeId: number | null): Observable<Employee | undefined> {
     if (employeeId === null) {
       return of(undefined);
     } else {

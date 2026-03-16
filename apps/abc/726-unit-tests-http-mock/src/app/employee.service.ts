@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, of, catchError, map } from 'rxjs';
+
+import { HttpClient } from '@angular/common/http';
+
+import { Observable, catchError, map, of } from 'rxjs';
 
 import { Employee } from './employee';
 import { environment } from './environment';
@@ -8,7 +10,7 @@ import { environment } from './environment';
 const apiUrl = environment.apiUrl;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeeService {
   private readonly http = inject(HttpClient);
@@ -21,7 +23,7 @@ export class EmployeeService {
         console.error('handling error within getEmployees()', err);
         const mockEmployees = ['no employees could be loaded'];
         return of(mockEmployees);
-      })
+      }),
     );
   }
 }

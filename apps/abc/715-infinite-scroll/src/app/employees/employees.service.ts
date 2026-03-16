@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
 
 export interface Employee {
   id: number;
@@ -18,7 +19,7 @@ const apiUrl = 'https://api.angularbootcamp.com';
 const pageSize = 10;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeeService {
   private readonly http = inject(HttpClient);
@@ -26,11 +27,11 @@ export class EmployeeService {
   loadEmployees(pageIndex: number) {
     const params = {
       _start: pageIndex * pageSize,
-      _limit: pageSize
+      _limit: pageSize,
     };
 
     return this.http.get<Employee[]>(apiUrl + '/employees/', {
-      params
+      params,
     });
   }
 }

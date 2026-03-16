@@ -1,6 +1,11 @@
+/* eslint-disable @angular-eslint/use-injectable-provided-in
+-- Effect injectables are handled by NgRx
+*/
 import { Injectable, inject } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+
 import { filter, map } from 'rxjs';
+
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { ModalService } from './modal.service';
 import { generalActions } from './state';
@@ -21,7 +26,7 @@ export class AppEffects {
     this.actions$.pipe(
       ofType(generalActions.completeAll),
       filter(() => this.modalSvc.confirm('Are you sure?')),
-      map(() => generalActions.completeAllSuccess())
-    )
+      map(() => generalActions.completeAllSuccess()),
+    ),
   );
 }

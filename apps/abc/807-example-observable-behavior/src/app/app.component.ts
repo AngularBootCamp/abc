@@ -1,6 +1,8 @@
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import { AsyncPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+
 import { Observable, Observer, map, share, tap } from 'rxjs';
 
 import { jsonRequestHeaders } from './httpUtils';
@@ -12,7 +14,8 @@ interface Person {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [AsyncPipe]
+  imports: [AsyncPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   protected showData = true;
@@ -20,11 +23,11 @@ export class AppComponent {
 
   protected readonly name = inject(HttpClient)
     .get<Person>('https://swapi.dev/api/people/11/', {
-      headers: jsonRequestHeaders
+      headers: jsonRequestHeaders,
     })
     .pipe(
       tap(person => console.log(person)),
-      map(person => person.name)
+      map(person => person.name),
     );
 
   // Example of making an Observable:
@@ -40,6 +43,6 @@ export class AppComponent {
         console.log('Unsubscribing to time');
         clearInterval(handle);
       };
-    }
+    },
   ).pipe(share()); // Try it without share().
 }

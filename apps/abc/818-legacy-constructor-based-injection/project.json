@@ -40,7 +40,7 @@
           "libs/shared/styles/abc/shared.scss",
           "apps/abc/818-legacy-constructor-based-injection/src/styles.scss"
         ],
-        "scripts": [],
+        "scripts": ["libs/shared/scripts/abc-banner.js"],
         "stylePreprocessorOptions": {
           "includePaths": [
             "libs/shared/styles/abc",

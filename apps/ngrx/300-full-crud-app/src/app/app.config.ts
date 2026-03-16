@@ -1,9 +1,13 @@
 import {
   ApplicationConfig,
-  provideZoneChangeDetection
+  provideBrowserGlobalErrorListeners,
+  provideZoneChangeDetection,
 } from '@angular/core';
-import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
+
 import { provideRouter } from '@angular/router';
+
+import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
+
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
@@ -13,6 +17,7 @@ import { appRoutes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideMomentDateAdapter(),
     provideRouter(appRoutes),
@@ -20,13 +25,13 @@ export const appConfig: ApplicationConfig = {
     provideStore(undefined, {
       runtimeChecks: {
         strictStateSerializability: true,
-        strictActionSerializability: true
-      }
+        strictActionSerializability: true,
+      },
     }),
     provideStoreDevtools({
       maxAge: 50,
       logOnly: environment.production,
-      trace: true
-    })
-  ]
+      trace: true,
+    }),
+  ],
 };

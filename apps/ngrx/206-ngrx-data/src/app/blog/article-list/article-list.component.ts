@@ -1,11 +1,14 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
+import { Router } from '@angular/router';
+
+import { filter, firstValueFrom, switchMap } from 'rxjs';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { Router } from '@angular/router';
-import { filter, firstValueFrom, switchMap } from 'rxjs';
 
 import { ConfigService } from '../../config.service';
 import { articleIdQueryParam } from '../../routing-parameters';
@@ -23,8 +26,8 @@ import { ArticleService } from './article.service';
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    AsyncPipe
-  ]
+    AsyncPipe,
+  ],
 })
 export class ArticleListComponent {
   private router = inject(Router);
@@ -32,10 +35,10 @@ export class ArticleListComponent {
 
   readonly title = inject(ConfigService).title;
   readonly authorId = inject(AuthorService).currentAuthorId.pipe(
-    filter((authorId): authorId is number => !!authorId)
+    filter((authorId): authorId is number => !!authorId),
   );
   readonly articles = this.authorId.pipe(
-    switchMap(authorId => this.getArticlesByAuthor(authorId))
+    switchMap(authorId => this.getArticlesByAuthor(authorId)),
   );
 
   readonly selectedArticleId = this.articleService.currentArticleId;
@@ -48,7 +51,7 @@ export class ArticleListComponent {
     const queryParams = { [articleIdQueryParam]: articleId };
     void this.router.navigate([], {
       queryParams,
-      queryParamsHandling: 'merge'
+      queryParamsHandling: 'merge',
     });
   }
 
@@ -58,7 +61,7 @@ export class ArticleListComponent {
     const newArticle: Omit<Article, 'id'> = {
       body: 'placeholder body',
       title: 'placeholder title',
-      authorId: uid || 0
+      authorId: uid || 0,
     };
     this.articleService.createArticle(newArticle);
   }

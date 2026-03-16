@@ -1,8 +1,12 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { Store } from '@ngrx/store';
+
+import { AsyncPipe } from '@angular/common';
+
 import { map } from 'rxjs';
+
+import { MatButtonModule } from '@angular/material/button';
+
+import { Store } from '@ngrx/store';
 
 import { HeaderComponent } from '@class-materials/shared/ui-page-header';
 
@@ -17,19 +21,20 @@ import { AppState, emptyCart, pickApples, pickBerry } from './state';
     AsyncPipe,
     CounterDisplayComponent,
     HeaderComponent,
-    MatButtonModule
-  ]
+    MatButtonModule,
+  ],
 })
 export class AppComponent {
   // We will learn a better way (that doesn't violate linting) in the
   // next step.
-  // eslint-disable-next-line @ngrx/no-typed-global-store
-  private store = inject<Store<AppState>>(Store);
 
-  // eslint-disable-next-line @ngrx/prefer-selector-in-select
+  /* eslint-disable-next-line @ngrx/no-typed-global-store */
+  private store = inject(Store<AppState>);
+
+  /* eslint-disable-next-line @ngrx/prefer-selector-in-select */
   berry = this.store.select(myAppState => myAppState.berryCounter);
 
-  // eslint-disable-next-line @ngrx/prefer-selector-in-select
+  /* eslint-disable-next-line @ngrx/prefer-selector-in-select */
   apple = this.store.select(state => state.appleCounter);
 
   // Internally, store.select uses RxJS that looks like this:

@@ -1,11 +1,12 @@
 import { Injectable, inject } from '@angular/core';
+
 import {
+  Observable,
   combineLatest,
   filter,
   map,
-  Observable,
   shareReplay,
-  switchMap
+  switchMap,
 } from 'rxjs';
 
 import {
@@ -13,7 +14,7 @@ import {
   Game,
   GameWithEvents,
   Player,
-  ShotOnGoal
+  ShotOnGoal,
 } from '../app.types';
 import { PlayerService } from '../player/player.service';
 
@@ -36,7 +37,7 @@ export class GameStatsService {
     this.gameService.gameId.pipe(
       filter((id): id is string => !!id),
       switchMap(id => this.getGameWithDetails(id)),
-      shareReplay({ refCount: true, bufferSize: 1 })
+      shareReplay({ refCount: true, bufferSize: 1 }),
     );
 
   /**
@@ -53,14 +54,12 @@ export class GameStatsService {
    */
   playersNotInGame: Observable<Player[]> = combineLatest([
     this.currentGameDetails,
-    this.playerService.players
+    this.playerService.players,
   ]).pipe(
     map(([game, players]) =>
-      players.filter(
-        p => !game.playerDetails.find(x => x.id === p.id)
-      )
+      players.filter(p => !game.playerDetails.find(x => x.id === p.id)),
     ),
-    shareReplay({ refCount: true, bufferSize: 1 })
+    shareReplay({ refCount: true, bufferSize: 1 }),
   );
 
   /**
@@ -77,18 +76,18 @@ export class GameStatsService {
    */
   gatherGameDetails(
     games: Game[],
-    id: string
+    id: string,
   ): Observable<GameWithEvents> {
     const game = games.find(g => g.id === id);
     return combineLatest([
       this.playerService.getPlayers(game ? game.players : []),
       this.gameService.getShotsForGame(id),
-      this.gameService.getCardsForGame(id)
+      this.gameService.getCardsForGame(id),
     ]).pipe(
       map(([playerDetails, shots, cards]) =>
-        buildGameWithEvents(game, playerDetails, shots, cards)
+        buildGameWithEvents(game, playerDetails, shots, cards),
       ),
-      shareReplay({ refCount: true, bufferSize: 1 })
+      shareReplay({ refCount: true, bufferSize: 1 }),
     );
   }
 
@@ -103,7 +102,7 @@ export class GameStatsService {
   getGameWithDetails(id: string): Observable<GameWithEvents> {
     return this.gameService.games.pipe(
       switchMap(games => this.gatherGameDetails(games, id)),
-      shareReplay({ refCount: true, bufferSize: 1 })
+      shareReplay({ refCount: true, bufferSize: 1 }),
     );
   }
 }
@@ -112,23 +111,23 @@ function buildGameWithEvents(
   game: Game | undefined,
   playerDetails: Player[],
   shots: ShotOnGoal[],
-  cards: Card[]
+  cards: Card[],
 ): GameWithEvents {
   const shotsWithNames = shots.map(s => ({
     ...s,
     playerName: playerDetails.find(p => p.id === s.player)?.name,
     assistName: s.assist
       ? playerDetails.find(p => p.id === s.assist)?.name
-      : 'None'
+      : 'None',
   }));
   const cardsWithNames = cards.map(c => ({
     ...c,
-    playerName: playerDetails.find(p => p.id === c.player)?.name
+    playerName: playerDetails.find(p => p.id === c.player)?.name,
   }));
   return {
     ...game,
     playerDetails,
     shots: shotsWithNames,
-    cards: cardsWithNames
+    cards: cardsWithNames,
   } as GameWithEvents;
 }

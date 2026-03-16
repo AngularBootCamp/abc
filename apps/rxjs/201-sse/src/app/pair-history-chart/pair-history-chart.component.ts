@@ -1,8 +1,8 @@
 import {
   Component,
   Input,
+  OnChanges,
   numberAttribute,
-  OnChanges
 } from '@angular/core';
 
 import { FxQuote } from '../fx-quote';
@@ -15,7 +15,7 @@ interface Point {
 @Component({
   selector: 'app-pair-history-chart',
   templateUrl: './pair-history-chart.component.html',
-  imports: []
+  imports: [],
 })
 export class PairHistoryChartComponent implements OnChanges {
   @Input({ required: true, transform: numberAttribute })
@@ -55,7 +55,7 @@ export class PairHistoryChartComponent implements OnChanges {
 
     this.points = quotes.map(q => ({
       x: this.margin + (q.timestamp - minTimestamp) * scaleTimestamps,
-      y: this.margin + (parseFloat(q.bid) - minBid) * scaleBids
+      y: this.margin + (parseFloat(q.bid) - minBid) * scaleBids,
     }));
 
     this.segments = this.points

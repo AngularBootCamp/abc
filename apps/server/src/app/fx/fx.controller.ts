@@ -1,11 +1,12 @@
+import { Observable } from 'rxjs';
+
 import {
   Controller,
   Get,
   Header,
+  MessageEvent,
   Sse,
-  MessageEvent
 } from '@nestjs/common';
-import { Observable } from 'rxjs';
 
 import { startFxGenerator } from './fx';
 

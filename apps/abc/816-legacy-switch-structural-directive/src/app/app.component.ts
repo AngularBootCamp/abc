@@ -1,14 +1,15 @@
-import {
-  NgSwitch,
-  NgSwitchCase,
-  NgSwitchDefault
-} from '@angular/common';
-import { Component } from '@angular/core';
+/* eslint-disable @typescript-eslint/no-deprecated, @typescript-eslint/no-restricted-imports
+-- This is an example of legacy code
+*/
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
+import { NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [NgSwitch, NgSwitchCase, NgSwitchDefault]
+  imports: [NgSwitch, NgSwitchCase, NgSwitchDefault],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   protected n = 0;

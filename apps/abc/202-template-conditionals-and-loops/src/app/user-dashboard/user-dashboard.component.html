@@ -40,9 +40,7 @@
 
   <ul class="collection">
     @for (meeting of nextMeetings(); track meeting) {
-      <li>
-        {{ $index + 1 }} of {{ $count }}: {{ meeting.description }}
-      </li>
+      <li>{{ $index + 1 }} of {{ $count }}: {{ meeting.description }}</li>
     }
   </ul>
 </article>

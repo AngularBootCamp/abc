@@ -1,7 +1,9 @@
-import { fakeAsync, TestBed } from '@angular/core/testing';
+import { TestBed, fakeAsync } from '@angular/core/testing';
+
+import { of, throwError } from 'rxjs';
+
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { Spy, createSpyFromClass } from 'jest-auto-spies';
-import { of, throwError } from 'rxjs';
 
 import { selectCurrentArticleId } from '../../router.selectors';
 import { ArticleLoaderService } from '../article-list/article-loader.service';
@@ -22,8 +24,8 @@ describe('ArticleStore', () => {
     TestBed.configureTestingModule({
       providers: [
         provideMockStore({}),
-        { provide: ArticleLoaderService, useValue: articleLoaderMock }
-      ]
+        { provide: ArticleLoaderService, useValue: articleLoaderMock },
+      ],
     });
 
     store = TestBed.inject(ArticleStore);
@@ -81,8 +83,8 @@ describe('ArticleStore', () => {
           authorId: 1,
           id: 1,
           title: 'newArticle',
-          body: 'All the words'
-        }
+          body: 'All the words',
+        },
       ];
       articleLoaderMock.load.mockReturnValue(of(newArticles));
 
@@ -97,9 +99,7 @@ describe('ArticleStore', () => {
 
     it('should handle article loading failing', () => {
       // Arrange
-      articleLoaderMock.load.mockReturnValue(
-        throwError(() => 'oops')
-      );
+      articleLoaderMock.load.mockReturnValue(throwError(() => 'oops'));
 
       // Act
       store.load();
@@ -118,7 +118,7 @@ describe('ArticleStore', () => {
       newArticle = {
         authorId: 3,
         title: 'titleNew',
-        body: 'bodyNew'
+        body: 'bodyNew',
       };
       jest.spyOn(console, 'error').mockImplementation();
     });
@@ -127,7 +127,7 @@ describe('ArticleStore', () => {
       // Arrange
       const newArticleWithId = {
         ...newArticle,
-        id: 4
+        id: 4,
       };
       articleLoaderMock.create.mockReturnValue(of(newArticleWithId));
 
@@ -140,16 +140,14 @@ describe('ArticleStore', () => {
         mockArticles[0],
         mockArticles[1],
         mockArticles[2],
-        newArticleWithId
+        newArticleWithId,
       ]);
       expect(console.error).not.toHaveBeenCalled();
     }));
 
     it('should handle article creation failing', async () => {
       // Arrange
-      articleLoaderMock.create.mockReturnValue(
-        throwError(() => 'oops')
-      );
+      articleLoaderMock.create.mockReturnValue(throwError(() => 'oops'));
 
       // Act
       store.createArticle(newArticle);
@@ -164,9 +162,7 @@ describe('ArticleStore', () => {
     let spyConfirm: jest.SpyInstance;
 
     beforeEach(() => {
-      spyConfirm = jest
-        .spyOn(window, 'confirm')
-        .mockReturnValue(true);
+      spyConfirm = jest.spyOn(window, 'confirm').mockReturnValue(true);
 
       articleLoaderMock.delete.mockReturnValue(of({}));
       jest.spyOn(console, 'error').mockImplementation();
@@ -195,18 +191,13 @@ describe('ArticleStore', () => {
       // Assert
       expect(spyConfirm).toHaveBeenCalled();
       expect(store.ids()).toEqual([1, 3]);
-      expect(store.entities()).toEqual([
-        mockArticles[0],
-        mockArticles[2]
-      ]);
+      expect(store.entities()).toEqual([mockArticles[0], mockArticles[2]]);
       expect(console.error).not.toHaveBeenCalled();
     }));
 
     it('should handle article deletion failing after confirmation', async () => {
       // Arrange
-      articleLoaderMock.delete.mockReturnValue(
-        throwError(() => 'oops')
-      );
+      articleLoaderMock.delete.mockReturnValue(throwError(() => 'oops'));
 
       // Act
       store.deleteArticle(mockArticles[1]);
@@ -224,7 +215,7 @@ describe('ArticleStore', () => {
     beforeEach(() => {
       updatedArticle = {
         ...mockArticles[2],
-        title: 'changedTitle'
+        title: 'changedTitle',
       };
       jest.spyOn(console, 'error').mockImplementation();
     });
@@ -245,17 +236,15 @@ describe('ArticleStore', () => {
           authorId: 2,
           id: 3,
           title: 'changedTitle',
-          body: 'body3'
-        }
+          body: 'body3',
+        },
       ]);
       expect(console.error).not.toHaveBeenCalled();
     });
 
     it('should handle article update failing', () => {
       // Arrange
-      articleLoaderMock.update.mockReturnValue(
-        throwError(() => 'oops')
-      );
+      articleLoaderMock.update.mockReturnValue(throwError(() => 'oops'));
 
       // Act
       store.updateArticle(updatedArticle);

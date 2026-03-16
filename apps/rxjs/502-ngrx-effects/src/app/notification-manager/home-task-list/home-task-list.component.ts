@@ -1,12 +1,15 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
+
 import { MatListModule } from '@angular/material/list';
+
 import { Store } from '@ngrx/store';
 
 import {
+  homeTaskActions,
   selectDoneHome,
   selectTodoHome,
-  homeTaskActions
 } from '../../home-tasks.state';
 import { Task } from '../../types';
 
@@ -14,7 +17,7 @@ import { Task } from '../../types';
   selector: 'app-home-task-list',
   templateUrl: './home-task-list.component.html',
   styleUrl: '../notification-manager.component.scss',
-  imports: [MatListModule, AsyncPipe]
+  imports: [MatListModule, AsyncPipe],
 })
 export class HomeTaskListComponent {
   private store = inject(Store);
@@ -23,8 +26,6 @@ export class HomeTaskListComponent {
   todo = this.store.select(selectTodoHome);
 
   homeTask(task: Task, complete: boolean) {
-    this.store.dispatch(
-      homeTaskActions.setHomeTask({ task, complete })
-    );
+    this.store.dispatch(homeTaskActions.setHomeTask({ task, complete }));
   }
 }

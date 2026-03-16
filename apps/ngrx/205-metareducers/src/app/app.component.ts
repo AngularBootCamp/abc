@@ -1,13 +1,16 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
+import {
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {
-  RouterLinkActive,
-  RouterLink,
-  RouterOutlet
-} from '@angular/router';
+
 import { Store } from '@ngrx/store';
 
 import { HeaderComponent } from '@class-materials/shared/ui-page-header';
@@ -16,7 +19,7 @@ import { appActions } from './app.actions';
 import { undoRedoActions } from './undo-redo/undo-redo.actions';
 import {
   selectRedoAvailable,
-  selectUndoAvailable
+  selectUndoAvailable,
 } from './undo-redo/undo-redo.selectors';
 import { selectUserName } from './user-profile/user-profile.selectors';
 
@@ -32,8 +35,8 @@ import { selectUserName } from './user-profile/user-profile.selectors';
     MatToolbarModule,
     RouterLink,
     RouterLinkActive,
-    RouterOutlet
-  ]
+    RouterOutlet,
+  ],
 })
 export class AppComponent {
   private store = inject(Store);

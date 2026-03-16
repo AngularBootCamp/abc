@@ -43,9 +43,7 @@
     >
       Scored
     </mat-checkbox>
-    @if (
-      shotForm.touched && shotForm.getError('cantAssistYourself')
-    ) {
+    @if (shotForm.touched && shotForm.getError('cantAssistYourself')) {
       <span>A player can not assist themselves</span>
     }
   </form>
@@ -60,6 +58,6 @@
     Add
   </button>
   @if (saving) {
-    <mat-spinner diameter="20"></mat-spinner>
+    <mat-spinner diameter="20" />
   }
 </div>

@@ -1,19 +1,22 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+
+import { Observable, map, share, switchMap } from 'rxjs';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { map, Observable, share, switchMap } from 'rxjs';
 
 import {
   Employee,
-  EmployeeLoaderService
+  EmployeeLoaderService,
 } from '../employee-loader.service';
 
 @Component({
   selector: 'app-employee-detail',
   templateUrl: './employee-detail.component.html',
-  imports: [MatCardModule, MatButtonModule, RouterLink, AsyncPipe]
+  imports: [MatCardModule, MatButtonModule, RouterLink, AsyncPipe],
 })
 export class EmployeeDetailComponent {
   employee: Observable<Employee>;
@@ -25,7 +28,7 @@ export class EmployeeDetailComponent {
     this.employee = route.paramMap.pipe(
       map(paramMap => paramMap.get('employeeId') as string),
       switchMap(id => loader.getDetails(id)),
-      share()
+      share(),
     );
   }
 }

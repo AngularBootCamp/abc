@@ -1,5 +1,6 @@
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
 
 import { EmployeesService } from './employees.service';
 
@@ -15,9 +16,9 @@ import { EmployeesService } from './employees.service';
       </ul>
     }
   `,
-  imports: [AsyncPipe]
+  imports: [AsyncPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  protected readonly employees =
-    inject(EmployeesService).pollEmployees();
+  protected readonly employees = inject(EmployeesService).pollEmployees();
 }

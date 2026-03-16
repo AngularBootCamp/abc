@@ -34,19 +34,19 @@ export class SportController {
       .map((shot: any) => shot.id);
 
     this.jss.data[`cards`] = allCards.filter(
-      (c: any) => !orphanCards.includes(c.id)
+      (c: any) => !orphanCards.includes(c.id),
     );
 
     this.jss.data[`shotsOnGoal`] = allShots.filter(
-      (s: any) => !orphanShots.includes(s.id)
+      (s: any) => !orphanShots.includes(s.id),
     );
 
     this.jss.data[`players`] = allPlayers.filter(
-      (p: any) => !e2ePlayers.includes(p.id)
+      (p: any) => !e2ePlayers.includes(p.id),
     );
 
     this.jss.data[`games`] = allGames.filter(
-      (game: any) => !game.name.includes('e2e-')
+      (game: any) => !game.name.includes('e2e-'),
     );
   }
 }

@@ -14,22 +14,22 @@ if (process.env['DEVCONTAINER']) {
 // (See below for the commented-out previous version.)
 export default async function serveStepExecutor(
   options: ServeStepExecutorSchema,
-  context: ExecutorContext
+  context: ExecutorContext,
 ) {
   const [projectName, targetName] = options.serveTarget.split(':');
   if (!projectName || !targetName) {
     throw new Error(
-      'Unable to compute project name and target name from `serveTarget` option'
+      'Unable to compute project name and target name from `serveTarget` option',
     );
   }
   const appResults = await runExecutor(
     {
       project: projectName,
       target: targetName,
-      configuration: context.configurationName
+      configuration: context.configurationName,
     },
     executorOptionOverrides,
-    context
+    context,
   );
 
   for await (const result of appResults) {
@@ -41,54 +41,52 @@ export default async function serveStepExecutor(
 
 // This version of serveStepExecutor runs the API server along
 // with the specified project and target.
-/* 
-export default async function serveStepExecutor(
-  options: ServeStepExecutorSchema,
-  context: ExecutorContext
-) {
-  const [projectName, targetName] = options.serveTarget.split(':');
-  if (!projectName || !targetName) {
-    throw new Error(
-      'Unable to compute project name and target name from `serveTarget` option'
-    );
-  }
-
-  const serverResults = await runExecutor(
-    {
-      project: 'server',
-      target: 'serve',
-      configuration: 'development'
-    },
-    {},
-    context
-  );
-
-  let serverFirstOutput = true;
-
-  for await (const result of serverResults) {
-    if (!result.success) {
-      return result;
-    }
-
-    if (serverFirstOutput) {
-      serverFirstOutput = false;
-      const appResults = await runExecutor(
-        {
-          project: projectName,
-          target: targetName,
-          configuration: context.configurationName
-        },
-        executorOptionOverrides,
-        context
-      );
-
-      for await (const result of appResults) {
-        if (!result.success) {
-          return result;
-        }
-      }
-    }
-  }
-}
-
-*/
+//
+// export default async function serveStepExecutor(
+//   options: ServeStepExecutorSchema,
+//   context: ExecutorContext
+// ) {
+//   const [projectName, targetName] = options.serveTarget.split(':');
+//   if (!projectName || !targetName) {
+//     throw new Error(
+//       'Unable to compute project name and target name from `serveTarget` option'
+//     );
+//   }
+//
+//   const serverResults = await runExecutor(
+//     {
+//       project: 'server',
+//       target: 'serve',
+//       configuration: 'development'
+//     },
+//     {},
+//     context
+//   );
+//
+//   let serverFirstOutput = true;
+//
+//   for await (const result of serverResults) {
+//     if (!result.success) {
+//       return result;
+//     }
+//
+//     if (serverFirstOutput) {
+//       serverFirstOutput = false;
+//       const appResults = await runExecutor(
+//         {
+//           project: projectName,
+//           target: targetName,
+//           configuration: context.configurationName
+//         },
+//         executorOptionOverrides,
+//         context
+//       );
+//
+//       for await (const result of appResults) {
+//         if (!result.success) {
+//           return result;
+//         }
+//       }
+//     }
+//   }
+// }

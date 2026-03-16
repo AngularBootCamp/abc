@@ -1,17 +1,22 @@
+/* eslint-disable @angular-eslint/use-injectable-provided-in
+-- Effect injectables are handled by NgRx
+*/
 import { Injectable, inject } from '@angular/core';
+
+import { catchError, map, mergeMap, of } from 'rxjs';
+
 import {
   Actions,
+  OnInitEffects,
   createEffect,
   ofType,
-  OnInitEffects
 } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { catchError, map, mergeMap, of } from 'rxjs';
 
 import {
   userProfileApiActions,
   userProfileInitActions,
-  userProfilePageActions
+  userProfilePageActions,
 } from './user-profile.actions';
 import { UserProfileService } from './user-profile.service';
 
@@ -26,16 +31,14 @@ export class UserProfileEffects implements OnInitEffects {
       mergeMap(() =>
         this.userProfileSvc.loadUserProfile().pipe(
           map(profile =>
-            userProfileApiActions.loadUserProfileSuccess({ profile })
+            userProfileApiActions.loadUserProfileSuccess({ profile }),
           ),
           catchError(error =>
-            of(
-              userProfileApiActions.loadUserProfileFailure({ error })
-            )
-          )
-        )
-      )
-    )
+            of(userProfileApiActions.loadUserProfileFailure({ error })),
+          ),
+        ),
+      ),
+    ),
   );
 
   saveUserProfile$ = createEffect(() =>
@@ -44,16 +47,14 @@ export class UserProfileEffects implements OnInitEffects {
       mergeMap(action =>
         this.userProfileSvc.saveUserProfile(action.profile).pipe(
           map(profile =>
-            userProfileApiActions.saveUserProfileSuccess({ profile })
+            userProfileApiActions.saveUserProfileSuccess({ profile }),
           ),
           catchError(error =>
-            of(
-              userProfileApiActions.saveUserProfileFailure({ error })
-            )
-          )
-        )
-      )
-    )
+            of(userProfileApiActions.saveUserProfileFailure({ error })),
+          ),
+        ),
+      ),
+    ),
   );
 
   ngrxOnInitEffects(): Action {

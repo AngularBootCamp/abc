@@ -1,15 +1,17 @@
 import { importProvidersFrom } from '@angular/core';
-import { Routes } from '@angular/router';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-import { ClickComponent } from '../click/click.component';
+import { Routes } from '@angular/router';
+
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+
 import { ClickService } from '../click.service';
+import { ClickComponent } from '../click/click.component';
 
 import { MultiPlayerService } from './multi-player.service';
 
 const config: SocketIoConfig = {
   url: 'http://localhost:8085',
-  options: {}
+  options: {},
 };
 
 const multiplayerRoutes: Routes = [
@@ -20,10 +22,10 @@ const multiplayerRoutes: Routes = [
       importProvidersFrom(SocketIoModule.forRoot(config)),
       {
         provide: ClickService,
-        useClass: MultiPlayerService
-      }
-    ]
-  }
+        useClass: MultiPlayerService,
+      },
+    ],
+  },
 ];
 
 export default multiplayerRoutes;

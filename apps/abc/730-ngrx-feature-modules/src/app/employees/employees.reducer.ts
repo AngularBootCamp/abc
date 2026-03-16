@@ -11,8 +11,8 @@ export interface State {
 export const initialState: State = {
   lists: {
     newEmployees: [],
-    currentEmployees: []
-  }
+    currentEmployees: [],
+  },
 };
 
 export const employeesFeature = createFeature({
@@ -21,27 +21,27 @@ export const employeesFeature = createFeature({
     initialState,
     on(employeesActions.loadEmployeesSuccess, (state, action) => ({
       ...state,
-      lists: action.employees
+      lists: action.employees,
     })),
     on(employeesActions.ackEmployee, (state, action) =>
-      acknowledgeEmployee(state, action.employee)
-    )
-  )
+      acknowledgeEmployee(state, action.employee),
+    ),
+  ),
 });
 
 function acknowledgeEmployee(
   currentState: State,
-  employee: Employee
+  employee: Employee,
 ): State {
   const newEmployees = currentState.lists.newEmployees.filter(
-    x => x !== employee
+    x => x !== employee,
   );
   const currentEmployees = [
     ...currentState.lists.currentEmployees,
-    employee
+    employee,
   ];
   return {
     ...currentState,
-    lists: { newEmployees, currentEmployees }
+    lists: { newEmployees, currentEmployees },
   };
 }

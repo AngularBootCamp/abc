@@ -13,11 +13,9 @@ export const selectRouter =
 export const { selectRouteParam, selectQueryParam } =
   fromRouter.getRouterSelectors(selectRouter);
 
-const selectCurrentArticleIdParam = selectQueryParam(
-  articleIdQueryParam
-);
+const selectCurrentArticleIdParam = selectQueryParam(articleIdQueryParam);
 
 export const selectCurrentArticleId = createSelector(
   selectCurrentArticleIdParam,
-  articleId => (articleId ? Number(articleId) : undefined)
+  articleId => (articleId ? Number(articleId) : undefined),
 );

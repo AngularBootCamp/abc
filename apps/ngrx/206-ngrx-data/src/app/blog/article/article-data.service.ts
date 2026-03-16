@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
+
 import {
   EntityCollectionServiceBase,
-  EntityCollectionServiceElementsFactory
+  EntityCollectionServiceElementsFactory,
 } from '@ngrx/data';
 
 import { Article } from '../types';
@@ -10,7 +11,7 @@ import { Article } from '../types';
 export class ArticleDataService extends EntityCollectionServiceBase<Article> {
   constructor() {
     const serviceElementsFactory = inject(
-      EntityCollectionServiceElementsFactory
+      EntityCollectionServiceElementsFactory,
     );
 
     super('Article', serviceElementsFactory);

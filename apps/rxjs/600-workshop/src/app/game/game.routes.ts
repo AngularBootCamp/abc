@@ -12,10 +12,10 @@ const gameRoutes: Routes = [
     children: [
       {
         path: `:${selectedGameIdRouteParamName}`,
-        component: GameDetailComponent
-      }
-    ]
-  }
+        component: GameDetailComponent,
+      },
+    ],
+  },
 ];
 
 export default gameRoutes;

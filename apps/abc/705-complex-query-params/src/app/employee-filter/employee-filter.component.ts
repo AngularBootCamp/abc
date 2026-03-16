@@ -4,17 +4,19 @@ import {
   OnDestroy,
   effect,
   inject,
-  input
+  input,
 } from '@angular/core';
+
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-employee-filter',
   templateUrl: './employee-filter.component.html',
   imports: [ReactiveFormsModule],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeFilterComponent implements OnDestroy {
   public readonly filterTerm = input.required<string | undefined>();
@@ -32,7 +34,7 @@ export class EmployeeFilterComponent implements OnDestroy {
       const queryParams = { filter };
       this.router.navigate([], {
         queryParams,
-        queryParamsHandling: 'merge'
+        queryParamsHandling: 'merge',
       });
     });
 

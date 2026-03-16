@@ -1,11 +1,14 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { firstValueFrom, switchMap } from 'rxjs';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { ActivatedRoute, Router } from '@angular/router';
-import { firstValueFrom, switchMap } from 'rxjs';
 
 import { ConfigService } from '../../config.service';
 import { articleIdQueryParam } from '../../routing-parameters';
@@ -23,23 +26,24 @@ import { ArticleService } from './article.service';
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    AsyncPipe
-  ]
+    AsyncPipe,
+  ],
 })
 export class ArticleListComponent {
-  private articleService = inject(ArticleService);
-  private router = inject(Router);
+  private readonly articleService = inject(ArticleService);
+  private readonly router = inject(Router);
 
-  readonly title = inject(ConfigService).title;
+  protected readonly title = inject(ConfigService).title;
 
-  readonly authorId =
+  private readonly authorId =
     inject(ActivatedRoute).paramMap.pipe(extractAuthorId());
 
-  readonly articles = this.authorId.pipe(
-    switchMap(authorId => this.getArticlesByAuthor(authorId))
+  protected readonly articles = this.authorId.pipe(
+    switchMap(authorId => this.getArticlesByAuthor(authorId)),
   );
 
-  readonly selectedArticleId = this.articleService.selectedArticleId;
+  protected readonly selectedArticleId =
+    this.articleService.selectedArticleId;
 
   getArticlesByAuthor(authorId: number) {
     return this.articleService.getByAuthor(authorId);
@@ -49,7 +53,7 @@ export class ArticleListComponent {
     const queryParams = { [articleIdQueryParam]: articleId };
     void this.router.navigate([], {
       queryParams,
-      queryParamsHandling: 'merge'
+      queryParamsHandling: 'merge',
     });
   }
 
@@ -59,7 +63,7 @@ export class ArticleListComponent {
     const newArticle: Omit<Article, 'id'> = {
       body: 'placeholder body',
       title: 'placeholder title',
-      authorId: uid || 0
+      authorId: uid || 0,
     };
     this.articleService.createArticle(newArticle);
   }

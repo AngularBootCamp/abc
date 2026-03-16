@@ -34,19 +34,19 @@ export class SchemaFormUtils {
 
       if (fieldinfo.minimumLength) {
         singleControlValidators.push(
-          Validators.minLength(fieldinfo.minimumLength)
+          Validators.minLength(fieldinfo.minimumLength),
         );
       }
 
       if (fieldinfo.maximumLength) {
         singleControlValidators.push(
-          Validators.maxLength(fieldinfo.maximumLength)
+          Validators.maxLength(fieldinfo.maximumLength),
         );
       }
 
       if (fieldinfo.matchesPattern) {
         singleControlValidators.push(
-          Validators.pattern(fieldinfo.matchesPattern)
+          Validators.pattern(fieldinfo.matchesPattern),
         );
       }
 

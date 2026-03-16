@@ -1,13 +1,16 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
+
 import { MatListModule } from '@angular/material/list';
+
 import { Store } from '@ngrx/store';
 
 import { Task } from '../../types';
 import {
   selectDoneWork,
   selectTodoWork,
-  workTaskActions
+  workTaskActions,
 } from '../../work-task.state';
 
 // Components now pass and receive information between itself
@@ -16,7 +19,7 @@ import {
 @Component({
   selector: 'app-work-task-list',
   templateUrl: './work-task-list.component.html',
-  imports: [MatListModule, AsyncPipe]
+  imports: [MatListModule, AsyncPipe],
 })
 export class WorkTaskListComponent {
   private store = inject(Store);

@@ -15,16 +15,12 @@ async function bootstrap() {
   if (environment.production) {
     app.use(
       '/',
-      serveStaticFiles(
-        join(__dirname, 'node_modules/json-server/public')
-      )
+      serveStaticFiles(join(__dirname, 'node_modules/json-server/public')),
     );
 
     app.use(
       '/soccer',
-      serveStaticFiles(
-        join(__dirname, 'node_modules/json-server/public')
-      )
+      serveStaticFiles(join(__dirname, 'node_modules/json-server/public')),
     );
   }
 

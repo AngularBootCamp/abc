@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-second',
-  template: `
-    <div class="outline-box">Second Component</div>
-  `,
+  template: `<div class="outline-box">Second Component</div>`,
   styles: `
     .outline-box {
       border: 3px solid var(--abc-category-2-color);
@@ -13,6 +11,7 @@ import { Component } from '@angular/core';
       display: block;
       border: 3px solid var(--abc-border-color);
     }
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SecondComponent {}

@@ -1,15 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { Employee } from '../employee-loader.service';
 
 @Component({
   selector: 'app-employee-display',
   templateUrl: './employee-display.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeDisplayComponent {
   public readonly employee = input.required<Employee | undefined>();

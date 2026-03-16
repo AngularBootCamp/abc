@@ -1,5 +1,7 @@
-import { DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
+
+import { DatePipe } from '@angular/common';
+
 import { MatTableModule } from '@angular/material/table';
 
 import { FxQuote } from '../fx-quote';
@@ -8,7 +10,7 @@ import { PairHistoryChartComponent } from '../pair-history-chart/pair-history-ch
 @Component({
   selector: 'app-pair-history-view',
   templateUrl: './pair-history-view.component.html',
-  imports: [PairHistoryChartComponent, MatTableModule, DatePipe]
+  imports: [PairHistoryChartComponent, MatTableModule, DatePipe],
 })
 export class PairHistoryViewComponent {
   @Input({ required: true }) latestQuotes!: FxQuote[];

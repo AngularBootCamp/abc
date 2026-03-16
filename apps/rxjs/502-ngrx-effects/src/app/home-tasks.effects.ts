@@ -8,18 +8,15 @@ const initialHomeTasks: HomeTaskState = {
     { label: 'cook dinner' },
     { label: 'go grocery shopping' },
     { label: 'sweep the floors' },
-    { label: 'do the laundry' }
+    { label: 'do the laundry' },
   ],
-  todoHome: [
-    { label: 'fix the leaky faucet' },
-    { label: 'mow the lawn' }
-  ]
+  todoHome: [{ label: 'fix the leaky faucet' }, { label: 'mow the lawn' }],
 };
 
 export class HomeTasksEffects implements OnInitEffects {
   ngrxOnInitEffects(): Action {
     return homeTaskActions.homeTasksReceived({
-      tasks: initialHomeTasks
+      tasks: initialHomeTasks,
     });
   }
 }

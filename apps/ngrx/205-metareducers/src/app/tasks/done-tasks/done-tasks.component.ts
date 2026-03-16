@@ -1,5 +1,7 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+
+import { AsyncPipe } from '@angular/common';
+
 import { Store } from '@ngrx/store';
 
 import { Task } from '../../types';
@@ -16,7 +18,7 @@ import { TodoListComponent } from '../todo-list/todo-list.component';
       (setTaskStatus)="task($event)"
     />
   `,
-  imports: [TodoListComponent, AsyncPipe]
+  imports: [TodoListComponent, AsyncPipe],
 })
 export class DoneTasksComponent {
   private store = inject(Store);

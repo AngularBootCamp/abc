@@ -10,7 +10,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  userProfile: undefined
+  userProfile: undefined,
 };
 
 export const userProfileFeature = createFeature({
@@ -25,7 +25,7 @@ export const userProfileFeature = createFeature({
     on(
       userProfileActions.loadUserProfileSuccess,
       userProfileActions.saveUserProfileSuccess,
-      (_state, action) => ({ userProfile: action.profile })
-    )
-  )
+      (_state, action) => ({ userProfile: action.profile }),
+    ),
+  ),
 });

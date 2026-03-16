@@ -1,16 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any
+-- CVA uses `any`: https://github.com/angular/angular/issues/45968
+*/
 import {
   ChangeDetectionStrategy,
   Component,
-  OnDestroy
+  OnDestroy,
 } from '@angular/core';
+
 import {
+  NG_VALUE_ACCESSOR,
   ControlValueAccessor,
   FormControl,
-  NG_VALUE_ACCESSOR,
-  ReactiveFormsModule
+  ReactiveFormsModule,
 } from '@angular/forms';
 
-import { usStates, UsStates } from './us-states';
+import { UsStates, usStates } from './us-states';
 
 @Component({
   selector: 'app-us-states-selector',
@@ -19,11 +23,11 @@ import { usStates, UsStates } from './us-states';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: UsStatesSelectorComponent,
-      multi: true
-    }
+      multi: true,
+    },
   ],
   imports: [ReactiveFormsModule],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsStatesSelectorComponent
   implements ControlValueAccessor, OnDestroy
@@ -35,7 +39,7 @@ export class UsStatesSelectorComponent
 
   // When data in the inner form control changes, update the outside form control.
   private readonly sub = this.selectedState.valueChanges.subscribe(
-    v => this.onChange && this.onChange(v)
+    v => this.onChange && this.onChange(v),
   );
 
   // When data changes from the outside, update the inner form control.

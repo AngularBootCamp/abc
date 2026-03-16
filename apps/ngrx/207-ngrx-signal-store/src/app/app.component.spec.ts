@@ -1,6 +1,8 @@
 import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+
 import { RouterTestingModule } from '@angular/router/testing';
+
 import { Spy, createSpyFromClass } from 'jest-auto-spies';
 
 import { AppComponent } from './app.component';
@@ -21,9 +23,9 @@ describe('AppComponent', () => {
       providers: [
         {
           provide: ConfigStore,
-          useValue: configStore
-        }
-      ]
+          useValue: configStore,
+        },
+      ],
     });
 
     const fixture = TestBed.createComponent(AppComponent);

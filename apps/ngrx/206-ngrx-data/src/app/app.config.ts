@@ -1,13 +1,16 @@
 import {
   ApplicationConfig,
-  provideZoneChangeDetection
+  provideBrowserGlobalErrorListeners,
+  provideZoneChangeDetection,
 } from '@angular/core';
+
 import { provideRouter } from '@angular/router';
+
 import {
   DefaultDataServiceConfig,
   HttpUrlGenerator,
   provideEntityData,
-  withEffects
+  withEffects,
 } from '@ngrx/data';
 import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore } from '@ngrx/router-store';
@@ -23,6 +26,7 @@ import { metaReducers, reducers } from './reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideEffects(), // not needed in previous steps, but needed here
     provideEntityData(entityConfig, withEffects()),
@@ -32,7 +36,7 @@ export const appConfig: ApplicationConfig = {
     provideStoreDevtools({
       maxAge: 50,
       logOnly: environment.production,
-      trace: true
+      trace: true,
     }),
     // Our server serves authors at /api/authors for all calls,
     // but Data assumes some calls will be at api/author. The
@@ -42,8 +46,8 @@ export const appConfig: ApplicationConfig = {
     {
       provide: DefaultDataServiceConfig,
       useValue: {
-        root: '/api'
-      }
-    }
-  ]
+        root: '/api',
+      },
+    },
+  ],
 };

@@ -1,20 +1,16 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 import { ColorSchemeObserver } from '@class-materials/shared/util-color-scheme-observer';
 
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrl: 'app.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   protected readonly colorScheme = toSignal(
-    inject(ColorSchemeObserver).observe()
+    inject(ColorSchemeObserver).observe(),
   );
 }

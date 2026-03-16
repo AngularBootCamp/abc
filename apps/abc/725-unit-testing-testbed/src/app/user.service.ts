@@ -7,13 +7,13 @@ export interface User {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
   private user = {
     id: 'bb8',
     firstName: 'John',
-    lastName: 'Smith'
+    lastName: 'Smith',
   };
 
   currentUser(): User {

@@ -13,7 +13,7 @@
 
       @for (role of employee.roles; track $index) {
         <div>
-          @if ($index === 0 || showInactiveRoles()) {
+          @if ($first || showInactiveRoles()) {
             <small>{{ role }}</small>
           }
         </div>

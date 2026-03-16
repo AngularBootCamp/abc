@@ -3,8 +3,8 @@ import { Directive, model } from '@angular/core';
 @Directive({
   selector: '[appBorder]',
   host: {
-    '[style.border]': 'getBorderColor()'
-  }
+    '[style.border]': 'getBorderColor()',
+  },
 })
 export class BorderDirective {
   public readonly color = model('var(--abc-border-color)');

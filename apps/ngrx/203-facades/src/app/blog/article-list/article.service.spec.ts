@@ -1,6 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { provideMockStore } from '@ngrx/store/testing';
+
 import { firstValueFrom } from 'rxjs';
+
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { mockArticles } from '../article/mock.articles';
 
@@ -15,11 +17,11 @@ describe('ArticleService', () => {
         provideMockStore({
           initialState: {
             article: {
-              articles: mockArticles
-            }
-          }
-        })
-      ]
+              articles: mockArticles,
+            },
+          },
+        }),
+      ],
     });
 
     articleSvc = TestBed.inject(ArticleService);
@@ -28,7 +30,7 @@ describe('ArticleService', () => {
   describe('getArticlesByAuthor', () => {
     it('should return the articles', async () => {
       const result = await firstValueFrom(
-        articleSvc.getArticlesByAuthor(1)
+        articleSvc.getArticlesByAuthor(1),
       );
 
       expect(result).toEqual([mockArticles[0], mockArticles[1]]);

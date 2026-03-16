@@ -2,22 +2,24 @@ import {
   ChangeDetectionStrategy,
   Component,
   OnDestroy,
-  inject
+  inject,
 } from '@angular/core';
+
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import {
   Subscription,
   debounceTime,
   distinctUntilChanged,
-  startWith
+  startWith,
 } from 'rxjs';
 
 @Component({
   selector: 'app-employee-filter',
   templateUrl: './employee-filter.component.html',
   imports: [ReactiveFormsModule],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeFilterComponent implements OnDestroy {
   private readonly router = inject(Router);
@@ -37,15 +39,15 @@ export class EmployeeFilterComponent implements OnDestroy {
       .pipe(
         startWith(this.employeeFilter.value),
         debounceTime(250),
-        distinctUntilChanged()
+        distinctUntilChanged(),
       )
       .subscribe(filterText => {
         const queryParams = {
-          employeeFilter: filterText || undefined
+          employeeFilter: filterText || undefined,
         };
         void this.router.navigate([], {
           queryParams,
-          queryParamsHandling: 'merge'
+          queryParamsHandling: 'merge',
         });
       });
   }

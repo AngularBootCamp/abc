@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { Employee } from './employee';
 import { EmployeeDisplayComponent } from './employee-display.component';
@@ -6,8 +6,9 @@ import { EmployeeDisplayComponent } from './employee-display.component';
 @Component({
   selector: 'app-employee-detail',
   templateUrl: './employee-detail.component.html',
-  imports: [EmployeeDisplayComponent]
+  imports: [EmployeeDisplayComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeDetailComponent {
-  readonly employee = input.required<Employee | undefined>();
+  public readonly employee = input.required<Employee | undefined>();
 }

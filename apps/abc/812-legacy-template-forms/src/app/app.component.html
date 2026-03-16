@@ -1,6 +1,11 @@
 <h4>Login Form</h4>
 
-<form #loginForm="ngForm" (ngSubmit)="onLogin()" novalidate>
+<form
+  #loginForm="ngForm"
+  (ngSubmit)="onLogin()"
+  novalidate
+  autocomplete="off"
+>
   <div>
     <label for="usernameId">Login</label>
     <input
@@ -29,9 +34,7 @@
   </div>
 
   <div>
-    <button type="submit" [disabled]="!loginForm.form.valid">
-      Login
-    </button>
+    <button type="submit" [disabled]="!loginForm.form.valid">Login</button>
   </div>
 </form>
 

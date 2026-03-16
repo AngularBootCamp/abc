@@ -1,5 +1,4 @@
-export const appTestName = () =>
-  'Step: ' + Cypress.env()['projectName'];
+export const appTestName = () => 'Step: ' + Cypress.env()['projectName'];
 
 export const appNameNavDisplay = () => {
   const appNameNavDisplayPartial = Cypress.env()

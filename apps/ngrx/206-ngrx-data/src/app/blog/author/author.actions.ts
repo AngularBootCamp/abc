@@ -5,14 +5,14 @@ import { Author } from '../types';
 export const authorInitActions = createActionGroup({
   source: 'Author Init',
   events: {
-    'Load Authors': emptyProps()
-  }
+    'Load Authors': emptyProps(),
+  },
 });
 
 export const authorApiActions = createActionGroup({
   source: 'Author Api',
   events: {
     'Load Authors Success': props<{ authors: Author[] }>(),
-    'Load Authors Failure': props<{ error: unknown }>()
-  }
+    'Load Authors Failure': props<{ error: unknown }>(),
+  },
 });

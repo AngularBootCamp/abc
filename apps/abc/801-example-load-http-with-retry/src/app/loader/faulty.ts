@@ -2,7 +2,7 @@
 // network or backend service. It adds random delays and random
 // failure probability.
 
-import { Observable, defer, throwError, timer, mergeMap } from 'rxjs';
+import { Observable, defer, mergeMap, throwError, timer } from 'rxjs';
 
 export interface FaultyOptions {
   errorProbability?: number;
@@ -11,11 +11,11 @@ export interface FaultyOptions {
 
 const defaultOptions = {
   errorProbability: 0.3,
-  maxDelayMs: 1000
+  maxDelayMs: 1000,
 };
 
 export function faulty<T>(
-  opts?: FaultyOptions
+  opts?: FaultyOptions,
 ): (source: Observable<T>) => Observable<T> {
   const options = { ...defaultOptions, ...opts };
   return source =>
@@ -24,8 +24,8 @@ export function faulty<T>(
         mergeMap(_value =>
           Math.random() < options.errorProbability
             ? throwError(() => new Error('Failed in faulty'))
-            : source
-        )
-      )
+            : source,
+        ),
+      ),
     );
 }

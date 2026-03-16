@@ -11,7 +11,7 @@
         <strong>{{ employee.name }}</strong>
         @for (role of employee.roles; track $index) {
           <div>
-            @if (showInactiveRoles() || $index === 0) {
+            @if (showInactiveRoles() || $first) {
               <span>
                 {{ role }}
               </span>

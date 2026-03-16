@@ -1,14 +1,19 @@
-import { Component, output, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 
 import { Video } from '../dashboard.types';
 
-// This component serves as a small example of
-// a view component. In this case, the dashboard
-// is acting as the corresponding smart component
+// This component serves as a small example of a view component. In this
+// case, the dashboard is acting as the corresponding smart component.
 @Component({
   selector: 'vst-top-list',
   templateUrl: './top-list.component.html',
-  styleUrl: './top-list.component.scss'
+  styleUrl: './top-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopListComponent {
   public readonly topList = input.required<Video[]>();

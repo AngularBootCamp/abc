@@ -6,6 +6,6 @@ import { NotificationManagerComponent } from './notification-manager/notificatio
   selector: 'app-root',
   templateUrl: './app.component.html',
   imports: [NotificationManagerComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}

@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { HoverComponent } from './hover/hover.component';
@@ -26,8 +27,9 @@ import { WhenComponent } from './when/when.component';
     ReactiveFormsModule,
     TimerComponent,
     ViewportComponent,
-    WhenComponent
-  ]
+    WhenComponent,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   protected readonly triggers = signal([
@@ -39,16 +41,16 @@ export class AppComponent {
     'Timer',
     'When',
     'Multiple',
-    'Prefetched'
+    'Prefetched',
   ] as const);
 
   protected readonly currentTab =
     signal<ReturnType<typeof this.triggers>[number]>('Idle');
 
   protected readonly whenCondition = new FormControl(1, {
-    nonNullable: true
+    nonNullable: true,
   });
   protected readonly whenConditionMultiple = new FormControl(1, {
-    nonNullable: true
+    nonNullable: true,
   });
 }

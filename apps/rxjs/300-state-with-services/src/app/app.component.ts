@@ -7,6 +7,6 @@ import { NotificationManagerComponent } from './notification-manager/notificatio
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [HeaderComponent, NotificationManagerComponent]
+  imports: [HeaderComponent, NotificationManagerComponent],
 })
 export class AppComponent {}

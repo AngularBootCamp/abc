@@ -1,33 +1,32 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
+
 import { delay, firstValueFrom, tap } from 'rxjs';
 
 import { ImageMetadata, RedditResponse } from '../types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RedditImageSearchService {
   private readonly http = inject(HttpClient);
 
-  search(
-    subReddit: string,
-    search: string
-  ): Promise<ImageMetadata[]> {
+  search(subReddit: string, search: string): Promise<ImageMetadata[]> {
     const url = `https://www.reddit.com/r/${subReddit}/search.json`;
     const params = { restrict_sr: 'on', q: search };
 
     return firstValueFrom(
       this.http.get<RedditResponse>(url, { params }).pipe(
         delay(Math.random() * 5000), // Simulate flaky connection
-        tap(() => console.log(`results for ${search}`))
-      )
+        tap(() => console.log(`results for ${search}`)),
+      ),
     ).then(translateRedditResults);
   }
 }
 
 function translateRedditResults(
-  response: RedditResponse
+  response: RedditResponse,
 ): ImageMetadata[] {
   // This function doesn't know anything about HTTP or Observable; it just
   // manages the messy shape of this API's data return layout.

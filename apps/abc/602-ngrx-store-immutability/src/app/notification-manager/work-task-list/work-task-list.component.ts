@@ -1,9 +1,7 @@
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import { AsyncPipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject
-} from '@angular/core';
+
 import { Store } from '@ngrx/store';
 
 import { TodoListComponent } from '../../todo-list/todo-list.component';
@@ -11,7 +9,7 @@ import { Task } from '../../types';
 import {
   selectDoneWork,
   selectTodoWork,
-  workTaskActions
+  workTaskActions,
 } from '../../work-task.state';
 
 // Components now pass and receive information between themselves
@@ -21,7 +19,7 @@ import {
   selector: 'app-work-task-list',
   templateUrl: './work-task-list.component.html',
   imports: [TodoListComponent, AsyncPipe],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WorkTaskListComponent {
   private readonly store = inject(Store);

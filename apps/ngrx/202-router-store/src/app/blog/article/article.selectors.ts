@@ -8,7 +8,7 @@ export const { selectArticles } = articleFeature;
 
 export const selectArticlesByAuthor = (authorId: string | number) =>
   createSelector(selectArticles, articles =>
-    articles.filter(article => article.authorId === Number(authorId))
+    articles.filter(article => article.authorId === Number(authorId)),
   );
 
 export const selectCurrentArticle = createSelector(
@@ -18,5 +18,5 @@ export const selectCurrentArticle = createSelector(
     !articleId
       ? undefined // no query param for article
       : // return null if we cannot find article
-        (articles.find(article => article.id === articleId) ?? null)
+        (articles.find(article => article.id === articleId) ?? null),
 );

@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { DashboardService } from '../dashboard.service';
@@ -10,9 +11,9 @@ import { DashboardService } from '../dashboard.service';
   selector: 'vst-views-filter',
   templateUrl: './views-filter.component.html',
   styleUrl: './views-filter.component.scss',
-  imports: [ReactiveFormsModule]
+  imports: [ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ViewsFilterComponent {
-  protected readonly filterFormGroup =
-    inject(DashboardService).filterForm;
+  protected readonly filterFormGroup = inject(DashboardService).filterForm;
 }
