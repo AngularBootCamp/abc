@@ -47,7 +47,7 @@
     "@ngrx/store": "21.0.1",
     "@ngrx/store-devtools": "21.0.1",
     "@picocss/pico": "^2.1.1",
-    "connect-pause": "0.1.0",
+    "connect-pause": "^1.0.0",
     "d3": "^7.9.0",
     "five-server": "^0.4.0",
     "json-server": "^0.17.4",
