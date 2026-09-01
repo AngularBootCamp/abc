@@ -1,5 +1,5 @@
 @use 'layout';
 
 :host {
-  @include layout.two-across;
+  @include layout.two-across();
 }

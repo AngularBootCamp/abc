@@ -2,7 +2,7 @@
 
 app-user-dashboard,
 app-employee-browser {
-  @include layout.two-across;
+  @include layout.two-across();
 }
 
 .todo-list {

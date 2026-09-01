@@ -1,7 +1,7 @@
 @use 'layout';
 
 app-root {
-  @include layout.two-across;
+  @include layout.two-across();
 }
 
 .time-block {

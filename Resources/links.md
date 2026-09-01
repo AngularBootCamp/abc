@@ -40,7 +40,7 @@ https://blog.angular.dev
 Angular YouTube Channel  
 https://www.youtube.com/angular
 
-Angular Bluesky  
+Angular on Bluesky  
 https://bsky.app/profile/angular.dev
 
 Angular CLI  
@@ -157,6 +157,12 @@ https://www.cypress.io
 
 Vitest Testing Framework  
 https://vitest.dev
+
+Vitest VS Code Extension  
+https://marketplace.visualstudio.com/items?itemName=vitest.explorer
+
+Analog - Full-stack Angular meta-framework  
+https://analogjs.org
 
 Docker Desktop  
 https://www.docker.com/products/docker-desktop/

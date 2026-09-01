@@ -2,7 +2,10 @@
   <header>Employees</header>
 
   <p>
-    <button (click)="showInactiveRoles.set(!showInactiveRoles())">
+    <button
+      type="button"
+      (click)="showInactiveRoles.set(!showInactiveRoles())"
+    >
       {{ showInactiveRoles() ? 'Hide' : 'Show' }} Inactive Roles
     </button>
   </p>

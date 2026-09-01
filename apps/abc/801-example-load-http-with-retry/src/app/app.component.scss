@@ -1,24 +1,20 @@
 :host {
   display: grid;
   gap: 1rem;
+  grid-template:
+    ' .     status  '
+    ' list  display '
+    / 1fr 1fr;
 }
 
-@media only screen and (min-width: 601px) {
-  :host {
-    grid-template:
-      ' .     status  '
-      ' list  display '
-      / 1fr 1fr;
-  }
-  .status {
-    grid-area: status;
-  }
+.status {
+  grid-area: status;
+}
 
-  app-employee-list {
-    grid-area: list;
-  }
+app-employee-list {
+  grid-area: list;
+}
 
-  app-employee-display {
-    grid-area: display;
-  }
+app-employee-display {
+  grid-area: display;
 }

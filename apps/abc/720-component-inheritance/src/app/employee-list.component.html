@@ -3,7 +3,7 @@
 <ul class="collection">
   @for (e of employees(); track e.id) {
     <li>
-      <button (click)="selectEmployee(e)">Select</button>
+      <button type="button" (click)="selectEmployee(e)">Select</button>
       {{ e.firstName }} {{ e.lastName }}
     </li>
   }

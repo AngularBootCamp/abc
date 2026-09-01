@@ -16,6 +16,7 @@ _tools/output
 .git*
 .npmrc
 .prettierignore
+.stylelintignore
 .vscode
 .yarnrc
 *.bak

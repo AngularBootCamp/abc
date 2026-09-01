@@ -17,7 +17,7 @@ export class AppComponent {
   private readonly sanitizer = inject(DomSanitizer);
 
   protected readonly stringWithHtml = signal(`
-    <button onClick="window.alert('hello from old-school HTML/JS');">
+    <button type="button" onClick="window.alert('Hello from JavaScript');">
       Press Me
     </button>
     <em>Hello from <strong>HTML</strong></em>

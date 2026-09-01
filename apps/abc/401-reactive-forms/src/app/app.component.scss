@@ -1,7 +1,7 @@
 @use 'layout';
 
 .form-fields {
-  @include layout.three-across;
+  @include layout.three-across();
 }
 
 input.invalid {

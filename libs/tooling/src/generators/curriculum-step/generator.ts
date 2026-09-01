@@ -147,7 +147,6 @@ export default async function (
               ? [`libs/shared/styles/${matchingCurriculumStep}`]
               : []),
             'libs/shared/styles/shared',
-            'node_modules/@angular/material',
           ],
         },
         styles: [

@@ -8,11 +8,19 @@
       [formControl]="bigFormGroup.controls.importantInfo"
     />
 
-    <button (click)="saveChanges()" [disabled]="!bigFormGroup.dirty">
+    <button
+      type="button"
+      (click)="saveChanges()"
+      [disabled]="!bigFormGroup.dirty"
+    >
       Save Changes
     </button>
 
-    <button (click)="discardChanges()" [disabled]="!bigFormGroup.dirty">
+    <button
+      type="button"
+      (click)="discardChanges()"
+      [disabled]="!bigFormGroup.dirty"
+    >
       Discard Changes
     </button>
   </form>

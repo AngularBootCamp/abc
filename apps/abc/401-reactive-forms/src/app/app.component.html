@@ -124,7 +124,7 @@
         </p>
       </div>
     </div>
-    <button [disabled]="!details.valid">Save</button>
+    <button type="button" [disabled]="!details.valid">Save</button>
   </form>
 </article>
 
@@ -137,5 +137,5 @@
   Form Validity:
   <div>{{ details.valid }}</div>
 
-  <button (click)="logTheForm()">Log Form Object</button>
+  <button type="button" (click)="logTheForm()">Log Form Object</button>
 </article>

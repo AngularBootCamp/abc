@@ -13,7 +13,7 @@
   }
 
   <footer>
-    <button (click)="showProfile.set(!showProfile())">
+    <button type="button" (click)="showProfile.set(!showProfile())">
       {{ showHideProfileMessage() }}
     </button>
   </footer>
@@ -31,7 +31,7 @@
   </ul>
 
   <footer>
-    <button (click)="addTodo()">Add Todo</button>
+    <button type="button" (click)="addTodo()">Add Todo</button>
   </footer>
 </article>
 

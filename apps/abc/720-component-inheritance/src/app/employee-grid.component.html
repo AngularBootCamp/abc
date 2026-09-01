@@ -4,7 +4,7 @@
   @for (e of employees(); track e.id) {
     <article>
       <header>{{ e.firstName }} {{ e.lastName }}</header>
-      <button (click)="selectEmployee(e)">Select</button>
+      <button type="button" (click)="selectEmployee(e)">Select</button>
     </article>
   }
 </div>

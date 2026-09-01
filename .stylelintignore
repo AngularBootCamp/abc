@@ -1,0 +1,11 @@
+# Ignore everything
+*
+
+# Unignore directories to allow traversal
+!*/
+
+# Lint all stylesheets in apps and libs
+!/apps/**/*.css
+!/apps/**/*.scss
+!/libs/shared/styles/**/*.css
+!/libs/shared/styles/**/*.scss

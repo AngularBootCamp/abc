@@ -1,6 +1,8 @@
 <article>
   <header>Anakin Component</header>
-  <button (click)="showData = !showData">Show/Hide Anakin Data</button>
+  <button type="button" (click)="showData = !showData">
+    Show/Hide Anakin Data
+  </button>
   @if (showData) {
     <div>
       <h5>Anakin Data</h5>
@@ -13,7 +15,7 @@
 
 <article>
   <header>Another Binding</header>
-  <button (click)="showExtraTime = !showExtraTime">
+  <button type="button" (click)="showExtraTime = !showExtraTime">
     Show/Hide Time Data
   </button>
   @if (showExtraTime) {

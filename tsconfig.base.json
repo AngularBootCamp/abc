@@ -25,12 +25,6 @@
       "@class-materials/shared/e2e/commands": [
         "libs/shared/e2e/src/lib/commands"
       ],
-      "@class-materials/shared/ui-display-or-edit": [
-        "libs/shared/ui-display-or-edit/src/index.ts"
-      ],
-      "@class-materials/shared/ui-page-header": [
-        "libs/shared/ui-page-header/src/index.ts"
-      ],
       "@class-materials/shared/util-color-scheme-observer": [
         "libs/shared/util-color-scheme-observer/src/index.ts"
       ],

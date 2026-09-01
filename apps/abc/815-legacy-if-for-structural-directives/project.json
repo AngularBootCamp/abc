@@ -31,17 +31,12 @@
           }
         ],
         "styles": [
-          "apps/abc/815-legacy-if-for-structural-directives/src/styles.scss",
-          "libs/shared/styles/abc/shared.scss",
-          "libs/shared/styles/shared/shared.scss"
+          "libs/shared/styles/shared.scss",
+          "apps/abc/815-legacy-if-for-structural-directives/src/styles.scss"
         ],
         "scripts": ["libs/shared/scripts/abc-banner.js"],
         "stylePreprocessorOptions": {
-          "includePaths": [
-            "libs/shared/styles/abc",
-            "libs/shared/styles/shared",
-            "node_modules/@angular/material"
-          ]
+          "includePaths": ["libs/shared/styles"]
         }
       },
       "configurations": {

@@ -1,5 +1,9 @@
-<button (click)="toggleView()" [disabled]="showList()">List</button>
-<button (click)="toggleView()" [disabled]="!showList()">Grid</button>
+<button type="button" (click)="toggleView()" [disabled]="showList()">
+  List
+</button>
+<button type="button" (click)="toggleView()" [disabled]="!showList()">
+  Grid
+</button>
 
 @if (showList()) {
   <app-employee-list

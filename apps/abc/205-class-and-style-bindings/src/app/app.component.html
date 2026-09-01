@@ -23,7 +23,7 @@
               class="employee-name"
               [class.great]="record.rank === 1"
               [class.good]="record.rank <= 3"
-              [class]="`region-${region.regionName}`"
+              [class]="`region-${region.regionName.toLowerCase()}`"
             >
               {{ record.empName }}
             </td>

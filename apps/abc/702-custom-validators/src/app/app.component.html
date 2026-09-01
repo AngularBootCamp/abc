@@ -45,7 +45,7 @@
         }
       </label>
     </div>
-    <button [disabled]="!loginFormGroup.valid">Login</button>
+    <button type="button" [disabled]="!loginFormGroup.valid">Login</button>
   </form>
 </article>
 
@@ -58,5 +58,5 @@
   Form Validity:
   <div>{{ loginFormGroup.valid }}</div>
 
-  <button (click)="logTheForm()">Log Form Object</button>
+  <button type="button" (click)="logTheForm()">Log Form Object</button>
 </article>

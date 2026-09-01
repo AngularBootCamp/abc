@@ -18,7 +18,7 @@ describe('The soccer API', () => {
       .expect(response => expect(response.body.length).toBe(5));
 
     await request(app.getHttpServer())
-      .delete('/soccer/players/abcdef')
+      .delete('/soccer/players/82768ce13fb4')
       .expect(200);
 
     await request(app.getHttpServer())

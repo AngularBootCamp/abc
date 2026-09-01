@@ -1,8 +1,8 @@
 <h1>Pizza Creator</h1>
 
 <div>
-  <button (click)="addNewPizza()">Add New Pizza</button>
-  <button (click)="logForm()">Log Form</button>
+  <button type="button" (click)="addNewPizza()">Add New Pizza</button>
+  <button type="button" (click)="logForm()">Log Form</button>
 </div>
 
 @for (form of pizzasFormArray.controls; track form) {
@@ -14,7 +14,9 @@
       Pizza #{{ $index + 1 }}
     </h2>
     <div class="pizza-form-container">
-      <button (click)="removePizza($index)">Remove Pizza</button>
+      <button type="button" (click)="removePizza($index)">
+        Remove Pizza
+      </button>
       <form [formGroup]="form">
         <app-form-select
           label="Size"

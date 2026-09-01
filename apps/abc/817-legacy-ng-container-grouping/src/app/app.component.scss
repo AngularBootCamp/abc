@@ -1,11 +1,12 @@
 /* What happens if the spans inside paragraphs are styled? */
 
 p > span {
-  color: black;
-  background-color: yellow;
+  color: var(--abc-on-warning-color);
+  background-color: var(--abc-warning-color);
   font-weight: bold;
   padding: 5px;
-  border: 2px solid gold;
+  border: 2px solid
+    color-mix(in srgb, var(--abc-on-warning-color), transparent 75%);
   border-radius: 5px;
 }
 

@@ -27,11 +27,8 @@ const normalize = (title: string) => {
   );
 };
 
-// Get the element containing the application name, via one of the many
-// ways it might be specified across different applications.
-Cypress.Commands.add('appName', () =>
-  cy.get('nav > span, oasis-header h1, nav > h1'),
-);
+// Get the element containing the application name.
+Cypress.Commands.add('appName', () => cy.get('nav > span, nav > h1'));
 
 // Make sure the application name and the page title are exactly the
 // same, and that they're similar to the project name.

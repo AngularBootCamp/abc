@@ -2,6 +2,7 @@
   display: grid;
   padding: 1rem;
   gap: 1rem;
+
   // prettier-ignore
   grid-template:
     ' list                video       filter ' minmax(0, 1fr)

@@ -1,0 +1,34 @@
+@use 'prebuilt-themes/indigo-pink.css';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+}
+
+img.logo {
+  height: 50px;
+}
+
+// TODO: Migrate to updated Angular Material theming system.
+[mat-dialog-actions] {
+  direction: rtl;
+
+  button {
+    text-transform: uppercase;
+  }
+}
+
+// TODO: Enable with updated Angular Material theming system.
+//
+// .mat-list-item-active {
+//   font-weight: bold;
+// }
+//
+// .mat-option-text {
+//   text-transform: capitalize;
+// }

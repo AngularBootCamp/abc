@@ -12,4 +12,8 @@ import {
   imports: [RouterLinkActive, RouterLink, RouterOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {}
+export class AppComponent {
+  // constructor() {
+  //   inject(Router).events.subscribe(event => console.log(event));
+  // }
+}

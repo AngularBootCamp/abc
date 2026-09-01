@@ -4,10 +4,13 @@ app-root p {
 
   .description {
     display: inline-block;
-    color: light-dark(black, white);
+    color: light-dark(
+      var(--abc-adaptive-black),
+      var(--abc-adaptive-white)
+    );
     background-color: color-mix(
       in srgb,
-      light-dark(white, black),
+      light-dark(var(--abc-adaptive-white), var(--abc-adaptive-black)),
       transparent
     );
     border-radius: 5px;

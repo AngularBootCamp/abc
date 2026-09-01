@@ -14,7 +14,7 @@ import { Component, input, numberAttribute, output } from '@angular/core';
       </strong>
     </p>
     <p>
-      <button (click)="onNotify()">Notify</button>
+      <button type="button" (click)="onNotify()">Notify</button>
     </p>
   `,
 })

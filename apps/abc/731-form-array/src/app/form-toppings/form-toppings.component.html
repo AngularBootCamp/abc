@@ -1,6 +1,6 @@
 <h3>Toppings</h3>
 
-<button (click)="addNewTopping()">Add Topping</button>
+<button type="button" (click)="addNewTopping()">Add Topping</button>
 
 @for (topping of toppingControls; track topping) {
   @let toppingNumber = $index + 1;
@@ -13,7 +13,7 @@
       [formControl]="topping"
       placeholder="Add a topping"
     />
-    <button (click)="removeTopping($index)">x</button>
+    <button type="button" (click)="removeTopping($index)">x</button>
   </div>
 } @empty {
   <div>No Toppings Chosen...</div>

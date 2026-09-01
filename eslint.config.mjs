@@ -86,7 +86,7 @@ export default [
       },
     },
     rules: {
-      // TODO: Define these for different sectios of the monorepo.
+      // TODO: Define these for different sections of the monorepo.
       //
       // '@angular-eslint/component-selector': [
       //   'error',
@@ -165,7 +165,7 @@ export default [
             'rxjs',
 
             // Packages from Angular that require a separate install,
-            // like `@angular/material`
+            // like `@angular/cdk`
             'angular-other',
 
             'external',
@@ -504,38 +504,16 @@ export default [
     },
   },
 
-  // Temporarily loosen some restrictions on non-abc apps, just to make
-  // the WIP linting update less noisy along the way.
-
-  {
-    files: [
-      'apps/ngrx/**/*.ts',
-      'apps/rxjs/**/*.ts',
-      'apps/server/**/*.ts',
-    ],
-    rules: {
-      '@typescript-eslint/explicit-member-accessibility': 'off',
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-empty-function': 'off',
-
-      'no-param-reassign': ['off', { props: true }],
-
-      '@angular-eslint/prefer-on-push-component-change-detection': 'off',
-      '@angular-eslint/prefer-output-emitter-ref': 'off',
-      '@angular-eslint/prefer-output-readonly': 'off',
-      '@angular-eslint/prefer-signals': 'off',
-    },
-  },
+  // Loosen a few restrictions on the demo API server.
   {
     files: ['apps/server/**/*.ts'],
     rules: {
+      'no-param-reassign': ['off', { props: true }],
+
       '@angular-eslint/use-injectable-provided-in': 'off',
-    },
-  },
-  {
-    files: ['apps/ngrx/**/*.html', 'apps/rxjs/**/*.html'],
-    rules: {
-      '@angular-eslint/template/no-inline-styles': ['off'],
+
+      '@typescript-eslint/explicit-member-accessibility': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
 ];

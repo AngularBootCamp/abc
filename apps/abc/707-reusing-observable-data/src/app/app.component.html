@@ -3,7 +3,9 @@
 
   <pre>{{ company | async | json }}</pre>
 
-  <button (click)="showAgain.set(!showAgain())">Show company again</button>
+  <button type="button" (click)="showAgain.set(!showAgain())">
+    Show company again
+  </button>
 
   @if (showAgain()) {
     <div>

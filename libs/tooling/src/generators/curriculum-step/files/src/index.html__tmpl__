@@ -16,7 +16,7 @@
       </a>
     </nav>
     <div class="container">
-      <app-root>loading...</app-root>
+      <app-root></app-root>
     </div>
   </body>
 </html>
