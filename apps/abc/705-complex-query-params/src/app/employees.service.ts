@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Service, inject } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
@@ -30,9 +30,7 @@ function convertToAscOrDesc(dir: unknown) {
   return dir === 'desc' ? 'desc' : 'asc';
 }
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class EmployeeService {
   private readonly http = inject(HttpClient);
   private readonly route = inject(ActivatedRoute);

@@ -3,9 +3,9 @@
 ## Is this the entire Angular Boot Camp curriculum?
 
 This is the bulk of the example code we use in Angular Boot Camp, but
-there are extra parts that we distribute or build live during training.
-Reading through these files is not a substitute for attending class;
-much of the "magic" is from the instruction and workshop assistance.
+there are also portions that we build live, during training. Reading
+through these files is not a substitute for attending class; much of the
+"magic" is from the instruction and workshop assistance.
 
 ## Why have you published this material?
 

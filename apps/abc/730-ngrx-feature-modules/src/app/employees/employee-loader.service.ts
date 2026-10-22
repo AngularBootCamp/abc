@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Service, inject } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -19,9 +19,7 @@ export interface Employee {
 // Hosted API server
 const apiUrl = 'https://api.angularbootcamp.com';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class EmployeeLoader {
   private readonly http = inject(HttpClient);
 

@@ -1,4 +1,4 @@
-import { DOCUMENT, Injectable, inject } from '@angular/core';
+import { DOCUMENT, Service, inject } from '@angular/core';
 
 import {
   Observable,
@@ -39,9 +39,7 @@ function effectiveColorScheme([systemColorScheme, customColorScheme]: [
   }
 }
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class ColorSchemeObserver {
   private readonly DOCUMENT = inject(DOCUMENT);
   private readonly defaultObservedElement = this.DOCUMENT.documentElement;

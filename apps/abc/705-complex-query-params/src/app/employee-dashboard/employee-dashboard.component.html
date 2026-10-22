@@ -1,5 +1,7 @@
 @let options = (tableOptions | async) ?? undefined;
-<app-employee-filter [filterTerm]="options?.filter" />
+<app-employee-filter
+  [filterTerm]="$safeNavigationMigration(options?.filter)"
+/>
 <app-employee-list
   [employees]="(employees | async) ?? []"
   [options]="options"

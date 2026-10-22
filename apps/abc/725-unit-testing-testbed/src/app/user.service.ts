@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 export interface User {
   id: string;
@@ -6,9 +6,7 @@ export interface User {
   lastName: string;
 }
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class UserService {
   private user = {
     id: 'bb8',

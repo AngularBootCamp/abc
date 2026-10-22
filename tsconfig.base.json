@@ -29,7 +29,10 @@
         "libs/shared/util-color-scheme-observer/src/index.ts"
       ],
       "@class-materials/tooling": ["libs/tooling/src/index.ts"]
-    }
+    },
+    "noUncheckedSideEffectImports": false,
+    "types": ["*"],
+    "esModuleInterop": false
   },
   "exclude": ["node_modules", "tmp"]
 }

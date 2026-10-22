@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Service, inject } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -10,9 +10,7 @@ import {
   ConstellationLoaderConfig,
 } from '../types';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class ConstellationLoader {
   private readonly http = inject(HttpClient);
   private readonly config = inject<ConstellationLoaderConfig>(
@@ -29,9 +27,9 @@ export class ConstellationLoader {
 
   getConstellation(iauAbbreviation: string): Observable<Constellation> {
     return this.http
-      .get<
-        Constellation[]
-      >(`${this.config.endpoint}?iauAbbreviation=${iauAbbreviation}`)
+      .get<Constellation[]>(
+        `${this.config.endpoint}?iauAbbreviation=${iauAbbreviation}`,
+      )
       .pipe(map(results => results[0]));
   }
 }

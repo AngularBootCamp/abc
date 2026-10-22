@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Service, inject } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -18,9 +18,7 @@ const apiLatency = 100;
 // Set to 3000 to see that out-of-order replies don't cause any problem:
 const apiJitter = 100;
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class EmployeeLoaderService {
   private readonly http = inject(HttpClient);
 

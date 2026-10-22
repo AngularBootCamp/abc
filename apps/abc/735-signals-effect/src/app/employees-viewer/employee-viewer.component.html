@@ -5,7 +5,7 @@
 
   <app-employee-list
     [list]="filteredList()"
-    [selectedId]="selectedEmployee()?.id"
+    [selectedId]="$safeNavigationMigration(selectedEmployee()?.id)"
   />
 </article>
 

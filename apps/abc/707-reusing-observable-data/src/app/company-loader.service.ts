@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Service, inject } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -22,9 +22,7 @@ function logWithTimestamp(messageList: unknown[]) {
   console.log('Messages retrieved at ' + new Date().toISOString());
 }
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class CompanyLoader {
   private readonly http = inject(HttpClient);
 

@@ -1,10 +1,8 @@
-import { Injectable, inject } from '@angular/core';
+import { Service, inject } from '@angular/core';
 
 import { UserService } from './user.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class HelloService {
   private readonly userService = inject(UserService);
 

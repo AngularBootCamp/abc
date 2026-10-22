@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Service, inject } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -18,9 +18,7 @@ const apiUrl = 'https://api.angularbootcamp.com';
 
 const pageSize = 10;
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class EmployeeService {
   private readonly http = inject(HttpClient);
 

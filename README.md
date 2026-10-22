@@ -7,7 +7,7 @@
 />
 
 Welcome to the Angular Boot Camp Curriculum. This repository contains
-much of the example code we use in teaching [Angular Boot
+the example code we use in teaching [Angular Boot
 Camp](https://angularbootcamp.com/), available here to use in class, or
 for developers everywhere to refer to for (hopefully) high-quality
 examples of specific Angular topics.
@@ -36,7 +36,7 @@ npm run test abc-722
 ### Building an example
 
 ```bash
-npm run build rxjs-600
+npm run build abc-600
 ```
 
 ## FAQs and resources

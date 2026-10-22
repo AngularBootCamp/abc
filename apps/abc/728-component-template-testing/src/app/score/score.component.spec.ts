@@ -1,6 +1,3 @@
-/* eslint-disable @angular-eslint/prefer-on-push-component-change-detection
--- This older example assumes zone.js and ChangeDetectionStrategy.Default
-*/
 import { Component, DebugElement } from '@angular/core';
 import {
   ComponentFixture,

@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Service, inject } from '@angular/core';
 
 import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -26,9 +26,7 @@ import { Video } from './dashboard.types';
 // Hosted API server
 const apiUrl = 'https://api.angularbootcamp.com';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class DashboardService {
   private readonly http = inject(HttpClient);
   private readonly router = inject(Router);

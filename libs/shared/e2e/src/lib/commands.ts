@@ -40,7 +40,7 @@ Cypress.Commands.add('checkAppNameAndPageTitle', () =>
       const trimmedName = name.trim();
       cy.title().should('eq', trimmedName);
       expect(normalize(trimmedName)).to.equal(
-        normalize(Cypress.env()['projectName']),
+        normalize(Cypress.expose('projectName')),
       );
     }),
 );

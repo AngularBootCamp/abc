@@ -1,10 +1,17 @@
 /* eslint-disable @angular-eslint/prefer-on-push-component-change-detection
--- This older unit testing example assumes zone.js and Default CDS
+-- This older unit testing example assumes zone.js and Eager CDS
 */
-import { Component, input, numberAttribute, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  numberAttribute,
+  output,
+} from '@angular/core';
 
 @Component({
   selector: 'app-show-score',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <p>
       <strong>

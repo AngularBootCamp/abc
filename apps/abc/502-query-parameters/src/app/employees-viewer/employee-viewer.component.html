@@ -7,7 +7,7 @@
 
   <app-employee-list
     [list]="(filteredList | async) ?? []"
-    [selectedId]="employee?.id"
+    [selectedId]="$safeNavigationMigration(employee?.id)"
   />
 </article>
 

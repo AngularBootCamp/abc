@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Service, inject } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -21,9 +21,7 @@ export interface Employee {
   hourlyWage: number;
 }
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class EmployeesService {
   private readonly http = inject(HttpClient);
 

@@ -1,12 +1,13 @@
 /* eslint-disable @angular-eslint/prefer-on-push-component-change-detection
 -- This older unit testing example assumes zone.js and Default CDS
 */
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { HelloService } from './hello.service';
 
 @Component({
   selector: 'app-root',
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './app.component.html',
 })
 export class AppComponent {

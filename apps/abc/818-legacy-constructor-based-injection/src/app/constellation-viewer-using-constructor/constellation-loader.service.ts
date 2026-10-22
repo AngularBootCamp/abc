@@ -12,9 +12,7 @@ import {
   ConstellationLoaderConfig,
 } from '../types';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ConstellationLoader {
   constructor(
     private readonly http: HttpClient,
@@ -32,9 +30,9 @@ export class ConstellationLoader {
 
   getConstellation(iauAbbreviation: string): Observable<Constellation> {
     return this.http
-      .get<
-        Constellation[]
-      >(`${this.config.endpoint}?iauAbbreviation=${iauAbbreviation}`)
+      .get<Constellation[]>(
+        `${this.config.endpoint}?iauAbbreviation=${iauAbbreviation}`,
+      )
       .pipe(map(results => results[0]));
   }
 }

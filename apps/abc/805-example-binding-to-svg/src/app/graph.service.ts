@@ -1,4 +1,4 @@
-import { Injectable, computed, signal } from '@angular/core';
+import { Service, computed, signal } from '@angular/core';
 
 export interface Person extends d3.SimulationNodeDatum {
   displayName: string;
@@ -287,9 +287,7 @@ names.forEach((name, index) => {
   });
 });
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class GraphService {
   // Pretend we're loading data from an external source.
   private readonly peopleAndRelationships = signal(mockData);

@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Service, inject } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -12,7 +12,7 @@ import { UserProfile } from './user-profile.types';
 // Hosted API server
 const apiUrl = 'https://api.angularbootcamp.com';
 
-@Injectable({ providedIn: 'root' })
+@Service()
 export class UserProfileService {
   private readonly http = inject(HttpClient);
 

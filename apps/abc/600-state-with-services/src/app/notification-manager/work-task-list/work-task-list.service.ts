@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 // Behavior Subject is a subclass of Observable that
 // allows the creator to "push" new values into it.
@@ -6,9 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { Task } from '../../types';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class WorkTaskListService {
   // Application state is stored in private properties.
 

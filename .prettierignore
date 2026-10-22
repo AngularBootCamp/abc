@@ -56,3 +56,4 @@ surveys.json
 .env
 
 /.nx/workspace-data
+.nx/self-healing

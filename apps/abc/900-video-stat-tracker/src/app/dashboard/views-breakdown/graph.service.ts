@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Service, inject } from '@angular/core';
 
 import { combineLatest, filter, map, startWith } from 'rxjs';
 
@@ -7,9 +7,7 @@ import { FilterOptions, Video } from '../dashboard.types';
 
 import { getGraphData } from './graph-helper';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class GraphService {
   private readonly ds = inject(DashboardService);
   public readonly graphData = combineLatest([

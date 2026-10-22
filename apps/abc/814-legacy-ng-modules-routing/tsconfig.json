@@ -12,7 +12,8 @@
     "moduleResolution": "bundler",
     "lib": ["dom", "es2022"],
     "isolatedModules": true,
-    "emitDecoratorMetadata": false
+    "emitDecoratorMetadata": false,
+    "ignoreDeprecations": "6.0"
   },
   "files": [],
   "include": [],

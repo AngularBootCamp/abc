@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs';
 
@@ -6,9 +6,7 @@ import { Task } from '../../types';
 
 // See work-task-list.service.ts for details on what these services do.
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class HomeTaskListService {
   private _done = [
     { label: 'Cook dinner' },

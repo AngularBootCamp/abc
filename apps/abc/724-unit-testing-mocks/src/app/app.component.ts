@@ -4,12 +4,13 @@
 /* eslint-disable @angular-eslint/prefer-inject
 -- This older unit testing example requires constructor-based DI
 */
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { HelloService } from './hello.service';
 
 @Component({
   selector: 'app-root',
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './app.component.html',
 })
 export class AppComponent {
