@@ -11,20 +11,17 @@ http://angularbootcamp.com/abc.zip
 
 ---
 
-Oasis Digital  
-https://oasisdigital.com  
-
-Oasis Digital Training  
-https://oasisdigital.com/training
-
-Oasis Digital YouTube Channel  
-https://www.youtube.com/user/OasisDigitalSoftware
-
 Valiantys  
 https://valiantys.com/
 
 Valiantys Training Services  
 https://valiantys.com/en/service/training-coaching/
+
+Oasis Digital  
+https://oasisdigital.com  
+
+Oasis Digital YouTube Channel  
+https://www.youtube.com/user/OasisDigitalSoftware
 
 ---
 
@@ -107,6 +104,9 @@ https://caniuse.com
 
 Baseline  
 https://web-platform-dx.github.io/web-features
+
+Angular Can I Use - Status of Angular features by version  
+https://www.angular.courses/caniuse
 
 ---
 
@@ -207,6 +207,9 @@ https://gridbyexample.com
 Zod - TypeScript-first schema validation with static type inference  
 https://zod.dev
 
+Standard Schema - A family of specs for interoperable TypeScript  
+https://standardschema.dev
+
 ---
 
 TypeScript  
@@ -250,12 +253,6 @@ https://youtube.com/playlist?list=PLbsv4EV3gvTSbKcKCqJ1beb3StEuCCMMx
 
 Angular Air Livestream / Podcast  
 https://angularair.com
-
-The Angular Plus Show Podcast  
-https://ng.show
-
-ng-conf YouTube  
-https://www.youtube.com/@ngconfonline
 
 ---
 

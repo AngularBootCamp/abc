@@ -1,10 +1,9 @@
-# Angular Boot Camp in-class examples
+# IMPORTANT UPDATE
 
-<img
-  src="https://angularbootcamp.com/images/angular-boot-camp-logo.svg"
-  width="394"
-  height="106"
-/>
+**Please visit [Angular Class Examples](https://github.com/angular-resources/ace)
+for the latest version of these materials! This repo is no longer being updated.**
+
+## Angular Boot Camp in-class examples
 
 Welcome to the Angular Boot Camp Curriculum. This repository contains
 the example code we use in teaching [Angular Boot

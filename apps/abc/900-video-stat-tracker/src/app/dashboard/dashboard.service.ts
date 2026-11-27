@@ -21,7 +21,7 @@ import {
 import { Video } from './dashboard.types';
 
 // Local API server
-// const apiUrl = 'https://api.angularbootcamp.com';
+// const apiUrl = '/api';
 
 // Hosted API server
 const apiUrl = 'https://api.angularbootcamp.com';
